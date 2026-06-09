@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gitnexus": {
+      "command": "/root/.npm/node_modules/bin/gitnexus",
+      "args": ["mcp"]
+    }
+  }
+}

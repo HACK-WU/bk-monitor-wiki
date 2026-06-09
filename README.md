@@ -21,9 +21,12 @@ bk-monitor-wiki/
 │   ├── 测试策略/           # 测试相关文档
 │   ├── 故障排查/           # 故障排查指南
 │   └── 安全考虑/           # 安全相关文档
+├── skills/                  # 技能文件
+│   └── wiki-knowledge-build/ # Wiki 知识库构建技能
 ├── rules/                   # 规则文件
 │   ├── django-url-view-resolver.md   # Django URL 解析规则
 │   ├── gitnexus-mcp-usage-guide.md  # GitNexus MCP 使用指南
+│   ├── memory-mcp-feedback.md       # Memory MCP 服务反馈规则
 │   └── resource-locator.md          # Resource/API 代码定位规则
 ├── scripts/                 # 工具脚本
 │   ├── django-url-view-resolver.py  # Django URL 解析脚本
@@ -96,7 +99,7 @@ GitNexus MCP 工具的使用指南。
 
 ### 配置指南
 
-详细配置步骤请参考：[首次使用配置 SKILL](https://github.com/HACK-WU/memory-lancedb-mcp/blob/master/skills/setup-first-use/SKILL.md)
+详细配置步骤请参考：[Wiki 知识库构建 SKILL](skills/wiki-knowledge-build/SKILL.md)
 
 ### 快速开始
 

@@ -57,6 +57,7 @@ def incremental_index_update(
     stats = updated.setdefault("stats", {})
     stats["source_count"] = len(source_to_wiki)
     stats["wiki_count"] = len(wiki_to_source)
+    stats["citation_count"] = sum(len(sources) for sources in wiki_to_source.values())
     return updated
 
 

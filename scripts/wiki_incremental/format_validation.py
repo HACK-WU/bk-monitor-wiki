@@ -83,17 +83,30 @@ def _fix_chart_sources(content: str) -> tuple[str, int]:
     return content, count
 
 
+def _to_anchor(title: str) -> str:
+    """Turn a section title into a safe in-page anchor.
+
+    Chinese text and alphanumeric characters are passed through;
+    parentheses and other markdown-link-breaking characters are removed.
+    """
+    return title.replace("#", "").replace("(", "").replace(")", "").replace("[", "").replace("]", "").strip()
+
+
 def _fix_toc(content: str) -> str:
     headings = _headings(content)
     if not headings:
         return content
-    toc_block = "## 目录\n" + "\n".join(f"{idx}. [{title}](#{title})" for idx, title in enumerate(headings, 1)) + "\n"
+    toc_block = "## 目录\n" + "\n".join(f"{idx}. [{title}](#{_to_anchor(title)})" for idx, title in enumerate(headings, 1)) + "\n"
     if re.search(r"^## 目录\n", content, re.MULTILINE):
         return re.sub(r"^## 目录\n(?:.*\n)*?(?=^## |\Z)", toc_block + "\n", content, count=1, flags=re.MULTILINE)
     return re.sub(r"(?=^## )", toc_block + "\n", content, count=1, flags=re.MULTILINE)
 
 
-def validate_and_fix(wiki_content: str) -> tuple[str, list[Violation]]:
+MAX_FIX_ROUNDS = 3
+
+
+def _validate_one_round(wiki_content: str) -> tuple[str, list[Violation]]:
+    """Single-pass R1/R5/R3/R4/R6 validation and fixing."""
     content = wiki_content
     violations: list[Violation] = []
 
@@ -121,3 +134,17 @@ def validate_and_fix(wiki_content: str) -> tuple[str, list[Violation]]:
         content = _fix_toc(content)
 
     return content, violations
+
+
+def validate_and_fix(wiki_content: str) -> tuple[str, list[Violation]]:
+    """R1-R6 multi-round validation; up to 3 rounds to converge cascading fixes."""
+    content = wiki_content
+    all_violations: list[Violation] = []
+
+    for _ in range(MAX_FIX_ROUNDS):
+        content, round_violations = _validate_one_round(content)
+        all_violations.extend(round_violations)
+        if not round_violations:
+            break
+
+    return content, all_violations

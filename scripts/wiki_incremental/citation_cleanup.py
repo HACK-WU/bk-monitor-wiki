@@ -30,6 +30,14 @@ def cleanup_dead_citations(
             result = name_pattern.sub(lambda m: f"{m.group(1)}{new_name}{m.group(2)}", result)
 
     result = re.sub(r"<cite>\s*\*\*本文引用的文件\*\*\s*</cite>\s*", "", result)
-    result = re.sub(r"^\*{0,2}(章节来源|图表来源|图示来源)\*{0,2}\s*\n(?=\n|^#|\Z)", "", result, flags=re.MULTILINE)
+    # 移除所有引用条目已被清理的空来源块
+    result = re.sub(
+        r"^\*{0,2}(章节来源|图表来源|图示来源)\*{0,2}\s*\n"
+        r"(?:(?:(?!- \[).)*\n)*"
+        r"(?=\n|^#|\Z)",
+        "",
+        result,
+        flags=re.MULTILINE,
+    )
     return result
 

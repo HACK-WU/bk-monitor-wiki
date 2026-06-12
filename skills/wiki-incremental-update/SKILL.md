@@ -71,8 +71,8 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 1. 读取当前 Wiki 内容，保留手动编辑内容。
 2. 读取相关源文件的旧版本、新版本和 diff。
 3. 只更新受变更影响的章节，避免重写整篇文档。
-4. 如果源文件删除，从 `<cite>`、`章节来源`、`图表来源`、`图示来源` 中移除引用。
-5. 如果源文件重命名，自动替换旧路径为新路径。
+4. 如果源文件删除，调用 `citation_cleanup.cleanup_dead_citations(content, dead_files=[path], renamed_files={})` 清理失效引用。
+5. 如果源文件重命名，调用 `citation_cleanup.cleanup_dead_citations(content, dead_files=[], renamed_files={old: new})` 替换路径。
 6. 保持现有 Wiki 风格：
    - 文件顶部标题后保留 `<cite>`
    - 目录使用中文标题锚点，如 `[简介](#简介)`
@@ -81,7 +81,16 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 
 ### Step 5: 格式校验
 
-写入前执行格式检查：
+写入前对每个更新的 wiki 执行格式校验：
+
+```python
+from wiki_incremental.format_validation import validate_and_fix
+
+content, violations = validate_and_fix(updated_content)
+# violations 中包含所有 R1-R6 违规及修复状态
+```
+
+校验规则：
 
 - `<cite>` 块存在
 - 引用路径使用 `file://相对路径`

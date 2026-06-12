@@ -114,6 +114,8 @@ def build_index(
     wiki_dir: str | Path,
     commit_id: str,
     base_metadata: dict | None = None,
+    repo_url: str = "",
+    branch: str = "",
 ) -> dict:
     root = Path(wiki_dir)
     if not root.exists():
@@ -138,11 +140,13 @@ def build_index(
     metadata.setdefault("wiki_path", root.as_posix())
     source = dict(metadata.get("source") or {})
     source["commit_id"] = commit_id
+    source["repo_url"] = repo_url or source.get("repo_url", "")
+    source["branch"] = branch or source.get("branch", "")
     metadata["source"] = source
-    metadata.setdefault("excluded_paths", ["bklog/", "bkmonitor/webpack/"])
+    metadata.setdefault("excluded_paths", ["bklog/", "bkmonitor/webpack/", "*/migrations/", "*/tests/", "*/__init__.py"])
     metadata.setdefault(
         "noise_paths",
-        ["*/migrations/", "*/tests/", "*/__init__.py", "*.pyc", "^docs/"],
+        ["*.pyc", "^docs/"],
     )
     stats = dict(metadata.get("stats") or {})
     stats.update(
@@ -167,11 +171,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--repo-dir", default=".")
     parser.add_argument("--metadata")
     parser.add_argument("--output")
+    parser.add_argument("--repo-url", default="", help="source code repository URL")
+    parser.add_argument("--branch", default="", help="source code branch name")
     args = parser.parse_args(argv)
 
     base = load_json(args.metadata) if args.metadata else None
     commit = args.commit or _current_commit(args.repo_dir)
-    metadata = build_index(args.wiki_dir, commit, base)
+    metadata = build_index(args.wiki_dir, commit, base, repo_url=args.repo_url, branch=args.branch)
     if args.output:
         atomic_save_json(metadata, args.output)
     else:

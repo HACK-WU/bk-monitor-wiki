@@ -12,8 +12,8 @@
 
 | 文件 | 说明 |
 |------|------|
-| `wiki/metadata.json` | Wiki 元信息、排除规则、双向索引 |
-| `scripts/wiki_incremental/index_builder.py` | 全量构建 `source_to_wiki` / `wiki_to_source` |
+| `wiki/metadata.json` | Wiki 元信息、排除规则、双向索引、**源代码仓库信息** (`source.repo_url`, `source.branch`, `source.commit_id`) |
+| `scripts/wiki_incremental/index_builder.py` | 全量构建 `source_to_wiki` / `wiki_to_source`，记录源代码仓库 URL/分支/commit |
 | `scripts/wiki_incremental/change_detection.py` | git diff 变更检测和三级匹配 |
 | `scripts/wiki_incremental/citation_cleanup.py` | 删除/重命名文件的旧引用清理 |
 | `scripts/wiki_incremental/format_validation.py` | Wiki 格式校验和机械修复 |
@@ -29,15 +29,21 @@
 PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
   --wiki-dir bk-monitor-wiki/wiki \
   --metadata bk-monitor-wiki/wiki/metadata.json \
+  --repo-dir . \
+  --repo-url git@github.com:TencentBlueKing/bk-monitor.git \
+  --branch master \
   --output bk-monitor-wiki/wiki/metadata.json
 ```
+
+`--metadata` 读取已有配置（excluded_paths/noise_paths 等），防止被 `setdefault` 默认值覆盖。
 
 ## 标准流程
 
 ### Step 1: 确认 commit 范围
 
 - `old_commit` 默认读取 `bk-monitor-wiki/wiki/metadata.json` 的 `source.commit_id`
-- `new_commit` 使用用户指定值；如果用户没有指定，使用当前 `HEAD`
+- `new_commit` 必须由用户指定（`--new-commit` 为必填参数）
+- `source.repo_url` 和 `source.branch` 记录了源代码仓库的地址和分支，仅作追溯用途，不参与 diff 计算
 
 ### Step 2: Dry-run 变更检测
 
@@ -110,11 +116,12 @@ from wiki_incremental.incremental_index import incremental_index_update, save_me
 
 更新内容：
 
-- `source.commit_id = <new_commit>`
+- `source.commit_id = <new_commit>`（`repo_url` 和 `branch` 保持不变）
 - `source_to_wiki`
 - `wiki_to_source`
 - `stats.source_count`
 - `stats.wiki_count`
+- `stats.citation_count`
 
 如果增量索引失败，降级为全量 `build_index`。
 

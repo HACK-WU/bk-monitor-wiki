@@ -1,0 +1,29 @@
+{
+  "requirements": {
+    "2026-06-12-Wiki增量更新Skill": {
+      "id": "REQ-001",
+      "feature": "Wiki增量更新Skill",
+      "created": "2026-06-12",
+      "updated": "2026-06-12",
+      "status": "已确认",
+      "tags": [
+        "skill",
+        "wiki",
+        "metadata"
+      ],
+      "version": 3,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-06-12 v3: 数据模型 v2 经 git diff 实测验证通过"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "design/data-flow.md",
+          "type": "data_flow"
+        }
+      ]
+    }
+  }
+}

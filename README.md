@@ -22,13 +22,11 @@ bk-monitor-wiki/
 │   ├── 故障排查/           # 故障排查指南
 │   └── 安全考虑/           # 安全相关文档
 ├── skills/                  # 技能文件
-│   └── wiki-knowledge-build/ # Wiki 知识库构建技能
+│   ├── wiki-incremental-update/  # Wiki 增量更新技能
+│   └── wiki-knowledge-build/     # Wiki 知识库构建技能
 ├── rules/                   # 规则文件
-│   ├── django-url-view-resolver.md   # Django URL 解析规则
-│   ├── gitnexus-mcp-usage-guide.md  # GitNexus MCP 使用指南
-│   ├── memory-mcp-feedback.md       # Memory MCP 服务反馈规则
-│   └── resource-locator.md          # Resource/API 代码定位规则
 ├── scripts/                 # 工具脚本
+│   ├── wiki_incremental/          # Wiki 增量更新工具库
 │   ├── django-url-view-resolver.py  # Django URL 解析脚本
 │   └── hello.py                      # Django 环境初始化
 ├── requirements/            # 需求文档
@@ -61,6 +59,30 @@ bk-monitor-wiki/
 
 ## 工具脚本
 
+### Wiki 增量更新工具
+
+维护源文件与 Wiki 文档之间的双向引用索引，根据 git commit 变更检测受影响的 Wiki 页面，支持增量更新。
+
+```bash
+# 全量构建索引
+cd /root/bk-monitor
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
+  --wiki-dir bk-monitor-wiki/wiki \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --repo-dir . \
+  --repo-url git@github.com:TencentBlueKing/bk-monitor.git \
+  --branch master \
+  --output bk-monitor-wiki/wiki/metadata.json
+
+# 检测变更影响范围（dry-run）
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli detect \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --new-commit <commit_hash> \
+  --repo-dir .
+```
+
+详细用法：[scripts/wiki_incremental/README.md](scripts/wiki_incremental/README.md)
+
 ### Django URL 解析脚本
 
 用于从 HTTP 接口 URL 反推出最终处理代码（视图函数、视图类、Resource 类）。
@@ -76,44 +98,29 @@ python scripts/django-url-view-resolver.py "<URL>" "<METHOD>"
 python scripts/django-url-view-resolver.py "/rest/v2/data_explorer/get_graph_query_config/" "POST"
 ```
 
-## 规则文件
+## 技能文件
 
-### resource-locator.md
-Resource/API 代码定位规则，用于从 `resource.xxx.yyy` 格式的路径定位到对应的 Python 类源码。
+### wiki-incremental-update
 
-### django-url-view-resolver.md
-Django URL → View / Resource 解析脚本的使用说明。
+根据代码变更增量更新受影响的 Wiki 页面。完整流程：commit 范围确认 → 变更检测 → 更新 Wiki → 格式校验 → 索引同步。
 
-### gitnexus-mcp-usage-guide.md
-GitNexus MCP 工具的使用指南。
+详见：[skills/wiki-incremental-update/SKILL.md](skills/wiki-incremental-update/SKILL.md)
+
+### wiki-knowledge-build
+
+将 wiki 文档向量化导入知识库，支持语义搜索和 AI 助手集成。
+
+详见：[skills/wiki-knowledge-build/SKILL.md](skills/wiki-knowledge-build/SKILL.md)
+
+## 规则文件（旧）
+
+规则已迁移到 IDE 规则系统，此处仅保留历史参考。
 
 ## 知识库索引
 
-使用 [memory-lancedb-mcp](https://github.com/HACK-WU/memory-lancedb-mcp) 构建 wiki 文档的知识库索引，支持语义搜索和智能检索。
+通过 [memory-lancedb-mcp](https://github.com/HACK-WU/memory-lancedb-mcp) 和 [knowledge-indexer](https://github.com/HACK-WU/knowledge-indexer) 构建 wiki 文档的向量知识索引，支持语义搜索和 AI 助手集成。
 
-### 功能说明
-
-- 将 wiki 文档内容向量化存储到 LanceDB
-- 支持语义搜索，根据自然语言查询找到相关文档
-- 可与 AI 助手集成，提供上下文感知的文档检索
-
-### 配置指南
-
-详细配置步骤请参考：[Wiki 知识库构建 SKILL](skills/wiki-knowledge-build/SKILL.md)
-
-### 快速开始
-
-```bash
-# 安装 mem 命令
-curl -fsSL https://raw.githubusercontent.com/HACK-WU/memory-lancedb-mcp/master/scripts/install-latest.sh -o install-latest.sh
-bash install-latest.sh
-
-# 初始化配置
-mem config init
-
-# 验证配置
-mem doctor
-```
+详见技能文件中的 [wiki-knowledge-build](skills/wiki-knowledge-build/SKILL.md) 和 [wiki-incremental-update](skills/wiki-incremental-update/SKILL.md)。
 
 ## 相关项目
 

@@ -3,6 +3,13 @@
     "gitnexus": {
       "command": "/root/.npm/node_modules/bin/gitnexus",
       "args": ["mcp"]
+    },
+    "memory": {
+      "command": "mem",
+      "args": ["serve"],
+      "env": {
+        "SILICONFLOW_API_KEY": "{{SILICONFLOW_API_KEY}}"
+      }
     }
   }
 }

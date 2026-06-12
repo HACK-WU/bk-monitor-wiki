@@ -1,0 +1,108 @@
+{
+  "wiki_path": "bk-monitor-wiki/wiki",
+  "source": {
+    "repo": "git@github.com:TencentBlueKing/bk-monitor.git",
+    "branch": "master",
+    "commit_id": "e353b1fbc3fba22f7988f54aa43adff185d49706"
+  },
+  "excluded_paths": [
+    "bklog/",
+    "bkmonitor/webpack/"
+  ],
+  "generated_at": "2025-06-12",
+  "stats": {
+    "total_markdown_files": 132,
+    "total_catalogs": 14,
+    "disk_size": "2.8M"
+  },
+  "wiki_catalogs": [
+    {
+      "name": "项目概述",
+      "path": "项目概述/",
+      "files": ["项目概述.md", "项目介绍.md", "架构概览.md", "技术栈.md", "核心特性.md", "设计理念.md", "快速开始.md"]
+    },
+    {
+      "name": "快速开始",
+      "path": "快速开始.md",
+      "files": ["快速开始.md"]
+    },
+    {
+      "name": "核心模块架构",
+      "path": "核心模块架构/",
+      "sub_catalogs": [
+        {
+          "name": "告警后端模块",
+          "path": "核心模块架构/告警后端模块/",
+          "sub_catalogs": [
+            { "name": "告警核心引擎", "path": "核心模块架构/告警后端模块/告警核心引擎/" },
+            { "name": "告警服务层", "path": "核心模块架构/告警后端模块/告警服务层/" }
+          ]
+        },
+        {
+          "name": "APM监控模块",
+          "path": "核心模块架构/APM监控模块/"
+        },
+        {
+          "name": "元数据管理模块",
+          "path": "核心模块架构/元数据管理模块/",
+          "sub_catalogs": [
+            { "name": "元数据服务层", "path": "核心模块架构/元数据管理模块/元数据服务层/" },
+            { "name": "元数据模型设计", "path": "核心模块架构/元数据管理模块/元数据模型设计/" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "告警系统设计",
+      "path": "告警系统设计/",
+      "sub_catalogs": [
+        { "name": "告警引擎核心", "path": "告警系统设计/告警引擎核心/" },
+        { "name": "告警处理服务", "path": "告警系统设计/告警处理服务/" },
+        { "name": "通知渠道管理", "path": "告警系统设计/通知渠道管理/" }
+      ]
+    },
+    {
+      "name": "APM全栈监控",
+      "path": "APM全栈监控/"
+    },
+    {
+      "name": "API接口文档",
+      "path": "API接口文档/",
+      "sub_catalogs": [
+        { "name": "RESTful API接口", "path": "API接口文档/RESTful API接口/" }
+      ]
+    },
+    {
+      "name": "监控数据管理",
+      "path": "监控数据管理/"
+    },
+    {
+      "name": "数据库设计",
+      "path": "数据库设计/"
+    },
+    {
+      "name": "用户界面设计",
+      "path": "用户界面设计/"
+    },
+    {
+      "name": "扩展开发指南",
+      "path": "扩展开发指南/"
+    },
+    {
+      "name": "安全考虑",
+      "path": "安全考虑/"
+    },
+    {
+      "name": "故障排查",
+      "path": "故障排查/"
+    },
+    {
+      "name": "测试策略",
+      "path": "测试策略/"
+    },
+    {
+      "name": "部署与运维",
+      "path": "部署与运维/"
+    }
+  ]
+}

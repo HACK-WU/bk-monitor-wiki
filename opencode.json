@@ -1,0 +1,15 @@
+{
+  "mcp": {
+    "gitnexus": {
+      "type": "local",
+      "command": ["/root/.npm/node_modules/bin/gitnexus", "mcp"]
+    },
+    "memory": {
+      "type": "local",
+      "command": ["mem", "serve"],
+      "environment": {
+        "SILICONFLOW_API_KEY": "{{SILICONFLOW_API_KEY}}"
+      }
+    }
+  }
+}

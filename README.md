@@ -30,7 +30,8 @@ bk-monitor-wiki/
 │   ├── django-url-view-resolver.py  # Django URL 解析脚本
 │   └── hello.py                      # Django 环境初始化
 ├── requirements/            # 需求文档
-└── mcp.json                 # MCP 配置
+├── mcp.json                 # MCP 配置（Claude/Cursor 兼容格式）
+└── opencode.json            # MCP 配置（OpenCode 兼容格式）
 ```
 
 ## 文档分类

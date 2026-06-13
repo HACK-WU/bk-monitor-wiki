@@ -238,25 +238,30 @@ def classify_changes(
 def lookup_wikis(
     source_to_wiki: dict[str, list[str]],
     files: list[str],
-) -> list[tuple[str, int, list[str]]]:
+) -> tuple[list[tuple[str, int, list[str]]], list[str]]:
     """Given a list of file paths, return ranked wiki pages sorted by hit count.
 
     Returns:
-        List of (wiki_path, hit_count, matched_files) tuples, sorted by hit_count descending.
+        (ranked, unmatched) where ranked is list of (wiki_path, hit_count, matched_files)
+        sorted by hit_count descending, and unmatched is list of file paths not in source_to_wiki.
     """
     wiki_hits: dict[str, list[str]] = {}
+    unmatched: list[str] = []
     for f in files:
         if f in source_to_wiki:
             for wiki in source_to_wiki[f]:
                 wiki_hits.setdefault(wiki, []).append(f)
-    return sorted(
+        else:
+            unmatched.append(f)
+    ranked = sorted(
         [(wiki, len(hits), sorted(hits)) for wiki, hits in wiki_hits.items()],
         key=lambda x: x[1],
         reverse=True,
     )
+    return ranked, unmatched
 
 
-def format_lookup(ranked: list[tuple[str, int, list[str]]], input_summary: str = "") -> str:
+def format_lookup(ranked: list[tuple[str, int, list[str]]], input_summary: str = "", unmatched: list[str] | None = None) -> str:
     """Format ranked wiki lookup results."""
     lines: list[str] = []
     if input_summary:
@@ -264,6 +269,10 @@ def format_lookup(ranked: list[tuple[str, int, list[str]]], input_summary: str =
         lines.append("")
     if not ranked:
         lines.append("未找到相关 Wiki 页面。")
+        if unmatched:
+            lines.append("")
+            lines.append(f"未匹配文件 ({len(unmatched)}):")
+            lines.extend(f"  - {f}" for f in unmatched)
         return "\n".join(lines)
     lines.append(f"共 {len(ranked)} 篇 Wiki 页面受影响：")
     lines.append("")
@@ -272,6 +281,9 @@ def format_lookup(ranked: list[tuple[str, int, list[str]]], input_summary: str =
         lines.append(f"  [{count:>3} 文件]  {wiki}")
         lines.append(f"          ↳ {file_list}")
         lines.append("")
+    if unmatched:
+        lines.append(f"未匹配文件 ({len(unmatched)}):")
+        lines.extend(f"  - {f}" for f in unmatched)
     return "\n".join(lines)
 
 

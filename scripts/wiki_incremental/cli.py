@@ -75,7 +75,7 @@ def _run_lookup(args: argparse.Namespace) -> int:
         raise SystemExit("metadata.json does not contain source_to_wiki; run build-index first")
 
     files: list[str] = list(args.files) if args.files else []
-    summary = ""
+    summary_parts: list[str] = []
 
     if args.new_commit:
         old = args.old_commit or f"{args.new_commit}~1"
@@ -88,15 +88,18 @@ def _run_lookup(args: argparse.Namespace) -> int:
         if result.returncode != 0:
             raise SystemExit(result.stderr.strip() or "git diff failed")
         commit_files = [f.strip() for f in result.stdout.splitlines() if f.strip()]
-        files = commit_files
-        summary = f"commit {old}..{args.new_commit} 变更文件: {len(files)} 个"
-    elif files:
-        summary = f"指定文件: {len(files)} 个"
-    else:
+        summary_parts.append(f"commit {old}..{args.new_commit}: {len(commit_files)} 个文件")
+        files.extend(commit_files)
+    if not args.new_commit and not files:
         raise SystemExit("必须提供 --files 或 --new-commit")
+    if files and args.new_commit and args.files:
+        summary_parts.insert(0, f"指定文件: {len(args.files)} 个")
+    elif not args.new_commit:
+        summary_parts.append(f"指定文件: {len(files)} 个")
+    summary = " + ".join(summary_parts)
 
-    ranked = change_detection.lookup_wikis(source_to_wiki, files)
-    print(change_detection.format_lookup(ranked, summary))
+    ranked, unmatched = change_detection.lookup_wikis(source_to_wiki, files)
+    print(change_detection.format_lookup(ranked, summary, unmatched))
     return 0
 
 

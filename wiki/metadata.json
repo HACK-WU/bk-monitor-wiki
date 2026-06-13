@@ -11,7 +11,7 @@
     "^docs/"
   ],
   "source": {
-    "commit_id": "e353b1fbc3fba22f7988f54aa43adff185d49706",
+    "commit_id": "23aedea41798ff5de4ef6264f354172c02c2d076",
     "repo_url": "git@github.com:TencentBlueKing/bk-monitor.git",
     "branch": "master"
   },

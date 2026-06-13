@@ -5,8 +5,24 @@ enabled: true
 updatedAt: 2026-06-13T16:35:00.000Z
 provider:
 ---
+# ai-codekb-memory AI 知识与记忆管理规则
 
 > **对话开始时首先检查本规则**。指导 AI 如何管理知识索引和记忆：禁用内置记忆、加载 skill、选择存储与检索策略。
+
+---
+
+## 📋 已知 Scope 清单（请填写）
+
+> **告诉 Agent 当前项目有哪些 scope，避免每次对话都执行 `ki manage-index --action list-scopes` 重复查询。**
+>
+> 如果以下清单为空或已过期，Agent 会自动执行 `list-scopes` 获取最新列表。
+
+```
+# 请在此处列出项目当前的 scope（每行一个），例如：
+ monitor          — BK-Monitor 代码知识库
+ monitor-memory   — BK-Monitor 项目记忆
+ user-profile     — 用户画像（全局固定）
+```
 
 ---
 
@@ -110,3 +126,34 @@ SKILL 加载完成后，按其内部定义的触发条件执行：
 | 🔴 2 | 跳过 ki-foundation 直接加载 codekb-skill / memory-skill |
 | 🔴 3 | `${scope}` 未确认就加载 SKILL 或执行 ki 命令 |
 | 🔴 4 | Skill 不存在时仍继续执行 ki 命令 |
+| 🔴 5 | **对用户画像和项目记忆使用 memory MCP 存取**（`memory_store`/`memory_recall`/`memory_update`/`memory_forget`） |
+
+---
+
+## 🔴 规则 5 详解：用户画像 & 项目记忆 — 仅用 ki，禁用 memory MCP
+
+**适用范围**：`user-profile`（用户画像）和 `${scope}-memory`（项目记忆）两个 scope。
+
+**禁止行为**：
+
+| 禁止 | 说明 |
+|------|------|
+| ❌ `memory_store` → `user-profile` / `${scope}-memory` | 禁止通过 MCP 写入用户画像或项目记忆 |
+| ❌ `memory_recall` → `user-profile` / `${scope}-memory` | 禁止通过 MCP 查询用户画像或项目记忆 |
+| ❌ `memory_update` → `user-profile` / `${scope}-memory` | 禁止通过 MCP 更新这两类 scope |
+| ❌ `memory_forget` → `user-profile` / `${scope}-memory` | 禁止通过 MCP 删除这两类 scope |
+| ❌ `mem store/search` → 上述 scope | 同样禁止 mem CLI 操作这两类 scope |
+
+**必须使用 ki 命令代替**：
+
+| 操作 | memory MCP（禁止） | ki 命令（必须） |
+|------|-------------------|----------------|
+| 查询全景 | ❌ `memory_recall` | ✅ `ki query-group --scope user-profile --mode full` |
+| 查热门/热区 | ❌ `memory_recall` | ✅ `ki query-group --scope user-profile --groups "G" --mode hot` |
+| 读取原文 | ❌ `memory_recall` | ✅ `ki get-module-info --scope user-profile --group "G" --relation "R"` |
+| 写入/更新 | ❌ `memory_store` | ✅ `ki sync-relation --scope user-profile --group "G" --relation "R" --module-info "..."` |
+| 删除条目 | ❌ `memory_forget` | ✅ `ki manage-index --scope user-profile --action delete --force` |
+
+**原因**：用户画像和项目记忆是**纯文本结构化知识**，不依赖向量检索。ki 的 Group 树 + 热区分级 + 关键词词云足以高效命中。使用 memory MCP 反而引入不必要的语义搜索开销，且容易与代码知识库的向量数据混淆。
+
+> ⚠️ **代码知识库**（如 `monitor`）不受此限制：`memory_recall` 仍可作为四步走流程中的语义兜底步骤使用。

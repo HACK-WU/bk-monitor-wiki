@@ -238,6 +238,7 @@ DRFFilter --> IAMPermission : "批量注入/过滤"
 - 资源定义：Business、ApmApplication、GrafanaDashboard 提供 create_simple_instance/create_instance，自动填充属性与路径。
 - 动作定义：ActionEnum 定义大量动作，含 related_resource_types 与 related_actions，支持递归依赖收集。
 - 兼容模式：CompatibleIAM 在 V1/V2 兼容模式下转换策略表达式与资源类型，合并策略结果。
+- 动作兼容别名：CompatibleIAM._merge_alias_policies 在策略查询阶段用等价管理动作的策略补充当前动作（OR 合并），查询失败不影响主动作鉴权。
 
 ```mermaid
 classDiagram
@@ -272,6 +273,7 @@ class CompatibleIAM {
 +in_compatibility_mode() bool
 +_do_policy_query(...)
 +_do_policy_query_by_actions(...)
++_merge_alias_policies(request, policies, with_resources) dict
 }
 Business --|> ResourceMeta
 ApmApplication --|> ResourceMeta
@@ -339,6 +341,7 @@ BKLOGIN["用户与租户API"] --> PERM
 - 线程池优化：批量创建资源实例使用线程池，减少阻塞。
 - 缓存策略：APM 应用资源信息使用 LRU 缓存，降低数据库查询压力。
 - 兼容模式：策略合并与表达式转换在服务端完成，客户端无需重复计算。
+- 动作兼容别名：等价管理动作的策略OR合并，避免前端对已有管理权限用户误报无权限。
 
 **章节来源**
 - [bkmonitor\bkmonitor\iam\permission.py:330-339](file://bkmonitor\bkmonitor\iam\permission.py#L330-L339)

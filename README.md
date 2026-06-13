@@ -2,38 +2,6 @@
 
 BK-Monitor 项目的文档仓库，包含项目架构设计、API 文档、部署指南等技术文档。
 
-## 目录结构
-
-```
-bk-monitor-wiki/
-├── wiki/                    # 主文档目录
-│   ├── 项目概述/           # 项目整体介绍
-│   ├── 快速开始.md         # 快速入门指南
-│   ├── 核心模块架构/       # 核心模块设计文档
-│   ├── API接口文档/         # API 接口说明
-│   ├── APM全栈监控/        # APM 相关文档
-│   ├── 告警系统设计/       # 告警系统设计文档
-│   ├── 监控数据管理/       # 数据管理相关
-│   ├── 数据库设计/         # 数据库设计文档
-│   ├── 用户界面设计/       # UI 设计文档
-│   ├── 扩展开发指南/       # 扩展开发文档
-│   ├── 部署与运维/         # 部署运维指南
-│   ├── 测试策略/           # 测试相关文档
-│   ├── 故障排查/           # 故障排查指南
-│   └── 安全考虑/           # 安全相关文档
-├── skills/                  # 技能文件
-│   ├── wiki-incremental-update/  # Wiki 增量更新技能
-│   └── wiki-knowledge-build/     # Wiki 知识库构建技能
-├── rules/                   # 规则文件
-├── scripts/                 # 工具脚本
-│   ├── wiki_incremental/          # Wiki 增量更新工具库
-│   ├── django-url-view-resolver.py  # Django URL 解析脚本
-│   └── hello.py                      # Django 环境初始化
-├── requirements/            # 需求文档
-├── mcp.json                 # MCP 配置（Claude/Cursor 兼容格式）
-└── opencode.json            # MCP 配置（OpenCode 兼容格式）
-```
-
 ## 文档分类
 
 ### 核心文档
@@ -62,7 +30,13 @@ bk-monitor-wiki/
 
 ### Wiki 增量更新工具
 
-维护源文件与 Wiki 文档之间的双向引用索引，根据 git commit 变更检测受影响的 Wiki 页面，支持增量更新。
+维护源文件与 Wiki 文档之间的双向引用索引，提供三个子命令：
+
+| 子命令 | 功能 |
+|--------|------|
+| `build-index` | 全量构建 `source_to_wiki` / `wiki_to_source` 索引 |
+| `detect` | 根据 git diff 检测变更影响范围（精确/模糊/父目录三级匹配 + 新文件聚类） |
+| `lookup` | 已知文件路径或 commit，反查受影响 Wiki 页面，按命中文件数降序排列 |
 
 ```bash
 # 全量构建索引
@@ -77,6 +51,12 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
 
 # 检测变更影响范围（dry-run）
 PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli detect \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --new-commit <commit_hash> \
+  --repo-dir .
+
+# 反查 Wiki（按文件/commit 查受影响页面）
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --new-commit <commit_hash> \
   --repo-dir .

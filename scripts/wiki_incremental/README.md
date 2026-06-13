@@ -10,6 +10,7 @@
     │
     ▼
 change_detection.py  ──▶  affected_wiki_paths (list)
+    │                       feature_clusters (聚类新文件)
     │
     ├──▶ citation_cleanup.py  ──▶  清理旧引用 / 替换重命名
     ├──▶ format_validation.py ──▶  R1-R6 格式校验 + 机械修复
@@ -23,7 +24,7 @@ change_detection.py  ──▶  affected_wiki_paths (list)
 | 模块 | 职责 | 关键导出 |
 |------|------|----------|
 | `index_builder.py` | 全量构建 `source_to_wiki` / `wiki_to_source` 索引 | `build_index()`, `parse_citations()`, `build_indexes()` |
-| `change_detection.py` | git diff 变更检测 + 三级匹配 | `detect_changes()`, `ChangeReport`, `MatchResult` |
+| `change_detection.py` | git diff 变更检测 + 三级匹配 + 新文件聚类 | `detect_changes()`, `ChangeReport`, `FeatureCluster`, `MatchResult` |
 | `citation_cleanup.py` | 清理 wiki 中已删除/重命名源文件的引用 | `cleanup_dead_citations()` |
 | `format_validation.py` | R1-R6 格式校验 + 可机械修复的格式问题 | `validate_and_fix()`, `Violation` |
 | `incremental_index.py` | 增量更新受影响 wiki 的索引 | `incremental_index_update()`, `safe_index_update()`, `save_metadata()` |
@@ -75,8 +76,17 @@ Affected wiki pages: 8
 
 新功能文件 (3):
 - bkmonitor/new_module/views.py
+- bkmonitor/new_module/serializers.py
+- bkmonitor/new_module/urls.py
+
+新功能文件簇 (1):
+| 基础目录 | 文件数 | 可推断 | 文件列表 |
+|----------|--------|--------|----------|
+| bkmonitor/new_module | 3 | ✗ | views.py, serializers.py, urls.py |
 ...
 ```
+
+- `新功能文件簇`：将新文件按公共父目录聚类，辅助 AI 判断是否构成独立新功能，决定新建 Wiki 还是扩展现有页面
 
 匹配级别：
 - `[精确]` — 源文件在索引中精确命中，优先更新
@@ -116,6 +126,7 @@ report = detect_changes(
 )
 print(format_report(report))
 print(report.affected_wikis)  # ["告警系统设计/告警引擎核心.md", ...]
+print(report.feature_clusters) # [FeatureCluster(base_dir="bkmonitor/new_module", file_count=3, ...)]
 ```
 
 ### cleanup_dead_citations

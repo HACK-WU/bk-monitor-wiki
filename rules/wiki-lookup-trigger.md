@@ -1,8 +1,8 @@
 ---
-description: 当 AI 需要修改代码、review commit、排查问题或探索不熟悉的文件时，先通过 wiki-lookup skill 反查相关 Wiki 文档了解设计上下文。注意：wiki-lookup 回答设计意图/架构（查 Wiki），codekb-skill 回答函数签名/调用关系（查代码知识库），两者不可混淆。
+description: 当 AI 需要修改代码、review commit、排查问题或探索不熟悉的文件时，先通过 wiki-lookup skill 反查相关 Wiki 文档了解设计上下文。注意：wiki-lookup 查设计文档（读 Wiki），codekb-skill 查沉淀的代码知识（ki 知识库），定位级查询两者都不用，三者不可混淆。
 alwaysApply: false
 enabled: true
-updatedAt: 2026-06-13T16:50:00.000Z
+updatedAt: 2026-06-13T17:00:00.000Z
 provider:
 ---
 
@@ -10,18 +10,24 @@ provider:
 
 > 代码修改、审查、排错前，先反查相关 Wiki 了解设计上下文。
 
-## ⚠️ 与 codekb-skill 严格区分
+## ⚠️ 与 codekb-skill 的根本区别
+
+> **一句话区分**：wiki-lookup 是**已知代码找文档**，codekb-skill 是**不知道代码找知识**。
 
 | | wiki-lookup（本规则） | codekb-skill |
 |--|----------------------|-------------|
-| **回答什么** | 这段代码的**设计意图**是什么？整体架构是怎样的？ | 这个**函数/类/API 怎么用**？签名是什么？谁调用了它？ |
-| **数据来源** | Wiki 文档（人工编写的设计文档、架构说明） | 代码知识库（从代码中提取的结构化知识） |
-| **典型问题** | "Issue 功能的整体设计是怎样的？"<br>"告警引擎的架构决策是什么？" | "`IssueManager.create_issue()` 的参数和返回值？"<br>"哪些模块调用了 `AlarmChecker`？" |
-| **使用命令** | `lookup --files` / `lookup --new-commit` | `ki query-group` / `ki get-module-info` |
-| **输出** | 按命中数排序的 Wiki 文档列表 | 函数签名、调用关系、模块依赖图 |
+| **起点** | ✅ **已知代码**（文件路径 / commit hash） | ❓ **不知道代码**（只有问题） |
+| **方向** | 代码 → 文档（**反查**） | 问题 → 知识（**正查**） |
+| **典型场景** | "我要改这几个文件，应该读哪些 Wiki？" | "告警收敛是怎么实现的？代码在哪？" |
+| **输入** | `--files` 文件路径 或 `--new-commit` 提交 hash | 自然语言问题（如"Issue 模块的职责"） |
+| **输出** | 按命中数排序的 Wiki 文档列表 | 模块职责、架构决策、设计约束等结构化知识 |
+| **数据来源** | Wiki 文档（通过 `source_to_wiki` 映射） | knowledge-indexer（AI 沉淀的代码知识） |
 
-> **简单判断**：你需要的是**设计文档**还是**代码细节**？设计文档 → wiki-lookup，代码细节 → codekb-skill。
-> 两者不互斥，可以先查 Wiki 了解设计全貌，再查 codekb 了解代码级细节。
+> **简单判断**：你已经**知道代码在哪**了吗？
+> - ✅ 知道（有文件路径/commit）→ **wiki-lookup**（反查相关文档）
+> - ❌ 不知道（只有问题/概念）→ **codekb-skill**（正查代码知识）
+>
+> **定位级查询**（找函数位置、grep 报错行）两者都不用，直接用 SearchSymbol / grep。
 
 ## 触发条件
 

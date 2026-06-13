@@ -90,6 +90,10 @@ def _run_lookup(args: argparse.Namespace) -> int:
         commit_files = [f.strip() for f in result.stdout.splitlines() if f.strip()]
         summary_parts.append(f"commit {old}..{args.new_commit}: {len(commit_files)} 个文件")
         files.extend(commit_files)
+
+    # 去重：同一文件可能同时出现在 --files 和 commit diff 中
+    files = list(dict.fromkeys(files)) if files else files
+
     if not args.new_commit and not files:
         raise SystemExit("必须提供 --files 或 --new-commit")
     if files and args.new_commit and args.files:

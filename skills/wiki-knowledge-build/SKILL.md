@@ -140,6 +140,28 @@ mem search "告警引擎" --scope monitor
 ```
 预期：返回告警引擎相关的记忆条目
 
+## 增量更新后的知识索引同步
+
+当 `wiki-incremental-update` Skill 新建或更新了 Wiki 页面后，需要同步到知识索引中，使新页面可被语义检索到。
+
+### 增量导入新建页面
+
+增量更新产生新 Wiki 页面后，为其生成 `ai-results.json` 并执行局部导入：
+
+```bash
+# 1. 为新页面生成 ai-results.json（仅含 action=add 的条目）
+# 2. 执行导入
+ki scan-kb import \
+  --scope monitor \
+  --results ai-results.json
+```
+
+> 无需全量重建，只需导入新建/变更的页面。
+
+### 更新已有页面
+
+如果增量更新只修改了已有 Wiki 页面（未新建），通常不需要重新导入知识索引。知识索引记录的是摘要和关键词，轻微内容变更不影响检索效果。但若页面主题发生较大变化，可重新导入该页面。
+
 ## 常见问题
 
 | 问题 | 原因 | 解决方案 |

@@ -11,9 +11,9 @@
     "^docs/"
   ],
   "source": {
-    "commit_id": "4561da6727bdd96aa72340cc378dc1b13e9a4230",
-    "repo_url": "git@github.com:TencentBlueKing/bk-monitor.git",
-    "branch": "master"
+    "branch": "master",
+    "commit_id": "0bd76f7c4036d27d563e4d8aec764106e07f3198",
+    "repo_url": "git@github.com:TencentBlueKing/bk-monitor.git"
   },
   "source_to_wiki": {
     "Dockerfile": [
@@ -325,6 +325,9 @@
       "告警系统设计/告警策略管理.md",
       "核心模块架构/告警后端模块/告警服务层/检测策略服务.md",
       "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md"
+    ],
+    "bkmonitor/alarm_backends/core/detect_result/__init__.py": [
+      "告警系统设计/告警引擎核心/检测结果管理.md"
     ],
     "bkmonitor/alarm_backends/core/detect_result/tasks.py": [
       "告警系统设计/通知渠道管理/企业微信集成.md"
@@ -673,6 +676,12 @@
     "bkmonitor/alarm_backends/templates/image_exporter/static/js/jquery-1.10.2.min.js": [
       "用户界面设计/用户界面设计.md"
     ],
+    "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_by_fakees.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
+    "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_execute.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
     "bkmonitor/alarm_backends/urls.py": [
       "API接口文档/RESTful API接口/策略配置API.md",
       "核心模块架构/告警后端模块/告警后端模块.md",
@@ -842,6 +851,9 @@
       "监控数据管理/数据查询优化.md",
       "部署与运维/系统性能监控.md"
     ],
+    "bkmonitor/apm/core/deepflow/__init__.py": [
+      "部署与运维/系统性能监控.md"
+    ],
     "bkmonitor/apm/core/deepflow/handlers.py": [
       "监控数据管理/数据查询优化.md"
     ],
@@ -856,6 +868,10 @@
     ],
     "bkmonitor/apm/core/deepflow/handlers/workload.py": [
       "故障排查/故障排查.md"
+    ],
+    "bkmonitor/apm/core/discover/__init__.py": [
+      "安全考虑/API安全.md",
+      "部署与运维/系统性能监控.md"
     ],
     "bkmonitor/apm/core/discover/application.py": [
       "安全考虑/API安全.md"
@@ -1083,6 +1099,18 @@
     "bkmonitor/apm/management/commands/set_ebpf_config.py": [
       "核心模块架构/APM监控模块/eBPF集成模块.md"
     ],
+    "bkmonitor/apm/migrations/...": [
+      "监控数据管理/数据查询优化.md"
+    ],
+    "bkmonitor/apm/migrations/0049_subscriptionconfig_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/apm/migrations/0052_add_profiledatasource_v4.py": [
+      "APM全栈监控/Profile数据处理.md"
+    ],
+    "bkmonitor/apm/models/__init__.py": [
+      "数据库设计/数据模型设计.md"
+    ],
     "bkmonitor/apm/models/application.py": [
       "API接口文档/RESTful API接口/系统运维API.md",
       "APM全栈监控/APM核心架构.md",
@@ -1191,6 +1219,9 @@
       "核心模块架构/APM监控模块/任务调度和管理.md",
       "部署与运维/自动化运维工具.md",
       "项目概述/核心特性.md"
+    ],
+    "bkmonitor/apm/tests/...": [
+      "监控数据管理/数据查询优化.md"
     ],
     "bkmonitor/apm/types.py": [
       "APM全栈监控/APM全栈监控.md",
@@ -1323,6 +1354,12 @@
       "部署与运维/系统性能监控.md",
       "部署与运维/自动化运维工具.md",
       "项目概述/核心特性.md"
+    ],
+    "bkmonitor/apm_ebpf/migrations/0001_initial.py": [
+      "核心模块架构/APM监控模块/eBPF集成模块.md"
+    ],
+    "bkmonitor/apm_ebpf/migrations/0002_clusterrelation.py": [
+      "核心模块架构/APM监控模块/eBPF集成模块.md"
     ],
     "bkmonitor/apm_ebpf/models/workload.py": [
       "APM全栈监控/APM全栈监控.md",
@@ -1530,6 +1567,10 @@
     "bkmonitor/bkmonitor/as_code/ply/error.py": [
       "扩展开发指南/AS-Code配置开发.md"
     ],
+    "bkmonitor/bkmonitor/as_code/tests/test_notice.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md",
+      "扩展开发指南/通知渠道扩展开发.md"
+    ],
     "bkmonitor/bkmonitor/authentication.py": [
       "用户界面设计/用户界面设计.md"
     ],
@@ -1635,6 +1676,9 @@
     "bkmonitor/bkmonitor/core/prometheus/metrics.py": [
       "测试策略/性能测试.md"
     ],
+    "bkmonitor/bkmonitor/data_source/__init__.py": [
+      "扩展开发指南/数据源扩展开发.md"
+    ],
     "bkmonitor/bkmonitor/data_source/backends/base/compiler.py": [
       "扩展开发指南/数据源扩展开发.md",
       "监控数据管理/数据源集成.md"
@@ -1726,6 +1770,9 @@
     "bkmonitor/bkmonitor/documents/tasks.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
     ],
+    "bkmonitor/bkmonitor/event_plugin/__init__.py": [
+      "扩展开发指南/插件系统开发.md"
+    ],
     "bkmonitor/bkmonitor/event_plugin/accessor.py": [
       "扩展开发指南/插件系统开发.md"
     ],
@@ -1762,6 +1809,12 @@
     "bkmonitor/bkmonitor/iam/migrate.py": [
       "安全考虑/认证与授权.md",
       "核心模块架构/监控主应用模块.md"
+    ],
+    "bkmonitor/bkmonitor/iam/migrations/0002_single_dashboard.py": [
+      "API接口文档/RESTful API接口/仪表板配置API.md"
+    ],
+    "bkmonitor/bkmonitor/iam/migrations/0005_dashboard_mcp.py": [
+      "API接口文档/RESTful API接口/仪表板配置API.md"
     ],
     "bkmonitor/bkmonitor/iam/permission.py": [
       "API接口文档/API认证与授权.md",
@@ -1822,6 +1875,25 @@
     ],
     "bkmonitor/bkmonitor/migrate.py": [
       "数据库设计/数据迁移方案.md",
+      "核心模块架构/监控主应用模块.md"
+    ],
+    "bkmonitor/bkmonitor/migrations/0001_initial.py": [
+      "安全考虑/API安全.md"
+    ],
+    "bkmonitor/bkmonitor/migrations/0004_noticegroup_webhook_url.py": [
+      "扩展开发指南/通知渠道扩展开发.md"
+    ],
+    "bkmonitor/bkmonitor/migrations/0015_noticegroup_wechat_work_group.py": [
+      "扩展开发指南/通知渠道扩展开发.md"
+    ],
+    "bkmonitor/bkmonitor/migrations/0177_apiauthtoken_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/bkmonitor/migrations/0183_bcscluster_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/bkmonitor/models/__init__.py": [
+      "安全考虑/API安全.md",
       "核心模块架构/监控主应用模块.md"
     ],
     "bkmonitor/bkmonitor/models/base.py": [
@@ -2715,6 +2787,12 @@
     "bkmonitor/blueapps/account/urls.py": [
       "API接口文档/API接口文档.md"
     ],
+    "bkmonitor/calendars/migrations/0007_calendarmodel_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/calendars/migrations/0008_calendaritemmodel_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
     "bkmonitor/calendars/urls.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
     ],
@@ -2856,6 +2934,9 @@
     "bkmonitor/core/prometheus.py": [
       "核心模块架构/告警后端模块/告警服务层/告警处理服务.md"
     ],
+    "bkmonitor/core/prometheus/__init__.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
     "bkmonitor/core/prometheus/metrics.py": [
       "部署与运维/系统性能监控.md"
     ],
@@ -2895,7 +2976,13 @@
     "bkmonitor/kernel_api/exceptions.py": [
       "API接口文档/API错误处理与状态码.md"
     ],
+    "bkmonitor/kernel_api/extend_resource/__init__.py": [
+      "API接口文档/RESTful API接口/监控数据API.md"
+    ],
     "bkmonitor/kernel_api/extend_resource/base.py": [
+      "API接口文档/RESTful API接口/监控数据API.md"
+    ],
+    "bkmonitor/kernel_api/extend_utils/__init__.py": [
       "API接口文档/RESTful API接口/监控数据API.md"
     ],
     "bkmonitor/kernel_api/extend_utils/accumulate.py": [
@@ -3183,6 +3270,9 @@
     "bkmonitor/kernel_api/resource.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
     ],
+    "bkmonitor/kernel_api/resource/__init__.py": [
+      "API接口文档/RESTful API接口/监控数据API.md"
+    ],
     "bkmonitor/kernel_api/resource/base.py": [
       "API接口文档/RESTful API接口/监控数据API.md"
     ],
@@ -3194,6 +3284,9 @@
     ],
     "bkmonitor/kernel_api/resource/views.py": [
       "API接口文档/RESTful API接口/监控数据API.md"
+    ],
+    "bkmonitor/kernel_api/rpc/__init__.py": [
+      "API接口文档/RPC远程过程调用.md"
     ],
     "bkmonitor/kernel_api/rpc/functions/admin/apm.py": [
       "API接口文档/RPC远程过程调用.md"
@@ -3233,8 +3326,18 @@
       "API接口文档/WebSocket实时通信.md",
       "核心模块架构/元数据管理模块/元数据资源接口.md"
     ],
+    "bkmonitor/kernel_api/views/__init__.py": [
+      "API接口文档/RPC远程过程调用.md",
+      "API接口文档/WebSocket实时通信.md"
+    ],
+    "bkmonitor/kernel_api/views/v2/__init__.py": [
+      "API接口文档/WebSocket实时通信.md"
+    ],
     "bkmonitor/kernel_api/views/v2/monitorapi.py": [
       "API接口文档/RESTful API接口/系统运维API.md",
+      "API接口文档/WebSocket实时通信.md"
+    ],
+    "bkmonitor/kernel_api/views/v4/__init__.py": [
       "API接口文档/WebSocket实时通信.md"
     ],
     "bkmonitor/kernel_api/views/v4/grafana.py": [
@@ -3265,6 +3368,9 @@
       "项目概述/快速开始.md",
       "项目概述/技术栈.md",
       "项目概述/架构概览.md"
+    ],
+    "bkmonitor/metadata/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
     ],
     "bkmonitor/metadata/admin.py": [
       "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md",
@@ -3324,6 +3430,9 @@
       "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md",
       "核心模块架构/元数据管理模块/元数据管理命令.md"
     ],
+    "bkmonitor/metadata/management/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+    ],
     "bkmonitor/metadata/management/base/base.py": [
       "核心模块架构/元数据管理模块/元数据管理命令.md"
     ],
@@ -3344,6 +3453,37 @@
     ],
     "bkmonitor/metadata/migration_util.py": [
       "核心模块架构/元数据管理模块/元数据管理命令.md"
+    ],
+    "bkmonitor/metadata/migrations/0029_create_kafka_storage_for_init_rt.py": [
+      "核心模块架构/告警后端模块/告警存储系统.md"
+    ],
+    "bkmonitor/metadata/migrations/0030_kafkastorage_retention.py": [
+      "核心模块架构/告警后端模块/告警存储系统.md"
+    ],
+    "bkmonitor/metadata/migrations/0031_fix_kafka_label_config.py": [
+      "核心模块架构/告警后端模块/告警存储系统.md"
+    ],
+    "bkmonitor/metadata/migrations/0216_datasource_is_tenant_specific_global.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/metadata/migrations/0218_redisstorage_bk_tenant_id.py": [
+      "安全考虑/数据安全.md",
+      "核心模块架构/告警后端模块/告警存储系统.md"
+    ],
+    "bkmonitor/metadata/migrations/0219_recordrule_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/metadata/migrations/0233_logsubscriptionconfig_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/metadata/migrations/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+    ],
+    "bkmonitor/metadata/models/__init__.py": [
+      "数据库设计/数据模型设计.md",
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md",
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md",
+      "核心模块架构/核心模块架构.md"
     ],
     "bkmonitor/metadata/models/alert.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
@@ -3425,6 +3565,135 @@
     "bkmonitor/metadata/models/migration.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
     ],
+    "bkmonitor/metadata/models/migrations/0001_initial.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0002_add_result_table_fields.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0003_add_storage_cluster_info.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0004_add_space_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0005_add_custom_report_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0006_add_event_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0007_add_data_link_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0008_add_bcs_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0009_add_cluster_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0010_add_topo_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0011_add_dimension_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0012_add_metric_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0013_add_tag_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0014_add_label_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0015_add_scene_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0016_add_strategy_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0017_add_notice_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0018_add_alert_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0019_add_permission_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0020_add_tenant_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0021_add_version_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0022_add_backup_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0023_add_migration_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0024_add_utils_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0025_add_base_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0026_add_exceptions_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0027_add_constants_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0028_add_types_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0029_add_validators_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0030_add_queryset_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0031_add_managers_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0032_add_options_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0033_add_fields_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0034_add_serializers_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0035_add_permissions_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0036_add_cache_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0037_add_tasks_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0038_add_views_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0039_add_resources_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0040_add_urls_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0041_add_tests_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/0042_add_fixtures_models.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/migrations/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
     "bkmonitor/metadata/models/notice.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
     ],
@@ -3439,6 +3708,9 @@
     ],
     "bkmonitor/metadata/models/queryset.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+    ],
+    "bkmonitor/metadata/models/record_rule/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
     ],
     "bkmonitor/metadata/models/record_rule/constants.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
@@ -3531,6 +3803,12 @@
     "bkmonitor/metadata/resources.py": [
       "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
     ],
+    "bkmonitor/metadata/resources/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+    ],
+    "bkmonitor/metadata/service/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+    ],
     "bkmonitor/metadata/service/space_redis.py": [
       "核心模块架构/元数据管理模块/元数据服务层/空间Redis服务.md",
       "核心模块架构/告警后端模块/告警存储系统.md"
@@ -3540,6 +3818,10 @@
       "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md",
       "核心模块架构/元数据管理模块/元数据管理命令.md",
       "核心模块架构/元数据管理模块/元数据管理模块.md"
+    ],
+    "bkmonitor/metadata/task/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据任务调度.md",
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
     ],
     "bkmonitor/metadata/task/config_refresh.py": [
       "核心模块架构/元数据管理模块/元数据任务调度.md"
@@ -3559,8 +3841,23 @@
     "bkmonitor/metadata/task/tenant.py": [
       "用户界面设计/多租户管理.md"
     ],
+    "bkmonitor/metadata/tests/record_rule/conftest.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
+    ],
+    "bkmonitor/metadata/tests/record_rule/test_compose_flow_node.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
+    ],
+    "bkmonitor/metadata/tests/record_rule/test_record_rule_service.py": [
+      "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
+    ],
+    "bkmonitor/metadata/tools/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+    ],
     "bkmonitor/metadata/tools/redis_lock.py": [
       "核心模块架构/告警后端模块/告警存储系统.md"
+    ],
+    "bkmonitor/metadata/utils/__init__.py": [
+      "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
     ],
     "bkmonitor/metadata/utils/es_tools.py": [
       "监控数据管理/数据查询优化.md"
@@ -3592,6 +3889,76 @@
     ],
     "bkmonitor/middlewares/source.py": [
       "监控数据管理/数据查询优化.md"
+    ],
+    "bkmonitor/migrations/0001_initial.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0002_appsnapshothostindexdata.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0003_basealarm_data.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0004_alertcollect_extend_info.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0004_noticegroup_webhook_url.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
+    "bkmonitor/migrations/0005_event_shield_type.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0005_item_target.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0006_auto_20200316_1527.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0006_merge.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0007_merge.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0008_merge.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0009_auto_20200323_1535.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0010_alertcollect_extend_info.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0011_anomalyrecord_count.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0011_snapshothostindex_rebuild.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0012_merge_20200525_2109.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0013_snapshothostindex_append.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0014_auto_20200616_1143.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0015_change_gse_ping_metric.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0015_fix_metric_unit.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0015_noticegroup_wechat_work_group.py": [
+      "API接口文档/RESTful API接口/系统运维API.md",
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
+    "bkmonitor/migrations/0016_auto_20200825_1206.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/migrations/0017_merge_20200827_1513.py": [
+      "API接口文档/RESTful API接口/系统运维API.md"
     ],
     "bkmonitor/models.py": [
       "核心模块架构/告警后端模块/告警服务层/告警处理服务.md"
@@ -3674,6 +4041,12 @@
     "bkmonitor/packages/fta_web/alert_v2/views.py": [
       "API接口文档/RESTful API接口/告警管理API.md"
     ],
+    "bkmonitor/packages/monitor/migrations/0023_dashboardmenu_dashboardmenulocation_dashboardview.py": [
+      "用户界面设计/仪表板架构.md"
+    ],
+    "bkmonitor/packages/monitor/migrations/0105_uptimechecknode_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
     "bkmonitor/packages/monitor/schedulers.py": [
       "核心模块架构/告警后端模块/告警服务层/调度器服务.md"
     ],
@@ -3682,6 +4055,9 @@
     ],
     "bkmonitor/packages/monitor_api/views.py": [
       "API接口文档/RESTful API接口/系统运维API.md"
+    ],
+    "bkmonitor/packages/monitor_web/__init__.py": [
+      "扩展开发指南/可视化组件开发.md"
     ],
     "bkmonitor/packages/monitor_web/alert_events/views.py": [
       "API接口文档/RESTful API接口/告警管理API.md"
@@ -3693,9 +4069,21 @@
     "bkmonitor/packages/monitor_web/grafana/dashboards/apm_ebpf/Application-Out-Of-The-Box.json": [
       "部署与运维/系统性能监控.md"
     ],
+    "bkmonitor/packages/monitor_web/migrations/0073_customeventgroup_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/packages/monitor_web/migrations/0075_customtstable_bk_tenant_id.py": [
+      "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/packages/monitor_web/notice_group/__init__.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
     "bkmonitor/packages/monitor_web/notice_group/constant.py": [
       "告警系统设计/通知渠道管理/通知投递追踪.md",
       "扩展开发指南/通知渠道扩展开发.md"
+    ],
+    "bkmonitor/packages/monitor_web/notice_group/resources/__init__.py": [
+      "告警系统设计/通知渠道管理/通知投递追踪.md"
     ],
     "bkmonitor/packages/monitor_web/notice_group/resources/backend.py": [
       "告警系统设计/通知渠道管理/通知投递追踪.md",
@@ -3783,6 +4171,12 @@
     "bkmonitor/packages/monitor_web/src/styles/theme.css": [
       "扩展开发指南/可视化组件开发.md"
     ],
+    "bkmonitor/packages/monitor_web/src/tests/Chart.test.tsx": [
+      "扩展开发指南/可视化组件开发.md"
+    ],
+    "bkmonitor/packages/monitor_web/src/tests/Dashboard.test.tsx": [
+      "扩展开发指南/可视化组件开发.md"
+    ],
     "bkmonitor/packages/monitor_web/src/types/chart.ts": [
       "扩展开发指南/可视化组件开发.md"
     ],
@@ -3821,6 +4215,9 @@
       "快速开始.md",
       "测试策略/测试策略.md"
     ],
+    "bkmonitor/query_api/drivers/__init__.py": [
+      "监控数据管理/数据查询优化.md"
+    ],
     "bkmonitor/query_api/drivers/proxy.py": [
       "监控数据管理/数据查询优化.md"
     ],
@@ -3829,6 +4226,9 @@
       "监控数据管理/数据查询优化.md"
     ],
     "bkmonitor/query_api/resources.py": [
+      "监控数据管理/数据查询优化.md"
+    ],
+    "bkmonitor/query_api/sql_parse/__init__.py": [
       "监控数据管理/数据查询优化.md"
     ],
     "bkmonitor/rest_framework/permissions.py": [
@@ -4125,8 +4525,8 @@
     ]
   },
   "stats": {
-    "citation_count": 1811,
-    "source_count": 1148,
+    "citation_count": 1951,
+    "source_count": 1278,
     "wiki_count": 129
   },
   "wiki_path": "wiki",
@@ -4493,6 +4893,8 @@
       "bkmonitor/bk_dataview/client.py",
       "bkmonitor/bk_dataview/provisioning.py",
       "bkmonitor/bkmonitor/as_code/parse.py",
+      "bkmonitor/bkmonitor/iam/migrations/0002_single_dashboard.py",
+      "bkmonitor/bkmonitor/iam/migrations/0005_dashboard_mcp.py",
       "bkmonitor/docs/api/apidocs/zh_hans/get_dashboard_detail.md",
       "bkmonitor/docs/api/apidocs/zh_hans/get_dashboard_directory_tree.md",
       "bkmonitor/packages/monitor_web/data_migrate/fetcher/dashboard.py",
@@ -4546,7 +4948,9 @@
     "API接口文档/RESTful API接口/监控数据API.md": [
       "bkmonitor/api/monitor/default.py",
       "bkmonitor/api/unify_query/default.py",
+      "bkmonitor/kernel_api/extend_resource/__init__.py",
       "bkmonitor/kernel_api/extend_resource/base.py",
+      "bkmonitor/kernel_api/extend_utils/__init__.py",
       "bkmonitor/kernel_api/extend_utils/accumulate.py",
       "bkmonitor/kernel_api/extend_utils/all.py",
       "bkmonitor/kernel_api/extend_utils/anomaly_detection.py",
@@ -4639,6 +5043,7 @@
       "bkmonitor/kernel_api/extend_utils/zip.py",
       "bkmonitor/kernel_api/extend_utils/zip_longest.py",
       "bkmonitor/kernel_api/extend_views.py",
+      "bkmonitor/kernel_api/resource/__init__.py",
       "bkmonitor/kernel_api/resource/base.py",
       "bkmonitor/kernel_api/resource/views.py",
       "bkmonitor/kernel_api/urls.py",
@@ -4658,6 +5063,7 @@
       "bkmonitor/apm/models/datasource.py",
       "bkmonitor/apm/urls.py",
       "bkmonitor/apm/views.py",
+      "bkmonitor/core/prometheus/__init__.py",
       "bkmonitor/kernel_api/urls.py",
       "bkmonitor/kernel_api/views/v2/monitorapi.py",
       "bkmonitor/metadata/health_check.py",
@@ -4668,24 +5074,51 @@
       "bkmonitor/middlewares/authentication.py",
       "bkmonitor/middlewares/prometheus.py",
       "bkmonitor/middlewares/request_middlewares.py",
+      "bkmonitor/migrations/0001_initial.py",
+      "bkmonitor/migrations/0002_appsnapshothostindexdata.py",
+      "bkmonitor/migrations/0003_basealarm_data.py",
+      "bkmonitor/migrations/0004_alertcollect_extend_info.py",
+      "bkmonitor/migrations/0005_event_shield_type.py",
+      "bkmonitor/migrations/0005_item_target.py",
+      "bkmonitor/migrations/0006_auto_20200316_1527.py",
+      "bkmonitor/migrations/0006_merge.py",
+      "bkmonitor/migrations/0007_merge.py",
+      "bkmonitor/migrations/0008_merge.py",
+      "bkmonitor/migrations/0009_auto_20200323_1535.py",
+      "bkmonitor/migrations/0010_alertcollect_extend_info.py",
+      "bkmonitor/migrations/0011_anomalyrecord_count.py",
+      "bkmonitor/migrations/0011_snapshothostindex_rebuild.py",
+      "bkmonitor/migrations/0012_merge_20200525_2109.py",
+      "bkmonitor/migrations/0013_snapshothostindex_append.py",
+      "bkmonitor/migrations/0014_auto_20200616_1143.py",
+      "bkmonitor/migrations/0015_change_gse_ping_metric.py",
+      "bkmonitor/migrations/0015_fix_metric_unit.py",
+      "bkmonitor/migrations/0015_noticegroup_wechat_work_group.py",
+      "bkmonitor/migrations/0016_auto_20200825_1206.py",
+      "bkmonitor/migrations/0017_merge_20200827_1513.py",
       "bkmonitor/packages/monitor_api/views.py"
     ],
     "API接口文档/RPC远程过程调用.md": [
       "bkmonitor/alarm_backends/core/context/alarm.py",
       "bkmonitor/apm/constants.py",
       "bkmonitor/kernel_api/resource/kernel_rpc.py",
+      "bkmonitor/kernel_api/rpc/__init__.py",
       "bkmonitor/kernel_api/rpc/functions/admin/apm.py",
       "bkmonitor/kernel_api/rpc/functions/admin/common.py",
       "bkmonitor/kernel_api/rpc/functions/metadata.py",
       "bkmonitor/kernel_api/rpc/registry.py",
       "bkmonitor/kernel_api/rpc/tenant.py",
-      "bkmonitor/kernel_api/urls.py"
+      "bkmonitor/kernel_api/urls.py",
+      "bkmonitor/kernel_api/views/__init__.py"
     ],
     "API接口文档/WebSocket实时通信.md": [
       "bkmonitor/apm/views.py",
       "bkmonitor/bk_dataview/views.py",
       "bkmonitor/kernel_api/urls.py",
+      "bkmonitor/kernel_api/views/__init__.py",
+      "bkmonitor/kernel_api/views/v2/__init__.py",
       "bkmonitor/kernel_api/views/v2/monitorapi.py",
+      "bkmonitor/kernel_api/views/v4/__init__.py",
       "bkmonitor/kernel_api/views/v4/monitorapi.py",
       "bkmonitor/settings.py",
       "bkmonitor/urls.py"
@@ -4730,6 +5163,7 @@
       "bkmonitor/api/bkdata/default.py",
       "bkmonitor/apm/constants.py",
       "bkmonitor/apm/core/handlers/profile/query.py",
+      "bkmonitor/apm/migrations/0052_add_profiledatasource_v4.py",
       "bkmonitor/apm/models/profile.py",
       "bkmonitor/apm/resources.py",
       "bkmonitor/apm/views.py",
@@ -4888,6 +5322,7 @@
     "告警系统设计/告警引擎核心/检测结果管理.md": [
       "bkmonitor/alarm_backends/constants.py",
       "bkmonitor/alarm_backends/core/cache/key.py",
+      "bkmonitor/alarm_backends/core/detect_result/__init__.py",
       "bkmonitor/alarm_backends/core/storage/redis.py",
       "bkmonitor/alarm_backends/core/storage/redis_cluster.py",
       "bkmonitor/alarm_backends/management/commands/check_lifecycle.py",
@@ -4941,12 +5376,19 @@
     "告警系统设计/通知渠道管理/通知投递追踪.md": [
       "bkmonitor/alarm_backends/management/commands/notice_preview.py",
       "bkmonitor/alarm_backends/service/fta_action/notice/processor.py",
+      "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_by_fakees.py",
+      "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_execute.py",
       "bkmonitor/bkmonitor/aiops/incident/notice.py",
       "bkmonitor/bkmonitor/as_code/json_schema/notice.json",
+      "bkmonitor/bkmonitor/as_code/tests/test_notice.py",
       "bkmonitor/constants/action.py",
       "bkmonitor/core/errors/notice_group.py",
       "bkmonitor/kernel_api/views/v4/notice_group.py",
+      "bkmonitor/migrations/0004_noticegroup_webhook_url.py",
+      "bkmonitor/migrations/0015_noticegroup_wechat_work_group.py",
+      "bkmonitor/packages/monitor_web/notice_group/__init__.py",
       "bkmonitor/packages/monitor_web/notice_group/constant.py",
+      "bkmonitor/packages/monitor_web/notice_group/resources/__init__.py",
       "bkmonitor/packages/monitor_web/notice_group/resources/backend.py",
       "bkmonitor/packages/monitor_web/notice_group/resources/front.py",
       "bkmonitor/packages/monitor_web/notice_group/urls.py",
@@ -5024,6 +5466,7 @@
     ],
     "安全考虑/API安全.md": [
       "bk_monitor_base/infras/third_party_api/user/api.py",
+      "bkmonitor/apm/core/discover/__init__.py",
       "bkmonitor/apm/core/discover/application.py",
       "bkmonitor/apm/core/discover/application_config.py",
       "bkmonitor/apm/core/discover/base.py",
@@ -5066,6 +5509,8 @@
       "bkmonitor/bk_dataview/authentication.py",
       "bkmonitor/bkmonitor/middlewares/authentication.py",
       "bkmonitor/bkmonitor/middlewares/request_middlewares.py",
+      "bkmonitor/bkmonitor/migrations/0001_initial.py",
+      "bkmonitor/bkmonitor/models/__init__.py",
       "bkmonitor/bkmonitor/utils/user.py",
       "bkmonitor/constants/common.py",
       "bkmonitor/kernel_api/middlewares/authentication.py",
@@ -5102,9 +5547,21 @@
       "bkmonitor/packages/audit/instance.py"
     ],
     "安全考虑/数据安全.md": [
+      "bkmonitor/apm/migrations/0049_subscriptionconfig_bk_tenant_id.py",
+      "bkmonitor/bkmonitor/migrations/0177_apiauthtoken_bk_tenant_id.py",
+      "bkmonitor/bkmonitor/migrations/0183_bcscluster_bk_tenant_id.py",
       "bkmonitor/bkmonitor/utils/tenant.py",
+      "bkmonitor/calendars/migrations/0007_calendarmodel_bk_tenant_id.py",
+      "bkmonitor/calendars/migrations/0008_calendaritemmodel_bk_tenant_id.py",
       "bkmonitor/kernel_api/rpc/functions/admin/tenant.py",
       "bkmonitor/kernel_api/rpc/tenant.py",
+      "bkmonitor/metadata/migrations/0216_datasource_is_tenant_specific_global.py",
+      "bkmonitor/metadata/migrations/0218_redisstorage_bk_tenant_id.py",
+      "bkmonitor/metadata/migrations/0219_recordrule_bk_tenant_id.py",
+      "bkmonitor/metadata/migrations/0233_logsubscriptionconfig_bk_tenant_id.py",
+      "bkmonitor/packages/monitor/migrations/0105_uptimechecknode_bk_tenant_id.py",
+      "bkmonitor/packages/monitor_web/migrations/0073_customeventgroup_bk_tenant_id.py",
+      "bkmonitor/packages/monitor_web/migrations/0075_customtstable_bk_tenant_id.py",
       "scripts/sensitive_info_check/check_ip.py"
     ],
     "安全考虑/认证与授权.md": [
@@ -5140,6 +5597,7 @@
       "bkmonitor/bkmonitor/as_code/ply/error.py"
     ],
     "扩展开发指南/可视化组件开发.md": [
+      "bkmonitor/packages/monitor_web/__init__.py",
       "bkmonitor/packages/monitor_web/package.json",
       "bkmonitor/packages/monitor_web/setup.py",
       "bkmonitor/packages/monitor_web/src/components/Chart.tsx",
@@ -5155,6 +5613,8 @@
       "bkmonitor/packages/monitor_web/src/services/dashboardApi.ts",
       "bkmonitor/packages/monitor_web/src/styles/responsive.css",
       "bkmonitor/packages/monitor_web/src/styles/theme.css",
+      "bkmonitor/packages/monitor_web/src/tests/Chart.test.tsx",
+      "bkmonitor/packages/monitor_web/src/tests/Dashboard.test.tsx",
       "bkmonitor/packages/monitor_web/src/types/chart.ts",
       "bkmonitor/packages/monitor_web/src/types/dashboard.ts",
       "bkmonitor/packages/monitor_web/src/utils/chartRenderer.ts",
@@ -5174,6 +5634,7 @@
       "bkmonitor\\bkmonitor\\strategy\\new_strategy.py"
     ],
     "扩展开发指南/插件系统开发.md": [
+      "bkmonitor/bkmonitor/event_plugin/__init__.py",
       "bkmonitor/bkmonitor/event_plugin/accessor.py",
       "bkmonitor/bkmonitor/event_plugin/constant.py",
       "bkmonitor/bkmonitor/event_plugin/manager/base.py",
@@ -5184,6 +5645,7 @@
       "bkmonitor/constants/event.py"
     ],
     "扩展开发指南/数据源扩展开发.md": [
+      "bkmonitor/bkmonitor/data_source/__init__.py",
       "bkmonitor/bkmonitor/data_source/backends/base/compiler.py",
       "bkmonitor/bkmonitor/data_source/backends/base/connection.py",
       "bkmonitor/bkmonitor/data_source/backends/base/operations.py",
@@ -5202,8 +5664,11 @@
       "bkmonitor/alarm_backends/management/commands/notice_preview.py",
       "bkmonitor/alarm_backends/service/fta_action/notice/processor.py",
       "bkmonitor/bkmonitor/aiops/incident/notice.py",
+      "bkmonitor/bkmonitor/as_code/tests/test_notice.py",
       "bkmonitor/bkmonitor/management/commands/clean_notice_user.py",
       "bkmonitor/bkmonitor/management/commands/migrate_user_group_noticeway.py",
+      "bkmonitor/bkmonitor/migrations/0004_noticegroup_webhook_url.py",
+      "bkmonitor/bkmonitor/migrations/0015_noticegroup_wechat_work_group.py",
       "bkmonitor/bkmonitor/utils/send.py",
       "bkmonitor/constants/action.py",
       "bkmonitor/core/errors/notice_group.py",
@@ -5297,11 +5762,13 @@
       "bkmonitor/settings.py"
     ],
     "数据库设计/数据模型设计.md": [
+      "bkmonitor/apm/models/__init__.py",
       "bkmonitor/apm/models/application.py",
       "bkmonitor/apm/models/config.py",
       "bkmonitor/apm/models/datasource.py",
       "bkmonitor/apm/models/profile.py",
       "bkmonitor/apm/models/topo.py",
+      "bkmonitor/metadata/models/__init__.py",
       "bkmonitor/metadata/models/data_source.py",
       "bkmonitor/metadata/models/result_table.py",
       "bkmonitor/metadata/models/storage.py"
@@ -5350,6 +5817,8 @@
       "bkmonitor/apm_ebpf/handlers/provisioning.py",
       "bkmonitor/apm_ebpf/handlers/relation.py",
       "bkmonitor/apm_ebpf/handlers/workload.py",
+      "bkmonitor/apm_ebpf/migrations/0001_initial.py",
+      "bkmonitor/apm_ebpf/migrations/0002_clusterrelation.py",
       "bkmonitor/apm_ebpf/models/workload.py",
       "bkmonitor/apm_ebpf/resource.py",
       "bkmonitor/apm_ebpf/task/tasks.py"
@@ -5413,6 +5882,7 @@
     "核心模块架构/元数据管理模块/元数据任务调度.md": [
       "bkmonitor/config/celery/",
       "bkmonitor/metadata/apps.py",
+      "bkmonitor/metadata/task/__init__.py",
       "bkmonitor/metadata/task/config_refresh.py",
       "bkmonitor/metadata/task/custom_report.py",
       "bkmonitor/metadata/task/tasks.py",
@@ -5427,13 +5897,21 @@
       "bkmonitor/metadata/apps.py",
       "bkmonitor/metadata/config.py",
       "bkmonitor/metadata/health_check.py",
+      "bkmonitor/metadata/management/__init__.py",
+      "bkmonitor/metadata/migrations/__init__.py",
+      "bkmonitor/metadata/models/__init__.py",
       "bkmonitor/metadata/models/data_source.py",
       "bkmonitor/metadata/models/event_group.py",
       "bkmonitor/metadata/models/label.py",
       "bkmonitor/metadata/models/result_table.py",
       "bkmonitor/metadata/models/time_series_group.py",
       "bkmonitor/metadata/resources.py",
+      "bkmonitor/metadata/resources/__init__.py",
+      "bkmonitor/metadata/service/__init__.py",
       "bkmonitor/metadata/signals.py",
+      "bkmonitor/metadata/task/__init__.py",
+      "bkmonitor/metadata/tools/__init__.py",
+      "bkmonitor/metadata/utils/__init__.py",
       "bkmonitor/metadata/views.py"
     ],
     "核心模块架构/元数据管理模块/元数据服务层/实体关系服务.md": [
@@ -5469,8 +5947,10 @@
       "bkmonitor/packages/utils/redis_client.py"
     ],
     "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md": [
+      "bkmonitor/metadata/__init__.py",
       "bkmonitor/metadata/admin.py",
       "bkmonitor/metadata/apps.py",
+      "bkmonitor/metadata/models/__init__.py",
       "bkmonitor/metadata/models/alert.py",
       "bkmonitor/metadata/models/backup.py",
       "bkmonitor/metadata/models/base.py",
@@ -5490,6 +5970,49 @@
       "bkmonitor/metadata/models/managers.py",
       "bkmonitor/metadata/models/metric.py",
       "bkmonitor/metadata/models/migration.py",
+      "bkmonitor/metadata/models/migrations/0001_initial.py",
+      "bkmonitor/metadata/models/migrations/0002_add_result_table_fields.py",
+      "bkmonitor/metadata/models/migrations/0003_add_storage_cluster_info.py",
+      "bkmonitor/metadata/models/migrations/0004_add_space_models.py",
+      "bkmonitor/metadata/models/migrations/0005_add_custom_report_models.py",
+      "bkmonitor/metadata/models/migrations/0006_add_event_models.py",
+      "bkmonitor/metadata/models/migrations/0007_add_data_link_models.py",
+      "bkmonitor/metadata/models/migrations/0008_add_bcs_models.py",
+      "bkmonitor/metadata/models/migrations/0009_add_cluster_models.py",
+      "bkmonitor/metadata/models/migrations/0010_add_topo_models.py",
+      "bkmonitor/metadata/models/migrations/0011_add_dimension_models.py",
+      "bkmonitor/metadata/models/migrations/0012_add_metric_models.py",
+      "bkmonitor/metadata/models/migrations/0013_add_tag_models.py",
+      "bkmonitor/metadata/models/migrations/0014_add_label_models.py",
+      "bkmonitor/metadata/models/migrations/0015_add_scene_models.py",
+      "bkmonitor/metadata/models/migrations/0016_add_strategy_models.py",
+      "bkmonitor/metadata/models/migrations/0017_add_notice_models.py",
+      "bkmonitor/metadata/models/migrations/0018_add_alert_models.py",
+      "bkmonitor/metadata/models/migrations/0019_add_permission_models.py",
+      "bkmonitor/metadata/models/migrations/0020_add_tenant_models.py",
+      "bkmonitor/metadata/models/migrations/0021_add_version_models.py",
+      "bkmonitor/metadata/models/migrations/0022_add_backup_models.py",
+      "bkmonitor/metadata/models/migrations/0023_add_migration_models.py",
+      "bkmonitor/metadata/models/migrations/0024_add_utils_models.py",
+      "bkmonitor/metadata/models/migrations/0025_add_base_models.py",
+      "bkmonitor/metadata/models/migrations/0026_add_exceptions_models.py",
+      "bkmonitor/metadata/models/migrations/0027_add_constants_models.py",
+      "bkmonitor/metadata/models/migrations/0028_add_types_models.py",
+      "bkmonitor/metadata/models/migrations/0029_add_validators_models.py",
+      "bkmonitor/metadata/models/migrations/0030_add_queryset_models.py",
+      "bkmonitor/metadata/models/migrations/0031_add_managers_models.py",
+      "bkmonitor/metadata/models/migrations/0032_add_options_models.py",
+      "bkmonitor/metadata/models/migrations/0033_add_fields_models.py",
+      "bkmonitor/metadata/models/migrations/0034_add_serializers_models.py",
+      "bkmonitor/metadata/models/migrations/0035_add_permissions_models.py",
+      "bkmonitor/metadata/models/migrations/0036_add_cache_models.py",
+      "bkmonitor/metadata/models/migrations/0037_add_tasks_models.py",
+      "bkmonitor/metadata/models/migrations/0038_add_views_models.py",
+      "bkmonitor/metadata/models/migrations/0039_add_resources_models.py",
+      "bkmonitor/metadata/models/migrations/0040_add_urls_models.py",
+      "bkmonitor/metadata/models/migrations/0041_add_tests_models.py",
+      "bkmonitor/metadata/models/migrations/0042_add_fixtures_models.py",
+      "bkmonitor/metadata/models/migrations/__init__.py",
       "bkmonitor/metadata/models/notice.py",
       "bkmonitor/metadata/models/options.py",
       "bkmonitor/metadata/models/permission.py",
@@ -5526,10 +6049,14 @@
       "bkmonitor/metadata/models/storage.py"
     ],
     "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md": [
+      "bkmonitor/metadata/models/record_rule/__init__.py",
       "bkmonitor/metadata/models/record_rule/constants.py",
       "bkmonitor/metadata/models/record_rule/rules.py",
       "bkmonitor/metadata/models/record_rule/service.py",
-      "bkmonitor/metadata/models/record_rule/utils.py"
+      "bkmonitor/metadata/models/record_rule/utils.py",
+      "bkmonitor/metadata/tests/record_rule/conftest.py",
+      "bkmonitor/metadata/tests/record_rule/test_compose_flow_node.py",
+      "bkmonitor/metadata/tests/record_rule/test_record_rule_service.py"
     ],
     "核心模块架构/元数据管理模块/元数据管理命令.md": [
       "bkmonitor/metadata/admin.py",
@@ -5584,6 +6111,10 @@
       "bkmonitor/metadata/management/commands/check_realtime_strategy_kafka_storage.py",
       "bkmonitor/metadata/management/commands/modify_kafka_cluster.py",
       "bkmonitor/metadata/management/commands/switch_kafka_for_data_id.py",
+      "bkmonitor/metadata/migrations/0029_create_kafka_storage_for_init_rt.py",
+      "bkmonitor/metadata/migrations/0030_kafkastorage_retention.py",
+      "bkmonitor/metadata/migrations/0031_fix_kafka_label_config.py",
+      "bkmonitor/metadata/migrations/0218_redisstorage_bk_tenant_id.py",
       "bkmonitor/metadata/models/space/space_table_id_redis.py",
       "bkmonitor/metadata/service/space_redis.py",
       "bkmonitor/metadata/tools/redis_lock.py",
@@ -5759,6 +6290,7 @@
       "bkmonitor/config/default.py",
       "bkmonitor/config/dev.py",
       "bkmonitor/metadata/apps.py",
+      "bkmonitor/metadata/models/__init__.py",
       "bkmonitor/metadata/views.py",
       "bkmonitor/settings.py",
       "bkmonitor/urls.py"
@@ -5768,6 +6300,7 @@
       "bkmonitor/bkmonitor/define/global_config.py",
       "bkmonitor/bkmonitor/iam/migrate.py",
       "bkmonitor/bkmonitor/migrate.py",
+      "bkmonitor/bkmonitor/models/__init__.py",
       "bkmonitor/bkmonitor/utils/dynamic_settings.py",
       "bkmonitor/config/default.py",
       "bkmonitor/config/dev.py",
@@ -5833,6 +6366,7 @@
       "bkmonitor/alarm_backends/service/new_report/handler/dashboard.py",
       "bkmonitor/alarm_backends/service/report/render/dashboard.py",
       "bkmonitor/core/errors/dashboard.py",
+      "bkmonitor/packages/monitor/migrations/0023_dashboardmenu_dashboardmenulocation_dashboardview.py",
       "bkmonitor/packages/monitor_web/data_migrate/fetcher/dashboard.py",
       "bkmonitor/packages/monitor_web/search/handlers/dashboard.py"
     ],
@@ -5924,10 +6458,12 @@
       "bkmonitor/apm/core/deepflow/handlers.py",
       "bkmonitor/apm/core/discover/handlers.py",
       "bkmonitor/apm/core/platform_config.py",
+      "bkmonitor/apm/migrations/...",
       "bkmonitor/apm/models/datasource.py",
       "bkmonitor/apm/models/doris.py",
       "bkmonitor/apm/resources.py",
       "bkmonitor/apm/serializers.py",
+      "bkmonitor/apm/tests/...",
       "bkmonitor/apm/types.py",
       "bkmonitor/apm/urls.py",
       "bkmonitor/apm/utils/base.py",
@@ -5944,9 +6480,11 @@
       "bkmonitor/middlewares/pyinstrument.py",
       "bkmonitor/middlewares/request_middlewares.py",
       "bkmonitor/middlewares/source.py",
+      "bkmonitor/query_api/drivers/__init__.py",
       "bkmonitor/query_api/drivers/proxy.py",
       "bkmonitor/query_api/exceptions.py",
-      "bkmonitor/query_api/resources.py"
+      "bkmonitor/query_api/resources.py",
+      "bkmonitor/query_api/sql_parse/__init__.py"
     ],
     "监控数据管理/数据源集成.md": [
       "bkmonitor/bkmonitor/data_source/backends/base/compiler.py",
@@ -5998,6 +6536,8 @@
       "bkmonitor/api/kubernetes/kubernetes_metrics_define.json",
       "bkmonitor/apm/core/application_config.py",
       "bkmonitor/apm/core/cluster_config.py",
+      "bkmonitor/apm/core/deepflow/__init__.py",
+      "bkmonitor/apm/core/discover/__init__.py",
       "bkmonitor/apm/core/platform_config.py",
       "bkmonitor/apm/models/application.py",
       "bkmonitor/apm/models/config.py",

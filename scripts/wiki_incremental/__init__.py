@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Utilities for incremental BK-Monitor wiki updates."""
 
-from .change_detection import ChangeReport, MatchResult, detect_changes, format_report
+from .change_detection import ChangeReport, FeatureCluster, MatchResult, detect_changes, format_report, format_lookup, lookup_wikis
 from .citation_cleanup import cleanup_dead_citations
 from .format_validation import Violation, validate_and_fix
 from .incremental_index import (

@@ -235,6 +235,46 @@ def classify_changes(
     return report
 
 
+def lookup_wikis(
+    source_to_wiki: dict[str, list[str]],
+    files: list[str],
+) -> list[tuple[str, int, list[str]]]:
+    """Given a list of file paths, return ranked wiki pages sorted by hit count.
+
+    Returns:
+        List of (wiki_path, hit_count, matched_files) tuples, sorted by hit_count descending.
+    """
+    wiki_hits: dict[str, list[str]] = {}
+    for f in files:
+        if f in source_to_wiki:
+            for wiki in source_to_wiki[f]:
+                wiki_hits.setdefault(wiki, []).append(f)
+    return sorted(
+        [(wiki, len(hits), sorted(hits)) for wiki, hits in wiki_hits.items()],
+        key=lambda x: x[1],
+        reverse=True,
+    )
+
+
+def format_lookup(ranked: list[tuple[str, int, list[str]]], input_summary: str = "") -> str:
+    """Format ranked wiki lookup results."""
+    lines: list[str] = []
+    if input_summary:
+        lines.append(input_summary)
+        lines.append("")
+    if not ranked:
+        lines.append("未找到相关 Wiki 页面。")
+        return "\n".join(lines)
+    lines.append(f"共 {len(ranked)} 篇 Wiki 页面受影响：")
+    lines.append("")
+    for wiki, count, matched in ranked:
+        file_list = ", ".join(matched) if len(matched) <= 3 else ", ".join(matched[:3]) + f" ... +{len(matched) - 3}"
+        lines.append(f"  [{count:>3} 文件]  {wiki}")
+        lines.append(f"          ↳ {file_list}")
+        lines.append("")
+    return "\n".join(lines)
+
+
 def detect_changes(old_commit: str, new_commit: str, metadata: dict, repo_dir: str = ".") -> ChangeReport:
     source_to_wiki = metadata.get("source_to_wiki") or {}
     if not source_to_wiki:

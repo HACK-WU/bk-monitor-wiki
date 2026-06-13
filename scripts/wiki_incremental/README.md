@@ -29,7 +29,7 @@ change_detection.py  ──▶  affected_wiki_paths (list)
 | `format_validation.py` | R1-R6 格式校验 + 可机械修复的格式问题 | `validate_and_fix()`, `Violation` |
 | `incremental_index.py` | 增量更新受影响 wiki 的索引 | `incremental_index_update()`, `safe_index_update()`, `save_metadata()` |
 | `json_utils.py` | 原子化 JSON 读写 | `load_json()`, `atomic_save_json()` |
-| `cli.py` | 命令行入口 | `build-index`, `detect` 子命令 |
+|| `cli.py` | 命令行入口 | `build-index`, `detect`, `lookup` 子命令 |
 
 ## 快速开始
 
@@ -59,6 +59,44 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli detect \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --new-commit <new_commit> \
   --repo-dir .
+```
+
+### Wiki 反查（ranked lookup）
+
+已知文件路径或 commit，反查受影响 Wiki 页面，按命中文件数降序排列。
+
+```bash
+# 指定文件路径
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --files bkmonitor/alarm_backends/engine.py bkmonitor/query_api/views.py
+
+# 指定 commit（自动 diff 父提交）
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --new-commit 3a3630a \
+  --repo-dir .
+
+# 指定 commit 范围
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --new-commit 3a3630a \
+  --old-commit e353b1f \
+  --repo-dir .
+```
+
+输出示例：
+```
+commit e353b1f..3a3630a 变更文件: 42 个
+
+共 8 篇 Wiki 页面受影响：
+
+  [  5 文件]  告警系统设计/告警引擎核心.md
+          ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ... +3
+
+  [  3 文件]  API接口文档/告警管理API.md
+          ↳ bkmonitor/api/alert.py, bkmonitor/api/alert/serializers.py, bkmonitor/api/alert/views.py
+...
 ```
 
 输出示例：
@@ -127,6 +165,24 @@ report = detect_changes(
 print(format_report(report))
 print(report.affected_wikis)  # ["告警系统设计/告警引擎核心.md", ...]
 print(report.feature_clusters) # [FeatureCluster(base_dir="bkmonitor/new_module", file_count=3, ...)]
+```
+
+### lookup_wikis
+
+```python
+from wiki_incremental import load_json, lookup_wikis, format_lookup
+
+metadata = load_json("wiki/metadata.json")
+source_to_wiki = metadata["source_to_wiki"]
+
+# 按文件路径反查
+ranked = lookup_wikis(source_to_wiki, [
+    "bkmonitor/alarm_backends/engine.py",
+    "bkmonitor/query_api/views.py",
+])
+print(format_lookup(ranked))
+# [  3 文件]  告警系统设计/告警引擎核心.md
+#          ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ...
 ```
 
 ### cleanup_dead_citations

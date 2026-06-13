@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import subprocess
 
 from . import change_detection, index_builder
+from .json_utils import load_json
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -26,6 +28,13 @@ def main(argv: list[str] | None = None) -> int:
     detect_parser.add_argument("--new-commit", required=True)
     detect_parser.add_argument("--old-commit")
     detect_parser.add_argument("--repo-dir", default=".")
+
+    lookup_parser = subparsers.add_parser("lookup", help="Ranked wiki lookup by file paths or commit")
+    lookup_parser.add_argument("--metadata", required=True)
+    lookup_parser.add_argument("--files", nargs="*", default=[], help="File paths to look up")
+    lookup_parser.add_argument("--new-commit", help="New commit hash (diff against parent or --old-commit)")
+    lookup_parser.add_argument("--old-commit", help="Old commit hash for range comparison")
+    lookup_parser.add_argument("--repo-dir", default=".")
 
     args = parser.parse_args(argv)
     if args.command == "build-index":
@@ -54,7 +63,41 @@ def main(argv: list[str] | None = None) -> int:
                 *(["--old-commit", args.old_commit] if args.old_commit else []),
             ]
         )
+    if args.command == "lookup":
+        return _run_lookup(args)
     return 1
+
+
+def _run_lookup(args: argparse.Namespace) -> int:
+    metadata = load_json(args.metadata)
+    source_to_wiki = metadata.get("source_to_wiki") or {}
+    if not source_to_wiki:
+        raise SystemExit("metadata.json does not contain source_to_wiki; run build-index first")
+
+    files: list[str] = list(args.files) if args.files else []
+    summary = ""
+
+    if args.new_commit:
+        old = args.old_commit or f"{args.new_commit}~1"
+        result = subprocess.run(
+            ["git", "--no-pager", "diff", "--name-only", f"{old}..{args.new_commit}"],
+            cwd=args.repo_dir,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            raise SystemExit(result.stderr.strip() or "git diff failed")
+        commit_files = [f.strip() for f in result.stdout.splitlines() if f.strip()]
+        files = commit_files
+        summary = f"commit {old}..{args.new_commit} 变更文件: {len(files)} 个"
+    elif files:
+        summary = f"指定文件: {len(files)} 个"
+    else:
+        raise SystemExit("必须提供 --files 或 --new-commit")
+
+    ranked = change_detection.lookup_wikis(source_to_wiki, files)
+    print(change_detection.format_lookup(ranked, summary))
+    return 0
 
 
 if __name__ == "__main__":

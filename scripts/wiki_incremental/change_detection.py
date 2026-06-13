@@ -7,6 +7,7 @@ import argparse
 import os
 import subprocess
 from dataclasses import asdict, dataclass, field
+from pathlib import PurePosixPath
 from typing import Iterable
 
 from .json_utils import load_json

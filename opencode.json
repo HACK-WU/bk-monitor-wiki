@@ -2,7 +2,7 @@
   "mcp": {
     "gitnexus": {
       "type": "local",
-      "command": ["/root/.npm/node_modules/bin/gitnexus", "mcp"]
+      "command": ["gitnexus", "mcp"]
     },
     "memory": {
       "type": "local",

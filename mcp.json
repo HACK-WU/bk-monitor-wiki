@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "gitnexus": {
-      "command": "/root/.npm/node_modules/bin/gitnexus",
+      "command": "gitnexus",
       "args": ["mcp"]
     },
     "memory": {

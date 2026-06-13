@@ -1,10 +1,10 @@
 ---
-name: writing-pipeline
-description: >-
-  文档或代码编写完成后，自动调用 auto-review skill 进行质量审查和修复闭环。
+description: 文档或代码编写完成后，自动调用 auto-review skill 进行质量审查和修复闭环。
+alwaysApply: true
+enabled: true
+updatedAt: 2026-06-13T16:35:00.000Z
+provider:
 ---
-
-# Writing Pipeline
 
 ## 规则
 

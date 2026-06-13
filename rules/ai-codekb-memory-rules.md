@@ -1,4 +1,10 @@
-# ai-codekb-memory AI 知识与记忆管理规则
+---
+description: 指导 AI 管理知识索引和记忆。禁用平台原生内置记忆，强制加载 ki-foundation，按需选择 codekb-skill / memory-skill。
+alwaysApply: true
+enabled: true
+updatedAt: 2026-06-13T16:35:00.000Z
+provider:
+---
 
 > **对话开始时首先检查本规则**。指导 AI 如何管理知识索引和记忆：禁用内置记忆、加载 skill、选择存储与检索策略。
 

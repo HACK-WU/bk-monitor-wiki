@@ -30,6 +30,18 @@ class MatchResult:
 
 
 @dataclass
+class FeatureCluster:
+    """A group of new/unmatched files sharing a common ancestor directory."""
+
+    base_dir: str
+    files: list[str]
+    file_count: int = 0
+    # Whether this cluster has any files with PlacementSuggestion
+    has_suggestions: bool = False
+    suggestions: list[PlacementSuggestion] = field(default_factory=list)
+
+
+@dataclass
 class ChangeReport:
     old_commit: str
     new_commit: str
@@ -43,6 +55,7 @@ class ChangeReport:
     suggested_placements: list[PlacementSuggestion] = field(default_factory=list)
     unmatched_new: list[str] = field(default_factory=list)
     unmatched: list[str] = field(default_factory=list)
+    feature_clusters: list[FeatureCluster] = field(default_factory=list)
 
     @property
     def affected_wikis(self) -> list[str]:
@@ -132,6 +145,47 @@ def three_level_match(changed_path: str, source_to_wiki: dict[str, list[str]]) -
     return MatchResult("none", changed_path, [])
 
 
+def _cluster_new_files(
+    new_paths: list[str],
+    suggestions: list[PlacementSuggestion],
+    cluster_depth: int = 2,
+) -> list[FeatureCluster]:
+    """Group new/unmatched files by shared ancestor directory.
+
+    Groups files that share the same directory prefix at cluster_depth levels
+    (e.g. 'packages/fta_web' groups all files under packages/fta_web/...).
+    Single-file directories still form their own cluster.
+    """
+    if not new_paths:
+        return []
+
+    # Group by ancestor dir at cluster_depth
+    dir_groups: dict[str, list[str]] = {}
+    for path in new_paths:
+        parts = PurePosixPath(path).parts
+        if len(parts) >= cluster_depth + 1:
+            ancestor = "/".join(parts[:cluster_depth + 1])
+        elif len(parts) >= 2:
+            ancestor = "/".join(parts[:2])
+        else:
+            ancestor = parts[0] if parts else ""
+        dir_groups.setdefault(ancestor, []).append(path)
+
+    clusters: list[FeatureCluster] = []
+    for base_dir, files in sorted(dir_groups.items()):
+        cluster_suggestions = [s for s in suggestions if s.source_path in files]
+        clusters.append(
+            FeatureCluster(
+                base_dir=base_dir,
+                files=sorted(files),
+                file_count=len(files),
+                has_suggestions=bool(cluster_suggestions),
+                suggestions=cluster_suggestions,
+            )
+        )
+    return clusters
+
+
 def classify_changes(
     git_entries: list[ChangedFile],
     source_to_wiki: dict[str, list[str]],
@@ -163,15 +217,20 @@ def classify_changes(
         else:
             report.unmatched.append(f"{entry.path} ({entry.status})")
     # Run pattern inference on new features to suggest wiki placements
-    source_to_wiki_for_inference = source_to_wiki  # reuse for context
+    new_paths: list[str] = []
     if any(entry.status == "A" for entry in git_entries):
         new_paths = [e.path for e in git_entries if e.status == "A" and three_level_match(e.path, source_to_wiki).level == "none"]
         if new_paths:
             suggestions, unmatched_new = suggest_placements_batch(
-                new_paths, source_to_wiki_for_inference
+                new_paths, source_to_wiki
             )
             report.suggested_placements = suggestions
             report.unmatched_new = unmatched_new
+    # Cluster new files by shared directory for AI feature analysis
+    report.feature_clusters = _cluster_new_files(
+        new_paths,
+        report.suggested_placements,
+    )
     return report
 
 
@@ -214,6 +273,18 @@ def format_report(report: ChangeReport) -> str:
     if report.new_features:
         lines.append(f"新功能文件 ({len(report.new_features)}):")
         lines.extend(f"- {path}" for path in report.new_features)
+        lines.append("")
+    if report.feature_clusters:
+        lines.append(f"新功能文件簇 ({len(report.feature_clusters)}):")
+        lines.append("| 基础目录 | 文件数 | 可推断 | 文件列表 |")
+        lines.append("|----------|--------|--------|----------|")
+        for fc in report.feature_clusters:
+            files_preview = ", ".join(fc.files[:5])
+            if len(fc.files) > 5:
+                files_preview += f" ... +{len(fc.files) - 5}"
+            lines.append(
+                f"| {fc.base_dir} | {fc.file_count} | {'✓' if fc.has_suggestions else '✗'} | {files_preview} |"
+            )
         lines.append("")
     if report.suggested_placements:
         lines.append(f"可推断放置位置 ({len(report.suggested_placements)}):")

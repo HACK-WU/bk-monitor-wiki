@@ -12,7 +12,7 @@
   ],
   "source": {
     "branch": "master",
-    "commit_id": "a49d741e3cb58d92e41343b0cb1a4a103a8182b5",
+    "commit_id": "fbdf2ac2bf243820a6b3370065bf3582e565dab5",
     "repo_url": "git@github.com:TencentBlueKing/bk-monitor.git"
   },
   "source_to_wiki": {
@@ -118,6 +118,9 @@
     "bkmonitor/ai_whale/local_command_handlers.py": [
       "告警系统设计/通知渠道管理/通知模板管理.md"
     ],
+    "bkmonitor/ai_whale/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/ai_whale/urls.py": [
       "API接口文档/API接口文档.md"
     ],
@@ -126,6 +129,10 @@
     ],
     "bkmonitor/alarm_backends/README.md": [
       "告警系统设计/告警系统设计.md"
+    ],
+    "bkmonitor/alarm_backends/__init__.py": [
+      "核心模块架构/告警后端模块/告警后端模块.md",
+      "核心模块架构/告警后端模块/告警核心引擎/告警处理引擎.md"
     ],
     "bkmonitor/alarm_backends/apps.py": [
       "告警系统设计/告警引擎核心/告警引擎核心.md",
@@ -160,6 +167,10 @@
       "核心模块架构/告警后端模块/告警核心引擎/告警处理引擎.md",
       "核心模块架构/告警后端模块/告警核心引擎/告警核心引擎.md"
     ],
+    "bkmonitor/alarm_backends/core/__init__.py": [
+      "告警系统设计/告警系统设计.md",
+      "核心模块架构/告警后端模块/告警后端模块.md"
+    ],
     "bkmonitor/alarm_backends/core/alert/adapter.py": [
       "告警系统设计/告警引擎核心/告警引擎核心.md"
     ],
@@ -181,6 +192,11 @@
     ],
     "bkmonitor/alarm_backends/core/api_cache/readme.md": [
       "告警系统设计/告警引擎核心/缓存系统.md"
+    ],
+    "bkmonitor/alarm_backends/core/cache/__init__.py": [
+      "告警系统设计/告警存储与缓存.md",
+      "告警系统设计/告警引擎核心/缓存系统.md",
+      "核心模块架构/告警后端模块/告警核心引擎/缓存管理系统.md"
     ],
     "bkmonitor/alarm_backends/core/cache/action_config.py": [
       "告警系统设计/告警引擎核心/缓存系统.md",
@@ -240,6 +256,9 @@
       "API接口文档/RESTful API接口/策略配置API.md",
       "告警系统设计/告警策略管理.md"
     ],
+    "bkmonitor/alarm_backends/core/circuit_breaking/__init__.py": [
+      "核心模块架构/告警后端模块/告警核心引擎/熔断机制.md"
+    ],
     "bkmonitor/alarm_backends/core/circuit_breaking/manager.py": [
       "核心模块架构/告警后端模块/告警服务层/告警处理服务.md",
       "核心模块架构/告警后端模块/告警核心引擎/熔断机制.md"
@@ -257,6 +276,10 @@
       "告警系统设计/告警引擎核心/告警引擎核心.md",
       "核心模块架构/告警后端模块/告警后端模块.md",
       "核心模块架构/告警后端模块/告警核心引擎/告警核心引擎.md"
+    ],
+    "bkmonitor/alarm_backends/core/context/__init__.py": [
+      "告警系统设计/告警引擎核心/告警上下文管理.md",
+      "核心模块架构/告警后端模块/告警核心引擎/上下文管理系统.md"
     ],
     "bkmonitor/alarm_backends/core/context/action_instance.py": [
       "告警系统设计/告警引擎核心/告警上下文管理.md",
@@ -291,6 +314,11 @@
       "告警系统设计/告警引擎核心/告警上下文管理.md",
       "核心模块架构/告警后端模块/告警核心引擎/上下文管理系统.md"
     ],
+    "bkmonitor/alarm_backends/core/control/__init__.py": [
+      "告警系统设计/告警引擎核心/告警引擎核心.md",
+      "告警系统设计/告警引擎核心/控制流程管理.md",
+      "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md"
+    ],
     "bkmonitor/alarm_backends/core/control/checkpoint.py": [
       "告警系统设计/告警引擎核心/控制流程管理.md",
       "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md"
@@ -298,6 +326,9 @@
     "bkmonitor/alarm_backends/core/control/item.py": [
       "告警系统设计/告警引擎核心/控制流程管理.md",
       "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md"
+    ],
+    "bkmonitor/alarm_backends/core/control/mixins/__init__.py": [
+      "告警系统设计/告警引擎核心/控制流程管理.md"
     ],
     "bkmonitor/alarm_backends/core/control/mixins/detect.py": [
       "告警系统设计/告警处理服务/告警检测服务.md",
@@ -338,6 +369,9 @@
     "bkmonitor/alarm_backends/core/lock/service_lock.py": [
       "告警系统设计/告警处理服务/告警检测服务.md"
     ],
+    "bkmonitor/alarm_backends/core/storage/__init__.py": [
+      "告警系统设计/告警存储与缓存.md"
+    ],
     "bkmonitor/alarm_backends/core/storage/kafka.py": [
       "告警系统设计/告警存储与缓存.md",
       "告警系统设计/告警引擎核心/告警引擎核心.md",
@@ -375,6 +409,9 @@
       "告警系统设计/告警引擎核心/检测结果管理.md",
       "核心模块架构/元数据管理模块/元数据服务层/空间Redis服务.md",
       "核心模块架构/告警后端模块/告警核心引擎/存储层抽象.md"
+    ],
+    "bkmonitor/alarm_backends/management/__init__.py": [
+      "核心模块架构/告警后端模块/告警管理命令.md"
     ],
     "bkmonitor/alarm_backends/management/commands/alert_check.py": [
       "核心模块架构/告警后端模块/告警管理命令.md"
@@ -434,6 +471,13 @@
       "核心模块架构/告警后端模块/告警服务层/告警服务层.md",
       "项目概述/核心特性.md"
     ],
+    "bkmonitor/alarm_backends/service/__init__.py": [
+      "核心模块架构/告警后端模块/告警后端模块.md",
+      "核心模块架构/告警后端模块/告警服务层/告警服务层.md"
+    ],
+    "bkmonitor/alarm_backends/service/access/__init__.py": [
+      "扩展开发指南/第三方服务集成.md"
+    ],
     "bkmonitor/alarm_backends/service/access/alert/base.py": [
       "核心模块架构/告警后端模块/告警服务层/告警处理服务.md"
     ],
@@ -487,6 +531,9 @@
     "bkmonitor/alarm_backends/service/composite/tasks.py": [
       "告警系统设计/告警处理服务/告警复合服务.md",
       "核心模块架构/告警后端模块/告警服务层/复合告警服务.md"
+    ],
+    "bkmonitor/alarm_backends/service/converge/__init__.py": [
+      "核心模块架构/告警后端模块/告警服务层/告警收敛服务.md"
     ],
     "bkmonitor/alarm_backends/service/converge/converge_func.py": [
       "告警系统设计/告警处理服务/告警收敛服务.md",
@@ -569,6 +616,11 @@
       "告警系统设计/告警策略管理.md",
       "核心模块架构/告警后端模块/告警服务层/检测策略服务.md"
     ],
+    "bkmonitor/alarm_backends/service/fta_action/issue_processor.py": [
+      "告警系统设计/Issue功能/Issue 周期任务.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md",
+      "告警系统设计/Issue功能/Issue 聚合引擎.md"
+    ],
     "bkmonitor/alarm_backends/service/fta_action/message_queue/client.py": [
       "告警系统设计/通知渠道管理/通知队列管理.md"
     ],
@@ -580,6 +632,10 @@
       "告警系统设计/通知渠道管理/通知渠道管理.md",
       "告警系统设计/通知渠道管理/邮件短信集成.md",
       "扩展开发指南/通知渠道扩展开发.md"
+    ],
+    "bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py": [
+      "告警系统设计/Issue功能/Issue 周期任务.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
     ],
     "bkmonitor/alarm_backends/service/fta_action/utils.py": [
       "告警系统设计/通知渠道管理/企业微信集成.md",
@@ -682,20 +738,34 @@
     "bkmonitor/alarm_backends/templates/image_exporter/static/js/jquery-1.10.2.min.js": [
       "用户界面设计/用户界面设计.md"
     ],
+    "bkmonitor/alarm_backends/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/alarm_backends/tests/cluster/test_cluster.py": [
       "测试策略/单元测试.md"
     ],
     "bkmonitor/alarm_backends/tests/conftest.py": [
-      "测试策略/单元测试.md"
+      "测试策略/单元测试.md",
+      "测试策略/测试策略.md"
     ],
     "bkmonitor/alarm_backends/tests/service/composite/test_processor.py": [
-      "告警系统设计/告警处理服务/告警复合服务.md"
+      "告警系统设计/告警处理服务/告警复合服务.md",
+      "核心模块架构/告警后端模块/告警服务层/复合告警服务.md"
     ],
     "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_by_fakees.py": [
       "告警系统设计/通知渠道管理/通知投递追踪.md"
     ],
     "bkmonitor/alarm_backends/tests/service/fta_action/test_notice_execute.py": [
       "告警系统设计/通知渠道管理/通知投递追踪.md"
+    ],
+    "bkmonitor/alarm_backends/tests/service/trigger/test_checker.py": [
+      "告警系统设计/告警处理服务/告警触发服务.md"
+    ],
+    "bkmonitor/alarm_backends/tests/service/trigger/test_handler.py": [
+      "告警系统设计/告警处理服务/告警触发服务.md"
+    ],
+    "bkmonitor/alarm_backends/tests/service/trigger/test_processor.py": [
+      "告警系统设计/告警处理服务/告警触发服务.md"
     ],
     "bkmonitor/alarm_backends/urls.py": [
       "API接口文档/RESTful API接口/策略配置API.md",
@@ -775,6 +845,10 @@
     ],
     "bkmonitor/api/iam/default.py": [
       "告警系统设计/通知渠道管理/通知渠道管理.md"
+    ],
+    "bkmonitor/api/issue/default.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
     ],
     "bkmonitor/api/itsm/default.py": [
       "告警系统设计/通知渠道管理/通知渠道管理.md"
@@ -1116,6 +1190,9 @@
       "监控数据管理/数据查询优化.md",
       "部署与运维/系统性能监控.md"
     ],
+    "bkmonitor/apm/management/__init__.py": [
+      "核心模块架构/告警后端模块/告警管理命令.md"
+    ],
     "bkmonitor/apm/management/commands/set_ebpf_config.py": [
       "核心模块架构/APM监控模块/eBPF集成模块.md"
     ],
@@ -1316,6 +1393,7 @@
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm/models/__init__.py": [
+      "数据库设计/数据库设计.md",
       "数据库设计/数据模型设计.md",
       "核心模块架构/APM监控模块/数据模型定义.md"
     ],
@@ -1428,11 +1506,15 @@
       "部署与运维/自动化运维工具.md",
       "项目概述/核心特性.md"
     ],
+    "bkmonitor/apm/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/apm/tests/...": [
       "监控数据管理/数据查询优化.md"
     ],
     "bkmonitor/apm/tests/conftest.py": [
-      "测试策略/单元测试.md"
+      "测试策略/单元测试.md",
+      "测试策略/测试策略.md"
     ],
     "bkmonitor/apm/tests/test_query_topo_instance.py": [
       "测试策略/单元测试.md"
@@ -1455,6 +1537,9 @@
       "核心模块架构/核心模块架构.md",
       "监控数据管理/数据查询优化.md",
       "项目概述/核心特性.md"
+    ],
+    "bkmonitor/apm/utils/__init__.py": [
+      "核心模块架构/APM监控模块/工具类和实用程序.md"
     ],
     "bkmonitor/apm/utils/base.py": [
       "核心模块架构/APM监控模块/工具类和实用程序.md",
@@ -1512,6 +1597,7 @@
       "故障排查/故障排查.md"
     ],
     "bkmonitor/apm_ebpf/__init__.py": [
+      "APM全栈监控/APM全栈监控.md",
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/admin.py": [
@@ -1573,22 +1659,27 @@
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/migrations/0001_initial.py": [
+      "APM全栈监控/APM全栈监控.md",
       "故障排查/故障排查.md",
       "核心模块架构/APM监控模块/eBPF集成模块.md",
       "部署与运维/自动化运维工具.md",
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/migrations/0002_clusterrelation.py": [
+      "APM全栈监控/APM全栈监控.md",
       "核心模块架构/APM监控模块/eBPF集成模块.md",
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/migrations/0003_auto_20231207_1520.py": [
+      "APM全栈监控/APM全栈监控.md",
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/migrations/0004_merge_20231211_1735.py": [
+      "APM全栈监控/APM全栈监控.md",
       "项目概述/核心特性.md"
     ],
     "bkmonitor/apm_ebpf/migrations/0005_deepflowdashboardrecord.py": [
+      "APM全栈监控/APM全栈监控.md",
       "故障排查/故障排查.md",
       "部署与运维/自动化运维工具.md",
       "项目概述/核心特性.md"
@@ -1753,6 +1844,9 @@
     "bkmonitor/bk_dataview/router.py": [
       "监控数据管理/数据查询优化.md"
     ],
+    "bkmonitor/bk_dataview/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/bk_dataview/urls.py": [
       "API接口文档/API接口文档.md",
       "API接口文档/RESTful API接口/RESTful API接口.md"
@@ -1768,6 +1862,9 @@
     ],
     "bkmonitor/bkm_ipchooser/serializers/topo_sers.py": [
       "核心模块架构/元数据管理模块/元数据服务层/实体关系服务.md"
+    ],
+    "bkmonitor/bkm_ipchooser/tests/": [
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/bkm_ipchooser/tools/topo_tool.py": [
       "核心模块架构/元数据管理模块/元数据服务层/实体关系服务.md"
@@ -1788,6 +1885,9 @@
     ],
     "bkmonitor/bkm_space/serializers.py": [
       "用户界面设计/多租户管理.md"
+    ],
+    "bkmonitor/bkm_space/tests/": [
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/bkm_space/utils.py": [
       "用户界面设计/多租户管理.md"
@@ -1990,6 +2090,9 @@
     "bkmonitor/bkmonitor/data_source/handler/log_search.py": [
       "故障排查/日志分析方法.md"
     ],
+    "bkmonitor/bkmonitor/data_source/models/__init__.py": [
+      "数据库设计/数据库设计.md"
+    ],
     "bkmonitor/bkmonitor/data_source/models/data_structure.py": [
       "扩展开发指南/数据源扩展开发.md"
     ],
@@ -2036,7 +2139,8 @@
     ],
     "bkmonitor/bkmonitor/documents/alert.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md",
-      "API接口文档/RESTful API接口/告警管理API.md"
+      "API接口文档/RESTful API接口/告警管理API.md",
+      "告警系统设计/Issue功能/Issue 周期任务.md"
     ],
     "bkmonitor/bkmonitor/documents/base.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
@@ -2046,6 +2150,12 @@
     ],
     "bkmonitor/bkmonitor/documents/incident.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
+    ],
+    "bkmonitor/bkmonitor/documents/issue.py": [
+      "告警系统设计/Issue功能/Issue 周期任务.md",
+      "告警系统设计/Issue功能/Issue 状态管理.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md",
+      "告警系统设计/Issue功能/Issue 聚合引擎.md"
     ],
     "bkmonitor/bkmonitor/documents/log.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md",
@@ -2118,6 +2228,9 @@
     ],
     "bkmonitor/bkmonitor/iam/upgrade.py": [
       "安全考虑/认证与授权.md"
+    ],
+    "bkmonitor/bkmonitor/management/__init__.py": [
+      "核心模块架构/告警后端模块/告警管理命令.md"
     ],
     "bkmonitor/bkmonitor/management/commands/clean_notice_user.py": [
       "扩展开发指南/通知渠道扩展开发.md"
@@ -2211,8 +2324,14 @@
     "bkmonitor/bkmonitor/query_template/core.py": [
       "告警系统设计/通知渠道管理/通知模板管理.md"
     ],
+    "bkmonitor/bkmonitor/strategy/__init__.py": [
+      "告警系统设计/告警系统设计.md"
+    ],
     "bkmonitor/bkmonitor/strategy/serializers.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
+    ],
+    "bkmonitor/bkmonitor/tests/": [
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/bkmonitor/trace/logging.py": [
       "故障排查/日志分析方法.md"
@@ -3078,11 +3197,20 @@
     "bkmonitor/blueapps/account/urls.py": [
       "API接口文档/API接口文档.md"
     ],
+    "bkmonitor/blueking/component/__init__.py": [
+      "扩展开发指南/第三方服务集成.md"
+    ],
+    "bkmonitor/blueking/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/calendars/migrations/0007_calendarmodel_bk_tenant_id.py": [
       "安全考虑/数据安全.md"
     ],
     "bkmonitor/calendars/migrations/0008_calendaritemmodel_bk_tenant_id.py": [
       "安全考虑/数据安全.md"
+    ],
+    "bkmonitor/calendars/tests/": [
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/calendars/urls.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
@@ -3175,6 +3303,11 @@
     ],
     "bkmonitor/constants/event.py": [
       "扩展开发指南/插件系统开发.md"
+    ],
+    "bkmonitor/constants/issue.py": [
+      "告警系统设计/Issue功能/Issue 状态管理.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md",
+      "告警系统设计/Issue功能/Issue 聚合引擎.md"
     ],
     "bkmonitor/constants/result_table.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/结果表模型.md"
@@ -3602,6 +3735,10 @@
       "安全考虑/数据安全.md",
       "用户界面设计/多租户管理.md"
     ],
+    "bkmonitor/kernel_api/rpc/functions/bkm_cli/issue.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    ],
     "bkmonitor/kernel_api/rpc/functions/metadata.py": [
       "API接口文档/RPC远程过程调用.md"
     ],
@@ -3615,6 +3752,9 @@
     ],
     "bkmonitor/kernel_api/serializers.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md"
+    ],
+    "bkmonitor/kernel_api/tests/": [
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/kernel_api/urls.py": [
       "API接口文档/RESTful API接口/RESTful API接口.md",
@@ -4154,6 +4294,9 @@
     "bkmonitor/metadata/task/tenant.py": [
       "用户界面设计/多租户管理.md"
     ],
+    "bkmonitor/metadata/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/metadata/tests/__init__.py": [
       "核心模块架构/元数据管理模块/元数据管理命令.md"
     ],
@@ -4359,6 +4502,26 @@
     "bkmonitor/packages/fta_web/alert_v2/views.py": [
       "API接口文档/RESTful API接口/告警管理API.md"
     ],
+    "bkmonitor/packages/fta_web/issue/handlers/issue.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    ],
+    "bkmonitor/packages/fta_web/issue/resources.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md",
+      "告警系统设计/Issue功能/Issue 状态管理.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    ],
+    "bkmonitor/packages/fta_web/issue/serializers.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md"
+    ],
+    "bkmonitor/packages/fta_web/issue/urls.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md"
+    ],
+    "bkmonitor/packages/fta_web/issue/views.py": [
+      "告警系统设计/Issue功能/Issue API 接口.md",
+      "告警系统设计/Issue功能/Issue 状态管理.md",
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    ],
     "bkmonitor/packages/monitor/migrations/0023_dashboardmenu_dashboardmenulocation_dashboardview.py": [
       "用户界面设计/仪表板架构.md"
     ],
@@ -4367,6 +4530,9 @@
     ],
     "bkmonitor/packages/monitor/schedulers.py": [
       "核心模块架构/告警后端模块/告警服务层/调度器服务.md"
+    ],
+    "bkmonitor/packages/monitor_adapter/__init__.py": [
+      "扩展开发指南/第三方服务集成.md"
     ],
     "bkmonitor/packages/monitor_api/middlewares.py": [
       "安全考虑/API安全.md"
@@ -4549,6 +4715,9 @@
     "bkmonitor/query_api/sql_parse/__init__.py": [
       "监控数据管理/数据查询优化.md"
     ],
+    "bkmonitor/query_api/tests/": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/rest_framework/permissions.py": [
       "API接口文档/API接口文档.md"
     ],
@@ -4629,8 +4798,13 @@
     "bkmonitor/templates/notice/abnormal/action/sms_title.jinja": [
       "告警系统设计/通知渠道管理/邮件短信集成.md"
     ],
+    "bkmonitor/tests/__init__.py": [
+      "测试策略/集成测试.md"
+    ],
     "bkmonitor/tests/conftest.py": [
-      "测试策略/单元测试.md"
+      "测试策略/单元测试.md",
+      "测试策略/测试策略.md",
+      "测试策略/集成测试.md"
     ],
     "bkmonitor/tests/test_tools.py": [
       "测试策略/单元测试.md"
@@ -4849,9 +5023,9 @@
     ]
   },
   "stats": {
-    "citation_count": 2081,
-    "source_count": 1375,
-    "wiki_count": 129
+    "citation_count": 10323,
+    "source_count": 1421,
+    "wiki_count": 137
   },
   "wiki_path": "wiki",
   "wiki_to_source": {
@@ -5458,6 +5632,7 @@
       "bkmonitor/apm/types.py",
       "bkmonitor/apm/urls.py",
       "bkmonitor/apm/views.py",
+      "bkmonitor/apm_ebpf/__init__.py",
       "bkmonitor/apm_ebpf/admin.py",
       "bkmonitor/apm_ebpf/apps.py",
       "bkmonitor/apm_ebpf/constants.py",
@@ -5466,6 +5641,11 @@
       "bkmonitor/apm_ebpf/handlers/provisioning.py",
       "bkmonitor/apm_ebpf/handlers/relation.py",
       "bkmonitor/apm_ebpf/handlers/workload.py",
+      "bkmonitor/apm_ebpf/migrations/0001_initial.py",
+      "bkmonitor/apm_ebpf/migrations/0002_clusterrelation.py",
+      "bkmonitor/apm_ebpf/migrations/0003_auto_20231207_1520.py",
+      "bkmonitor/apm_ebpf/migrations/0004_merge_20231211_1735.py",
+      "bkmonitor/apm_ebpf/migrations/0005_deepflowdashboardrecord.py",
       "bkmonitor/apm_ebpf/models/workload.py",
       "bkmonitor/apm_ebpf/resource.py",
       "bkmonitor/apm_ebpf/task/tasks.py"
@@ -5540,6 +5720,43 @@
       "bkmonitor/apm/urls.py",
       "bkmonitor/apm/views.py"
     ],
+    "告警系统设计/Issue功能/Issue API 接口.md": [
+      "bkmonitor/api/issue/default.py",
+      "bkmonitor/kernel_api/rpc/functions/bkm_cli/issue.py",
+      "bkmonitor/packages/fta_web/issue/handlers/issue.py",
+      "bkmonitor/packages/fta_web/issue/resources.py",
+      "bkmonitor/packages/fta_web/issue/serializers.py",
+      "bkmonitor/packages/fta_web/issue/urls.py",
+      "bkmonitor/packages/fta_web/issue/views.py"
+    ],
+    "告警系统设计/Issue功能/Issue 周期任务.md": [
+      "bkmonitor/alarm_backends/service/fta_action/issue_processor.py",
+      "bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py",
+      "bkmonitor/bkmonitor/documents/alert.py",
+      "bkmonitor/bkmonitor/documents/issue.py"
+    ],
+    "告警系统设计/Issue功能/Issue 状态管理.md": [
+      "bkmonitor/bkmonitor/documents/issue.py",
+      "bkmonitor/constants/issue.py",
+      "bkmonitor/packages/fta_web/issue/resources.py",
+      "bkmonitor/packages/fta_web/issue/views.py"
+    ],
+    "告警系统设计/Issue功能/Issue 系统设计总览.md": [
+      "bkmonitor/alarm_backends/service/fta_action/issue_processor.py",
+      "bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py",
+      "bkmonitor/api/issue/default.py",
+      "bkmonitor/bkmonitor/documents/issue.py",
+      "bkmonitor/constants/issue.py",
+      "bkmonitor/kernel_api/rpc/functions/bkm_cli/issue.py",
+      "bkmonitor/packages/fta_web/issue/handlers/issue.py",
+      "bkmonitor/packages/fta_web/issue/resources.py",
+      "bkmonitor/packages/fta_web/issue/views.py"
+    ],
+    "告警系统设计/Issue功能/Issue 聚合引擎.md": [
+      "bkmonitor/alarm_backends/service/fta_action/issue_processor.py",
+      "bkmonitor/bkmonitor/documents/issue.py",
+      "bkmonitor/constants/issue.py"
+    ],
     "告警系统设计/告警处理服务/告警处理服务.md": [
       "bkmonitor/alarm_backends/service/README.md",
       "bkmonitor/alarm_backends/service/nodata/processor.py",
@@ -5583,6 +5800,9 @@
       "bkmonitor/alarm_backends/service/trigger/checker.py",
       "bkmonitor/alarm_backends/service/trigger/handler.py",
       "bkmonitor/alarm_backends/service/trigger/processor.py",
+      "bkmonitor/alarm_backends/tests/service/trigger/test_checker.py",
+      "bkmonitor/alarm_backends/tests/service/trigger/test_handler.py",
+      "bkmonitor/alarm_backends/tests/service/trigger/test_processor.py",
       "bkmonitor/core/errors/alarm_backends/trigger.py"
     ],
     "告警系统设计/告警处理服务/无数据告警服务.md": [
@@ -5597,12 +5817,15 @@
     ],
     "告警系统设计/告警存储与缓存.md": [
       "bkmonitor/alarm_backends/cluster/define.py",
+      "bkmonitor/alarm_backends/core/cache/__init__.py",
+      "bkmonitor/alarm_backends/core/storage/__init__.py",
       "bkmonitor/alarm_backends/core/storage/kafka.py",
       "bkmonitor/alarm_backends/core/storage/kafka_v2.py",
       "bkmonitor/alarm_backends/core/storage/redis.py",
       "bkmonitor/alarm_backends/core/storage/redis_cluster.py"
     ],
     "告警系统设计/告警引擎核心/告警上下文管理.md": [
+      "bkmonitor/alarm_backends/core/context/__init__.py",
       "bkmonitor/alarm_backends/core/context/action_instance.py",
       "bkmonitor/alarm_backends/core/context/alarm.py",
       "bkmonitor/alarm_backends/core/context/chart.py",
@@ -5622,6 +5845,7 @@
       "bkmonitor/alarm_backends/core/cache/assign.py",
       "bkmonitor/alarm_backends/core/cache/base.py",
       "bkmonitor/alarm_backends/core/cluster.py",
+      "bkmonitor/alarm_backends/core/control/__init__.py",
       "bkmonitor/alarm_backends/core/control/mixins/double_check.py",
       "bkmonitor/alarm_backends/core/control/record_parser.py",
       "bkmonitor/alarm_backends/core/storage/kafka.py",
@@ -5638,8 +5862,10 @@
     ],
     "告警系统设计/告警引擎核心/控制流程管理.md": [
       "bkmonitor/alarm_backends/constants.py",
+      "bkmonitor/alarm_backends/core/control/__init__.py",
       "bkmonitor/alarm_backends/core/control/checkpoint.py",
       "bkmonitor/alarm_backends/core/control/item.py",
+      "bkmonitor/alarm_backends/core/control/mixins/__init__.py",
       "bkmonitor/alarm_backends/core/control/mixins/detect.py",
       "bkmonitor/alarm_backends/core/control/mixins/double_check.py",
       "bkmonitor/alarm_backends/core/control/mixins/nodata.py",
@@ -5658,6 +5884,7 @@
       "bkmonitor/alarm_backends/constants.py",
       "bkmonitor/alarm_backends/core/api_cache/library.py",
       "bkmonitor/alarm_backends/core/api_cache/readme.md",
+      "bkmonitor/alarm_backends/core/cache/__init__.py",
       "bkmonitor/alarm_backends/core/cache/action_config.py",
       "bkmonitor/alarm_backends/core/cache/assign.py",
       "bkmonitor/alarm_backends/core/cache/base.py",
@@ -5685,7 +5912,9 @@
       "bkmonitor/alarm_backends/service/detect/strategy/threshold.py"
     ],
     "告警系统设计/告警系统设计.md": [
-      "bkmonitor/alarm_backends/README.md"
+      "bkmonitor/alarm_backends/README.md",
+      "bkmonitor/alarm_backends/core/__init__.py",
+      "bkmonitor/bkmonitor/strategy/__init__.py"
     ],
     "告警系统设计/通知渠道管理/企业微信集成.md": [
       "bkmonitor/alarm_backends/core/detect_result/tasks.py",
@@ -5988,10 +6217,13 @@
       "bkmonitor/constants/data_source.py"
     ],
     "扩展开发指南/第三方服务集成.md": [
+      "bkmonitor/alarm_backends/service/access/__init__.py",
       "bkmonitor/api/bk_login/default.py",
       "bkmonitor/api/bk_paas/default.py",
       "bkmonitor/api/bkchat/default.py",
-      "bkmonitor/api/cmsi/default.py"
+      "bkmonitor/api/cmsi/default.py",
+      "bkmonitor/blueking/component/__init__.py",
+      "bkmonitor/packages/monitor_adapter/__init__.py"
     ],
     "扩展开发指南/通知渠道扩展开发.md": [
       "bkmonitor/alarm_backends/management/commands/notice_preview.py",
@@ -6096,8 +6328,10 @@
     ],
     "数据库设计/数据库设计.md": [
       "bkmonitor/alarm_backends/core/cache/models/collect_config.py",
+      "bkmonitor/apm/models/__init__.py",
       "bkmonitor/apm/models/application.py",
       "bkmonitor/apm/models/config.py",
+      "bkmonitor/bkmonitor/data_source/models/__init__.py",
       "bkmonitor/manage.py",
       "bkmonitor/settings.py"
     ],
@@ -6177,6 +6411,7 @@
     ],
     "核心模块架构/APM监控模块/工具类和实用程序.md": [
       "bkmonitor/apm/constants.py",
+      "bkmonitor/apm/utils/__init__.py",
       "bkmonitor/apm/utils/base.py",
       "bkmonitor/apm/utils/es_search.py",
       "bkmonitor/apm/utils/report_event.py",
@@ -6445,10 +6680,13 @@
       "bkmonitor/kernel_api/urls.py"
     ],
     "核心模块架构/告警后端模块/告警后端模块.md": [
+      "bkmonitor/alarm_backends/__init__.py",
       "bkmonitor/alarm_backends/apps.py",
       "bkmonitor/alarm_backends/constants.py",
+      "bkmonitor/alarm_backends/core/__init__.py",
       "bkmonitor/alarm_backends/core/cluster.py",
       "bkmonitor/alarm_backends/core/i18n.py",
+      "bkmonitor/alarm_backends/service/__init__.py",
       "bkmonitor/alarm_backends/service/tools.py",
       "bkmonitor/alarm_backends/urls.py"
     ],
@@ -6510,6 +6748,7 @@
       "bkmonitor/alarm_backends/service/access/tasks.py"
     ],
     "核心模块架构/告警后端模块/告警服务层/告警收敛服务.md": [
+      "bkmonitor/alarm_backends/service/converge/__init__.py",
       "bkmonitor/alarm_backends/service/converge/converge_func.py",
       "bkmonitor/alarm_backends/service/converge/converge_manger.py",
       "bkmonitor/alarm_backends/service/converge/dimension.py",
@@ -6523,14 +6762,16 @@
     "核心模块架构/告警后端模块/告警服务层/告警服务层.md": [
       "bkmonitor/alarm_backends/apps.py",
       "bkmonitor/alarm_backends/constants.py",
-      "bkmonitor/alarm_backends/service/README.md"
+      "bkmonitor/alarm_backends/service/README.md",
+      "bkmonitor/alarm_backends/service/__init__.py"
     ],
     "核心模块架构/告警后端模块/告警服务层/复合告警服务.md": [
       "bkmonitor/alarm_backends/core/cache/key.py",
       "bkmonitor/alarm_backends/service/alert/processor.py",
       "bkmonitor/alarm_backends/service/composite/README.md",
       "bkmonitor/alarm_backends/service/composite/processor.py",
-      "bkmonitor/alarm_backends/service/composite/tasks.py"
+      "bkmonitor/alarm_backends/service/composite/tasks.py",
+      "bkmonitor/alarm_backends/tests/service/composite/test_processor.py"
     ],
     "核心模块架构/告警后端模块/告警服务层/无数据处理服务.md": [
       "bkmonitor/alarm_backends/constants.py",
@@ -6575,6 +6816,7 @@
       "bkmonitor/patches/redbeat/schedulers.py"
     ],
     "核心模块架构/告警后端模块/告警核心引擎/上下文管理系统.md": [
+      "bkmonitor/alarm_backends/core/context/__init__.py",
       "bkmonitor/alarm_backends/core/context/action_instance.py",
       "bkmonitor/alarm_backends/core/context/alarm.py",
       "bkmonitor/alarm_backends/core/context/chart.py",
@@ -6585,6 +6827,7 @@
       "bkmonitor/alarm_backends/management/commands/context_preview.py"
     ],
     "核心模块架构/告警后端模块/告警核心引擎/告警处理引擎.md": [
+      "bkmonitor/alarm_backends/__init__.py",
       "bkmonitor/alarm_backends/apps.py",
       "bkmonitor/alarm_backends/constants.py",
       "bkmonitor/alarm_backends/urls.py"
@@ -6603,6 +6846,7 @@
       "bkmonitor/bkmonitor/commons/storage.py"
     ],
     "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md": [
+      "bkmonitor/alarm_backends/core/control/__init__.py",
       "bkmonitor/alarm_backends/core/control/checkpoint.py",
       "bkmonitor/alarm_backends/core/control/item.py",
       "bkmonitor/alarm_backends/core/control/mixins/detect.py",
@@ -6614,12 +6858,14 @@
     "核心模块架构/告警后端模块/告警核心引擎/熔断机制.md": [
       "bkmonitor/ai-learning-docs/circuit_breaking_experience.md",
       "bkmonitor/alarm_backends/core/cache/circuit_breaking.py",
+      "bkmonitor/alarm_backends/core/circuit_breaking/__init__.py",
       "bkmonitor/alarm_backends/core/circuit_breaking/manager.py",
       "bkmonitor/alarm_backends/core/circuit_breaking/matcher.py",
       "bkmonitor/alarm_backends/core/circuit_breaking/run_test.py",
       "bkmonitor/alarm_backends/core/circuit_breaking/test_access_data_manager.py"
     ],
     "核心模块架构/告警后端模块/告警核心引擎/缓存管理系统.md": [
+      "bkmonitor/alarm_backends/core/cache/__init__.py",
       "bkmonitor/alarm_backends/core/cache/action_config.py",
       "bkmonitor/alarm_backends/core/cache/assign.py",
       "bkmonitor/alarm_backends/core/cache/base.py",
@@ -6629,6 +6875,7 @@
       "bkmonitor/alarm_backends/core/cache/cmdb/service_instance.py"
     ],
     "核心模块架构/告警后端模块/告警管理命令.md": [
+      "bkmonitor/alarm_backends/management/__init__.py",
       "bkmonitor/alarm_backends/management/commands/alert_check.py",
       "bkmonitor/alarm_backends/management/commands/cacherouter.py",
       "bkmonitor/alarm_backends/management/commands/check_lifecycle.py",
@@ -6638,7 +6885,9 @@
       "bkmonitor/alarm_backends/management/commands/hash_ring.py",
       "bkmonitor/alarm_backends/management/commands/healthz.py",
       "bkmonitor/alarm_backends/management/commands/keygen.py",
-      "bkmonitor/alarm_backends/management/commands/notice_preview.py"
+      "bkmonitor/alarm_backends/management/commands/notice_preview.py",
+      "bkmonitor/apm/management/__init__.py",
+      "bkmonitor/bkmonitor/management/__init__.py"
     ],
     "核心模块架构/核心模块架构.md": [
       "bkmonitor/alarm_backends/apps.py",
@@ -6718,17 +6967,34 @@
       "bkmonitor/.pytest_web.sh",
       "bkmonitor/Dockerfile",
       "bkmonitor/Makefile",
+      "bkmonitor/alarm_backends/tests/conftest.py",
+      "bkmonitor/apm/tests/conftest.py",
       "bkmonitor/core/testing.py",
       "bkmonitor/pyproject.toml",
-      "bkmonitor/scripts/unittest/Dockerfile"
+      "bkmonitor/scripts/unittest/Dockerfile",
+      "bkmonitor/tests/conftest.py"
     ],
     "测试策略/集成测试.md": [
       "bkmonitor/.pytest_web.sh",
+      "bkmonitor/ai_whale/tests/",
+      "bkmonitor/alarm_backends/tests/",
+      "bkmonitor/apm/tests/",
       "bkmonitor/bin/manage.sh",
+      "bkmonitor/bk_dataview/tests/",
+      "bkmonitor/bkm_ipchooser/tests/",
+      "bkmonitor/bkm_space/tests/",
+      "bkmonitor/bkmonitor/tests/",
+      "bkmonitor/blueking/tests/",
+      "bkmonitor/calendars/tests/",
       "bkmonitor/core/testing.py",
+      "bkmonitor/kernel_api/tests/",
       "bkmonitor/manage.py",
+      "bkmonitor/metadata/tests/",
+      "bkmonitor/query_api/tests/",
       "bkmonitor/scripts/unittest/",
-      "bkmonitor/settings.py"
+      "bkmonitor/settings.py",
+      "bkmonitor/tests/__init__.py",
+      "bkmonitor/tests/conftest.py"
     ],
     "用户界面设计/仪表板架构.md": [
       "bkmonitor/alarm_backends/service/new_report/handler/dashboard.py",

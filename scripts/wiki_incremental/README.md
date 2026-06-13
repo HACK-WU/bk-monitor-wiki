@@ -61,45 +61,8 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli detect \
   --repo-dir .
 ```
 
-### Wiki 反查（ranked lookup）
-
-已知文件路径或 commit，反查受影响 Wiki 页面，按命中文件数降序排列。
-
-```bash
-# 指定文件路径
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
-  --files bkmonitor/alarm_backends/engine.py bkmonitor/query_api/views.py
-
-# 指定 commit（自动 diff 父提交）
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
-  --new-commit 3a3630a \
-  --repo-dir .
-
-# 指定 commit 范围
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
-  --new-commit 3a3630a \
-  --old-commit e353b1f \
-  --repo-dir .
-```
-
 输出示例：
-```
-commit e353b1f..3a3630a 变更文件: 42 个
 
-共 8 篇 Wiki 页面受影响：
-
-  [  5 文件]  告警系统设计/告警引擎核心.md
-          ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ... +3
-
-  [  3 文件]  API接口文档/告警管理API.md
-          ↳ bkmonitor/api/alert.py, bkmonitor/api/alert/serializers.py, bkmonitor/api/alert/views.py
-...
-```
-
-输出示例：
 ```
 Wiki incremental change analysis (e353b1f..3a3630a)
 
@@ -121,7 +84,6 @@ Affected wiki pages: 8
 | 基础目录 | 文件数 | 可推断 | 文件列表 |
 |----------|--------|--------|----------|
 | bkmonitor/new_module | 3 | ✗ | views.py, serializers.py, urls.py |
-...
 ```
 
 - `新功能文件簇`：将新文件按公共父目录聚类，辅助 AI 判断是否构成独立新功能，决定新建 Wiki 还是扩展现有页面
@@ -130,6 +92,50 @@ Affected wiki pages: 8
 - `[精确]` — 源文件在索引中精确命中，优先更新
 - `[dirname]` — 同目录模糊命中，须标注需审核
 - `[父目录]` — 父目录回退命中，须标注需审核
+
+### Wiki 反查（ranked lookup）
+
+已知文件路径或 commit，反查受影响 Wiki 页面，按命中文件数降序排列。
+
+```bash
+# 指定文件路径
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --files bkmonitor/alarm_backends/engine.py bkmonitor/query_api/views.py
+
+# 指定 commit（自动 diff 父提交）
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --new-commit 3a3630a \
+  --repo-dir .
+
+# 指定文件 + commit 合并查询（自动去重）
+PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+  --metadata bk-monitor-wiki/wiki/metadata.json \
+  --files bkmonitor/alarm_backends/engine.py \
+  --new-commit 3a3630a \
+  --old-commit e353b1f \
+  --repo-dir .
+```
+
+输出示例：
+```
+指定文件: 2 个 + commit e353b1f..3a3630a: 42 个文件
+
+共 8 篇 Wiki 页面受影响：
+
+  [  5 文件]  告警系统设计/告警引擎核心.md
+          ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ... +3
+
+  [  3 文件]  API接口文档/告警管理API.md
+          ↳ bkmonitor/api/alert.py, bkmonitor/api/alert/serializers.py, bkmonitor/api/alert/views.py
+
+...
+
+未匹配文件 (18):
+  - bkmonitor/new_module/views.py
+  ...
+```
 
 ## Python API
 
@@ -175,14 +181,19 @@ from wiki_incremental import load_json, lookup_wikis, format_lookup
 metadata = load_json("wiki/metadata.json")
 source_to_wiki = metadata["source_to_wiki"]
 
-# 按文件路径反查
-ranked = lookup_wikis(source_to_wiki, [
+# 按文件路径反查，返回 (ranked, unmatched)
+ranked, unmatched = lookup_wikis(source_to_wiki, [
     "bkmonitor/alarm_backends/engine.py",
     "bkmonitor/query_api/views.py",
 ])
-print(format_lookup(ranked))
-# [  3 文件]  告警系统设计/告警引擎核心.md
-#          ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ...
+print(format_lookup(ranked, unmatched=unmatched))
+# 共 8 篇 Wiki 页面受影响：
+#
+#   [  3 文件]  告警系统设计/告警引擎核心.md
+#           ↳ bkmonitor/alarm_backends/engine.py, bkmonitor/alarm_backends/check.py ...
+# ...
+# 未匹配文件 (1):
+#   - bkmonitor/query_api/views.py
 ```
 
 ### cleanup_dead_citations

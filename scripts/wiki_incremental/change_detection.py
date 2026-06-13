@@ -10,6 +10,7 @@ from dataclasses import asdict, dataclass, field
 from typing import Iterable
 
 from .json_utils import load_json
+from .pattern_inference import PlacementSuggestion, suggest_placements_batch
 
 
 @dataclass
@@ -39,6 +40,8 @@ class ChangeReport:
     dirname_hits: list[MatchResult] = field(default_factory=list)
     parent_hits: list[MatchResult] = field(default_factory=list)
     new_features: list[str] = field(default_factory=list)
+    suggested_placements: list[PlacementSuggestion] = field(default_factory=list)
+    unmatched_new: list[str] = field(default_factory=list)
     unmatched: list[str] = field(default_factory=list)
 
     @property
@@ -159,6 +162,16 @@ def classify_changes(
             report.new_features.append(entry.path)
         else:
             report.unmatched.append(f"{entry.path} ({entry.status})")
+    # Run pattern inference on new features to suggest wiki placements
+    source_to_wiki_for_inference = source_to_wiki  # reuse for context
+    if any(entry.status == "A" for entry in git_entries):
+        new_paths = [e.path for e in git_entries if e.status == "A" and three_level_match(e.path, source_to_wiki).level == "none"]
+        if new_paths:
+            suggestions, unmatched_new = suggest_placements_batch(
+                new_paths, source_to_wiki_for_inference
+            )
+            report.suggested_placements = suggestions
+            report.unmatched_new = unmatched_new
     return report
 
 
@@ -201,6 +214,22 @@ def format_report(report: ChangeReport) -> str:
     if report.new_features:
         lines.append(f"新功能文件 ({len(report.new_features)}):")
         lines.extend(f"- {path}" for path in report.new_features)
+        lines.append("")
+    if report.suggested_placements:
+        lines.append(f"可推断放置位置 ({len(report.suggested_placements)}):")
+        lines.append("| 源文件 | 建议 Wiki 目录 | 置信度 | 策略 | 关联页面 |")
+        lines.append("|--------|---------------|--------|------|----------|")
+        for s in report.suggested_placements:
+            related = ", ".join(s.related_wikis[:2])
+            if len(s.related_wikis) > 2:
+                related += f" (+{len(s.related_wikis) - 2})"
+            lines.append(
+                f"| {s.source_path} | {s.suggested_wiki_dir} | {s.confidence}% | {s.strategy} | {related or '-'} |"
+            )
+        lines.append("")
+    if report.unmatched_new:
+        lines.append(f"需人工判断 ({len(report.unmatched_new)}):")
+        lines.extend(f"- {path}" for path in report.unmatched_new)
         lines.append("")
     if report.unmatched:
         lines.append(f"未覆盖变更 ({len(report.unmatched)}):")

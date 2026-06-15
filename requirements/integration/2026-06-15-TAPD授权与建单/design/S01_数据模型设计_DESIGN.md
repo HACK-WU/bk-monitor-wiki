@@ -108,6 +108,7 @@ class TapdWorkspaceBinding(AbstractRecordModel):
 class UserTapdToken(AbstractRecordModel):
     """用户 TAPD Token 表"""
     username = models.CharField("用户username", max_length=128, unique=True, help_text="蓝鲸登录用户名（request.user.username），不是 TAPD 用户名")
+    tapd_user_id = models.CharField("TAPD用户ID", max_length=128, blank=True, default="", help_text="TAPD OAuth 返回的 resource.user_id，用于关联 BK 用户与 TAPD 用户身份")
     access_token = models.TextField("TAPD用户态token", help_text="加密存储")
     refresh_token = models.TextField("TAPD刷新token", null=True, blank=True, help_text="加密存储")
     token_type = models.CharField("token类型", max_length=32, default="Bearer")
@@ -137,6 +138,7 @@ class UserTapdToken(AbstractRecordModel):
 | 字段 | 类型 | 约束 | 说明 |
 |------|------|------|------|
 | `username` | `CharField(128)` | 必填, **唯一** | 用户 username |
+| `tapd_user_id` | `CharField(128)` | blank=True, default="" | TAPD OAuth 返回的 `resource.user_id`，用于关联 BK 用户与 TAPD 用户身份；首次授权时写入，后续刷新时不变 |
 | `access_token` | `TextField` | 必填 | TAPD 用户态 access_token，**加密存储** |
 | `refresh_token` | `TextField` | null=True, blank=True | TAPD 刷新 token，**加密存储**，可选 |
 | `token_type` | `CharField(32)` | 默认 `Bearer` | Token 类型 |
@@ -174,7 +176,7 @@ class UserTapdTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserTapdToken
         fields = [
-            "id", "username", "token_type", "expires_at",
+            "id", "username", "tapd_user_id", "token_type", "expires_at",
             "is_enabled", "create_time", "update_time",
         ]
         # access_token / refresh_token 不暴露

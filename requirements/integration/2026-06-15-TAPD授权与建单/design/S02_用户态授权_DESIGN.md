@@ -25,7 +25,7 @@ parent: DESIGN.md
 | `code` | TAPD OAuth 授权码，有效期 10 分钟 | — |
 | `access_token` | TAPD 用户态访问令牌，有效期 2 小时 | 见父文档 §4.3 |
 | `refresh_token` | TAPD 刷新令牌，用于异步刷新 access_token | 见父文档 §4.3 |
-| `state` | OAuth 防 CSRF 参数，随机字符串 | — |
+| `state` | OAuth 防 CSRF 参数，格式 `{nonce}:{bk_biz_id}`，nonce 格式 `{user_name}:{tapd_user_id}:{random_str}` | — |
 | `auth_url` | TAPD OAuth 授权页 URL，由后端内部生成，拼入 state 后通过 403 `detail.auth_url` 通知前端跳转 | — |
 
 ---
@@ -64,7 +64,7 @@ parent: DESIGN.md
 |------|------|------|----------|----------|
 | auth_url 生成位置 | Permission 内部生成 | 减少接口数量，授权流程更紧凑 | 保留独立 B-04 接口（前端主动调用） | 前端多一次请求，流程冗余 |
 | Token 存储 | 加密存储到 MySQL | 持久化可靠，安全 | 明文存储 | 安全风险高 |
-| state 管理 | Django Session | 统一格式 `state = "{nonce}:{bk_biz_id}"`，Session 写入 `request.session[f"tapd_oauth_state_{bk_biz_id}"] = nonce`。验证时先解析出 nonce + bk_biz_id，再与 Session 比对；比对成功后立即 `pop` 删除，防止重放 | Redis、DB 独立表 | 一期暂不需要 |
+| state 管理 | Django Session | 统一格式 `state = "{nonce}:{bk_biz_id}"`，`nonce={user_name}:{tapd_user_id}:{random_str}`（首次授权时 `tapd_user_id` 为空字符串，仍保持三段式格式）。Session 写入 `request.session[f"tapd_oauth_state_{bk_biz_id}"] = nonce`，验证成功后立即 `pop` 删除，防止重放 | Redis、DB 独立表 | 一期暂不需要 |
 
 > **State 存储说明**：OAuth state 为明文随机 nonce + timestamp，通过 `request.session[f'tapd_oauth_state_{bk_biz_id}']` 读写。验证成功（B-05 callback）后**立即删除**（`del request.session[key]`），防止重放攻击。一期不额外加密，与既有微信 OAuth 实现模式一致。
 
@@ -103,11 +103,13 @@ class UserAuthCallbackResource(Resource):
         # 2. 验证 state 参数（从 Session 取出比对）
         # 3. 验证通过后删除 Session 中的 state，防止重放攻击
         # 4. 用 code 换取 access_token（RequestTokenResource，Basic Auth）
-        # 5. 若 resource 存在，校验 user_id 与当前登录用户是否一致
-        # 6. 加密存储到 USER_TAPD_TOKEN
+        # 5. 若 resource 存在，校验 resource.user_id 与 DB 中已有 tapd_user_id 是否一致（同一 BK 用户不应绑定多个 TAPD 账号）
+        # 6. 加密存储到 USER_TAPD_TOKEN（含 username, tapd_user_id, access_token, refresh_token, expires_at）
         # 7. 302 重定向到前端页面
         pass
 ```
+
+> **说明**：该接口为 TAPD OAuth 回调接口，实际返回 **302 重定向**，无 JSON 响应体。成功时重定向到前端页面（URL 参数：`?auth=success`），失败时重定向到错误页（URL 参数：`?auth=error`）。
 
 | 接口 | 输入 | 输出 | 异常 |
 |------|------|------|------|
@@ -155,6 +157,25 @@ class RequestTokenResource(Resource):
         # Header: Authorization: Basic base64(client_id:client_secret)
         pass
 ```
+
+> **Demo API 返回示例**：
+> ```json
+> {
+>   "status": 1,
+>   "data": {
+>     "access_token": "access_token_abc123def456",
+>     "expires_in": 7200,
+>     "token_type": "Bearer",
+>     "scope": "read",
+>     "refresh_token": "refresh_token_xyz789",
+>     "resource": {
+>       "type": "user",
+>       "user_id": "user123"
+>     }
+>   },
+>   "info": "success"
+> }
+> ```
 
 | 属性 | 值 |
 |------|-----|

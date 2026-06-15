@@ -38,9 +38,9 @@ erDiagram
         int id PK
         boolean is_enabled "是否启用，默认true"
         boolean is_deleted "是否删除，默认false"
-        varchar create_user "创建人(32)，默认''"
+        varchar create_user "创建人(32)，默认空字符串"
         datetime create_time "创建时间，auto_now_add"
-        varchar update_user "最后修改人(32)，默认''"
+        varchar update_user "最后修改人(32)，默认空字符串"
         datetime update_time "最后修改时间，auto_now"
     }
 
@@ -49,11 +49,11 @@ erDiagram
         int bk_biz_id "蓝鲸CMDB业务ID，必填"
         varchar tapd_workspace_id "TAPD项目ID(64)，必填"
         varchar tapd_workspace_name "TAPD项目名称(255)，必填"
-        # create_user 由 AbstractRecordModel 自动提供，无需声明
     }
 
     USER_TAPD_TOKEN {
-        varchar username "用户username(128)，必填，唯一"
+        varchar username UK "用户username(128)，必填，唯一"
+        varchar tapd_user_id "TAPD用户ID(128)，blank=True，首次授权写入，后续刷新不变"
         varchar access_token "TAPD用户态token(512，加密存储)，必填"
         varchar refresh_token "TAPD刷新token(512，加密存储)，可选"
         varchar token_type "token类型(32)，默认Bearer，必填"
@@ -100,6 +100,7 @@ erDiagram
 | 字段 | 类型 | 约束 | 说明 |
 |------|------|------|------|
 | `username` | varchar(128) | 必填, **唯一** | 一个用户一条 token 记录 |
+| `tapd_user_id` | varchar(128) | blank=True, default="" | TAPD OAuth 返回的 `resource.user_id`，关联 BK 用户与 TAPD 用户身份；首次授权时写入，后续刷新不变 |
 | `access_token` | TextField | 必填 | TAPD 用户态 access_token，**加密存储** |
 | `refresh_token` | TextField | null=True, blank=True | TAPD 刷新 token，**加密存储** |
 | `token_type` | varchar(32) | 默认 `Bearer` | Token 类型 |
@@ -153,6 +154,11 @@ erDiagram
 | B-01 查询用户 TAPD 项目列表 | **TAPD_REQUIRED + IAM** | `TAPD_REQUIRED` 确保用户已授权 TAPD；`IAM` 校验当前 space 操作权限 |
 | B-03 应用态授权回调 | **TAPD 回调签名校验** | 由 TAPD 侧回调，校验请求来源合法性（签名/白名单 IP） |
 | B-05 用户态授权回调 | **TAPD 回调** | 由 TAPD 302 重定向回来，携带 code |
+
+> **接口返回示例**：各接口的详细请求/响应格式及 Demo 返回示例，请参见对应子需求设计文档：
+> - B-01：`S04_查询项目列表_DESIGN.md` §4a.1
+> - B-03：`S03_应用态授权_DESIGN.md` §4a.1
+> - B-05：`S02_用户态授权_DESIGN.md` §4a.1
 
 ---
 

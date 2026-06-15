@@ -112,6 +112,25 @@ class RefreshTokenResource(Resource):
         pass
 ```
 
+> **Demo API 返回示例**：
+> ```json
+> {
+>   "status": 1,
+>   "data": {
+>     "access_token": "new_access_token_abc123def456",
+>     "expires_in": 7200,
+>     "token_type": "Bearer",
+>     "scope": "read",
+>     "refresh_token": "new_refresh_token_xyz789",
+>     "resource": {
+>       "type": "user",
+>       "user_id": "user123"
+>     }
+>   },
+>   "info": "success"
+> }
+> ```
+
 | 属性 | 值 |
 |------|-----|
 | URL | `POST http://apiv2.tapd.woa.com/tokens/refresh_token` |

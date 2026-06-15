@@ -48,12 +48,12 @@ class TAPD_REQUIRED(BasePermission):
     def has_permission(self, request, view):
         bk_biz_id = get_bk_biz_id(request, view)
         token = UserTapdToken.objects.filter(
-            create_user=request.user.username,
+            username=request.user.username,
             is_deleted=False, is_enabled=True
         ).first()
 
         if not token or timezone.now() >= token.expires_at:
-            # 内部生成 auth_url：构造 OAuth URL，state 写入 Session
+            # 内部生成 auth_url：查询 USER_TAPD_TOKEN 取 tapd_user_id（如有），构造 nonce={user_name}:{tapd_user_id}:{random_str}，再构造 OAuth URL，state 写入 Session
             auth_url = generate_auth_url(bk_biz_id)
             raise PermissionDenied(detail={"auth_url": auth_url})
 

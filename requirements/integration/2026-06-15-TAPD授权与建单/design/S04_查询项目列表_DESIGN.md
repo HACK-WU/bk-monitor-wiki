@@ -24,6 +24,9 @@ parent: DESIGN.md
 |------|------|------|
 | `is_bound` | 项目是否已关联到当前业务空间 | — |
 | `page_size` | 分页大小，默认 20 | — |
+| `nonce` | 包含用户标识和随机值的字符串，用于防 CSRF，统一格式 `{user_name}:{tapd_user_id}:{random_str}`（首次授权时 tapd_user_id 为空字符串） | S-03 §4a |
+| `state` | 防 CSRF 随机串，后端生成后写入 Session，跳转时拼入 URL | S-03 §4a |
+| `install_url` | TAPD OAuth 跳转 URL，用于打开项目安装页面 | S-03 §4a |
 
 ---
 
@@ -102,7 +105,8 @@ class ListTapdWorkspaceResource(Resource):
             child=WorkspaceItemSerializer()
         )
         has_more = serializers.BooleanField(label="是否有更多")
-        install_url = serializers.URLField(label="TAPD 项目安装授权URL", required=False)
+        install_url = serializers.CharField(label="TAPD 项目安装授权URL模板", required=False, help_text="占位符 {workspace_id} 由前端替换为实际项目ID")
+        method = serializers.ChoiceField(label="install_url 的请求方式", choices=["GET"], default="GET", required=False)
     
     def perform_request(self, validated_request_data):
         # 1. 读取 USER_TAPD_TOKEN
@@ -110,16 +114,47 @@ class ListTapdWorkspaceResource(Resource):
         # 3. 检查 token 是否过期
         # 4. 调用 TAPD API 获取用户可访问的 workspace 列表
         # 5. 若 include_bound_status=True：查询 TAPD_WORKSPACE_BINDING 标记关联状态
-        # 6. 拼接 install_url（按统一格式 state="{nonce}:{bk_biz_id}" 写入 Session，与 S-02/S-03 共用同一套 Session key 命名规则 `tapd_oauth_state_{bk_biz_id}`）
+        # 6. 拼接 install_url：从 USER_TAPD_TOKEN 读取 tapd_user_id，构造 nonce={user_name}:{tapd_user_id}:{random_str}，按统一格式 state="{nonce}:{bk_biz_id}" 写入 Session（与 S-02/S-03 共用同一套 Session key 命名规则 `tapd_oauth_state_{bk_biz_id}`）
         # 7. 返回带关联状态的项目列表 + install_url
         pass
 ```
 
+> **Demo API 返回示例**：
+> ```json
+> {
+>   "total": 3,
+>   "items": [
+>     {
+>       "workspace_id": "69990779",
+>       "workspace_name": "蓝鲸监控项目",
+>       "is_bound": true
+>     },
+>     {
+>       "workspace_id": "69990780",
+>       "workspace_name": "TAPD测试项目",
+>       "is_bound": false
+>     },
+>     {
+>       "workspace_id": "69990781",
+>       "workspace_name": "运维自动化项目",
+>       "is_bound": false
+>     }
+>   ],
+>   "has_more": false,
+>   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/api/tapd/app_install_callback/#selected_workspace_id={workspace_id}",
+>   "method": "GET"
+> }
+> ```
+
 > **返回信息补充说明**：接口返回的 `items` 中，**每个 workspace 同时携带项目基本信息（`workspace_id`、`workspace_name`）和当前业务空间的关联状态（`is_bound`）**。这种信息聚合方式避免了前端（或后续建单模块）单独调用"查询已关联项目"接口，降低了交互复杂度。
+>
+> **`install_url` 与 `method` 说明**：
+> - `install_url` 为 TAPD 应用安装 URL **模板**，后端固定 `client_id`、`test`、`cb` 参数，前端将 `{workspace_id}` 占位符替换为目标项目 ID 后直接打开。
+> - `method` 固定返回 `"GET"`，告知前端以 **GET 请求**方式（如 `window.open(url)` 或 `location.href`）打开该 URL。
 
 | 接口 | 输入 | 输出 | 异常 |
 |------|------|------|------|
-| B-01 查询项目列表 | `bk_biz_id, page, page_size` | `total, items(含is_bound), has_more, install_url` | `未授权, token过期, TAPD API异常` |
+| B-01 查询项目列表 | `bk_biz_id, page, page_size` | `total, items(含is_bound), has_more, install_url, method` | `未授权, token过期, TAPD API异常` |
 
 ### 4a.2 内部协作接口
 
@@ -129,7 +164,7 @@ class ListTapdWorkspaceResource(Resource):
 | `decrypt_token()` | B-01 | 加密模块 | 解密 access_token |
 | `call_tapd_api()` | B-01 | TAPD API | 调用 TAPD 获取项目列表 |
 | `get_bound_projects()` | B-01 | 数据库操作 | 查询已关联项目 |
-| `generate_install_url()` | B-01 | 工具函数 | 按统一格式生成 state="{nonce}:{bk_biz_id}" 并写入 Session，拼接 install_url（与 S-02/S-03 共用同一套 Session key 命名规则） |
+| `generate_install_url()` | B-01 | 工具函数 | 按统一格式生成 state：从 USER_TAPD_TOKEN 读取 `tapd_user_id`，构造 `nonce={user_name}:{tapd_user_id}:{random_str}` → `state={nonce}:{bk_biz_id}` 写入 Session，拼接 install_url |
 
 ### 4a.3 契约变更声明
 

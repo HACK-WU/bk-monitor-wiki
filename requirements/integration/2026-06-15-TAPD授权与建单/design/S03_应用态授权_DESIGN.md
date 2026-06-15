@@ -26,6 +26,7 @@ parent: DESIGN.md
 | `workspace_name` | TAPD 项目名称 | 见父文档 §4.3 |
 | `upsert` | MySQL 的 INSERT ... ON DUPLICATE KEY UPDATE 语法 | 见 S-01 §1 |
 | `state` | 防 CSRF 随机串，后端生成后写入 Session，跳转时拼入 URL | S-03 §4a |
+| `nonce` | 包含用户标识和随机值的字符串，统一格式为 `{user_name}:{tapd_user_id}:{random_str}`（首次授权时 tapd_user_id 为空字符串） | S-03 §4a |
 | `install_url` | TAPD OAuth 跳转 URL，用于打开项目安装页面 | S-03 §4a |
 
 ---
@@ -54,7 +55,7 @@ parent: DESIGN.md
 
 | 决策 | 选择 | 理由 | 备选方案 | 否决原因 |
 |------|------|------|----------|----------|
-| state 格式 | 统一为 `{nonce}:{bk_biz_id}` | 与 S-02 用户态授权共用同一套 Session 管理与验证工具函数 `validate_state()`，减少重复实现 | 各自独立编码 | 增加维护成本，易出 bug |
+| state 格式 | 统一为 `{nonce}:{bk_biz_id}`，`nonce={user_name}:{tapd_user_id}:{random_str}`（首次授权时 tapd_user_id 为空字符串，仍保持三段式） | 与 S-02 共用同一套 validate_state()，格式完全统一，减少重复实现 | 各自独立编码 | 增加维护成本，易出 bug |
 | state 校验方式 | 统一工具函数 `validate_state(state_str)` 从 Session 取出比对（成功后 `pop` 删除） | 简单可靠，防 CSRF，与 S-02 复用同一套逻辑 | 各子需求独立实现 | 重复代码，维护成本高 |
 | 关联幂等策略 | 唯一约束 + upsert | 数据库层面保证，简单可靠 | 应用层去重 | 并发时可能重复插入 |
 | 业务 ID 映射 | 查 CMDB 获取 space_id | 复用现有数据 | 手动映射 | 维护成本高 |
@@ -82,6 +83,10 @@ class AppInstallCallbackResource(Resource):
     
     由 TAPD OAuth 跳转流程发起，用户点击"下一步"后，
     TAPD 自动回调该接口，携带 code + state + resource。
+    
+    cb（回调地址）示例：
+        https://monitor.bk.example.com/api/tapd/app_install_callback/
+    实际 env 中替换域名，路径由 urls.py 路由规则决定。
     """
     
     class RequestSerializer(serializers.Serializer):
@@ -112,6 +117,28 @@ class AppInstallCallbackResource(Resource):
         pass
 ```
 
+> **Demo API 示例**（TAPD 回调请求参数）：
+> ```json
+> {
+>   "code": "4f9b2fab25a7c69715d426295a66717769666a0c",
+>   "state": "demo-product123",
+>   "resource": {
+>     "type": "workspace",
+>     "workspace_id": "69990779"
+>   }
+> }
+> ```
+> **成功响应**（302 重定向）：
+> ```http
+> HTTP/1.1 302 Found
+> Location: https://monitor.bk.example.com/tapd/bind?tapd_bind=success
+> ```
+> **失败响应**（302 重定向到错误页）：
+> ```http
+> HTTP/1.1 302 Found
+> Location: https://monitor.bk.example.com/tapd/bind?tapd_bind=error&reason=state_mismatch
+> ```
+
 | 接口 | 输入 | 输出 | 异常 |
 |------|------|------|------|
 | B-03 应用态授权回调 | `code, state, resource`（TAPD 回调注入） | `302 重定向` | `state 不匹配, code 无效, 获取项目信息失败, DB写入失败` |
@@ -139,7 +166,6 @@ class AppInstallCallbackResource(Resource):
 
 | 变更类型 | 接口 | 变更内容 | 影响的子需求 |
 |---------|------|---------|------------|
-| 新增 | B-03a 生成安装 URL | 全新接口 | S-03 |
 | 新增 | B-03 应用态授权回调 | 全新接口 | S-03 |
 
 ---
@@ -154,13 +180,12 @@ sequenceDiagram
     participant TAPD as TAPD 系统
     participant DB as MySQL
     
-    FE->>BE: B-03a 生成安装URL (bk_biz_id)
-    BE->>BE: 生成随机 nonce，按统一格式 state="{nonce}:{bk_biz_id}" 写入 Session
-    BE-->>FE: 返回 install_url（URL 中 state 参数即上述格式）
+    Note over FE: install_url 由 B-01 查询项目列表接口生成并返回（包含 state 参数）
     FE->>User: 打开 install_url
     User->>TAPD: 选项目点"下一步"
     TAPD-->>BE: B-03 回调 (code, state, resource)
     BE->>BE: 验证 state（按统一格式解析 {nonce}:{bk_biz_id}，从 Session 取出比对，成功后 pop 删除）
+    Note over BE: nonce 结构: {user_name}:{tapd_user_id}:{random_str}，包含用户标识、TAPD用户身份和随机值
     BE->>BE: 从 resource["workspace_id"] 解析 workspace_id
     BE->>TAPD: GetWorkspaceInfo(workspace_id) — Bearer Token
     TAPD-->>BE: {name: "xxx"}
@@ -168,6 +193,10 @@ sequenceDiagram
     DB-->>BE: 成功
     BE-->>FE: 302 重定向 (?tapd_bind=success)
 ```
+
+> **说明**：
+> 1. `install_url` 由 B-01 查询项目列表接口（`ListTapdWorkspaceResource`）生成并返回，前端直接使用该 URL 打开 TAPD 项目安装页面。
+> 2. `state` 参数格式为 `{nonce}:{bk_biz_id}`，其中 `nonce` 包含用户标识（`user_name`）、TAPD 用户身份（`tapd_user_id`）和随机值（`random_str`），用于防 CSRF 攻击及回调时校验 TAPD 用户身份一致性。
 
 ---
 

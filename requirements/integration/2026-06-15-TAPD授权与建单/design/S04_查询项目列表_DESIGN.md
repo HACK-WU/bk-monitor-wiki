@@ -140,7 +140,6 @@ class ListTapdWorkspaceResource(Resource):
 >       "is_bound": false
 >     }
 >   ],
->   "has_more": false,
 >   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/api/tapd/app_install_callback/#selected_workspace_id={workspace_id}",
 >   "method": "GET"
 > }

@@ -1,0 +1,1587 @@
+{
+  "version": 1,
+  "scope": "monitor",
+  "partition_config": {
+    "hotPercent": 0.3,
+    "warmPercent": 0.5,
+    "reservedEmerging": 10,
+    "recentHours": 48,
+    "minHotCount": 1,
+    "decayStep": 5,
+    "halfLifeHours": 24,
+    "maxHotCount": 10,
+    "maxWarmCount": 50,
+    "maxColdCount": null,
+    "maxKeywordCount": 50
+  },
+  "groups": {
+    "BKMonitorWiki": {
+      "hot_relations": [
+        {
+          "id": "rel_001",
+          "text": "快速开始",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "快速开始.md"
+        }
+      ],
+      "keywords": [
+        "快速开始",
+        "Docker"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/告警系统设计": {
+      "hot_relations": [
+        {
+          "id": "rel_002",
+          "text": "告警收敛机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警收敛机制.md"
+        },
+        {
+          "id": "rel_003",
+          "text": "告警策略管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警策略管理.md"
+        },
+        {
+          "id": "rel_004",
+          "text": "告警系统设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警系统设计.md"
+        }
+      ],
+      "keywords": [
+        "告警系统设计",
+        "告警收敛机制",
+        "告警策略管理"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/告警系统设计/Issue功能": {
+      "hot_relations": [
+        {
+          "id": "rel_005",
+          "text": "Issue API 接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/Issue功能/Issue API 接口.md"
+        },
+        {
+          "id": "rel_006",
+          "text": "Issue 周期任务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/Issue功能/Issue 周期任务.md"
+        },
+        {
+          "id": "rel_007",
+          "text": "Issue 状态管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/Issue功能/Issue 状态管理.md"
+        },
+        {
+          "id": "rel_008",
+          "text": "Issue 系统设计总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/Issue功能/Issue 系统设计总览.md"
+        },
+        {
+          "id": "rel_009",
+          "text": "Issue 聚合引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/Issue功能/Issue 聚合引擎.md"
+        }
+      ],
+      "keywords": [
+        "告警系统设计",
+        "Issue功能",
+        "Issue API 接口",
+        "RESTful",
+        "API",
+        "Issue 周期任务",
+        "celery",
+        "Issue 状态管理",
+        "Issue 系统设计总览",
+        "Issue 聚合引擎"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/告警系统设计/告警处理服务": {
+      "hot_relations": [
+        {
+          "id": "rel_010",
+          "text": "告警复合服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警处理服务/告警复合服务.md"
+        },
+        {
+          "id": "rel_011",
+          "text": "告警收敛服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警处理服务/告警收敛服务.md"
+        },
+        {
+          "id": "rel_012",
+          "text": "告警检测服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警处理服务/告警检测服务.md"
+        },
+        {
+          "id": "rel_013",
+          "text": "告警触发服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警处理服务/告警触发服务.md"
+        },
+        {
+          "id": "rel_014",
+          "text": "无数据告警服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警处理服务/无数据告警服务.md"
+        }
+      ],
+      "keywords": [
+        "告警系统设计",
+        "告警处理服务",
+        "告警复合服务",
+        "告警收敛服务",
+        "告警检测服务",
+        "告警触发服务",
+        "无数据告警服务"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/告警系统设计/通知渠道管理": {
+      "hot_relations": [
+        {
+          "id": "rel_015",
+          "text": "通知模板管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/通知渠道管理/通知模板管理.md"
+        },
+        {
+          "id": "rel_016",
+          "text": "通知渠道管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/通知渠道管理/通知渠道管理.md"
+        },
+        {
+          "id": "rel_017",
+          "text": "通知队列管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/通知渠道管理/通知队列管理.md"
+        },
+        {
+          "id": "rel_018",
+          "text": "邮件短信集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/通知渠道管理/邮件短信集成.md"
+        }
+      ],
+      "keywords": [
+        "告警系统设计",
+        "通知渠道管理",
+        "通知模板管理系统",
+        "通知队列管理",
+        "Kafka",
+        "Redis",
+        "邮件短信集成",
+        "API"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/告警系统设计/告警引擎核心": {
+      "hot_relations": [
+        {
+          "id": "rel_019",
+          "text": "告警上下文管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/告警上下文管理.md"
+        },
+        {
+          "id": "rel_020",
+          "text": "告警处理引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/告警处理引擎.md"
+        },
+        {
+          "id": "rel_021",
+          "text": "告警引擎核心",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/告警引擎核心.md"
+        },
+        {
+          "id": "rel_022",
+          "text": "存储系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/存储系统.md"
+        },
+        {
+          "id": "rel_023",
+          "text": "控制流程管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/控制流程管理.md"
+        },
+        {
+          "id": "rel_024",
+          "text": "检测结果管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/检测结果管理.md"
+        },
+        {
+          "id": "rel_025",
+          "text": "缓存系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "告警系统设计/告警引擎核心/缓存系统.md"
+        }
+      ],
+      "keywords": [
+        "告警系统设计",
+        "告警引擎核心",
+        "告警上下文管理",
+        "告警处理引擎",
+        "存储系统",
+        "Kafka",
+        "Redis",
+        "控制流程管理",
+        "检测结果管理",
+        "缓存系统",
+        "API"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/用户界面设计": {
+      "hot_relations": [
+        {
+          "id": "rel_026",
+          "text": "仪表板架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/仪表板架构.md"
+        },
+        {
+          "id": "rel_027",
+          "text": "图表组件设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/图表组件设计.md"
+        },
+        {
+          "id": "rel_028",
+          "text": "多租户管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/多租户管理.md"
+        },
+        {
+          "id": "rel_029",
+          "text": "权限控制系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/权限控制系统.md"
+        },
+        {
+          "id": "rel_030",
+          "text": "用户界面设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/用户界面设计.md"
+        },
+        {
+          "id": "rel_031",
+          "text": "界面定制与主题",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "用户界面设计/界面定制与主题.md"
+        }
+      ],
+      "keywords": [
+        "用户界面设计",
+        "仪表板架构",
+        "图表组件设计",
+        "多租户管理",
+        "权限控制系统",
+        "界面定制与主题",
+        "Django"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构": {
+      "hot_relations": [
+        {
+          "id": "rel_032",
+          "text": "Django应用架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/Django应用架构.md"
+        },
+        {
+          "id": "rel_033",
+          "text": "核心模块架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/核心模块架构.md"
+        },
+        {
+          "id": "rel_034",
+          "text": "监控主应用模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/监控主应用模块.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "Django应用架构",
+        "Django",
+        "监控主应用模块"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/告警后端模块": {
+      "hot_relations": [
+        {
+          "id": "rel_035",
+          "text": "告警后端模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警后端模块.md"
+        },
+        {
+          "id": "rel_036",
+          "text": "告警存储系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警存储系统.md"
+        },
+        {
+          "id": "rel_037",
+          "text": "告警管理命令",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警管理命令.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "告警后端模块",
+        "告警存储系统",
+        "Kafka",
+        "Redis",
+        "告警管理命令"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/告警后端模块/告警服务层": {
+      "hot_relations": [
+        {
+          "id": "rel_038",
+          "text": "告警接入服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警接入服务.md"
+        },
+        {
+          "id": "rel_039",
+          "text": "告警收敛服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警收敛服务.md"
+        },
+        {
+          "id": "rel_040",
+          "text": "告警服务层",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警服务层.md"
+        },
+        {
+          "id": "rel_041",
+          "text": "复合告警服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/复合告警服务.md"
+        },
+        {
+          "id": "rel_042",
+          "text": "检测策略服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/检测策略服务.md"
+        },
+        {
+          "id": "rel_043",
+          "text": "调度器服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "010ede46-0945-4d0e-925d-6e435b522d31",
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/调度器服务.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "告警后端模块",
+        "告警服务层",
+        "告警接入服务",
+        "告警收敛服务",
+        "复合告警服务",
+        "检测策略服务",
+        "调度器服务"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/告警后端模块/告警核心引擎": {
+      "hot_relations": [
+        {
+          "id": "rel_044",
+          "text": "上下文管理系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "87936ce2-00b7-47a0-afda-1b67bfd56572",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/上下文管理系统.md"
+        },
+        {
+          "id": "rel_045",
+          "text": "告警处理引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "59bdaa4d-2f19-4e80-92bd-355f00c75b15",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/告警处理引擎.md"
+        },
+        {
+          "id": "rel_046",
+          "text": "告警核心引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "d1487ad1-7f3a-4bbc-bf70-139edc4922ef",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/告警核心引擎.md"
+        },
+        {
+          "id": "rel_047",
+          "text": "存储层抽象",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "700dfcf3-0d69-4fca-b030-e4c5b4a332b9",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/存储层抽象.md"
+        },
+        {
+          "id": "rel_048",
+          "text": "控制流管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "1e71680b-4345-43f2-83ea-f9ee18b64fc2",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md"
+        },
+        {
+          "id": "rel_049",
+          "text": "熔断机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "8027e9a3-a2c1-42bb-80ff-92839159b940",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/熔断机制.md"
+        },
+        {
+          "id": "rel_050",
+          "text": "缓存管理系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "fa26934a-62b8-421b-b092-aaacec1f6dce",
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/缓存管理系统.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "告警后端模块",
+        "告警核心引擎",
+        "上下文管理系统",
+        "告警处理引擎",
+        "存储层抽象",
+        "Kafka",
+        "控制流管理",
+        "熔断机制",
+        "缓存管理系统"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/元数据管理模块": {
+      "hot_relations": [
+        {
+          "id": "rel_051",
+          "text": "元数据任务调度",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "e9154e62-28ec-45a2-a9f0-8e1f5be9df19",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据任务调度.md"
+        },
+        {
+          "id": "rel_052",
+          "text": "元数据管理命令",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "e0ba7e35-15f6-421f-9639-a0b351dd96d2",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据管理命令.md"
+        },
+        {
+          "id": "rel_053",
+          "text": "元数据管理模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "c5a82a59-6994-4624-aa3f-af6e9a41ce94",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据管理模块.md"
+        },
+        {
+          "id": "rel_054",
+          "text": "元数据资源接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "87ed66a5-4355-4abd-9268-da44df5aeda8",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据资源接口.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "元数据管理模块",
+        "元数据任务调度",
+        "Celery",
+        "元数据管理命令",
+        "Django",
+        "元数据资源接口",
+        "API"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/元数据管理模块/元数据服务层": {
+      "hot_relations": [
+        {
+          "id": "rel_055",
+          "text": "元数据服务层",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "ca5f3dd1-a871-4a9b-b197-ba33058fa98e",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md"
+        },
+        {
+          "id": "rel_056",
+          "text": "实体关系服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "bb2e6246-862c-4150-b9cc-95c527115e73",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/实体关系服务.md"
+        },
+        {
+          "id": "rel_057",
+          "text": "数据链路操作服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "a28e693d-9ece-4150-8ffa-4cd691745c01",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/数据链路操作服务.md"
+        },
+        {
+          "id": "rel_058",
+          "text": "空间Redis服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "5ffa66ac-e461-490b-b6ad-440a0c8993b8",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/空间Redis服务.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "元数据管理模块",
+        "元数据服务层",
+        "实体关系服务",
+        "数据链路操作服务",
+        "空间Redis服务",
+        "Redis"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/元数据管理模块/元数据模型设计": {
+      "hot_relations": [
+        {
+          "id": "rel_059",
+          "text": "元数据模型设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "ca2212f9-252c-4baf-8df5-bd635b9615b0",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md"
+        },
+        {
+          "id": "rel_060",
+          "text": "结果表模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "89b21ecd-2851-489f-8d01-d4955f6e5b4e",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/结果表模型.md"
+        },
+        {
+          "id": "rel_061",
+          "text": "记录规则模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "ffdac856-c366-4873-bc14-28ef012e4942",
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "元数据管理模块",
+        "元数据模型设计",
+        "结果表模型",
+        "记录规则模型"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/核心模块架构/APM监控模块": {
+      "hot_relations": [
+        {
+          "id": "rel_062",
+          "text": "APM监控模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "79ea8344-4440-4f20-bb3d-58b8409d4b9e",
+          "sourcePath": "核心模块架构/APM监控模块/APM监控模块.md"
+        },
+        {
+          "id": "rel_063",
+          "text": "eBPF集成模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "ba2f1f9c-9af8-4744-b3ac-c0ea219b4546",
+          "sourcePath": "核心模块架构/APM监控模块/eBPF集成模块.md"
+        },
+        {
+          "id": "rel_064",
+          "text": "任务调度和管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/APM监控模块/任务调度和管理.md"
+        },
+        {
+          "id": "rel_065",
+          "text": "工具类和实用程序",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "(no id)",
+          "sourcePath": "核心模块架构/APM监控模块/工具类和实用程序.md"
+        },
+        {
+          "id": "rel_066",
+          "text": "数据模型定义",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "6a31530b-1bd2-4236-9595-96cefb9cb147",
+          "sourcePath": "核心模块架构/APM监控模块/数据模型定义.md"
+        },
+        {
+          "id": "rel_067",
+          "text": "核心发现模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "fa82d6e3-7d34-4648-808e-0e34b0a8209d",
+          "sourcePath": "核心模块架构/APM监控模块/核心发现模块.md"
+        }
+      ],
+      "keywords": [
+        "核心模块架构",
+        "APM监控模块",
+        "APM",
+        "eBPF集成模块",
+        "eBPF",
+        "任务调度和管理",
+        "工具类和实用程序",
+        "数据模型定义",
+        "核心发现模块"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/故障排查": {
+      "hot_relations": [
+        {
+          "id": "rel_068",
+          "text": "故障排查",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "01de2b01-6ea3-4161-b448-9736e087f07b",
+          "sourcePath": "故障排查/故障排查.md"
+        },
+        {
+          "id": "rel_069",
+          "text": "紧急处理流程",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "caa0db08-a587-4a8c-b053-45db06942aa6",
+          "sourcePath": "故障排查/紧急处理流程.md"
+        }
+      ],
+      "keywords": [
+        "故障排查",
+        "紧急处理流程"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/安全考虑": {
+      "hot_relations": [
+        {
+          "id": "rel_070",
+          "text": "API安全",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "fb84f102-caf1-40b6-a1bb-b74ac7f60a4d",
+          "sourcePath": "安全考虑/API安全.md"
+        },
+        {
+          "id": "rel_071",
+          "text": "安全考虑",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "a681f0a3-7ef3-4bad-96ca-afdbeba7ceef",
+          "sourcePath": "安全考虑/安全考虑.md"
+        },
+        {
+          "id": "rel_072",
+          "text": "认证与授权",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "381b67ce-6b81-49a8-b87a-0f583ad46c7c",
+          "sourcePath": "安全考虑/认证与授权.md"
+        }
+      ],
+      "keywords": [
+        "安全考虑",
+        "API安全",
+        "API",
+        "认证与授权"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/API接口文档": {
+      "hot_relations": [
+        {
+          "id": "rel_073",
+          "text": "API接口文档",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "4a3da9af-07e5-40f6-9ab9-df255279e905",
+          "sourcePath": "API接口文档/API接口文档.md"
+        },
+        {
+          "id": "rel_074",
+          "text": "API认证与授权",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "66ed828d-e5da-4a68-a6c8-853e3ed6b32a",
+          "sourcePath": "API接口文档/API认证与授权.md"
+        },
+        {
+          "id": "rel_075",
+          "text": "API错误处理与状态码",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "e573b4e2-807a-49b8-99ad-9ed41646116c",
+          "sourcePath": "API接口文档/API错误处理与状态码.md"
+        },
+        {
+          "id": "rel_076",
+          "text": "RPC远程过程调用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "d640516a-ff2d-430f-b895-d2d5fe35dfa4",
+          "sourcePath": "API接口文档/RPC远程过程调用.md"
+        },
+        {
+          "id": "rel_077",
+          "text": "WebSocket实时通信",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "2f7ce3d6-e623-4d58-bec7-944e461339cb",
+          "sourcePath": "API接口文档/WebSocket实时通信.md"
+        }
+      ],
+      "keywords": [
+        "API接口文档",
+        "API",
+        "RESTful",
+        "API认证与授权",
+        "API错误处理与状态码",
+        "RPC远程过程调用",
+        "RPC",
+        "WebSocket实时通信",
+        "WebSocket"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/API接口文档/RESTful API接口": {
+      "hot_relations": [
+        {
+          "id": "rel_078",
+          "text": "RESTful API接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "67203a10-910a-486d-8e40-a2fe461f886a",
+          "sourcePath": "API接口文档/RESTful API接口/RESTful API接口.md"
+        },
+        {
+          "id": "rel_079",
+          "text": "仪表板配置API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "b4c04a7f-1dc7-4245-85f1-33ad530901c7",
+          "sourcePath": "API接口文档/RESTful API接口/仪表板配置API.md"
+        },
+        {
+          "id": "rel_080",
+          "text": "告警管理API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "5771a824-313e-4fb2-b166-4f9a16bb3db6",
+          "sourcePath": "API接口文档/RESTful API接口/告警管理API.md"
+        },
+        {
+          "id": "rel_081",
+          "text": "用户权限API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "cb90efcf-042f-4bf0-b556-9a4bfd019b0e",
+          "sourcePath": "API接口文档/RESTful API接口/用户权限API.md"
+        },
+        {
+          "id": "rel_082",
+          "text": "监控数据API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "53f68337-1242-46eb-a980-8fd23c679b6a",
+          "sourcePath": "API接口文档/RESTful API接口/监控数据API.md"
+        },
+        {
+          "id": "rel_083",
+          "text": "策略配置API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "be8554d3-ed24-410b-8b5b-5209d43a0ecb",
+          "sourcePath": "API接口文档/RESTful API接口/策略配置API.md"
+        },
+        {
+          "id": "rel_084",
+          "text": "系统运维API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "4c3a96fc-41b0-4d66-963a-e72bc3436eff",
+          "sourcePath": "API接口文档/RESTful API接口/系统运维API.md"
+        }
+      ],
+      "keywords": [
+        "API接口文档",
+        "RESTful API接口",
+        "RESTful",
+        "API",
+        "仪表板配置API",
+        "告警管理API",
+        "用户权限API",
+        "监控数据API",
+        "策略配置API",
+        "系统运维API"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/项目概述": {
+      "hot_relations": [
+        {
+          "id": "rel_085",
+          "text": "快速开始",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "d1617b8d-b67f-48b6-a933-bc5e05674ad5",
+          "sourcePath": "项目概述/快速开始.md"
+        },
+        {
+          "id": "rel_086",
+          "text": "技术栈",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "a8e00c47-d7d4-45e9-adef-66be64c9263f",
+          "sourcePath": "项目概述/技术栈.md"
+        },
+        {
+          "id": "rel_087",
+          "text": "架构概览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "75fdcf31-cb9e-4202-b0d8-ef9c492cf1ac",
+          "sourcePath": "项目概述/架构概览.md"
+        },
+        {
+          "id": "rel_088",
+          "text": "核心特性",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "c5326fc7-83c4-4eef-9319-628f40b991a0",
+          "sourcePath": "项目概述/核心特性.md"
+        },
+        {
+          "id": "rel_089",
+          "text": "项目介绍",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "a1a3ccb0-4d3d-4730-8918-f8eaf5e5955a",
+          "sourcePath": "项目概述/项目介绍.md"
+        },
+        {
+          "id": "rel_090",
+          "text": "项目概述",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "9047d6b4-2636-4fbd-ac90-435dcc2eb493",
+          "sourcePath": "项目概述/项目概述.md"
+        }
+      ],
+      "keywords": [
+        "项目概述",
+        "快速开始",
+        "技术栈",
+        "架构概览",
+        "核心特性",
+        "APM",
+        "项目介绍"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/APM全栈监控": {
+      "hot_relations": [
+        {
+          "id": "rel_091",
+          "text": "APM全栈监控",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "1e915950-55c6-4814-9da0-cf6f72131f99",
+          "sourcePath": "APM全栈监控/APM全栈监控.md"
+        },
+        {
+          "id": "rel_092",
+          "text": "APM核心架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "8b11c66a-f5de-4c53-ab37-f1c09d75094a",
+          "sourcePath": "APM全栈监控/APM核心架构.md"
+        },
+        {
+          "id": "rel_093",
+          "text": "Profile数据处理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "f7ba0fef-72e2-4189-9fb0-89d30bc09251",
+          "sourcePath": "APM全栈监控/Profile数据处理.md"
+        },
+        {
+          "id": "rel_094",
+          "text": "性能指标分析",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "4b2b96c0-d43b-4b4c-9a5c-5e35dd97adcb",
+          "sourcePath": "APM全栈监控/性能指标分析.md"
+        },
+        {
+          "id": "rel_095",
+          "text": "拓扑发现算法",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "c9254beb-21df-45fb-a9ba-2c8abd02b6a2",
+          "sourcePath": "APM全栈监控/拓扑发现算法.md"
+        },
+        {
+          "id": "rel_096",
+          "text": "链路追踪系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "bb0828d0-60bb-481d-ac93-61f37da77ee4",
+          "sourcePath": "APM全栈监控/链路追踪系统.md"
+        }
+      ],
+      "keywords": [
+        "APM全栈监控",
+        "APM",
+        "eBPF",
+        "APM核心架构",
+        "Profile数据处理",
+        "性能指标分析",
+        "拓扑发现算法",
+        "链路追踪系统",
+        "Apm"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/数据库设计": {
+      "hot_relations": [
+        {
+          "id": "rel_097",
+          "text": "数据库设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "46c78415-2d10-47ce-8f26-6a8c39edfcdf",
+          "sourcePath": "数据库设计/数据库设计.md"
+        },
+        {
+          "id": "rel_098",
+          "text": "数据模型设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "5c2d92ed-3e76-49d2-95e2-39309fb23ff1",
+          "sourcePath": "数据库设计/数据模型设计.md"
+        },
+        {
+          "id": "rel_099",
+          "text": "数据迁移方案",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "a7d9395c-f9ba-4aa6-8725-f3327518b198",
+          "sourcePath": "数据库设计/数据迁移方案.md"
+        },
+        {
+          "id": "rel_100",
+          "text": "索引优化策略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "e12d1c59-b4ae-4962-bab5-e478db86fc8f",
+          "sourcePath": "数据库设计/索引优化策略.md"
+        },
+        {
+          "id": "rel_101",
+          "text": "表结构设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "76121ad5-fc1c-4169-99d4-b7de7897f170",
+          "sourcePath": "数据库设计/表结构设计.md"
+        }
+      ],
+      "keywords": [
+        "数据库设计",
+        "数据模型设计",
+        "APM",
+        "数据迁移方案",
+        "索引优化策略",
+        "Elasticsearch",
+        "表结构设计"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/扩展开发指南": {
+      "hot_relations": [
+        {
+          "id": "rel_102",
+          "text": "AS-Code配置开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "e6c74f09-ef00-425e-b947-2baf6f195b8f",
+          "sourcePath": "扩展开发指南/AS-Code配置开发.md"
+        },
+        {
+          "id": "rel_103",
+          "text": "可视化组件开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "3052b793-5445-4572-8b8a-a3faceb7bc89",
+          "sourcePath": "扩展开发指南/可视化组件开发.md"
+        },
+        {
+          "id": "rel_104",
+          "text": "插件系统开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "689f2ff3-33b1-4ffb-9549-98755e9c97e1",
+          "sourcePath": "扩展开发指南/插件系统开发.md"
+        },
+        {
+          "id": "rel_105",
+          "text": "第三方服务集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "43e68c04-6c5a-406f-86cb-f7d4469a9a3a",
+          "sourcePath": "扩展开发指南/第三方服务集成.md"
+        },
+        {
+          "id": "rel_106",
+          "text": "通知渠道扩展开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "d592bb10-7ac7-4868-abf7-618d0c7a1976",
+          "sourcePath": "扩展开发指南/通知渠道扩展开发.md"
+        }
+      ],
+      "keywords": [
+        "扩展开发指南",
+        "AS-Code配置开发",
+        "可视化组件开发",
+        "插件系统开发",
+        "第三方服务集成",
+        "API",
+        "通知渠道扩展开发"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/监控数据管理": {
+      "hot_relations": [
+        {
+          "id": "rel_107",
+          "text": "数据处理管道",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "c155b160-f604-4ddb-8f21-569aee208438",
+          "sourcePath": "监控数据管理/数据处理管道.md"
+        },
+        {
+          "id": "rel_108",
+          "text": "数据存储设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "247af8e2-dce0-4e20-9ec7-88d520f7fab8",
+          "sourcePath": "监控数据管理/数据存储设计.md"
+        },
+        {
+          "id": "rel_109",
+          "text": "数据查询优化",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "2235973e-b043-4497-a3ee-0c5e136b3556",
+          "sourcePath": "监控数据管理/数据查询优化.md"
+        },
+        {
+          "id": "rel_110",
+          "text": "数据源集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "0ca51980-27e6-475d-a062-c6632c20efd7",
+          "sourcePath": "监控数据管理/数据源集成.md"
+        }
+      ],
+      "keywords": [
+        "监控数据管理",
+        "数据处理管道",
+        "数据存储设计",
+        "Kafka",
+        "Redis",
+        "数据查询优化",
+        "数据源集成",
+        "API"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/测试策略": {
+      "hot_relations": [
+        {
+          "id": "rel_111",
+          "text": "单元测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "33c8b0b7-32e7-4d0a-99ed-2ea4ffbd88ff",
+          "sourcePath": "测试策略/单元测试.md"
+        },
+        {
+          "id": "rel_112",
+          "text": "性能测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "965f3c61-8ca4-476f-8723-e432a1dbe90f",
+          "sourcePath": "测试策略/性能测试.md"
+        },
+        {
+          "id": "rel_113",
+          "text": "测试数据管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "d358dcbe-b8c4-4fb2-af0a-6c341caae096",
+          "sourcePath": "测试策略/测试数据管理.md"
+        },
+        {
+          "id": "rel_114",
+          "text": "测试策略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "da795be4-ef32-4533-8910-fec69875fc49",
+          "sourcePath": "测试策略/测试策略.md"
+        },
+        {
+          "id": "rel_115",
+          "text": "集成测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "dc4d0a46-2833-421e-8bab-bd9b50eab4a3",
+          "sourcePath": "测试策略/集成测试.md"
+        }
+      ],
+      "keywords": [
+        "测试策略",
+        "单元测试",
+        "Django",
+        "性能测试",
+        "API",
+        "测试数据管理",
+        "Docker",
+        "集成测试"
+      ],
+      "max_hot_count": 10
+    },
+    "BKMonitorWiki/部署与运维": {
+      "hot_relations": [
+        {
+          "id": "rel_116",
+          "text": "Kubernetes集群管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "4af0b7cb-9c2e-4a7e-ad6a-d59ae6c5bdd9",
+          "sourcePath": "部署与运维/Kubernetes集群管理.md"
+        },
+        {
+          "id": "rel_117",
+          "text": "容器化部署",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "b7f323c1-84a5-48d9-8be2-034c6301aaf2",
+          "sourcePath": "部署与运维/容器化部署.md"
+        },
+        {
+          "id": "rel_118",
+          "text": "系统性能监控",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "baa20256-fea9-4f7e-b75b-3633648c81f7",
+          "sourcePath": "部署与运维/系统性能监控.md"
+        },
+        {
+          "id": "rel_119",
+          "text": "自动化运维工具",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "40f17e92-04e3-42a0-8a7c-0dae49970e22",
+          "sourcePath": "部署与运维/自动化运维工具.md"
+        },
+        {
+          "id": "rel_120",
+          "text": "部署与运维",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryId": "de633a19-26bc-4c5b-b846-944a7e40249e",
+          "sourcePath": "部署与运维/部署与运维.md"
+        }
+      ],
+      "keywords": [
+        "部署与运维",
+        "Kubernetes集群管理",
+        "Kubernetes",
+        "容器化部署",
+        "Docker",
+        "系统性能监控",
+        "APM",
+        "eBPF",
+        "自动化运维工具"
+      ],
+      "max_hot_count": 10
+    }
+  },
+  "updatedAt": "2026-06-17T16:13:41.587Z"
+}

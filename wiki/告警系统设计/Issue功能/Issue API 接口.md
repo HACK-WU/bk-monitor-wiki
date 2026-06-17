@@ -87,18 +87,19 @@ graph TB
 | POST | `/issue/rename` | MANAGE_EVENT | 重命名 Issue |
 | POST | `/issue/add_follow_up` | MANAGE_EVENT | 添加跟进评论（支持批量） |
 | POST | `/issue/edit_follow_up` | MANAGE_EVENT | 编辑跟进评论 |
+| POST | `/tapd/workspace` | VIEW_EVENT | 获取已授权的 TAPD 项目列表 |
 
 章节来源
 - [fta_web/issue/views.py:85-118](file://bkmonitor/packages/fta_web/issue/views.py#L85-L118)
 
 ### 只读 vs 写操作
 
-- **只读接口**（VIEW_EVENT）：`search`, `detail`, `activities`, `history`, `top_n`, `export`, `recent_assignees`
+- **只读接口**（VIEW_EVENT）：`search`, `detail`, `activities`, `history`, `top_n`, `export`, `recent_assignees`, `list_tapd_workspace`
 - **写操作**（MANAGE_EVENT）：`assign`, `resolve`, `reopen`, `archive`, `restore`, `update_priority`, `rename`, `add_follow_up`, `edit_follow_up`
 
 ### 无需业务 ID 的接口
 
-`search`, `top_n`, `recent_assignees` 三个接口允许不传 `bk_biz_id`，由业务层自行限制数据范围。这支持跨业务空间的 Issue 查询场景。
+`search`, `top_n`, `recent_assignees`, `tapd/workspace` 四个接口允许不传 `bk_biz_id`，由业务层自行限制数据范围。这支持跨业务空间的 Issue 查询场景。
 
 章节来源
 - [fta_web/issue/views.py:21-34](file://bkmonitor/packages/fta_web/issue/views.py#L21-L34)
@@ -134,6 +135,21 @@ def _run_batch(issues: list[dict], action_fn: Callable[[int, str], dict], max_wo
 
 章节来源
 - [fta_web/issue/resources.py:124-200](file://bkmonitor/packages/fta_web/issue/resources.py#L124-L200)
+
+### TAPD 工作空间查询
+
+`ListTapdWorkspaceResource` 支持查询已授权的 TAPD 项目列表，并并发获取详细信息：
+
+| 特性 | 说明 |
+|------|------|
+| 分页 | 支持 `page` + `limit`（默认 30，最大 200） |
+| 排序 | 支持 `order` 参数（默认 `created desc`） |
+| 字段过滤 | `fields` 参数支持逗号分隔指定字段 |
+| 并发模型 | `ThreadPoolExecutor`，max_workers=10，并发获取每个 workspace 的详细信息 |
+| 容错 | 单个 workspace 获取失败不阻塞其他，降级返回基本信息 |
+
+章节来源
+- [fta_web/issue/resources.py:1300-1392](file://bkmonitor/packages/fta_web/issue/resources.py#L1300-L1392)
 
 ## API Gateway 接口
 

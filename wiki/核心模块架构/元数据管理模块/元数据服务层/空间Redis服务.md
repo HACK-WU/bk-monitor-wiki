@@ -85,7 +85,7 @@ F --> H
 - Redis键空间与通道：集中定义空间路由、数据标签路由、结果表详情路由及其发布通道。
 - Redis配置解析：根据运行角色与环境选择单实例或哨兵模式，解析主机、端口、密码、主节点名等。
 - 客户端与工具：RedisClient单例封装，RedisTools统一提供HMSET/HGET/PUBLISH等常用操作。
-- 缓存后端与集群路由：提供多种缓存后端类型与哨兵模式支持；通过KeyRouter与PipelineProxy实现按策略ID路由与管道化执行。
+- 缓存后端与集群路由：提供多种缓存后端类型与哨兵模式支持；通过KeyRouter与PipelineProxy实现按策略ID路由与管道化执行。连接层新增韧性参数（`gen_resilient_socket_conf`），包含有界 socket 超时与 TCP keepalive，避免节点故障时连接无限挂起。
 
 **章节来源**
 - [space_table_id_redis.py:61-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L116)

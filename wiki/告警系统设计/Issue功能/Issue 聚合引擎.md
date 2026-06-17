@@ -17,8 +17,9 @@
 7. [告警关联](#告警关联)
 8. [并发控制](#并发控制)
 9. [高基数防护](#高基数防护)
-10. [部署窗口期兼容](#部署窗口期兼容)
-11. [结论](#结论)
+10. [LLM 标题派发](#llm-标题派发)
+11. [部署窗口期兼容](#部署窗口期兼容)
+12. [结论](#结论)
 
 ## 简介
 
@@ -53,14 +54,17 @@ flowchart TD
     StillNone --> |是| CreateIssue["_create_issue<br/>+ _persist_and_cache<br/>+ _write_create_activity"]
     StillNone --> |否| Associate
     CreateIssue --> Associate
-    Associate --> ReturnTrue["return True"]
+    Associate --> DispatchLLM{"本次创建?"}
+    DispatchLLM --> |是| LLMTitle["_maybe_dispatch_llm_title<br/>异步派发 LLM 标题生成"]
+    DispatchLLM --> |否| ReturnTrue["return True"]
+    LLMTitle --> ReturnTrue
 ```
 
 图表来源
-- [issue_processor.py:117-185](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L117-L185)
+- [issue_processor.py:117-221](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L117-L221)
 
 章节来源
-- [issue_processor.py:109-631](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L109-L631)
+- [issue_processor.py:109-221](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L109-L221)
 
 ## 指纹计算
 
@@ -255,6 +259,29 @@ end
 
 章节来源
 - [issue_processor.py:437-512](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L437-L512)
+
+## LLM 标题派发
+
+### `_maybe_dispatch_llm_title(issue)` — 新建 Issue 后异步生成可读标题
+
+仅在 Issue 本次新建（非查找已有）时触发，通过 `apply_async` 派发到独立队列 `celery_llm_task`。任何失败静默记录 warning，不影响主链路。
+
+**两级闸门**：
+
+| 层级 | 控制点 | 说明 |
+|------|--------|------|
+| 部署级 | env `ENABLE_ISSUE_LLM_TITLE` | 由 helm chart 按 llmWorker 有效容量派生注入；env 不存在即不派发 |
+| 运行时 | 业务白名单 `is_llm_title_enabled_for_biz` | 仅对白名单内业务启用 |
+
+**派发参数**：`issue_id`, `bk_biz_id`, `default_name`（Issue 当前名称）, `alert_id`（触发告警 ID）
+
+**设计决策**：
+- 仅新建时派发（`created=True`），查找已有 Issue 不触发
+- 导入延迟化（`from ... import` 在函数内），避免启动时依赖未就绪的 LLM 模块
+- 异常全捕获，`logger.warning` 记录，标题生成是体验增强非关键数据
+
+章节来源
+- [issue_processor.py:187-215](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L187-L215)
 
 ## 部署窗口期兼容
 

@@ -11,6 +11,7 @@
 - [fta_web/issue/handlers/issue.py](file://bkmonitor/packages/fta_web/issue/handlers/issue.py)
 - [kernel_api/rpc/functions/bkm_cli/issue.py](file://bkmonitor/kernel_api/rpc/functions/bkm_cli/issue.py)
 - [api/issue/default.py](file://bkmonitor/api/issue/default.py)
+- [alarm_backends/service/fta_action/llm_title.py](file://bkmonitor/alarm_backends/service/fta_action/llm_title.py)
 </cite>
 
 ## 目录
@@ -33,6 +34,7 @@ Issue 功能完整覆盖以下能力：
 - **影响范围**：自动按关联告警汇总受影响的主机、集群、Pod、APM 服务实例等
 - **周期任务**：后台定期同步告警统计（alert_count / last_alert_time）、漏关联补偿、影响范围重算
 - **Web API**：提供列表查询、TopN 统计、导出、批量操作等完整 RESTful 接口
+- **LLM 标题生成**：新建 Issue 后异步调用 LLM 总结关联日志生成可读标题，失败静默保留默认名
 - **RPC/CLI**：通过 bkm-cli `inspect-issue` 支持 Issue 详情、按策略/指纹查询、活动日志查询
 
 ## 架构总览
@@ -56,6 +58,8 @@ graph TB
         SyncTask["sync_issue_alert_stats<br/>告警统计同步"]
         BackfillTask["backfill_unlinked_alerts<br/>漏关联补偿"]
         ImpactScope["impact_scope 重算<br/>影响范围"]
+        LLMTitle["generate_issue_llm_title<br/>LLM 标题生成"]
+        LLMRefresh["refresh_issue_llm_title_examples<br/>few-shot 示例缓存"]
     end
 
     subgraph "接口层"
@@ -69,6 +73,7 @@ graph TB
     Processor --> Fingerprint
     Processor --> IssueDoc
     Processor --> ActivityDoc
+    Processor -.->|新建后派发| LLMTitle
     IssueDoc --> StateMachine
     SyncTask --> IssueDoc
     BackfillTask --> Alert
@@ -80,9 +85,9 @@ graph TB
 ```
 
 图表来源
-- [issue_processor.py:109-631](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L109-L631)
+- [issue_processor.py:109-221](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L109-L221)
 - [documents/issue.py:42-782](file://bkmonitor/bkmonitor/documents/issue.py#L42-L782)
-- [issue_tasks.py:37-851](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L37-L851)
+- [issue_tasks.py:37-1147](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L37-L1147)
 
 ## 模块拓扑
 
@@ -90,8 +95,8 @@ Issue 功能跨越 6 个代码模块，各模块职责如下：
 
 | 模块路径 | 职责 | 关键类/函数 |
 |----------|------|-------------|
-| `alarm_backends/service/fta_action/issue_processor.py` | 告警聚合处理器：指纹计算、创建/查找 Issue、关联告警 | `IssueAggregationProcessor`, `gen_issue_fingerprint` |
-| `alarm_backends/service/fta_action/tasks/issue_tasks.py` | 周期任务：告警统计同步、漏关联补偿、影响范围重算 | `sync_issue_alert_stats`, `_backfill_unlinked_alerts_for_strategy`, `_build_impact_scope` |
+| `alarm_backends/service/fta_action/issue_processor.py` | 告警聚合处理器：指纹计算、创建/查找 Issue、关联告警、LLM 标题派发 | `IssueAggregationProcessor`, `gen_issue_fingerprint`, `_maybe_dispatch_llm_title` |
+| `alarm_backends/service/fta_action/tasks/issue_tasks.py` | 周期任务：告警统计同步、漏关联补偿、影响范围重算、LLM 标题生成 | `sync_issue_alert_stats`, `_backfill_unlinked_alerts_for_strategy`, `_build_impact_scope`, `generate_issue_llm_title`, `refresh_issue_llm_title_examples` |
 | `bkmonitor/documents/issue.py` | 数据模型：Issue 主体文档 + 活动日志文档，含状态机方法 | `IssueDocument`, `IssueActivityDocument` |
 | `constants/issue.py` | 常量枚举：状态、优先级、活动类型、影响范围维度 | `IssueStatus`, `IssuePriority`, `IssueActivityType`, `ImpactScopeDimension` |
 | `packages/fta_web/issue/` | Web 接口层：RESTful API、查询处理器、序列化 | `IssueViewSet`, `IssueQueryHandler`, `IssueQueryTransformer` |

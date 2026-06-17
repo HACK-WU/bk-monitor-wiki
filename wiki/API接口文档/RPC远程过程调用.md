@@ -253,7 +253,7 @@ Build --> Return["返回结果"]
   - 具体函数模块依赖注册中心的装饰器与公共工具（如分页、序列化、租户解析）。
 - 外部依赖
   - APM与元数据模块依赖各自的数据模型与Redis路由缓存。
-  - 统一响应构建依赖公共工具函数。
+  - 统一响应构建依赖公共工具函数。近期 admin.common 新增 to_json_safe() 函数，对 build_response() 输出进行递归 JSON 安全序列化，处理 bytes、set、frozenset、DjangoJSONEncoder 等非标准类型，确保 RPC 响应始终可 JSON 编码
 
 ```mermaid
 graph LR

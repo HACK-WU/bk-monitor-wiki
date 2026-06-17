@@ -18,7 +18,9 @@
 7. [orphan Issue 检测](#orphan-issue-检测)
 8. [Legacy 迁移哨兵续命](#legacy-迁移哨兵续命)
 9. [遍历与分页工具](#遍历与分页工具)
-10. [结论](#结论)
+10. [LLM 标题生成任务](#llm-标题生成任务)
+11. [LLM 标题示例缓存刷新](#llm-标题示例缓存刷新)
+12. [结论](#结论)
 
 ## 简介
 
@@ -29,6 +31,7 @@ Issue 周期任务（celery periodic tasks）负责定期维护 Issue 的统计�
 3. **影响范围重算**：基于关联告警重新汇总 `impact_scope`
 4. **orphan Issue 检测**：发现无关联告警的孤立 Issue 并告警
 5. **Legacy 哨兵续命**：防止 30 天 TTL 失效后 processor 退化到 fallback ES 查询
+6. **LLM 标题示例缓存刷新**：周期预计算用户改名的 few-shot 示例缓存
 
 ## 任务架构
 
@@ -272,6 +275,85 @@ flowchart TD
 章节来源
 - [issue_tasks.py:807-850](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L807-L850)
 
+## LLM 标题生成任务
+
+### `generate_issue_llm_title(issue_id, bk_biz_id, default_name, alert_id)`
+
+对新建 Issue 异步调用 LLM 总结关联日志生成可读标题。任何失败静默保留默认名，不重试不入队。
+
+| 属性 | 值 |
+|------|-----|
+| Queue | `celery_llm_task`（与通知/周期任务隔离） |
+| soft_time_limit | 60s |
+| time_limit | 90s（硬兆底：下游取关联日志有 `except BaseException` 重试，可能吞掉软限信号） |
+| 失败语义 | 任何失败/超时/校验不过 = 静默保留默认名 |
+
+**执行流程**：
+
+```mermaid
+flowchart TD
+    Start["generate_issue_llm_title"] --> GetAlert["AlertDocument.get(alert_id)"]
+    GetAlert --> FetchLog["get_alert_relation_info<br/>取关联日志"]
+    FetchLog --> ParseLog{"解析日志内容<br/>JSON 或纯文本"}
+    ParseLog --> EmptyLog{"日志内容为空?"}
+    EmptyLog --> |是| FinishEmpty["finish: empty_log"]
+    EmptyLog --> |否| RateLimit["acquire_rate_limit_token<br/>业务级限流"]
+    RateLimit --> RLPass{"获取合牌成功?"}
+    RLPass --> |否| FinishRL["finish: ratelimited"]
+    RLPass --> |是| LLMCall["aidev.chat_completion<br/>调用 LLM"]
+    LLMCall --> Validate["validate_title<br/>校验输出"]
+    Validate --> ValidPass{"校验通过?"}
+    ValidPass --> |否| FinishInvalid["finish: invalid_output"]
+    ValidPass --> |是| Shadow{"shadow 模式?"}
+    Shadow --> |是| FinishShadow["finish: shadow_ok"]
+    Shadow --> |否| CAS["CAS: 当前 name == default_name?"]
+    CAS --> |否| FinishChanged["finish: name_changed"]
+    CAS --> |是| Rename["issue.rename(title, system)"]
+    Rename --> FinishOK["finish: ok"]
+```
+
+**关键设计决策**：
+
+| 决策 | 说明 |
+|------|------|
+| 两级闸门 | 部署级 env `ENABLE_ISSUE_LLM_TITLE`（由 helm chart 注入） + 运行时业务白名单 |
+| 独立队列 | `celery_llm_task`，与通知/周期任务隔离，队列带 TTL 自蒸发兆底 |
+| shadow 模式 | `ISSUE_LLM_TITLE_SHADOW=True` 时只生成+打点，不写入，默认关闭 |
+| CAS 保护 | 写入前检查当前 name 是否仍为默认名，避免覆盖用户已修改的标题 |
+| 回归前缀 | `[回归]` 前缀由代码层拼接，不交给 LLM 处理 |
+| 撞名处理 | LLM 标题业务内撞名时保留默认名，保证可区分 |
+| 分步打点 | fetch_log 和 llm_call 分别 observe 耗时，长尾在日志平台查询侧 |
+| few-shot 示例 | `resolve_examples` 按 strategy / biz 两级聚合，支持动态 + 静态示例 |
+
+章节来源
+- [issue_tasks.py:854-1147](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L854-L1147)
+
+## LLM 标题示例缓存刷新
+
+### `refresh_issue_llm_title_examples()` — 周期预计算 few-shot 示例
+
+扫描近 30 天用户改名活动（`NAME_CHANGE`，operator 非 system），筛选后按 strategy / biz 两级聚合写 Redis。
+
+| 属性 | 值 |
+|------|-----|
+| Queue | `celery_action_cron` |
+| 扫描范围 | 近 30 天 `NAME_CHANGE` 活动 |
+| 单轮扫描上限 | 2000 条 |
+| 缓存 TTL | 24h（任务挂掉缓存自然过期，读路径自动退静态示例） |
+
+**筛选规则**（`_collect_example_groups` 纯函数）：
+- 改名未被改回（issue 当前 name == 最新改名值）
+- 通过输出校验同款禁项清洗
+- 同 strategy / biz 内按标题去重
+
+**设计要点**：
+- 功能未对任何业务开启时直接跳过，零 ES/Redis 副作用
+- 同一 issue 多次改名只取最新一次（按 create_time 降序扫，首见即最新）
+- 周期任务任一环节失败均静默，不阻塞调度
+
+章节来源
+- [issue_tasks.py:1000-1047](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1000-L1047)
+
 ## 结论
 
-Issue 周期任务是 Issue 系统数据一致性的最后防线。通过定期扫描 + 统计更新 + 漏关联补偿 + 影响范围重算的组合，确保即使在 ES 写入瞬时失败、部署窗口期异常等边界条件下，Issue 的统计数据与实际告警状态保持一致。backfill 的 O(N×M) → O(N+M) 优化展现了在大规模告警场景下的良好性能意识。
+Issue 周期任务是 Issue 系统数据一致性的最后防线。通过定期扫描 + 统计更新 + 漏关联补偿 + 影响范围重算的组合，确保即使在 ES 写入瞬时失败、部署窗口期异常等边界条件下，Issue 的统计数据与实际告警状态保持一致。新增的 LLM 标题生成任务通过独立队列 + 异步失败静默的方式增强 Issue 可读性，backfill 的 O(N×M) → O(N+M) 优化展现了在大规模告警场景下的良好性能意识。

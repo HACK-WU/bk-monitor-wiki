@@ -2,7 +2,9 @@
 
 > 检查时间：2026-06-15
 > 需求 ID：REQ-20260615-001
-> 文档版本：v4
+> 文档版本：v4（评审前快照）
+> 
+> ⚠️ **评审后变更**：2026-06-17 设计评审结论要求 S-07 整套删除、Token 改用 Redis+AESCipher、`space_id`→`space_uid`、`is_bound` 改为四态等。本报告中的 S-07 引用、旧术语（`refresh_token`、`expires_at` 等）已不再适用。**请以 DESIGN.md v2（updated: 2026-06-17）为准。**
 
 ---
 

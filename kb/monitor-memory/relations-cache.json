@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "scope": "monitor-memory",
+  "partition_config": {
+    "hotPercent": 0.3,
+    "warmPercent": 0.5,
+    "reservedEmerging": 10,
+    "recentHours": 48,
+    "minHotCount": 1,
+    "decayStep": 5,
+    "halfLifeHours": 24,
+    "maxHotCount": 10,
+    "maxWarmCount": 50,
+    "maxColdCount": null,
+    "maxKeywordCount": 50
+  },
+  "groups": {
+    "背景与目标": {
+      "hot_relations": [
+        {
+          "id": "rel_001",
+          "text": "项目简介",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_002",
+          "text": "仓库结构",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1781765343431,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "BK-Monitor",
+        "监控平台",
+        "蓝鲸",
+        "独立仓库",
+        "bk-monitor-wiki",
+        "Git"
+      ],
+      "max_hot_count": 10
+    },
+    "背景与目标/项目架构": {
+      "hot_relations": [
+        {
+          "id": "rel_003",
+          "text": "目录结构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "目录架构",
+        "模块化",
+        "Django",
+        "AI",
+        "分层"
+      ],
+      "max_hot_count": 10
+    },
+    "技术栈选型": {
+      "hot_relations": [
+        {
+          "id": "rel_004",
+          "text": "技术栈清单",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "Python",
+        "Django",
+        "duckdb",
+        "SiliconFlow",
+        "Embedding"
+      ],
+      "max_hot_count": 10
+    }
+  },
+  "updatedAt": "2026-06-18T06:49:03.431Z"
+}

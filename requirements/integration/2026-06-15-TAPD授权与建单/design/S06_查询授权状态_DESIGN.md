@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-15
-version: 1
+updated: 2026-06-17
+version: 2
 tags: [feat, integration, design, S06]
 depends_on: [S01, S02]
 author: AI
@@ -14,7 +14,9 @@ parent: DESIGN.md
 
 # S-06 授权检查
 
-> 状态：设计中
+> 状态：已按设计评审结论（v1，2026-06-17）修订。
+>
+> **评审核心结论**：Token 从 DB → Redis。`TapdRequiredPermission` 校验 Redis key 是否存在且有效。
 
 ---
 
@@ -22,8 +24,9 @@ parent: DESIGN.md
 
 | 术语 | 含义 | 引用 |
 |------|------|------|
-| `TapdRequiredPermission` | DRF `Permission` 子类，校验用户是否持有有效的 `UserTapdToken` | — |
+| `TapdRequiredPermission` | DRF `Permission` 子类，校验用户 Redis 中是否存在有效 token | — |
 | `PermissionDenied` | DRF 标准异常，未通过授权检查时抛出；前端拦截其响应中的 `auth_url` 进行授权跳转 | — |
+| `bk_tenant_id` | 蓝鲸租户 ID，用于构造 Redis key | S-01 §1 |
 
 ---
 
@@ -32,10 +35,15 @@ parent: DESIGN.md
 不新增独立查询接口。通过 **DRF Permission 类** 在请求入口处统一校验授权状态：
 
 1. `TapdViewSet` 挂载 `TapdRequiredPermission`
-2. 请求到达时，Permission 检查当前 `bk_biz_id + user` 是否存在有效 Token（`now() < expires_at`）
-3. **已授权** → 放行，后续接口正常执行
-4. **未授权 / 已过期** → Permission 内部调用 `generate_auth_url(bk_biz_id)` 生成 `auth_url` → 抛出 `PermissionDenied(detail={"auth_url": auth_url})`
+2. 请求到达时，Permission **从 Redis 检查**当前 `bk_tenant_id + user` 是否存在有效 token（`tapd_uat:{tenant}:{user}` key 存在）
+3. **已授权**（Redis key 存在）→ 放行，后续接口正常执行
+4. **未授权 / 已过期**（Redis key 不存在或已过期）→ Permission 内部调用 `generate_auth_url(bk_biz_id)` 生成 `auth_url` → 抛出 `PermissionDenied(detail={"auth_url": auth_url})`
 5. DRF 异常处理返回 **403**，前端拦截后跳转到 `auth_url`
+
+> **【评审后变更】**：
+> - 校验逻辑从查 DB（`UserTapdToken.objects.filter(...)`）→ 查 Redis（`redis_client.exists(key)`）
+> - 删除 S-07 异步刷新的引用（已整套删除）
+> - Token 过期不再「自动刷新」，而是返回 403 + auth_url，引导用户重走 OAuth
 
 ---
 
@@ -47,13 +55,14 @@ parent: DESIGN.md
 class TapdRequiredPermission(BasePermission):
     def has_permission(self, request, view):
         bk_biz_id = get_bk_biz_id(request, view)
-        token = UserTapdToken.objects.filter(
-            username=request.user.username,
-            is_deleted=False, is_enabled=True
-        ).first()
-
-        if not token or timezone.now() >= token.expires_at:
-            # 内部生成 auth_url：查询 USER_TAPD_TOKEN 取 tapd_user_id（如有），构造 nonce={user_name}:{tapd_user_id}:{random_str}，再构造 OAuth URL，state 写入 Session
+        bk_tenant_id = get_bk_tenant_id(request)  # 从请求上下文获取
+        
+        # 【评审后】从 Redis 检查 token
+        redis_key = f"tapd_uat:{bk_tenant_id}:{request.user.username}"
+        token_data = redis_client.get(redis_key)
+        
+        if not token_data:
+            # Token 不存在或已过期，生成 auth_url
             auth_url = generate_auth_url(bk_biz_id)
             raise PermissionDenied(detail={"auth_url": auth_url})
 
@@ -78,7 +87,7 @@ https://tapd.woa.com/oauth/?response_type=code&client_id=bkmonitor_tapd&redirect
 | `client_id` | `bkmonitor_tapd` | TAPD 应用 Client ID，由系统配置 |
 | `redirect_uri` | `https://monitor.bk.example.com/api/tapd/callback` | 后端回调地址，需与 TAPD 应用配置完全一致 |
 | `scope` | `story%23read+story%23write` | 授权范围，URL 编码后的 scope（如 `story#read` → `story%23read`） |
-| `state` | `{nonce}:{bk_biz_id}` | 防 CSRF 参数，`nonce={user_name}:{tapd_user_id}:{random_str}` |
+| `state` | `{nonce}:{bk_biz_id}` | 防 CSRF 参数，`nonce={user_name}:{random_str}` |
 | `auth_by` | `user` | 固定，标识用户态授权 |
 
 > **参考实现**：`tapd_oauth_demo.py` 中 `_generate_auth_url()` 函数，使用 `urllib.parse.urlencode` 拼接参数后返回完整 URL。
@@ -90,7 +99,7 @@ https://tapd.woa.com/oauth/?response_type=code&client_id=bkmonitor_tapd&redirect
 | 场景 | 行为 | 是否对外暴露 |
 |------|------|:----------:|
 | Token 不存在 | `PermissionDenied` → 403 + `{"detail": {"auth_url": "..."}}` | 是 |
-| Token 已过期 | 同上，前端完成授权后由 S-07 自动刷新 Token | 是 |
+| Token 已过期 | 同上，**不再自动刷新**（S-07 已删除），重走 OAuth | 是 |
 
 ---
 
@@ -101,3 +110,9 @@ https://tapd.woa.com/oauth/?response_type=code&client_id=bkmonitor_tapd&redirect
 | `fta_web/tapd/` | 新增权限类 | `TapdRequiredPermission` Permission 类（DRF permission layer） | 否 |
 | `urls.py` | 无 | 不新增 URL 路由（Permission 层拦截，不新增 Resource） | 否 |
 | 前端页面 | 行为变更 | 统一拦截 403，提取 `detail.auth_url` 跳转授权 | 否 |
+
+---
+
+## +11. 待定问题
+
+（无）

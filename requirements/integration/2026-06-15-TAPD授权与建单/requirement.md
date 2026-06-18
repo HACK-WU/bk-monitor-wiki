@@ -1,9 +1,10 @@
 ---
 id: REQ-20260615-001
 feature: TAPD授权与建单
-status: 草案
+status: 开发中
+version: 1
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-18
 version: 1
 tags: [feat, integration]
 depends_on: []

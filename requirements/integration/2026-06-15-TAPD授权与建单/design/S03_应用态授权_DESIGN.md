@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-15
-version: 1
+updated: 2026-06-17
+version: 2
 tags: [feat, integration, design, S03]
 depends_on: [S01, S02]
 author: AI
@@ -14,7 +14,11 @@ parent: DESIGN.md
 
 # S-03 应用态授权
 
-> 状态：设计中
+> 状态：已按设计评审结论（v1，2026-06-17）修订。
+>
+> **评审核心结论**：
+> - **A2**：应用态 state 改为 `signed_state = base64url(json).hmac`，作为 `cb` 回调 URL 自身的 query 参数烘进去。回调只验签 + 验过期，不碰 session。
+> - **A3**：回调取 workspace 信息走 app 级 Basic Auth，不用用户态 Bearer（与现网 `TapdAPIResource` 对齐）。
 
 ---
 
@@ -25,9 +29,11 @@ parent: DESIGN.md
 | `workspace_id` | TAPD 项目 ID | 见父文档 §4.3 |
 | `workspace_name` | TAPD 项目名称 | 见父文档 §4.3 |
 | `upsert` | MySQL 的 INSERT ... ON DUPLICATE KEY UPDATE 语法 | 见 S-01 §1 |
-| `state` | 防 CSRF 随机串，后端生成后写入 Session，跳转时拼入 URL | S-03 §4a |
-| `nonce` | 包含用户标识和随机值的字符串，统一格式为 `{user_name}:{tapd_user_id}:{random_str}`（首次授权时 tapd_user_id 为空字符串） | S-03 §4a |
-| `install_url` | TAPD OAuth 跳转 URL，用于打开项目安装页面 | S-03 §4a |
+| `signed_state` | 签名状态串，`base64url(json_payload).hmac`，含 `bk_tenant_id/space_uid/bk_biz_id/initiator/nonce/expire_at` | 本设计 §4a |
+| `cb` | TAPD `open_app_install` 的回调地址参数，由我们完全控制 | 本设计 §4a |
+| `initiator` | 关联动作的真实发起人（普通用户 username），用于回调时覆盖 `create_user` | A2 |
+| `nonce` | 随机值，仅作签名盐，不实现「一次性」假承诺 | A2 |
+| `install_url` | TAPD OAuth 跳转 URL，用于打开项目安装页面 | 本设计 §4a |
 
 ---
 
@@ -49,17 +55,27 @@ parent: DESIGN.md
 
 ### 3.1 方案概述
 
-实现 TAPD 应用态授权回调接口（B-03），当用户在 TAPD 中安装蓝鲸监控应用时，TAPD 会回调该接口，后端校验回调合法性后，将 `workspace_id` 和 `workspace_name` 存储到 `TAPD_WORKSPACE_BINDING` 表，实现项目关联。
+实现 TAPD 应用态授权回调接口（B-03），当用户在 TAPD 中安装蓝鲸监控应用时，TAPD 会回调该接口。
+
+**【评审后核心变更】**：
+1. `install_url` 的 `cb` 参数中，将 `signed_state` 作为 query 参数烘进去（如 `cb=https://monitor/api/tapd/app_install_callback/?state=xxx&sig=yyy`）
+2. TAPD 回调时，`cb` URL 原样返回，`signed_state` 随之回到我们手中
+3. 回调**只验签 + 验过期**，不碰 session——解决管理员在另一浏览器/账号完成授权的场景
+4. 从 `resource["workspace_id"]` 解析 workspace_id，走 **app 级 Basic Auth** 调用 `get_workspace_info` 获取名称
+5. upsert `TAPD_WORKSPACE_BINDING`，从 `signed_state.initiator` 显式写入 `create_user`
 
 ### 3.2 关键决策点
 
 | 决策 | 选择 | 理由 | 备选方案 | 否决原因 |
 |------|------|------|----------|----------|
-| state 格式 | 统一为 `{nonce}:{bk_biz_id}`，`nonce={user_name}:{tapd_user_id}:{random_str}`（首次授权时 tapd_user_id 为空字符串，仍保持三段式） | 与 S-02 共用同一套 validate_state()，格式完全统一，减少重复实现 | 各自独立编码 | 增加维护成本，易出 bug |
-| state 校验方式 | 统一工具函数 `validate_state(state_str)` 从 Session 取出比对（成功后 `pop` 删除） | 简单可靠，防 CSRF，与 S-02 复用同一套逻辑 | 各子需求独立实现 | 重复代码，维护成本高 |
+| state 格式 | **`signed_state = base64url(json).hmac`** | A2：签名串烘进 cb，不依赖 session | Session 态 state | C1：破坏「转链接给管理员」核心场景 |
+| state 校验方式 | **HMAC 验签 + 验过期** | A2：回调只验签，不碰 session | Session 比对 | 管理员在另一浏览器/账号完成授权时 session 无 state |
+| nonce 语义 | **仅签名盐，不防重放** | A2：B-03 重放是良性的（upsert 幂等 + 授权由 TAPD 项目管理员把关） | 一次性 nonce | 实现「一次性」是假承诺 |
+| 身份获取 | `signed_state.initiator` | A2：`request.user` 是管理员，需从 state 中记录真实发起人 | 不记录发起人 | 审计需要 |
+| 项目信息获取 | **app 级 Basic Auth** | A3：与现网 `TapdAPIResource` 对齐，回调操作者拿不到发起人 token | Bearer Token（用户态） | 与现网代码冲突 |
 | 关联幂等策略 | 唯一约束 + upsert | 数据库层面保证，简单可靠 | 应用层去重 | 并发时可能重复插入 |
-| 业务 ID 映射 | 查 CMDB 获取 space_id | 复用现有数据 | 手动映射 | 维护成本高 |
-| 项目名称获取 | 回调后调 TAPD API 获取 | 回调只带 `workspace_id`，不附带名称 | 前端传入 | 回调中无法从前端获取 |
+
+> **【评审前已被否】**：`state` 格式统一为 `{nonce}:{bk_biz_id}` 从 Session 取出比对 → **已废弃**。应用态授权与用户态授权 state 方案不一致（用户态仍为 Session，应用态改为签名串）。
 
 ### 3.3 行为差异对照表
 
@@ -68,6 +84,8 @@ parent: DESIGN.md
 | 项目关联 | 无关联关系 | 自动关联 TAPD 项目 | 新增功能 |
 | 关联查询 | 无查询接口 | 可查询已关联项目 | 新增功能 |
 | 重复关联 | 无处理 | 幂等处理，无副作用 | 新增功能 |
+| 非管理员转发 | 无 | 管理员在任意浏览器/账号完成授权均可成功 | 新增核心场景支持 |
+| 发起人记录 | 无 | 从 signed_state.initiator 记录真实发起人 | 新增审计能力 |
 
 ---
 
@@ -82,18 +100,24 @@ class AppInstallCallbackResource(Resource):
     """TAPD 应用态授权回调
     
     由 TAPD OAuth 跳转流程发起，用户点击"下一步"后，
-    TAPD 自动回调该接口，携带 code + state + resource。
+    TAPD 自动回调该接口，携带 code + resource。
     
     cb（回调地址）示例：
         https://monitor.bk.example.com/api/tapd/app_install_callback/
+    
     实际 env 中替换域名，路径由 urls.py 路由规则决定。
+    
+    【评审后】cb URL 的 query 中携带 signed_state：
+        cb=https://monitor.bk.example.com/api/tapd/app_install_callback/
+           ?state=eyJ0ZW5hbnRfaWQiOiJkZWZhdWx0Iiwic3BhY2VfdWlkIjoiY...&sig=abc123
     """
     
     class RequestSerializer(serializers.Serializer):
         code = serializers.CharField(label="授权码")
-        state = serializers.CharField(label="防 CSRF 状态码")
-        resource = serializers.JSONField(label="授权项目信息",
-            default={})
+        resource = serializers.JSONField(label="授权项目信息", default={})
+        state = serializers.CharField(label="签名状态串", required=False)
+        sig = serializers.CharField(label="HMAC 签名", required=False)
+        # 【评审后】state 和 sig 从 cb URL 的 query 中提取，TAPD 会将 cb 原样返回
         
         # resource JSON 结构示例（TAPD 回调注入）:
         # {
@@ -107,13 +131,18 @@ class AppInstallCallbackResource(Resource):
         pass
     
     def perform_request(self, validated_request_data):
-        # 1. 验证 state 参数（从 Session 取出比对）
-        # 2. 验证通过后删除 Session 中的 state，防止重放攻击
-        # 3. 从 resource["workspace_id"] 解析 workspace_id（TAPD 回调格式固定）
-        # 4. 若 resource 缺失或 workspace_id 为空，返回错误页
-        # 5. 调 GetWorkspaceInfoResource 获取 workspace_name
-        # 6. upsert TAPD_WORKSPACE_BINDING（写入 bk_biz_id, workspace_id, workspace_name）
-        # 7. 302 重定向到前端
+        # 【评审后】Step 1：从 request.query_params 提取 state + sig
+        # Step 2：验签 HMAC(state, SECRET_KEY) == sig，失败 → 错误页
+        # Step 3：验过期：json.loads(base64url_decode(state))["expire_at"] > now()，失败 → 错误页
+        # Step 4：提取 payload：bk_tenant_id, space_uid, bk_biz_id, initiator, nonce
+        # Step 5：从 resource["workspace_id"] 解析 workspace_id
+        # Step 6：若 resource 缺失或 workspace_id 为空，返回错误页
+        # Step 7：【A3】走 app 级 Basic Auth 调 GetWorkspaceInfoResource 获取 workspace_name
+        #          （不复用用户态 token，与现网 TapdAPIResource 对齐）
+        # Step 8：upsert TAPD_WORKSPACE_BINDING
+        #          - bk_tenant_id, space_uid, bk_biz_id, tapd_workspace_id, tapd_workspace_name
+        #          - create_user = initiator（从 signed_state 显式覆盖）
+        # Step 9：302 重定向到前端
         pass
 ```
 
@@ -121,13 +150,14 @@ class AppInstallCallbackResource(Resource):
 > ```json
 > {
 >   "code": "4f9b2fab25a7c69715d426295a66717769666a0c",
->   "state": "demo-product123",
 >   "resource": {
 >     "type": "workspace",
 >     "workspace_id": "69990779"
 >   }
 > }
 > ```
+> 同时 query string 携带：`state=eyJ0ZW5hbnRfaWQiOiJkZWZhdWx0Iiwic3BhY2VfdWlkIjoiY...&sig=abc123`
+>
 > **成功响应**（302 重定向）：
 > ```http
 > HTTP/1.1 302 Found
@@ -136,37 +166,41 @@ class AppInstallCallbackResource(Resource):
 > **失败响应**（302 重定向到错误页）：
 > ```http
 > HTTP/1.1 302 Found
-> Location: https://monitor.bk.example.com/tapd/bind?tapd_bind=error&reason=state_mismatch
+> Location: https://monitor.bk.example.com/tapd/bind?tapd_bind=error&reason=invalid_signature
 > ```
 
 | 接口 | 输入 | 输出 | 异常 |
 |------|------|------|------|
-| B-03 应用态授权回调 | `code, state, resource`（TAPD 回调注入） | `302 重定向` | `state 不匹配, code 无效, 获取项目信息失败, DB写入失败` |
+| B-03 应用态授权回调 | `code, resource` + `state, sig`（query 中） | `302 重定向` | `签名校验失败, state 过期, code 无效, 获取项目信息失败, DB写入失败` |
 
 ### 4a.2 内部协作接口
 
 | 接口 | 调用方 | 被调用方 | 说明 |
 |------|--------|----------|------|
-| `validate_state()` | B-03 | 工具函数 | 从 Session 读取并比对 state（由 B-01 调用 generate_state() 时写入），比对成功后删除 |
-| `get_workspace_info()` | B-03 | TAPD API | `GET /workspaces/get_workspace_info?workspace_id=xxx`，查询空间详情（Bearer Auth，复用 S-02 用户态 token） |
-| `get_workspace_name()` | B-03 | TAPD API | `GET /workspaces/get_workspace_info`，根据 `workspace_id` 获取项目名称 |
-| `upsert_binding()` | B-03 | 数据库操作 | 插入或更新关联记录 |
+| `generate_signed_state(payload)` | B-01（生成 install_url 时） | 工具函数 | 构造 `signed_state = base64url(json).hmac`，payload 含 bk_tenant_id/space_uid/bk_biz_id/initiator/nonce/expire_at |
+| `verify_signed_state(state, sig)` | B-03 | 工具函数 | 验签 HMAC + 验过期 |
+| `get_workspace_info()` | B-03 | TAPD API | `GET /workspaces/get_workspace_info?workspace_id=xxx`，**Basic Auth**（与现网 `TapdAPIResource` 对齐） |
+| `upsert_binding()` | B-03 | 数据库操作 | 插入或更新关联记录，create_user 从 initiator 显式覆盖 |
+
+> **【评审前已废弃】**：`validate_state()` 从 Session 取出比对 → 已废弃，应用态不再使用 Session state。
 
 ### 4a.3 外部依赖（TAPD API）
 
 | 接口 | 位置 | 入参 | 返回 | 鉴权 |
 |------|------|------|------|------|
-| `GetWorkspaceInfoResource` | `bkmonitor/api/tapd/default.py` | `workspace_id` | `{Workspace: {id, name, pretty_name, ...}}` | Bearer Auth（复用 S-02 用户态 access_token） |
+| `GetWorkspaceInfoResource` | `bkmonitor/api/tapd/default.py` | `workspace_id` | `{Workspace: {id, name, pretty_name, ...}}` | **Basic Auth**（`client_id:client_secret`） |
 
-> 说明：
-> - B-03 **不调用** `RequestTokenResource`（不复用 code 换 token），而是复用 `USER_TAPD_TOKEN` 表中的 access_token。
-> - `GetWorkspaceInfoResource` 用于从 `workspace_id` 反查 `workspace_name`。支持 Basic Auth（`client_id:secret`）或 Bearer Token（用户态 access_token）。本期建议复用刚换得的 access_token 走 Bearer 方式。
+> **【评审后 A3 关键变更】**：
+> - B-03 **不再调用**用户态 Bearer Token 获取 workspace 信息
+> - 直接复用现网 `TapdAPIResource`（`api/tapd/default.py:20`）的 app 级 Basic Auth
+> - 回调操作者可能是管理员，根本拿不到发起人的 token
 
 ### 4a.4 契约变更声明
 
 | 变更类型 | 接口 | 变更内容 | 影响的子需求 |
 |---------|------|---------|------------|
 | 新增 | B-03 应用态授权回调 | 全新接口 | S-03 |
+| 修改 | B-01 生成 install_url | 将 signed_state 烘进 cb 的 query | S-04 |
 
 ---
 
@@ -175,28 +209,45 @@ class AppInstallCallbackResource(Resource):
 ```mermaid
 sequenceDiagram
     participant FE as 前端
-    participant User as 用户
+    participant User as 普通用户
+    participant Admin as 管理员
     participant BE as 后端
     participant TAPD as TAPD 系统
     participant DB as MySQL
     
-    Note over FE: install_url 由 B-01 查询项目列表接口生成并返回（包含 state 参数）
-    FE->>User: 打开 install_url
-    User->>TAPD: 选项目点"下一步"
-    TAPD-->>BE: B-03 回调 (code, state, resource)
-    BE->>BE: 验证 state（按统一格式解析 {nonce}:{bk_biz_id}，从 Session 取出比对，成功后 pop 删除）
-    Note over BE: nonce 结构: {user_name}:{tapd_user_id}:{random_str}，包含用户标识、TAPD用户身份和随机值
+    Note over FE: B-01 返回 install_url（cb 中含 signed_state）
+    
+    FE->>User: 展示 install_url
+    User->>Admin: 复制链接给管理员
+    
+    Admin->>TAPD: 在任意浏览器打开 install_url
+    TAPD-->>Admin: 选项目点"下一步"
+    
+    Admin->>TAPD: 完成授权
+    TAPD-->>BE: B-03 回调 (code, resource) + cb 原样返回 signed_state
+    
+    BE->>BE: 从 query 提取 state + sig
+    BE->>BE: 验签 HMAC(state, SECRET_KEY) == sig
+    BE->>BE: 验过期：expire_at > now()
+    BE->>BE: 提取 payload：space_uid, initiator, ...
     BE->>BE: 从 resource["workspace_id"] 解析 workspace_id
-    BE->>TAPD: GetWorkspaceInfo(workspace_id) — Bearer Token
+    
+    BE->>TAPD: GetWorkspaceInfo(workspace_id) — Basic Auth（app 级）
     TAPD-->>BE: {name: "xxx"}
-    BE->>DB: upsert TAPD_WORKSPACE_BINDING(bk_biz_id, workspace_id, name)
+    
+    BE->>DB: upsert TAPD_WORKSPACE_BINDING
+    Note over BE,DB: create_user = initiator（从 signed_state 覆盖）
     DB-->>BE: 成功
-    BE-->>FE: 302 重定向 (?tapd_bind=success)
+    
+    BE-->>Admin: 302 重定向 (?tapd_bind=success)
 ```
 
 > **说明**：
-> 1. `install_url` 由 B-01 查询项目列表接口（`ListTapdWorkspaceResource`）生成并返回，前端直接使用该 URL 打开 TAPD 项目安装页面。
-> 2. `state` 参数格式为 `{nonce}:{bk_biz_id}`，其中 `nonce` 包含用户标识（`user_name`）、TAPD 用户身份（`tapd_user_id`）和随机值（`random_str`），用于防 CSRF 攻击及回调时校验 TAPD 用户身份一致性。
+> 1. `signed_state` 在 **B-01 生成 install_url 时**构造，作为 `cb` URL 的 query 参数烘进去。
+> 2. TAPD 会将 `cb` URL **原样返回**，`signed_state` 随之回到我们手中。
+> 3. 回调**只验签 + 验过期**，不碰 session——管理员在任意浏览器/账号均可完成授权。
+> 4. `initiator` 记录真实发起人，用于审计归属。
+> 5. `get_workspace_info` 走 **app 级 Basic Auth**，不与用户态 token 绑定。
 
 ---
 
@@ -204,7 +255,8 @@ sequenceDiagram
 
 | 场景 | 行为 | 是否对外暴露 |
 |------|------|:----------:|
-| state 不匹配 | 记录安全日志，返回 403 或错误页「授权失败，请重试」；**不重定向到业务页面**（避免重定向循环） | 是 |
+| 签名校验失败 | 记录安全日志，302 重定向错误页「授权失败，请重试」 | 是 |
+| state 已过期 | 同上 | 是 |
 | resource 缺失或 workspace_id 为空 | 记录错误日志，302 重定向错误页 | 是 |
 | 获取项目信息失败 | 记录错误日志，302 重定向错误页 | 是 |
 | 数据库写入失败 | 记录错误日志，302 重定向错误页 | 是 |
@@ -219,6 +271,7 @@ sequenceDiagram
 | `fta_web/tapd/` | 接口变更 | 新增 1 个 Resource | 否 |
 | `urls.py` | 接口变更 | 新增 1 个 URL 路由 | 否 |
 | TAPD 系统 | 行为变更 | 需要配置回调 URL | 否 |
+| HMAC 工具 | 新增 | 新增签名/验签工具函数 | 否 |
 
 ---
 
@@ -226,5 +279,6 @@ sequenceDiagram
 
 | 编号 | 问题 | 影响范围 | 建议决策时间 | 负责人 |
 |------|------|---------|------------|--------|
-| T-01 | `state` 编码 `bk_biz_id` 的方式（统一写入 Session，通过 `request.session` 关联） | S-03 | 实施前 | 后端开发 |
+| T-01 | `open_app_install` 的 `cb` 回调结果 resource 的具体结构 | S-03 | 实施前 | 后端开发 |
 | T-02 | TAPD OAuth 跳转链接配置（回调 URL 格式、client_id、test 参数） | S-03 | 实施前 | 运维 |
+| T-03 | `install_url` 的 `cb=` 整体 urlencode 策略 | S-03 | 实施前 | 后端开发 |

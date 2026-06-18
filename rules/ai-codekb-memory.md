@@ -19,9 +19,9 @@ provider:
 
 ```
 # 请在此处列出项目当前的 scope（每行一个），例如：
-# monitor          — BK-Monitor 代码知识库
-# monitor-memory   — BK-Monitor 项目记忆
-# user-profile     — 用户画像（全局固定）
+monitor          — BK-Monitor 代码知识库
+monitor-memory   — BK-Monitor 项目记忆
+user-profile     — 用户画像（全局固定）
 ```
 
 ---

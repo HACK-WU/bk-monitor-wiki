@@ -1,0 +1,27 @@
+{
+  "dataDir": "/root/.ki/kb",
+  "backupDir": "$HOME/.ki-backup",
+  "scopes": {
+    "monitor": {
+      "kbDir": "/root/bk-monitor/bk-monitor-wiki",
+      "wikiSync": {
+        "enabled": true,
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+      }
+    },
+    "monitor-memory": {
+      "kbDir": "/root/bk-monitor/bk-monitor-wiki",
+      "wikiSync": {
+        "enabled": true,
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+      }
+    },
+    "user-profile": {
+      "kbDir": "/root/bk-monitor/bk-monitor-wiki",
+      "wikiSync": {
+        "enabled": true,
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+      }
+    }
+  }
+}

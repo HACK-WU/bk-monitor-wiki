@@ -10,6 +10,13 @@
       "environment": {
         "SILICONFLOW_API_KEY": "{{SILICONFLOW_API_KEY}}"
       }
+    },
+    "ki": {
+      "type": "local",
+      "command": ["ki", "mcp"],
+      "environment": {
+        "SILICONFLOW_API_KEY": "{{SILICONFLOW_API_KEY}}"
+      }
     }
   }
 }

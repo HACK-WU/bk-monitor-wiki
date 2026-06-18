@@ -1,6 +1,8 @@
 # BK-Monitor Wiki 知识库构建
 
-> 为 BK-Monitor Wiki 文档仓库构建知识索引，支持语义搜索和 AI 助手集成。
+> 将 `bk-monitor-wiki/wiki/` 快速导入 knowledge-indexer，构建语义搜索索引。
+>
+> 详细流程参考上游文档：[build-kb.md](https://github.com/HACK-WU/knowledge-indexer/blob/master/docs/build-kb.md)——本文档在其基础上补充本地环境检测与配置指引，避免重复描述通用步骤。
 
 ## 触发场景
 
@@ -13,8 +15,10 @@
 | 参数 | 值 | 说明 |
 |------|-----|------|
 | scope | `monitor` | 项目隔离标识 |
-| sourceDir | `wiki/` | wiki 文档目录（相对仓库根目录） |
+| sourceDir | `/root/bk-monitor/bk-monitor-wiki/wiki` | wiki 文档目录（绝对路径） |
 | rootName | `BK-Monitor-Wiki` | 导入根节点名称 |
+
+> ⚠️ **sourceDir 与 kbDir 注意**：ki 配置中 `kbDir` 指向 `/root/bk-monitor/bk-monitor-wiki`（索引数据根目录），`ai-results.json` 中的 `meta.sourceDir` 指向其下的 `wiki/` 子目录（文档源文件）。两者共享同一根目录，确保 Wiki 同步写回能正确落入 source 目录。
 
 ## Wiki 目录结构
 
@@ -41,53 +45,133 @@ wiki/
 
 ## 前置条件
 
-1. **安装 mem 命令**：知识索引的所有向量化操作都依赖 mem 命令
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/HACK-WU/memory-lancedb-mcp/master/scripts/install-latest.sh -o install-latest.sh
-   bash install-latest.sh
-   ```
+### 第一步：环境自检（`mem doctor` + `ki`）
 
-2. **配置嵌入 API**：确保 `~/.config/memory-mcp/config.yaml` 中已配置嵌入 API 密钥
-   ```yaml
-   embedding:
-     apiKey: ${SILICONFLOW_API_KEY}
-     model: Qwen/Qwen3-Embedding-8B
-     baseURL: https://api.siliconflow.cn/v1
-     dimensions: 4096
-   ```
+执行前**必须**完成以下两项检查：
 
-3. **注册 scope**：在 `~/.config/memory-mcp/config.yaml` 中注册 `monitor` scope
-   ```yaml
-   scopes:
-     default: global
-     definitions:
-       monitor:
-         description: BK-Monitor Wiki 文档知识库
-         acl:
-           - global
-           - monitor
-   ```
+#### 1.1 检查 mem
 
-4. **验证配置**：
-   ```bash
-   mem doctor
-   ```
+```bash
+mem doctor
+```
+
+**✅ 通过标准**：输出中应看到：
+- `✅ Config file` — 配置文件已找到
+- `✅ Embedding API key present` — API Key 已配置
+- `✅ Embedding API (...): OK` — 嵌入接口连通
+- `✅ LanceDB read/write: OK` — 数据库可读写
+
+**❌ 不通过时**，按以下步骤修复后再继续：
+
+| 失败项 | 修复操作 |
+|--------|----------|
+| Config file 未找到 | 安装 mem 命令（见第二步） |
+| Embedding API key 缺失 | 编辑 `~/.config/memory-mcp/config.yaml`，填入 `apiKey` |
+| Embedding API 不通 | 检查网络与 `baseURL` 是否正确 |
+| LanceDB 不可写 | 检查 `dbPath` 目录权限 |
+
+#### 1.2 检查 ki
+
+```bash
+ki --version
+```
+
+**✅ 通过标准**：输出 ki 版本号（如 `ki v1.x.x`）。
+
+**❌ 未安装时**，进入第二步安装 ki CLI 和配套 Skills。
+
+### 第二步：安装缺失工具
+
+#### 2.1 安装 ki CLI 与 Skills
+
+若 `ki` 命令不存在，执行：
+
+```bash
+# 安装 ki CLI
+curl -fsSL https://raw.githubusercontent.com/HACK-WU/knowledge-indexer/master/scripts/install-latest.sh | bash
+
+# 安装配套 Skills 到项目目录
+ki setup --skills -t ~/.codebuddy/skills -t ~/.agents/skills
+```
+
+> `ki setup --skills` 会将 `ki-foundation`、`codekb-skill`、`memory-skill` 等核心 Skill 安装到指定目录。
+
+#### 2.2 安装与配置 mem
+
+若 `mem doctor` 失败，按以下步骤安装配置：
+
+**安装 mem 命令**：
+```bash
+curl -fsSL https://raw.githubusercontent.com/HACK-WU/memory-lancedb-mcp/master/scripts/install-latest.sh -o install-latest.sh
+bash install-latest.sh
+```
+
+**配置嵌入 API**（已提供示例文件 `configs/mem/config.yaml`）：
+
+编辑 `~/.config/memory-mcp/config.yaml`，核心配置：
+```yaml
+embedding:
+  apiKey: ${SILICONFLOW_API_KEY}   # 替换为你的 API Key
+  model: Qwen/Qwen3-Embedding-8B
+  baseURL: https://api.siliconflow.cn/v1
+  dimensions: 4096
+```
+
+> 📁 完整配置示例见：`bk-monitor-wiki/configs/mem /config.yaml`
+
+**注册 `monitor` scope**：
+```yaml
+scopes:
+  default: global
+  definitions:
+    monitor:
+      description: BK-Monitor Wiki 文档知识库
+      acl:
+        - global
+        - monitor
+```
+
+### 第三步：确认 ki 配置
+
+本项目已提供 ki 配置文件 `configs/ki/config.json`：
+
+```json
+{
+  "dataDir": "/root/.ki/kb",
+  "backupDir": "$HOME/.ki-backup",
+  "scopes": {
+    "monitor": {
+      "kbDir": "/root/bk-monitor/bk-monitor-wiki",
+      "wikiSync": {
+        "enabled": true,
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+      }
+    }
+  }
+}
+```
+
+> 📁 完整配置文件位于：`bk-monitor-wiki/configs/ki/config.json`
+>
+> ⚠️ `kbDir` 与 `wikiSync.sourceDir` 保持一致，确保知识索引数据与 Wiki 源文件共享同一根目录。
 
 ## 执行流程
 
-基于 [knowledge-indexer 统一导入流程](https://github.com/HACK-WU/knowledge-indexer/blob/master/skills/knowledge-index-build/SKILL.md)，2 步完成构建。
+通用流程详见 [build-kb.md](https://github.com/HACK-WU/knowledge-indexer/blob/master/docs/build-kb.md) 的 S-04 统一导入流程（2 步）。以下为本项目的具体参数。
 
 ### Step 1: 生成 ai-results.json
 
 扫描 `wiki/` 目录，为每个 Markdown 文件生成结构化条目。
 
-**输出文件**：`ai-results.json`
+> ⚠️ **轻量读取**：优先使用文件路径、文件名、文档开头（前 10-20 行）生成摘要和关键词。**禁止逐文件全文读取**。
+
+**输出文件**：`ai-results.json`（放在仓库根目录）
 
 **格式示例**：
 ```json
 {
   "meta": {
-    "sourceDir": "wiki",
+    "sourceDir": "/root/bk-monitor/bk-monitor-wiki/wiki",
     "rootName": "BK-Monitor-Wiki"
   },
   "entries": [
@@ -103,6 +187,8 @@ wiki/
 }
 ```
 
+> ⚠️ `sourceDir` 必须使用**绝对路径**，否则 `ki scan-kb import` 会报路径不存在错误。路径为 `/root/bk-monitor/bk-monitor-wiki/wiki`。
+
 ### Step 2: 执行导入
 
 ```bash
@@ -111,7 +197,9 @@ ki scan-kb import \
   --results ai-results.json
 ```
 
-**内部流水线**：
+> ⚠️ `ai-results.json` 也建议使用**绝对路径**，如 `/root/bk-monitor/ai-results.json`。
+
+**内部流水线**（详见 build-kb.md）：
 1. 格式校验：验证 ai-results.json 格式和字段完整性
 2. 批量向量化：调用 mem store 批量向量化所有条目
 3. Group 树创建：自动创建 Group 目录结构
@@ -174,5 +262,8 @@ ki scan-kb import \
 
 ## 相关链接
 
-- [knowledge-indexer 统一导入流程](https://github.com/HACK-WU/knowledge-indexer/blob/master/skills/knowledge-index-build/SKILL.md)
+- [build-kb.md — knowledge-indexer 知识库构建文档](https://github.com/HACK-WU/knowledge-indexer/blob/master/docs/build-kb.md)
 - [memory-lancedb-mcp](https://github.com/HACK-WU/memory-lancedb-mcp)
+- 本仓库配置文件：
+  - `bk-monitor-wiki/configs/ki/config.json` — ki 配置
+  - `bk-monitor-wiki/configs/mem /config.yaml` — mem 配置（⚠️ 注意目录名尾部有空格）

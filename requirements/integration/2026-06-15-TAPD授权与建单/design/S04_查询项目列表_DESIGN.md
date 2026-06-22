@@ -34,7 +34,7 @@ parent: DESIGN.md
 | `importable` | 本地 binding 不存在但 TAPD 已授权 | 本设计 §4b |
 | `unbound` | 本地 binding 不存在且 TAPD 未授权 | 本设计 §4b |
 | `page_size` | 分页大小，默认 20 | — |
-| `signed_state` | 签名状态串，用于 `install_url` 的 `cb` 参数 | S-03 §1 |
+| `selected_workspace_id` | TAPD 项目 ID，前端填入 `install_url` 的 `#fragment` | — |
 | `install_url` | TAPD OAuth 跳转 URL，用于打开项目安装页面 | S-03 §4a |
 
 ---
@@ -157,8 +157,7 @@ class ListUserVisibleTapdWorkspaceResource(Resource):
         # 5. 查本地 TAPD_WORKSPACE_BINDING（按 bk_tenant_id + space_uid）
         # 6. 调 get_granted_workspaces（app 级 Basic，带短 TTL 缓存）
         # 7. 交叉标记四态 is_bound
-        # 8. 【S-03】拼接 install_url：构造 signed_state（含 bk_tenant_id/space_uid/bk_biz_id/initiator/nonce/expire_at）
-        #    base64url → HMAC → 作为 cb 的 query 参数烘进去
+        # 8. 【S-03】拼接 install_url：后端预写 open_app_install 固定 URL
         # 9. 返回带四态的项目列表 + install_url
         pass
 ```
@@ -184,16 +183,16 @@ class ListUserVisibleTapdWorkspaceResource(Resource):
 >       "is_bound": "stale"
 >     }
 >   ],
->   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Ftapd%2Fapp_install_callback%2F%3Fstate%3DeyJ0ZW5hbnRfaWQiOiJkZWZhdWx0Iiwic3BhY2VfdWlkIjoiY...%26sig%3Dabc123%23selected_workspace_id%3D{workspace_id}",
+>   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/&state=n0nc3#selected_workspace_id={workspace_id}",
 >   "method": "GET"
 > }
 > ```
 
 > **`install_url` 与 `method` 说明**：
-> - `install_url` 为 TAPD 应用安装 URL **模板**，后端固定 `client_id`、`test`、`cb` 参数
-> - `cb` 中烘进 `signed_state`（含 initiator 等），TAPD 会原样返回
-> - 参数放 query，不放 `#fragment`（fragment 不发服务端）
-> - 前端将 `{workspace_id}` 占位符替换为实际项目 ID 后直接打开
+> - `install_url` 为 TAPD 应用安装 URL **模板**（`open_app_install`）
+> - 后端预写：`client_id`、`test`、`cb`（回跳 URL，URL encode）、`state`（透传参数，TAPD 原样带回回调）
+> - 仅 `#selected_workspace_id={workspace_id}` 需要前端替换为实际项目 ID
+> - 示例：`https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=xxx&state=n0nc3#selected_workspace_id=10104091`
 
 | 接口 | 输入 | 输出 | 异常 |
 |------|------|------|------|
@@ -255,7 +254,7 @@ class ListGrantedTapdWorkspaceResource(Resource):
 | `call_tapd_user_api()` | B-01 | TAPD API | 用 Bearer Token 调 TAPD 获取用户项目列表 |
 | `get_granted_workspaces()` | B-07 | TAPD API | `GET /workspaces/get_granted_workspaces`（Basic Auth） |
 | `get_workspace_bindings()` | B-01, B-07 | 数据库操作 | 查询本地 TAPD_WORKSPACE_BINDING |
-| `generate_signed_state()` | B-01 | 工具函数 | 构造签名 state，作为 cb 的 query 参数 |
+| `generate_install_url()` | B-01 | 工具函数 | 预写 `open_app_install` URL 模板，含 `#selected_workspace_id` 占位符 |
 | `compute_bound_status()` | B-01, B-07 | 工具函数 | 本地 binding × TAPD 授权状态 → 四态 |
 
 ### 4a.3 契约变更声明

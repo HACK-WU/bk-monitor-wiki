@@ -24,19 +24,19 @@ document_type: frontend-guide
 
 ```mermaid
 flowchart TD
-    A[页面加载<br/>GET /fta/issue/tapd/user_workspace/] --> B{HTTP 状态}
+    A["页面加载<br>GET /fta/issue/tapd/user_workspace/"] --> B{HTTP 状态}
 
     B -->|200| C[渲染项目卡片列表]
         C --> D{is_bound}
-        D -->|bound| E[展示 已关联<br/>[查看] → 进入建单]
-        D -->|importable| F[展示 TAPD 侧已安装应用，可一键导入<br/>[一键导入] → 走绑定+建单]
-        D -->|stale| G[展示 TAPD 侧已解绑，需重新关联<br/>[重新关联] → 打开 install_url]
-        D -->|unbound| H[展示 用户态授权已拉取，需完成蓝鲸监控关联项目授权<br/>[去关联] → 打开 install_url]
+        D -->|bound| E["展示 已关联<br>【查看】→ 进入建单"]
+        D -->|importable| F["展示 TAPD 侧已安装应用，可一键导入<br>【一键导入】→ 走绑定+建单"]
+        D -->|stale| G["展示 TAPD 侧已解绑，需重新关联<br>【重新关联】→ 打开 install_url"]
+        D -->|unbound| H["展示 用户态授权已拉取，需完成蓝鲸监控关联项目授权<br>【去关联】→ 打开 install_url"]
 
-    B -->|403 + auth_url| I[展示 OAuth 授权引导弹窗<br/>跳转 TAPD OAuth 授权页]
-    B -->|403 + 无 auth_url| J[展示 权限不足 提示<br/>禁用所有操作]
-    B -->|401| K[清除登录态<br/>跳转蓝鲸统一登录]
-    B -->|500| L[展示 TAPD 服务异常<br/>提供重试按钮]
+    B -->|403 + auth_url| I["展示 OAuth 授权引导弹窗<br>跳转 TAPD OAuth 授权页"]
+    B -->|403 + 无 auth_url| J["展示 权限不足 提示<br>禁用所有操作"]
+    B -->|401| K["清除登录态<br>跳转蓝鲸统一登录"]
+    B -->|500| L["展示 TAPD 服务异常<br>提供重试按钮"]
 ```
 
 ---

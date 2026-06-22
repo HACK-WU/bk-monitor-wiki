@@ -40,10 +40,7 @@ class TapdUserAPIResource(Resource):
     自动注入到请求头：Authorization: Bearer {token}。
     """
     module_name = "tapd_user"
-    base_url = urljoin(
-        fta_settings.SAAS_OAUTH_CALLBACK_URL,
-        fta_settings.TAPD_BASIC_URL_TEMPLATE
-    )
+    base_url = fta_settings.TAPD_API_BASE_URL  # 如 https://api.tapd.woa.com
 ```
 
 ### 核心方法
@@ -280,7 +277,7 @@ Resource (bkmonitor.utils.http)
 IssueAPIResource / BKMonitorAPIResource (api/issue/default.py)
   └── IssueResource (fta_web/issue/resources.py)
         ├── ListUserVisibleTapdWorkspaceResource (B-01)
-        ├── ListGrantedTapdWorkspaceResource (B-07)
+        ├── ListTapdWorkspaceResource (B-07)
         └── ... 现有 IssueResource ...
 ```
 
@@ -292,7 +289,7 @@ IssueAPIResource / BKMonitorAPIResource (api/issue/default.py)
 |------|------|----------|
 | `api/tapd/user.py` | `TapdUserAPIResource`、`UserWorkspacesResource` | B-06 |
 | `api/tapd/default.py` | `GetGrantedWorkspacesResource`、`GetWorkspaceInfoResource`、`RequestTokenResource` | B-02, B-04, B-05 |
-| `utils/tapd_auth.py` | `generate_auth_url`、`generate_install_url` | B-01 |
+| `utils/tapd_auth.py` | `generate_auth_url`、`generate_install_url`、`generate_signed_state`、`verify_signed_state` | B-01, B-03 |
 
 ---
 

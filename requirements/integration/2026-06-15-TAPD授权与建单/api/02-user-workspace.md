@@ -62,7 +62,7 @@ class TAPD_REQUIRED(BasePermission):
         # 4. key 不存在或过期 → 内部生成 auth_url → raise PermissionDenied
         raise PermissionDenied(
             detail={
-                "auth_url": generate_auth_url(bk_biz_id),
+                "auth_url": generate_auth_url(bk_biz_id, request),
                 "auth_method": "session"
             }
         )
@@ -114,8 +114,7 @@ https://tapd.woa.com/oauth/authorize
       }
     ],
     "has_more": true,
-    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/&state=n0nc3#selected_workspace_id={workspace_id}",
-    "method": "GET"
+    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x#selected_workspace_id={workspace_id}"
   }
 }
 ```
@@ -127,7 +126,7 @@ https://tapd.woa.com/oauth/authorize
 | `total` | `integer` | 项目总数（不分页统计） |
 | `items` | `WorkspaceItem[]` | 项目列表（见下方结构） |
 | `has_more` | `boolean` | 是否还有更多数据 |
-| `install_url` | `string` | 当用户有 `unbound` 项目时返回，前端替换占位符后使用 |
+| `install_url` | `string` | 当列表中存在 `unbound` 或 `stale` 项目时返回，前端替换占位符后使用 |
 | `method` | `string` | `install_url` 的请求方式，固定 `GET` |
 
 #### WorkspaceItem 结构
@@ -192,8 +191,7 @@ https://tapd.woa.com/oauth/authorize
 https://tapd.woa.com/oauth/open_app_install
   ?client_id=bkmonitor_tapd
   &test=1
-  &cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F
-  &state=n0nc3
+  &cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x
   #selected_workspace_id={workspace_id}
 ```
 
@@ -203,8 +201,8 @@ https://tapd.woa.com/oauth/open_app_install
 |------|------|------|
 | `client_id` | 后端预写 | 固定值 `bkmonitor_tapd` |
 | `test` | 后端预写 | `1`=测试应用，`0`=正式应用（上架后改） |
-| `cb` | 后端配置 | 回跳 URL（完整 URL 字符串，**未编码**），指向 B-03 回调端点。前端使用时自行 URL encode |
-| `state` | 后端生成 | 透传参数，TAPD 原样带回回调 URL 用于关联校验 |
+| `cb` | 后端生成 | 回跳 URL（**整体 URL 编码**，防止 query string 解析歧义），指向 B-03 回调端点，内嵌 `signed_state`。`#fragment` 中的 `{workspace_id}` 占位符**跳过编码** |
+| `signed_state` | 后端生成 | HMAC 签名状态串（`base64url(json).hmac`），内嵌在编码后的 `cb` 中，TAPD 原样带回回调 URL，B-03 验签 |
 | `selected_workspace_id` | 前端填入 | `#fragment` 参数，值为 `item.workspace_id` |
 
 ### 占位符
@@ -216,15 +214,16 @@ https://tapd.woa.com/oauth/open_app_install
 ### 前端使用示例
 
 ```javascript
+// 后端返回的 install_url（cb 已编码，{workspace_id} 占位符未编码）
 const installUrl = data.install_url.replace('{workspace_id}', item.workspace_id);
-// 结果: https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&...&state=n0nc3#selected_workspace_id=10104091
+// 结果: https://tapd.woa.com/oauth/open_app_install?...&cb=https%3A%2F%2F...%3Fsigned_state%3DeyJ4e...#selected_workspace_id=10104091
 window.open(installUrl, '_blank');
 ```
 
 ### 使用条件
 
-- 列表中存在 `is_bound = "unbound"` 项目时，`install_url` 才返回
-- 若列表中没有 `unbound` 状态的项目，`install_url` 字段为空或不返回
+- 列表中存在 `is_bound = "unbound"` 或 `"stale"` 项目时，`install_url` 才返回
+- 若列表中没有 `unbound` / `stale` 状态的项目（即全部 `bound` / `importable`），`install_url` 字段为空或不返回
 
 ---
 
@@ -276,7 +275,8 @@ def compute_bound_status(
 | `TapdUserAPIResource` | 新增 `api/tapd/user.py` | Bearer Token 调用 TAPD 用户态 API |
 | `GetGrantedWorkspacesResource` | `api/tapd/default.py` | Basic Auth，取 app 已授权项目 |
 | `generate_auth_url()` | 工具函数 | 生成未编码 OAuth URL |
-| `generate_install_url()` | 工具函数 | `open_app_install` URL 模板（含 `#selected_workspace_id` 占位符）|
+| `generate_install_url()` | 工具函数 | `open_app_install` URL 模板（含 `#selected_workspace_id` 占位符） |
+| `generate_signed_state()` | 工具函数 | 生成 HMAC 签名的 `signed_state`，含 `initiator` 和 `exp` |
 | `compute_bound_status()` | 工具函数 | 本地 binding × TAPD 授权 → 四态 |
 | `AESCipher` | `utils/cipher.py` | Token 解密 |
 
@@ -287,3 +287,4 @@ def compute_bound_status(
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-22 | AI | 修复：`generate_auth_url` 签名增加 `request` 参数；`install_url` 条件补充 `stale` 状态；install_url 中 `state` 改 `signed_state` |

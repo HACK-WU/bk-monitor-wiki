@@ -20,12 +20,12 @@ document_type: api-overview
 
 ## 接口一览
 
-| 编号 | 名称 | 文件 | 端点 | 方法 | 鉴权 | 用途 |
+| 编号 | 名称 | 文件 | 端点 | 方法   | 鉴权 | 用途 |
 |------|------|------|------|------|------|------|
-| B-01 | 查询用户可见 TAPD 项目列表 | [02-user-workspace.md](02-user-workspace.md) | `/fta/issue/tapd/user_workspace/` | GET | `TAPD_REQUIRED` + IAM | 冷启动去关联下拉 |
-| B-07 | 查询 app 已授权 TAPD 项目列表 | [03-granted-workspace.md](03-granted-workspace.md) | `POST /fta/issue/tapd/workspace/` | IAM | 日常建单下拉（**已有/无变更**） |
-| B-03 | 应用态授权回调 | [04-app-install-callback.md](04-app-install-callback.md) | `/api/v4/issue/tapd/app_install_callback/` | GET | 请求来源校验 | 管理员安装后 TAPD 回调 |
-| B-05 | 用户态授权回调 | [05-oauth-callback.md](05-oauth-callback.md) | `/api/v4/issue/tapd/oauth_callback/` | GET | Session state | 用户 OAuth 后 TAPD 回调 |
+| B-01 | 查询用户可见 TAPD 项目列表 | [02-user-workspace.md](02-user-workspace.md) | `/fta/issue/tapd/user_workspace/` | GET  | `TAPD_REQUIRED` + IAM | 冷启动去关联下拉 |
+| B-07 | 查询 app 已授权 TAPD 项目列表 | [03-granted-workspace.md](03-granted-workspace.md) | `/fta/issue/tapd/workspace/` | POST | 日常建单下拉（**已有/无变更**） |
+| B-03 | 应用态授权回调 | [04-app-install-callback.md](04-app-install-callback.md) | `/api/v4/issue/tapd/app_install_callback/` | GET  | 请求来源校验 | 管理员安装后 TAPD 回调 |
+| B-05 | 用户态授权回调 | [05-oauth-callback.md](05-oauth-callback.md) | `/api/v4/issue/tapd/oauth_callback/` | GET  | Session state | 用户 OAuth 后 TAPD 回调 |
 
 > B-02 / B-04 / B-06 为后台内部 Resource 类定义，不在`.路由中暴露为独立端点，见 [06-resource-classes.md](06-resource-classes.md)。
 
@@ -56,9 +56,9 @@ api/
 | **Session State** | OAuth `state` 存 Django Session，回调比对后删除防重放 | 05-oauth-callback.md |
 | **Token 存储** | AESCipher 加密后存 Redis，key=`tapd_uat:{tenant}:{user}`，TTL=7200s | 05-oauth-callback.md |
 | **IV 安全** | `AESCipher`**禁止传固定 IV**，每次随机生成 | 05-oauth-callback.md |
-| **回调响应** | B-03 / B-05 均返回 **302 重定向**，无 JSON 响应体 | 04/05-oauth-callback.md |
-| **四态标记** | `bound`/`stale`/`importable`/`unbound`，交叉查询本地 + TAPD | 02/03-user-workspace.md |
-| **鉴权方式** | B-03：request.state_querystring 来源校验；B-05：Session 比对；B-07：仅 IAM | 各子文档 |
+| **回调响应** | B-03 / B-05 均返回 **302 重定向**，无 JSON 响应体 | [04-app-install-callback.md](04-app-install-callback.md)、[05-oauth-callback.md](05-oauth-callback.md) |
+| **四态标记** | `bound`/`stale`/`importable`/`unbound`，交叉查询本地 + TAPD | [02-user-workspace.md](02-user-workspace.md)、[03-granted-workspace.md](03-granted-workspace.md) |
+| **鉴权方式** | B-03：`signed_state` HMAC 验签；B-05：Session 比对；B-07：仅 IAM | 各子文档 |
 
 ---
 

@@ -20,24 +20,27 @@ document_type: design
 
 ### 1.1 核心约定
 
-**后端返回的 URL 链接，参数不进行 URL 编码，前端自行处理编码。**
+**后端返回的 URL 链接，除 `install_url` 中的 `cb` 参数需编码外，其余参数不进行 URL 编码，前端自行处理编码。**
 
 | 场景 | 规则 | 示例 |
 |------|------|------|
 | 后端返回 URL | **不编码**，直接返回原始字符串 | `https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&redirect_uri=https://monitor.bk.example.com/api/v4/issue/tapd/oauth_callback/&state=nonce123:2&scope=user_space` |
-| 前端使用 URL | **自行编码**后使用（如 `encodeURIComponent`、`encodeURI`） | `encodeURIComponent(state)` |
-| URL 中占位符 | 用 `{变量名}` 标记，前端替换后编码 | `https://tapd.woa.com/oauth/open_app_install?cb=https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/?state={state}&sig={sig}` |
+| `install_url` 的 `cb` 参数 | **后端编码**，但 `#fragment` 中的占位符 `{workspace_id}` **跳过编码** | `cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...`（`#selected_workspace_id={workspace_id}` 保持未编码） |
+| 前端替换占位符 | 直接填入，**无需编码**（`#fragment` 无需编码即可使用） | `install_url.replace('{workspace_id}', item.workspace_id)` |
 
 ### 1.2 特殊字符处理
 
 若 URL 参数值中存在 `&`、`=`、`?`、`#` 等特殊字符，后端在生成 URL 时需避免直接拼接这些值，而是通过**占位符**让前端填充后再自行编码：
 
 ```
-// 错误：直接拼接未编码的 redirect_uri（其中含 ? 和 &)
-redirect_uri=https://monitor.bk.example.com/api/v4/issue/tapd/oauth_callback/?a=1&b=2
-
-// 正确：使用占位符
+// 一般场景：使用占位符让前端编码
 redirect_uri={redirect_uri}
+
+// install_url 中的 cb：后端编码，但 fragment 占位符跳过
+// 后端代码：先编码整个 cb URL，再还原占位符
+cb_encoded = urllib.parse.quote(f"https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/?signed_state={signed_state}", safe='')
+cb_template = cb_encoded.replace(encoded_workspace_id_placeholder, "{workspace_id}")
+// 最终结果：cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}
 ```
 
 ### 1.3 install_url 格式
@@ -53,23 +56,24 @@ https://tapd.woa.com/oauth/open_app_install?client_id={app_id}&test=1#selected_w
 
 ### 1.4 代码示例
 
-#### 后端（Python）：生成未编码 URL
+#### 后端（Python）：生成 auth_url
 
 ```python
+from urllib.parse import quote
+
 def generate_auth_url(bk_biz_id: int, request) -> str:
-    """生成 TAPD OAuth 授权 URL，返回未编码格式"""
+    """生成 TAPD OAuth 授权 URL"""
     nonce = f"{request.user.username}:{secrets.token_urlsafe(8)}"
     state = f"{nonce}:{bk_biz_id}"
 
     # state 存入 Session
     request.session[f"tapd_oauth_state_{bk_biz_id}"] = state
 
-    # 使用字符串拼接，不进行 urlencode
     return (
         f"https://tapd.woa.com/oauth/authorize"
         f"?client_id={settings.TAPD_APP_ID}"
         f"&response_type=code"
-        f"&redirect_uri={settings.TAPD_OAUTH_CALLBACK_URL}"
+        f"&redirect_uri={quote(settings.TAPD_OAUTH_CALLBACK_URL, safe='')}"
         f"&scope=user_space"
         f"&state={state}"
     )
@@ -137,7 +141,7 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
 
 | 接口 | 鉴权方式 | 说明 |
 |------|----------|------|
-| B-03 | `login_exempt` + `csrf_exempt` + 请求来源校验 | 无会话鉴权，通过 `request.state_querystring` 中的上下文参数校验来源一致性 |
+  | B-03 | `login_exempt` + `csrf_exempt` + `signed_state` HMAC 验签 | 无会话鉴权，通过 `signed_state` HMAC-SHA256 签名验证回调来源（防伪造） |
 | B-05 | `login_exempt` + `csrf_exempt` + Session state | 无会话鉴权，通过 Django Session 中的 state 比对防 CSRF |
 
 > `login_exempt` 和 `csrf_exempt` 是 Django 装饰器，意味着这些接口不校验蓝盾登录态和 CSRF token。
@@ -160,7 +164,7 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
 前端暴露接口：
   POST /fta/issue/issue/search          # 现有
   GET  /fta/issue/issue/detail          # 现有
-  GET  /fta/issue/tapd/workspace        # B-07（原 POST → 改为 GET）
+  POST /fta/issue/tapd/workspace        # B-07（已有/无变更）
   GET  /fta/issue/tapd/user_workspace   # B-01（新增）
 
 TAPD 回调接口：
@@ -172,13 +176,15 @@ TAPD 回调接口：
 
 ## 五、WorkspaceItem 数据结构（四态）
 
-所有返回 TAPD 项目列表的接口，item 结构统一：
+**B-01（新增）的 WorkspaceItem 结构**：
 
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | `workspace_id` | `string` | 是 | TAPD 项目 ID |
 | `workspace_name` | `string` | 是 | TAPD 项目名称 |
-| `is_bound` | `string` | 是 | `bound`/`stale`/`importable`/`unbound` |
+| `is_bound` | `string` | 是 | `bound`/`stale`/`importable`/`unbound`（四态） |
+
+**B-07（现有接口，无变更）**：B-07 为现网已有接口，其返回字段保持原样（见 [03-granted-workspace.md](03-granted-workspace.md)），包含 `workspace_id`、`workspace_name`、`pretty_name`、`created`、`creator`、`description`、`status`、`category` 等 8 个字段。B-07 **不包含 `is_bound`。**
 
 ### 四态定义
 

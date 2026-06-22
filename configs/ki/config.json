@@ -6,21 +6,21 @@
       "kbDir": "/root/bk-monitor/bk-monitor-wiki",
       "wikiSync": {
         "enabled": true,
-        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki/wiki"
       }
     },
     "monitor-memory": {
       "kbDir": "/root/bk-monitor/bk-monitor-wiki",
       "wikiSync": {
         "enabled": true,
-        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki/monitor-memory"
       }
     },
     "user-profile": {
       "kbDir": "/root/bk-monitor/bk-monitor-wiki",
       "wikiSync": {
         "enabled": true,
-        "sourceDir": "/root/bk-monitor/bk-monitor-wiki"
+        "sourceDir": "/root/bk-monitor/bk-monitor-wiki/user-profile"
       }
     }
   }

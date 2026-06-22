@@ -77,30 +77,28 @@ document_type: frontend-guide
 
 ---
 
-## 调用流程图
+## 简要调用流程图
 
 ```mermaid
-sequenceDiagram
-    actor U as 普通用户
-    participant F as 前端（去关联页面）
-    participant API as 后端（列表接口）
-    participant TAPD as TAPD 平台
+flowchart TD
+    A[页面加载] --> B{请求项目列表}
 
-    F->>API: 请求项目列表
-    API-->>F: 403 + auth_url
-    F->>F: 显示授权引导弹窗
+    B -->|200| C[展示列表]
 
-    U->>F: 点击「前往 TAPD 授权」按钮
-    F->>TAPD: 直接跳转至 TAPD OAuth 授权页
-    TAPD-->>U: 展示 OAuth 授权页面
-    U->>TAPD: 确认授权（授予 user_space 范围）
-    TAPD->>API: 请求 OAuth 回调（携带 code 和 state）
-    API-->>TAPD: 302 重定向回监控：`?auth=success`
-    TAPD-->>F: 页面回到监控
-    F->>F: 检测到 auth=success
-    F->>API: 重新请求项目列表
-    API-->>F: 返回项目列表（HTTP 200）
-    F->>U: 展示项目列表
+    B -->|403 + auth_url| D[展示 OAuth 授权弹窗]
+        D --> E[用户点击 前往 TAPD 授权]
+        E --> F[跳转 TAPD OAuth 授权页]
+        F --> G{TAPD OAuth 回调}
+            G -->|?auth=success| H[自动重新请求列表]
+            G -->|?auth=error| I{reason}
+                I -->|state_mismatch| J[提示 授权验证失败，请重新授权]
+                I -->|code_invalid| K[提示 授权已过期，请重新授权]
+                I -->|api_error| L[提示 TAPD 服务异常]
+                I -->|storage_error| M[提示 服务器内部错误]
+
+    B -->|403 无 auth_url| N[展示 权限不足 禁用所有操作]
+    B -->|401| O[清除登录态 跳转蓝鲸统一登录]
+    B -->|500| P[提示 TAPD 服务异常 + 重试按钮]
 ```
 
 ---

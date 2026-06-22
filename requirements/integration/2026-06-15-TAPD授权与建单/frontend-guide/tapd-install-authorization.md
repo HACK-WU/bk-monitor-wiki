@@ -87,32 +87,25 @@ https://tapd.woa.com/oauth/open_app_install
 
 ---
 
-## 调用流程图
+## 简要调用流程图
 
 ```mermaid
-sequenceDiagram
-    actor U as 普通用户
-    actor Admin as TAPD 管理员
-    participant F as 前端（去关联页面）
-    participant API as 后端（列表接口）
-    participant TAPD as TAPD 平台
+flowchart TD
+    A[用户点击 [去关联] / [重新关联]] --> B{install_url 是否存在}
 
-    F->>API: 请求项目列表
-    API-->>F: 返回 items + install_url
-    F->>F: 渲染列表，stale/unbound 项目显示授权按钮
+    B -->|是| C[替换占位符 {workspace_id}]
+        C --> D[window.open 打开 TAPD 安装页]
+        D --> E[管理员在 TAPD 完成安装]
+        E --> F{TAPD 回调后端}
+            F -->|302 ?tapd_bind=success| G[页面回到监控 自动请求列表]
+            F -->|302 ?tapd_bind=error| H{reason}
+                H -->|signed_state_expired| I[提示 授权链接已过期，请重新点击]
+                H -->|invalid_signed_state| J[提示 授权链接已失效，请重新点击]
+                H -->|api_error| K[提示 TAPD 服务异常，请稍后重试]
+                H -->|db_error| L[提示 服务器内部错误]
+                H -->|invalid_resource| M[提示 项目不存在或已删除]
 
-    U->>F: 点击「去授权」或「重新授权」
-    F->>F: 将 workspace_id 填入 install_url 占位符
-    F->>TAPD: 以新窗口方式打开安装页
-    TAPD-->>Admin: 展示蓝鲸监控应用安装页面
-    Admin->>TAPD: 确认授权安装
-    TAPD->>API: 请求应用安装回调（携带 code 和授权信息）
-    API-->>TAPD: 302 重定向回监控：`?tapd_bind=success`
-    TAPD-->>F: 页面回到监控
-    F->>F: 检测到 tapd_bind=success
-    F->>API: 重新请求项目列表（刷新状态）
-    API-->>F: 返回 items（之前未授权项目状态变为 bound）
-    F->>U: 展示刷新后的列表，项目状态已更新
+    B -->|否| N[仅显示文字提示 不提供按钮]
 ```
 
 ---

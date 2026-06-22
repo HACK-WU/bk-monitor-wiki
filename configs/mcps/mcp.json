@@ -17,6 +17,13 @@
       "env": {
         "SILICONFLOW_API_KEY": "{{SILICONFLOW_API_KEY}}"
       }
+    },
+    "iWiki官方MCP": {
+      "url": "https://xxxxx/app_iwiki_mcp/mcp3",
+      "headers": {
+        "x-readonly": "true",
+        "Authorization": "Bearer tai_pat_xxxxxx"
+      }
     }
   }
 }

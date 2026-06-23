@@ -20,9 +20,9 @@
         {
           "id": "rel_001",
           "text": "快速开始",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782200525508,
           "isImported": true,
           "memoryId": "0e2a5035076d3a41",
           "sourcePath": "快速开始.md"
@@ -90,9 +90,9 @@
         {
           "id": "rel_006",
           "text": "Issue API 接口",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782200525566,
           "isImported": true,
           "memoryId": "63a20d9ce0c56214",
           "sourcePath": "告警系统设计/Issue功能/Issue API 接口.md"
@@ -1767,5 +1767,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-18T02:16:14.842Z"
+  "updatedAt": "2026-06-23T07:42:05.566Z"
 }

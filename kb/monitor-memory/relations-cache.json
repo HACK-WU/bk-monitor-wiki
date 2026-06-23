@@ -28,9 +28,9 @@
         {
           "id": "rel_002",
           "text": "仓库结构",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1781765343431,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1782200521799,
           "isImported": false
         }
       ],
@@ -69,9 +69,9 @@
         {
           "id": "rel_004",
           "text": "技术栈清单",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782200529426,
           "isImported": false
         }
       ],
@@ -83,7 +83,251 @@
         "Embedding"
       ],
       "max_hot_count": 10
+    },
+    "背景与目标/TAPD授权与建单": {
+      "hot_relations": [
+        {
+          "id": "rel_005",
+          "text": "importable 自动关联策略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_006",
+          "text": "回调路径不走网关",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_007",
+          "text": "双回调安全机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_008",
+          "text": "四态标记设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "后端静默绑定",
+        "应用态授权",
+        "用户态授权",
+        "验签",
+        "安全",
+        "四态标记",
+        "绑定状态",
+        "同步状态",
+        "设计取舍"
+      ],
+      "max_hot_count": 10
+    },
+    "通用记忆片段/Issue": {
+      "hot_relations": [
+        {
+          "id": "rel_009",
+          "text": "IssueViewSet 权限控制模式",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_010",
+          "text": "IssueQueryHandler ES 查询构建",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_011",
+          "text": "Issue API Resource 业务逻辑模板",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_012",
+          "text": "IssueDocument ES 模型关键字段",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "IssueViewSet",
+        "IAM",
+        "权限",
+        "READ_ONLY",
+        "NO_BIZ_REQUIRED",
+        "MANAGE_EVENT",
+        "VIEW_EVENT",
+        "IssueQueryHandler",
+        "QueryField",
+        "BaseQueryTransformer",
+        "fingerprint",
+        "merge_status",
+        "SearchResource",
+        "DetailResource",
+        "CreateResource",
+        "MergeResource",
+        "issue_merge",
+        "IssueDocument",
+        "IssueActivityDocument",
+        "activity"
+      ],
+      "max_hot_count": 10
+    },
+    "通用记忆片段": {
+      "hot_relations": [
+        {
+          "id": "rel_023",
+          "text": "Monitor API资源自动暴露到OpenAI",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782206227479,
+          "isImported": false
+        },
+        {
+          "id": "rel_024",
+          "text": "内核API内部Resource复用模式",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782206227480,
+          "isImported": false
+        },
+        {
+          "id": "rel_025",
+          "text": "前端接口与网关接口差异",
+          "score": 0.9979546780269022,
+          "useCount": 1,
+          "lastUsedTime": 1782206227481,
+          "isImported": false
+        },
+        {
+          "id": "rel_022",
+          "text": "Django配置加载体系",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782206298821,
+          "isImported": false
+        },
+        {
+          "id": "rel_026",
+          "text": "Resource框架使用小技巧",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_027",
+          "text": "加密工具",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_028",
+          "text": "异常处理流程",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_029",
+          "text": "批量操作框架",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_030",
+          "text": "空间租户业务ID转换",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_031",
+          "text": "外部API调用模式",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "monitor_api",
+        "OpenAI",
+        "内部调用",
+        "前端接口",
+        "网关接口",
+        "前端路由",
+        "DRF",
+        "浏览访问",
+        "Resource",
+        "bulk_request",
+        "delay",
+        "apply_async",
+        "ThreadPool",
+        "上下文继承",
+        "请求采样",
+        "resource.xxx",
+        "AESCipher",
+        "加密",
+        "CBC",
+        "SHA256",
+        "SECRET_KEY",
+        "IV",
+        "AES",
+        "解密",
+        "TAPD",
+        "Error",
+        "APIError",
+        "BKAPIError",
+        "exception_handler",
+        "CustomException",
+        "3300002",
+        "extra",
+        "_run_batch",
+        "ThreadPoolExecutor",
+        "IssueFrozenError",
+        "IssueDocumentWriteError",
+        "批量操作",
+        "并发",
+        "space_uid",
+        "bk_biz_id",
+        "bk_tenant_id",
+        "SpaceApi",
+        "转换",
+        "外部API",
+        "APIResource",
+        "base_url",
+        "action",
+        "module_name",
+        "get_headers",
+        "render_response_data"
+      ],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-18T06:49:03.431Z"
+  "updatedAt": "2026-06-23T09:20:04.559Z"
 }

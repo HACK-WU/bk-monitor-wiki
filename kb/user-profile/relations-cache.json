@@ -20,9 +20,9 @@
         {
           "id": "rel_001",
           "text": "对AI的要求",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782200525505,
           "isImported": false
         }
       ],
@@ -39,9 +39,9 @@
         {
           "id": "rel_002",
           "text": "语言偏好",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782200525506,
           "isImported": false
         }
       ],
@@ -88,5 +88,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-18T06:48:40.275Z"
+  "updatedAt": "2026-06-23T07:42:05.506Z"
 }

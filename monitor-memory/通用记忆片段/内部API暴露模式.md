@@ -1,0 +1,32 @@
+---
+groupPath: 通用记忆片段
+relation: 内部API暴露模式
+keywords: [kernel_api, ResourceViewSet, ResourceRoute, JWT, 认证中间件]
+exportedAt: "2026-06-23T09:04:31.723Z"
+---
+### 内部API暴露模式（kernel_api/ 目录）
+- **目录**: `kernel_api/` — monitor 暴露给其他项目调用的 API（非前端），通过蓝鲸 API 网关调用
+- **目录结构**:
+  - `kernel_api/views/v2/` / `v3/` / `v4/` — API 视图集（`ResourceViewSet`）按版本组织
+  - `kernel_api/resource/` — 业务 Resource 实现（继承 `Resource`，`perform_request()` 写业务逻辑）
+  - `kernel_api/urls.py` — URL 路由注册（`register_url()` 按版本动态注册）
+- **视图集模式**: `class XXXViewSet(ResourceViewSet)`
+  - `resource_routes = [ResourceRoute("POST", SomeResource, endpoint="some_action")]`
+  - endpoint 对应 URL 路径：`/api/v4/some_action/`
+- **版本注册**:
+  - `register_v2()` → `/api/v2/xxx_endpoint/`
+  - `register_v3()` → `/api/v3/模块名/xxx_endpoint/`（需配置 `INSTALLED_APIS`）
+  - `register_v4()` → `/api/v4/xxx_endpoint/`
+- **扩展视图**: `ALLOW_EXTEND_API=True` 时从 `kernel_api.extend_views` 动态加载，不修改主代码即可扩展
+- **认证中间件** (`kernel_api/middlewares/authentication.py`):
+  - `BkJWTClient` — JWT 鉴权客户端，解析 `HTTP_X_BKAPI_JWT`
+  - `BkTokenClient` — `X-Bk-Tenant-Id` + `X-Bk-Token-App-Code` 双头认证
+  - `is_match_api_token()` — API Token 校验，按命名空间（`biz#all` / `biz#{id}`）授权
+  - `OpenIdClient` — `X-Bk-Token` 单头认证（兼容旧版）
+  - 关联应用：`api.bk_apigateway` 查授权关系
+- **异常中间件** (`kernel_api/middlewares/exception_handler.py`):
+  - `LogExceptionMiddleware` — 简单异常日志记录并抛出
+- **网关定义**: `support-files/apigw/`
+  - `definition.yaml` — 网关基本信息、环境配置、授权矩阵（`grant_permissions`）
+  - `resources.yaml` — Swagger 2.0 格式的 API 资源定义（每接口配置 `x-bk-apigateway-resource`，含后端路径映射 + 认证方式）
+  - `docs/zh/` — 每个 API 一份 Markdown 文档

@@ -38,13 +38,11 @@ document_type: design
 | 字段 | 类型 | 必填 | 默认值 | 约束 |
 |------|------|------|--------|------|
 | `bk_biz_id` | `integer` | 是 | — | 正整数 |
-| `page` | `integer` | 否 | 1 | ≥ 1 |
-| `page_size` | `integer` | 否 | 20 | 1~100 |
 
 ### 请求示例
 
 ```http
-GET /fta/issue/tapd/user_workspace/?bk_biz_id=2&page=1&page_size=20
+GET /fta/issue/tapd/user_workspace/?bk_biz_id=2
 ```
 
 ---
@@ -62,8 +60,7 @@ class TAPD_REQUIRED(BasePermission):
         # 4. key 不存在或过期 → 内部生成 auth_url → raise PermissionDenied
         raise PermissionDenied(
             detail={
-                "auth_url": generate_auth_url(bk_biz_id, request),
-                "auth_method": "session"
+                "auth_url": generate_auth_url(bk_biz_id, request)
             }
         )
 ```
@@ -113,7 +110,6 @@ https://tapd.woa.com/oauth/authorize
         "is_bound": "stale"
       }
     ],
-    "has_more": true,
     "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.bk.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x#selected_workspace_id={workspace_id}"
   }
 }
@@ -123,9 +119,8 @@ https://tapd.woa.com/oauth/authorize
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
-| `total` | `integer` | 项目总数（不分页统计） |
+| `total` | `integer` | 项目总数 |
 | `items` | `WorkspaceItem[]` | 项目列表（见下方结构） |
-| `has_more` | `boolean` | 是否还有更多数据 |
 | `install_url` | `string` | 当列表中存在 `unbound` 或 `stale` 项目时返回，前端替换占位符后使用 |
 | `method` | `string` | `install_url` 的请求方式，固定 `GET` |
 
@@ -146,8 +141,7 @@ https://tapd.woa.com/oauth/authorize
   "message": "OK",
   "data": {
     "total": 0,
-    "items": [],
-    "has_more": false
+    "items": []
   }
 }
 ```
@@ -162,8 +156,7 @@ https://tapd.woa.com/oauth/authorize
   "code": 403,
   "message": "TAPD 用户态授权未生效",
   "data": {
-    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https://monitor.bk.example.com/fta/issue/tapd/oauth_callback/&scope=user_space&state=nonce123:2",
-    "auth_method": "session"
+    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https://monitor.bk.example.com/fta/issue/tapd/oauth_callback/&scope=user_space&state=nonce123:2"
   }
 }
 ```
@@ -227,25 +220,43 @@ window.open(installUrl, '_blank');
 
 ---
 
-## 四态标记逻辑
+### `importable` 自动关联
+
+当 `is_bound = "importable"` 时，后端**静默尝试写入本地 `TapdWorkspaceBinding`**：
 
 ```python
-def compute_bound_status(
+def try_bind_importable(
     workspace_id: str,
-    local_bindings: Set[str],
-    granted_workspaces: Set[str]
-) -> str:
-    has_local = workspace_id in local_bindings
-    has_tapd = workspace_id in granted_workspaces
-
-    if has_local and has_tapd:
-        return "bound"
-    if has_local and not has_tapd:
-        return "stale"
-    if not has_local and has_tapd:
-        return "importable"
-    return "unbound"
+    bk_biz_id: int,
+    bk_tenant_id: str,
+    create_user: str
+) -> bool:
+    """
+    尝试为 importable 状态的项目创建本地 binding。
+    成功 → 返回 True，is_bound 最终显示为 bound
+    失败 → 返回 False，is_bound 保持 importable
+    """
+    try:
+        TapdWorkspaceBinding.objects.get_or_create(
+            bk_biz_id=bk_biz_id,
+            workspace_id=workspace_id,
+            defaults={
+                "bk_tenant_id": bk_tenant_id,
+                "create_user": create_user,
+                "update_user": create_user,
+            }
+        )
+        return True
+    except Exception:
+        # DB 异常、主键冲突处理异常等，静默失败
+        return False
 ```
+
+**自动关联后行为**：
+- 成功 → 该项目 `is_bound` 在响应中显示为 **`bound`**，前端展示「已关联」按钮
+- 失败 → 该项目 `is_bound` 保持 **`importable`**，前端展示「去关联」按钮，跳转 `install_url`
+
+> 静默失败不阻断流程：列表接口其余项目正常返回，仅在日志中记录异常。
 
 ---
 
@@ -263,7 +274,11 @@ def compute_bound_status(
               → 查本地 TapdWorkspaceBinding
                 → 调 GetGrantedWorkspacesResource（Basic Auth，短缓存）
                   → 交叉标记四态
-                    → 分页 → 返回 {total, items, has_more, install_url, method}
+                    → 对 is_bound = importable 的项目:
+                      → try_bind_importable() → get_or_create TapdWorkspaceBinding
+                        ├─ 成功 → is_bound 改为 bound
+                        └─ 失败 → 保持 importable
+                    → 返回 {total, items, install_url, method}
 ```
 
 ---

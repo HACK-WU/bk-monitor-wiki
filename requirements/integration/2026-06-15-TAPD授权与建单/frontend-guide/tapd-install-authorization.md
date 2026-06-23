@@ -91,21 +91,21 @@ https://tapd.woa.com/oauth/open_app_install
 
 ```mermaid
 flowchart TD
-    A["用户点击 【去关联】 / 【重新关联】"] --> B{install_url 是否存在}
+    A["用户点击 去关联 / 重新关联"] --> B{"install_url 是否存在"}
 
-    B -->|是| C["替换占位符 {workspace_id}"]
-        C --> D["window.open 打开 TAPD 安装页"]
-        D --> E["管理员在 TAPD 完成安装"]
-        E --> F{TAPD 回调后端}
-            F -->|302 ?tapd_bind=success| G["页面回到监控 自动请求列表"]
-            F -->|302 ?tapd_bind=error| H{reason}
-                H -->|signed_state_expired| I["提示 授权链接已过期，请重新点击"]
-                H -->|invalid_signed_state| J["提示 授权链接已失效，请重新点击"]
-                H -->|api_error| K["提示 TAPD 服务异常，请稍后重试"]
+    B -->|是| C["替换占位符\n{workspace_id}"]
+        C --> D["window.open\n打开 TAPD 安装页"]
+        D --> E["管理员在 TAPD\n完成安装"]
+        E --> F{"TAPD 回调后端"}
+            F -->|302\n?tapd_bind=success| G["页面回到监控\n自动请求列表"]
+            F -->|302\n?tapd_bind=error| H{"reason"}
+                H -->|signed_state_expired| I["提示 授权链接已过期\n请重新点击"]
+                H -->|invalid_signed_state| J["提示 授权链接已失效\n请重新点击"]
+                H -->|api_error| K["提示 TAPD 服务异常\n请稍后重试"]
                 H -->|db_error| L["提示 服务器内部错误"]
-                H -->|invalid_resource| M["提示 项目不存在或已删除"]
+                H -->|invalid_resource| M["提示 项目不存在\n或已删除"]
 
-    B -->|否| N["仅显示文字提示 不提供按钮"]
+    B -->|否| N["仅显示文字提示\n不提供按钮"]
 ```
 
 ---

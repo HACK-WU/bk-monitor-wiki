@@ -76,24 +76,24 @@ document_type: frontend-guide
 
 ```mermaid
 flowchart TD
-    A[页面加载] --> B{请求项目列表}
+    A["页面加载"] --> B{"请求项目列表"}
 
-    B -->|200| C[展示列表]
+    B -->|200| C["展示列表"]
 
     B -->|403 + auth_url| D["展示 OAuth 授权弹窗"]
         D --> E["用户点击 前往 TAPD 授权"]
         E --> F["跳转 TAPD OAuth 授权页"]
-        F --> G{TAPD OAuth 回调}
+        F --> G{"TAPD OAuth 回调"}
             G -->|?auth=success| H["自动重新请求列表"]
-            G -->|?auth=error| I{reason}
-                I -->|state_mismatch| J["提示 授权验证失败，请重新授权"]
-                I -->|code_invalid| K["提示 授权已过期，请重新授权"]
+            G -->|?auth=error| I{"reason"}
+                I -->|state_mismatch| J["提示 授权验证失败\n请重新授权"]
+                I -->|code_invalid| K["提示 授权已过期\n请重新授权"]
                 I -->|api_error| L["提示 TAPD 服务异常"]
                 I -->|storage_error| M["提示 服务器内部错误"]
 
-    B -->|403 无 auth_url| N["展示 权限不足 禁用所有操作"]
-    B -->|401| O["清除登录态 跳转蓝鲸统一登录"]
-    B -->|500| P["提示 TAPD 服务异常 + 重试按钮"]
+    B -->|403 无 auth_url| N["展示 权限不足\n禁用所有操作"]
+    B -->|401| O["清除登录态\n跳转蓝鲸统一登录"]
+    B -->|500| P["提示 TAPD 服务异常\n+ 重试按钮"]
 ```
 
 ---

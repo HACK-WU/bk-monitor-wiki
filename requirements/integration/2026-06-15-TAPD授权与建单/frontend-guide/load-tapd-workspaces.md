@@ -24,17 +24,17 @@ document_type: frontend-guide
 
 ```mermaid
 flowchart TD
-    A["页面加载<br>GET /fta/issue/tapd/user_workspace/"] --> B{HTTP 状态}
+    A["页面加载\nGET /fta/issue/tapd/user_workspace/"] --> B{HTTP 状态}
 
-    B -->|200| C[渲染项目卡片列表]
+    B -->|200| C["渲染项目卡片列表"]
         C --> D{is_bound}
-        D -->|bound| E["展示：已关联<br>按钮：已关联<br>点击 → 进入建单"]
-        D -->|其他 (stale/unbound/importable 自动关联失败)| F["展示对应状态文案<br>按钮：去关联<br>点击 → 打开 install_url"]
+        D -->|bound| E["展示：已关联\n按钮：已关联\n点击 → 进入建单"]
+        D -->|其他| F["stale / unbound / importable 关联失败\n展示对应状态文案\n按钮：去关联\n点击 → 打开 install_url"]
 
-    B -->|403 + auth_url| G["展示 OAuth 授权引导弹窗<br>跳转 TAPD OAuth 授权页"]
-    B -->|403 + 无 auth_url| H["展示 权限不足 提示<br>禁用所有操作"]
-    B -->|401| I["清除登录态<br>跳转蓝鲸统一登录"]
-    B -->|500| J["展示 TAPD 服务异常<br>提供重试按钮"]
+    B -->|403 + auth_url| G["展示 OAuth 授权引导弹窗\n跳转 TAPD OAuth 授权页"]
+    B -->|403 + 无 auth_url| H["展示 权限不足 提示\n禁用所有操作"]
+    B -->|401| I["清除登录态\n跳转蓝鲸统一登录"]
+    B -->|500| J["展示 TAPD 服务异常\n提供重试按钮"]
 ```
 
 ---

@@ -30,7 +30,7 @@ document_type: frontend-guide
 https://tapd.woa.com/oauth/open_app_install
   ?client_id=bkmonitor_tapd
   &test=1
-  &cb=https%3A%2F%2Fmonitor.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19...U4x
+  &cb=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19...U4x
   #selected_workspace_id={workspace_id}
 ```
 

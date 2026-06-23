@@ -51,17 +51,13 @@ flowchart TD
 
 ```json
 {
-  "bk_biz_id": 2,
-  "page": 1,
-  "page_size": 20
+  "bk_biz_id": 2
 }
 ```
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|:----:|:------:|------|
 | `bk_biz_id` | `integer` | 是 | — | 蓝鲸业务 ID，从当前 URL 或状态管理中读取 |
-| `page` | `integer` | 否 | 1 | 页码，必须 ≥ 1 |
-| `page_size` | `integer` | 否 | 20 | 每页数量，范围 1~100 |
 
 → 成功响应（HTTP 200）：
 
@@ -94,8 +90,7 @@ flowchart TD
         "is_bound": "unbound"
       }
     ],
-    "has_more": true,
-    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}",
+    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}",
     "method": "GET"
   }
 }
@@ -105,7 +100,6 @@ flowchart TD
 |------|------|------|
 | `total` | `integer` | 项目总数（不分页统计） |
 | `items` | `WorkspaceItem[]` | 项目列表，按四态标记 |
-| `has_more` | `boolean` | 是否还有更多数据 |
 | `install_url` | `string`（可能缺失） | 当列表中存在 `stale` 或 `unbound` 项目时返回，否则为空或不返回 |
 | `method` | `string` | `install_url` 的请求方式，固定为 `GET` |
 
@@ -121,8 +115,7 @@ flowchart TD
   "code": 403,
   "message": "TAPD 用户态授权未生效",
   "data": {
-    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Foauth_callback%2F&scope=user_space&state=nonce123:2",
-    "auth_method": "session"
+    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Foauth_callback%2F&scope=user_space&state=nonce123:2"
   }
 }
 ```
@@ -171,11 +164,11 @@ flowchart TD
 
 状态文案与操作按钮严格对应 UI 设计稿 P-03：
 
-| `is_bound` | 状态文案（灰色小字） | 操作按钮 | 按钮行为 | 对应 UI 设计稿 |
-|------------|---------------------|---------|---------|--------------|
-| `bound` | 已关联 | [查看] | 点击进入 TAPD 建单流程（调用已有接口，不在本文档范围内） | P-03 |
-| `importable` | TAPD 侧已安装应用，可一键导入 | [一键导入] | 先完成绑定，再进入建单流程 ⚠️ **当前缺少绑定接口，见 [../TODO-待办事项.md](../TODO-待办事项.md)** | P-03 |
-| `stale` | TAPD 侧已解绑，需重新关联 | [重新关联] | 打开 `install_url`（替换 `{workspace_id}` 后以新窗口打开），让 TAPD 管理员重新授权安装 | P-03 |
+| `is_bound` | 状态文案（灰色小字） | 操作按钮  | 按钮行为 | 对应 UI 设计稿 |
+|------------|---------------------|-------|---------|--------------|
+| `bound` | 已关联 | [已关联] | 点击进入 TAPD 建单流程（调用已有接口，不在本文档范围内） | P-03 |
+| `importable` | TAPD 侧已安装应用，可一键导入 | [去关联] | 先完成绑定，再进入建单流程 ⚠️ **当前缺少绑定接口，见 [../TODO-待办事项.md](../TODO-待办事项.md)** | P-03 |
+| `stale` | TAPD 侧已解绑，需重新关联 | [去关联] | 打开 `install_url`（替换 `{workspace_id}` 后以新窗口打开），让 TAPD 管理员重新授权安装 | P-03 |
 | `unbound` | 用户态授权已拉取 · 需完成蓝鲸监控关联项目授权 | [去关联] | 打开 `install_url`（替换 `{workspace_id}` 后以新窗口打开），让 TAPD 管理员完成首次授权安装 | P-03 |
 
 → 前端布局参考（来自设计稿）：

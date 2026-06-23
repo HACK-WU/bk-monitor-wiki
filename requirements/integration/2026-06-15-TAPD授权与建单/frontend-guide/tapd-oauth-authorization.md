@@ -29,8 +29,7 @@ document_type: frontend-guide
   "code": 403,
   "message": "TAPD 用户态授权未生效",
   "data": {
-    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Foauth_callback%2F&scope=user_space&state=nonce123:2",
-    "auth_method": "session"
+    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Foauth_callback%2F&scope=user_space&state=nonce123:2"
   }
 }
 ```
@@ -38,7 +37,6 @@ document_type: frontend-guide
 | 字段 | 说明 |
 |------|------|
 | `auth_url` | 后端生成的 TAPD OAuth 授权页 URL，裸字符串，直接跳转即可 |
-| `auth_method` | 固定为 `session`，表示 state 存于后端 Session |
 
 → 前端行为：展示授权引导弹窗，包含授权说明和跳转按钮
 
@@ -62,10 +60,7 @@ document_type: frontend-guide
 
 ### 步骤 4：回调完成，回到监控页面
 
-→ 后端完成 code 换 token、加密存储后，302 重定向回监控页面
-→ 授权成功时 URL 示例：`https://monitor.example.com/tapd/workspace?auth=success`
-→ 授权失败时 URL 示例：`https://monitor.example.com/tapd/workspace?auth=error&reason=state_mismatch`
-→ 前端检测 URL query 参数 `auth`
+后端完成 code 换 token、加密存储后，302 重定向回监控页面
 
 ---
 

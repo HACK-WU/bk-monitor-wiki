@@ -98,7 +98,7 @@ class GetGrantedWorkspacesResource(TapdAPIResource):
     查询 app 已授权的 TAPD 项目列表。
     使用 app 级 Basic Auth（client_id + client_secret）。
     """
-    action = "/oauth/granted_workspaces"
+    action = "/app_auth/get_granted_workspaces"
     method = "GET"
     cache_seconds = 60   # 短 TTL 缓存（秒），超时时使用缓存数据
 ```
@@ -224,7 +224,7 @@ class RequestTokenResource(TapdAPIResource):
 {
   "access_token": "access_token_abc123def456",
   "expires_in": 7200,
-  "token_type": "token",
+  "token_type": "Bearer",
   "scope": "user_space",
   "resource": {
     "user_id": "user123"
@@ -238,7 +238,7 @@ class RequestTokenResource(TapdAPIResource):
 |------|------|------|
 | `access_token` | `string` | TAPD 用户态访问令牌 |
 | `expires_in` | `integer` | 过期时间（秒，如 7200 = 2 小时） |
-| `token_type` | `string` | 通常为 `token` |
+| `token_type` | `string` | 固定为 `Bearer` |
 | `scope` | `string` | 授权范围（如 `user_space`） |
 | `resource.user_id` | `string` | TAPD 用户唯一标识 |
 

@@ -45,7 +45,7 @@ GET /fta/issue/tapd/oauth_callback/
 
 | 字段 | 类型 | 来源 | 说明 |
 |------|------|------|------|
-| `code` | `string` | TAPD 注入 | 授权码（有效期 10min） |
+| `code` | `string` | TAPD 注入 | 授权码（有效期 **5min**） |
 | `state` | `string` | 后端生成，TAPD 带回 | 格式 `{nonce}:{bk_biz_id}` |
 | `resource[type]` | `string` | TAPD 注入 | 固定为 `user` |
 | `resource[user_id]` | `string` | TAPD 注入 | TAPD 用户 ID |
@@ -102,7 +102,7 @@ Location: https://monitor.bk.example.com/tapd/workspace?auth=error&reason=state_
 | `reason` | 含义 | 触发条件 |
 |----------|------|----------|
 | `state_mismatch` | Session state 不匹配 | Session 中无此 state 或 nonce 不匹配（CSRF 攻击或 Session 过期） |
-| `code_invalid` | 授权码无效 | code 已使用或超过 10min 有效期 |
+| `code_invalid` | 授权码无效 | code 已使用或超过 **5min** 有效期 |
 | `api_error` | TAPD API 异常 | `RequestTokenResource` 调用失败 |
 | `storage_error` | Redis 写入失败 | `setex` 操作异常 |
 
@@ -259,7 +259,7 @@ tapd_oauth_state_{bk_biz_id}
 | 维度 | B-03（应用态回调） | B-05（用户态回调） |
 |------|-------------------|-------------------|
 | **触发时机** | 管理员完成应用安装授权 | 用户完成 OAuth 授权 |
-| **state 机制** | `request.state_querystring`（框架/中间件解析的上下文参数） | Session state（明文 nonce + bk_biz_id） |
+| **state 机制** | `signed_state` HMAC-SHA256 验签（TAPD 原样带回，后端解密验签） | Session state（明文 nonce + bk_biz_id） |
 | **鉴权方式** | 请求来源一致性校验 | Session 比对（防 CSRF） |
 | **核心操作** | upsert binding（项目关联） | code 换 token → 加密存入 Redis |
 | **返回字段** | `workspace_id`（重定向参数） | 无（仅成功/失败状态） |

@@ -114,7 +114,7 @@ https://tapd.woa.com/oauth/authorize
       }
     ],
     "has_more": true,
-    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x#selected_workspace_id={workspace_id}"
+    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.bk.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x#selected_workspace_id={workspace_id}"
   }
 }
 ```
@@ -191,7 +191,7 @@ https://tapd.woa.com/oauth/authorize
 https://tapd.woa.com/oauth/open_app_install
   ?client_id=bkmonitor_tapd
   &test=1
-  &cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x
+  &cb=https%3A%2F%2Fmonitor.bk.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJia19iaXpfaWQiOjIsInRlbi4uLn0.WzG4x
   #selected_workspace_id={workspace_id}
 ```
 

@@ -162,7 +162,7 @@ https://tapd.woa.com/oauth/authorize
   "code": 403,
   "message": "TAPD 用户态授权未生效",
   "data": {
-    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https://monitor.bk.example.com/api/v4/issue/tapd/oauth_callback/&scope=user_space&state=nonce123:2",
+    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https://monitor.bk.example.com/fta/issue/tapd/oauth_callback/&scope=user_space&state=nonce123:2",
     "auth_method": "session"
   }
 }

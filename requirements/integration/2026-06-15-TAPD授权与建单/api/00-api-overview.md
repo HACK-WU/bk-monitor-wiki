@@ -24,8 +24,8 @@ document_type: api-overview
 |------|------|------|------|------|------|------|
 | B-01 | 查询用户可见 TAPD 项目列表 | [02-user-workspace.md](02-user-workspace.md) | `/fta/issue/tapd/user_workspace/` | GET  | `TAPD_REQUIRED` + IAM | 冷启动去关联下拉 |
 | B-07 | 查询 app 已授权 TAPD 项目列表 | [03-granted-workspace.md](03-granted-workspace.md) | `/fta/issue/tapd/workspace/` | POST | 日常建单下拉（**已有/无变更**） |
-| B-03 | 应用态授权回调 | [04-app-install-callback.md](04-app-install-callback.md) | `/api/v4/issue/tapd/app_install_callback/` | GET  | 请求来源校验 | 管理员安装后 TAPD 回调 |
-| B-05 | 用户态授权回调 | [05-oauth-callback.md](05-oauth-callback.md) | `/api/v4/issue/tapd/oauth_callback/` | GET  | Session state | 用户 OAuth 后 TAPD 回调 |
+| B-03 | 应用态授权回调 | [04-app-install-callback.md](04-app-install-callback.md) | `/fta/issue/tapd/app_install_callback/` | GET  | 请求来源校验 | 管理员安装后 TAPD 回调 |
+| B-05 | 用户态授权回调 | [05-oauth-callback.md](05-oauth-callback.md) | `/fta/issue/tapd/oauth_callback/` | GET  | Session state | 用户 OAuth 后 TAPD 回调 |
 
 > B-02 / B-04 / B-06 为后台内部 Resource 类定义，不在`.路由中暴露为独立端点，见 [06-resource-classes.md](06-resource-classes.md)。
 

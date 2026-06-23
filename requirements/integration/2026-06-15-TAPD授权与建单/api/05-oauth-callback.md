@@ -22,7 +22,7 @@ document_type: design
 | 属性 | 值 |
 |------|-----|
 | **接口名称** | 用户态授权回调 |
-| **端点** | `/api/v4/issue/tapd/oauth_callback/` |
+    | **端点** | `/fta/issue/tapd/oauth_callback/` |
 | **方法** | `GET` |
 | **视图类型** | Django 函数视图 |
 | **所在模块** | `kernel_api/views/v4/issue/callbacks.py` |
@@ -36,7 +36,7 @@ document_type: design
 ### Query 参数
 
 ```
-GET /api/v4/issue/tapd/oauth_callback/
+GET /fta/issue/tapd/oauth_callback/
   ?code=4f9b2fab25a7c69715d426295a66717769666a0c
   &state=nonce123:2
   &resource[type]=user
@@ -111,7 +111,7 @@ Location: https://monitor.bk.example.com/tapd/workspace?auth=error&reason=state_
 ## 内部调用链
 
 ```
-TAPD 回调 GET /api/v4/issue/tapd/oauth_callback/?code=xxx&state=nonce123:2
+TAPD 回调 GET /fta/issue/tapd/oauth_callback/?code=xxx&state=nonce123:2
 
   → 1. 从 request.GET 提取 code, state, resource（可选）
     → 2. 解析 state: nonce, bk_biz_id

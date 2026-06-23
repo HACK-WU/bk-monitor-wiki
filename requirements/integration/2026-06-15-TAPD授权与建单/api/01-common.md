@@ -24,8 +24,8 @@ document_type: design
 
 | 场景 | 规则 | 示例 |
 |------|------|------|
-| 后端返回 URL | **不编码**，直接返回原始字符串 | `https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&redirect_uri=https://monitor.bk.example.com/api/v4/issue/tapd/oauth_callback/&state=nonce123:2&scope=user_space` |
-| `install_url` 的 `cb` 参数 | **后端编码**，但 `#fragment` 中的占位符 `{workspace_id}` **跳过编码** | `cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...`（`#selected_workspace_id={workspace_id}` 保持未编码） |
+| 后端返回 URL | **不编码**，直接返回原始字符串 | `https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&redirect_uri=https://monitor.bk.example.com/fta/issue/tapd/oauth_callback/&state=nonce123:2&scope=user_space` |
+| `install_url` 的 `cb` 参数 | **后端编码**，但 `#fragment` 中的占位符 `{workspace_id}` **跳过编码** | `cb=https%3A%2F%2Fmonitor.bk.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...`（`#selected_workspace_id={workspace_id}` 保持未编码） |
 | 前端替换占位符 | 直接填入，**无需编码**（`#fragment` 无需编码即可使用） | `install_url.replace('{workspace_id}', item.workspace_id)` |
 
 ### 1.2 特殊字符处理
@@ -38,9 +38,9 @@ redirect_uri={redirect_uri}
 
 // install_url 中的 cb：后端编码，但 fragment 占位符跳过
 // 后端代码：先编码整个 cb URL，再还原占位符
-cb_encoded = urllib.parse.quote(f"https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/?signed_state={signed_state}", safe='')
+cb_encoded = urllib.parse.quote(f"https://monitor.bk.example.com/fta/issue/tapd/app_install_callback/?signed_state={signed_state}", safe='')
 cb_template = cb_encoded.replace(encoded_workspace_id_placeholder, "{workspace_id}")
-// 最终结果：cb=https%3A%2F%2Fmonitor.bk.example.com%2Fapi%2Fv4%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}
+// 最终结果：cb=https%3A%2F%2Fmonitor.bk.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}
 ```
 
 ### 1.3 install_url 格式
@@ -83,7 +83,7 @@ def generate_auth_url(bk_biz_id: int, request) -> str:
 
 ```javascript
 // 后端返回的 auth_url（未编码）
-const authUrl = 'https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&redirect_uri=https://monitor.bk.example.com/api/v4/issue/tapd/oauth_callback/&state=nonce123:2&scope=user_space';
+const authUrl = 'https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&redirect_uri=https://monitor.bk.example.com/fta/issue/tapd/oauth_callback/&state=nonce123:2&scope=user_space';
 
 // 方式一：直接跳转（浏览器会自动处理大部分编码）
 window.location.href = authUrl;
@@ -155,8 +155,12 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
 | 接口类型 | 路由注册位置 | 基类/视图 | URL 前缀 |
 |----------|-------------|-----------|----------|
 | **前端暴露接口** | `fta_web/issue/views.py` | `ResourceViewSet` + `ResourceRoute` | `/fta/issue/{endpoint}` |
-| **TAPD 回调接口** | `kernel_api/views/v4/issue/callbacks.py` | Django `View`（函数视图） | `/api/v4/issue/tapd/{callback_endpoint}` |
+| **TAPD 回调接口** | `kernel_api/views/v4/issue/callbacks.py`（函数视图直接注册） | Django `View`（函数视图） | `/fta/issue/tapd/{callback_endpoint}` |
 | **内部 Resource 类** | `bkmonitor/api/tapd/*.py` | 继承 `APIResource`/`TapdAPIResource` | 内部调用，无外部 URL |
+
+> **为什么回调接口前缀也是 `/fta/issue/tapd/`？**
+> 
+> `/api/v4/` 为蓝鲸网关统一入口，**不支持 302 重定向响应**，而 B-03 / B-05 两个回调接口必须返回 `302 Location` 重定向。因此这两个接口不能放在网关路由下，必须改用与前端暴露接口相同的前缀路径 `/fta/issue/tapd/`，直接由后端 Django 处理重定向。
 
 ### 4.2 URL 路由规则
 
@@ -168,8 +172,8 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
   GET  /fta/issue/tapd/user_workspace   # B-01（新增）
 
 TAPD 回调接口：
-  GET /api/v4/issue/tapd/app_install_callback/   # B-03（新增）
-  GET /api/v4/issue/tapd/oauth_callback/         # B-05（新增）
+  GET /fta/issue/tapd/app_install_callback/   # B-03（新增）
+  GET /fta/issue/tapd/oauth_callback/         # B-05（新增）
 ```
 
 ---

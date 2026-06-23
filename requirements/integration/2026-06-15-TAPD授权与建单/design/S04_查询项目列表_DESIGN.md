@@ -183,7 +183,7 @@ class ListUserVisibleTapdWorkspaceResource(Resource):
 >       "is_bound": "stale"
 >     }
 >   ],
->   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/api/v4/issue/tapd/app_install_callback/&state=n0nc3#selected_workspace_id={workspace_id}",
+>   "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https://monitor.bk.example.com/fta/issue/tapd/app_install_callback/&state=n0nc3#selected_workspace_id={workspace_id}",
 >   "method": "GET"
 > }
 > ```

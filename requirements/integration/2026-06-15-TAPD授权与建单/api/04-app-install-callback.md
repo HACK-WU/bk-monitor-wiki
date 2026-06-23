@@ -24,7 +24,7 @@ document_type: design
 | 属性 | 值 |
 |------|-----|
 | **接口名称** | 应用态授权回调 |
-| **端点** | `/api/v4/issue/tapd/app_install_callback/` |
+| **端点** | `/fta/issue/tapd/app_install_callback/` |
 | **方法** | `GET` |
 | **视图类型** | Django 函数视图 |
 | **所在模块** | `kernel_api/views/v4/issue/callbacks.py` |
@@ -40,7 +40,7 @@ document_type: design
 TAPD 完成应用安装授权后，将 `code`、`resource`、`signed_state` 等参数附加到回调 URL。
 
 ```
-GET /api/v4/issue/tapd/app_install_callback/
+GET /fta/issue/tapd/app_install_callback/
   ?code=4f9b2fab25a7c69715d426295a66717769666a0c
   &resource[type]=workspace
   &resource[workspace_id]=69990779
@@ -208,7 +208,7 @@ def verify_signed_state(signed_state: str, secret_key: str) -> dict:
 ## 内部调用链
 
 ```
-TAPD 回调 GET /api/v4/issue/tapd/app_install_callback/
+TAPD 回调 GET /fta/issue/tapd/app_install_callback/
   ?code=xxx&resource=...&signed_state=eyJ4e...WzG4x
 
   → 1. 从 request.GET 提取 code, resource, signed_state

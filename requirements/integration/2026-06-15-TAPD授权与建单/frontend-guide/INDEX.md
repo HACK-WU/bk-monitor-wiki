@@ -24,7 +24,7 @@ document_type: frontend-guide
 
 | # | 接口 | 方法 | 路径 | 说明 | 详细文档 |
 |---|------|------|------|------|----------|
-| 1 | 查询用户可见 TAPD 项目列表 | `GET` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态 | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
+| 1 | 查询用户可见 TAPD 项目列表 | `GET` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态；**新增** `redirect_uri_real` + `redirect_uri_verify` 必传参数 | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
 
 ### 1.2 前端跳转（非 API 调用）
 

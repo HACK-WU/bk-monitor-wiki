@@ -2,7 +2,8 @@
 id: REQ-20260615-001
 feature: TAPD授权与建单
 created: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 2
 tags: [integration, design, frontend, guide]
 author: AI
 document_type: frontend-guide
@@ -49,13 +50,17 @@ flowchart TD
 
 ```json
 {
-  "bk_biz_id": 2
+  "bk_biz_id": 2,
+  "redirect_uri_real": "https://monitor.example.com/#/tapd/workspace",
+  "redirect_uri_verify": "https://monitor.example.com/tapd/workspace"
 }
 ```
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|:----:|:------:|------|
 | `bk_biz_id` | `integer` | 是 | — | 蓝鲸业务 ID，从当前 URL 或状态管理中读取 |
+| `redirect_uri_real`  | `string` | 是 | — | 含 `#` 的真实前端地址，用于回调成功后的 302 重定向 |
+| `redirect_uri_verify` | `string` | 是（建议） | `redirect_uri_real` | 不含 `#` 的校验地址，传给 TAPD 作为 `redirect_uri`；若未传回退到 `redirect_uri_real` |
 
 → 成功响应（HTTP 200）：
 

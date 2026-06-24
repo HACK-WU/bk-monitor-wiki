@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 2
 tags: [integration, design, api]
 author: AI
 document_type: design
@@ -53,7 +53,7 @@ GET /fta/issue/tapd/oauth_callback/
 ### state 格式
 
 ```
-state = f"{nonce}:{bk_biz_id}"
+state_value = f"{nonce}:{bk_biz_id}"
 
 示例："adminuser:randomstr123:2"
 ```
@@ -62,6 +62,8 @@ state = f"{nonce}:{bk_biz_id}"
 |------|------|
 | `nonce` | `{username}:{随机串}`，用于防 CSRF |
 | `bk_biz_id` | 蓝鲸业务 ID，用于从 Session 中定位 state |
+
+> **注**：`state_value` 作为 URL 参数传给 TAPD，TAPD 回调时原样带回。但 Session 中存的是**完整 JSON**（含 `redirect_uri_real`），见 [01-common.md §2.5](01-common.md) |
 
 ### resource 结构
 
@@ -87,14 +89,16 @@ state = f"{nonce}:{bk_biz_id}"
 
 ```http
 HTTP/1.1 302 Found
-Location: https://monitor.bk.example.com/tapd/workspace?auth=success
+Location: https://monitor.bk.example.com/#/tapd/workspace?auth=success
 ```
+
+> 重定向地址从 Session JSON 中 `redirect_uri_real` 字段获取（如 `https://monitor.bk.example.com/#/tapd/workspace`）。
 
 ### 失败（重定向到错误页）
 
 ```http
 HTTP/1.1 302 Found
-Location: https://monitor.bk.example.com/tapd/workspace?auth=error&reason=state_mismatch
+Location: https://monitor.bk.example.com/#/tapd/workspace?auth=error&reason=state_mismatch
 ```
 
 ### 失败原因枚举
@@ -199,22 +203,27 @@ if encrypted:
 ### 写入（B-01 生成 auth_url 时）
 
 ```python
-def generate_auth_url(bk_biz_id: int, request) -> str:
-    """生成 TAPD OAuth 授权 URL，state 存入 Session"""
+def generate_auth_url(bk_biz_id: int, redirect_uri_real: str, request) -> str:
+    """生成 TAPD OAuth 授权 URL，state JSON 存入 Session"""
     nonce = f"{request.user.username}:{secrets.token_urlsafe(8)}"
-    state = f"{nonce}:{bk_biz_id}"
+    state_value = f"{nonce}:{bk_biz_id}"
 
-    # 存入 Session，key 按 bk_biz_id 隔离
-    request.session[f"tapd_oauth_state_{bk_biz_id}"] = state
+    # 存入 Session JSON，key 按 bk_biz_id 隔离
+    state_json = json.dumps({
+        "nonce": nonce,
+        "bk_biz_id": bk_biz_id,
+        "redirect_uri_real": redirect_uri_real,
+    })
+    request.session[f"tapd_oauth_state_{bk_biz_id}"] = state_json
 
     # 返回未编码 URL（前端自行处理）
     return (
         f"https://tapd.woa.com/oauth/authorize"
         f"?client_id={settings.TAPD_APP_ID}"
         f"&response_type=code"
-        f"&redirect_uri={settings.TAPD_OAUTH_CALLBACK_URL}"
+        f"&redirect_uri={redirect_uri_verify}"  # ← 不含 #
         f"&scope=user_space"
-        f"&state={state}"
+        f"&state={state_value}"
     )
 ```
 
@@ -224,20 +233,30 @@ def generate_auth_url(bk_biz_id: int, request) -> str:
 @login_exempt
 @csrf_exempt
 def tapd_oauth_callback(request):
-    state = request.GET.get("state", "")
-    nonce, bk_biz_id = state.rsplit(":", 1)
+    state_value = request.GET.get("state", "")
+    nonce, bk_biz_id = state_value.rsplit(":", 1)
 
-    # 从 Session 读取
+    # 从 Session 读取 JSON
     session_key = f"tapd_oauth_state_{bk_biz_id}"
-    expected_state = request.session.get(session_key)
+    state_json_str = request.session.get(session_key)
 
-    if not expected_state or expected_state != state:
-        return redirect(f"{settings.FRONTEND_URL}/tapd/workspace?auth=error&reason=state_mismatch")
+    if not state_json_str:
+        return redirect(f"https://monitor.bk.example.com/#/tapd/workspace?auth=error&reason=state_mismatch")
+
+    state_data = json.loads(state_json_str)
+    redirect_uri_real = state_data["redirect_uri_real"]
+
+    # 比对 nonce
+    if state_data.get("nonce") != nonce:
+        return redirect(f"{redirect_uri_real}?auth=error&reason=state_mismatch")
 
     # 比对成功后立即删除，防止重放攻击
     del request.session[session_key]
 
     # ... 继续 code 换 token ...
+
+    # 成功时 302 跳转到 redirect_uri_real
+    return redirect(f"{redirect_uri_real}?auth=success")
 ```
 
 ### Session Key 命名规范
@@ -297,3 +316,4 @@ tapd_oauth_state_{bk_biz_id}
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-24 | AI | Session state 升级为 JSON 格式（含 `redirect_uri_real`）；回调跳转地址从 Session 获取，替代 `settings.FRONTEND_URL` 硬编码 |

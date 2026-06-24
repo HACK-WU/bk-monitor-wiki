@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: Resource 框架
 relation: Resource框架自动发现与使用
-keywords: [Resource, resource, adapter, api, ResourceManager, 自动发现]
-exportedAt: "2026-06-23T09:04:55.083Z"
+keywords: [ResourceManager, 自动发现, resource, api, adapter]
+exportedAt: "2026-06-24T08:54:48.851Z"
 ---
 ### Resource 框架自动发现与使用方式
 - **自动发现入口**: `core/drf_resource/management/root.py`

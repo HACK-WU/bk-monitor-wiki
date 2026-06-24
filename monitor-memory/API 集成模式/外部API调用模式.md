@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: API 集成模式
 relation: 外部API调用模式
-keywords: [外部API, APIResource, base_url, action, module_name, get_headers, render_response_data]
-exportedAt: "2026-06-23T09:17:42.269Z"
+keywords: [APIResource, 外部API, HTTP]
+exportedAt: "2026-06-24T08:54:48.853Z"
 ---
 ### 外部API调用模式（api/ 目录）
 - **目录**: `api/` — 封装 monitor 访问第三方/内部其他系统的 API 接口

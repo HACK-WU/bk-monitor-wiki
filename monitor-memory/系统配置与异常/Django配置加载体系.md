@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: 系统配置与异常
 relation: Django配置加载体系
-keywords: [settings, 配置加载, Django, environment, role, web, api, worker, ENVIRONMENT, ROLE, config]
-exportedAt: "2026-06-23T09:10:17.403Z"
+keywords: [Django, settings, config, 环境变量, ROLE, ENVIRONMENT, 角色]
+exportedAt: "2026-06-24T08:54:48.855Z"
 ---
 ### Django 配置加载体系（settings.py + config/）
 

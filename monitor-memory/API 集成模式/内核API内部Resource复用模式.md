@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: API 集成模式
 relation: 内核API内部Resource复用模式
-keywords: [内部调用]
-exportedAt: "2026-06-23T09:13:28.765Z"
+keywords: [kernel_api, 内部调用, Resource, 复用, 批发场景]
+exportedAt: "2026-06-24T08:54:48.852Z"
 ---
 ### 内部 Resource 复用模式（kernel_api/resource/）
 - **设计目的**: `kernel_api/resource/` 下的 Resource 不是给前端直接调用的，而是作为**批发场景**使用，通常在其他 Resource 内部被复用

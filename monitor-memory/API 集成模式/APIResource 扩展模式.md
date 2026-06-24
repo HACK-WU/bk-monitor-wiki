@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: API 集成模式
 relation: APIResource 扩展模式
-keywords: [TapdAPIResource, APIResource, Basic Auth, render_response_data, 第三方 API]
-exportedAt: "2026-06-23T08:33:00.267Z"
+keywords: [APIResource, tapd, base_url, get_headers, render_response]
+exportedAt: "2026-06-24T08:54:48.854Z"
 ---
 ### TapdAPIResource（第三方 API 封装模板）
 - **类**: `api.tapd.default.TapdAPIResource`

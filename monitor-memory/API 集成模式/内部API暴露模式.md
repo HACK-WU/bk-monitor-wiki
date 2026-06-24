@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: API 集成模式
 relation: 内部API暴露模式
-keywords: [kernel_api, ResourceViewSet, ResourceRoute, JWT, 认证中间件]
-exportedAt: "2026-06-23T09:04:31.723Z"
+keywords: [kernel_api, JWT, Token, 认证, 中间件, apigw]
+exportedAt: "2026-06-24T08:54:48.853Z"
 ---
 ### 内部API暴露模式（kernel_api/ 目录）
 - **目录**: `kernel_api/` — monitor 暴露给其他项目调用的 API（非前端），通过蓝鲸 API 网关调用

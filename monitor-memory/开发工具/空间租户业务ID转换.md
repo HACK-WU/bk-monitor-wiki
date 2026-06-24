@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: 开发工具
 relation: 空间租户业务ID转换
-keywords: [space_uid, bk_biz_id, bk_tenant_id, SpaceApi, 转换]
-exportedAt: "2026-06-23T09:17:27.665Z"
+keywords: [space_uid, bk_biz_id, bk_tenant_id, SpaceApi, 转换, lru_cache]
+exportedAt: "2026-06-24T08:54:48.857Z"
 ---
 ### space_uid ↔ bk_biz_id 转换
 - **入口**: `bkm_space.utils`

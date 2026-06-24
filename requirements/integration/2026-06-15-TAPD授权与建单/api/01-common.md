@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 2
 tags: [integration, design, api]
 author: AI
 document_type: design
@@ -100,7 +100,80 @@ function buildInstallUrl(template, { state, sig, workspaceId }) {
 
 ---
 
-## 二、响应格式
+## 二、Redirect URI 双地址约定
+
+### 2.1 背景
+
+TAPD 对 `redirect_uri` 的校验规则——**`cb` 参数中不能包含 `#` 符号**。而蓝鲸监控前端使用 hash 路由（如 `/#/tapd/workspace`），URL 中天然包含 `#`。
+
+因此，前端向后端传递**两个地址**：
+
+| 地址名称 | 格式 | 用途 |
+|----------|------|------|
+| `redirect_uri_real` | 含 `#`（如 `https://monitor.bk.example.com/#/tapd/workspace`） | **真实的前端页面地址**，回调成功后 302 跳转到此 |
+| `redirect_uri_verify` | 不含 `#`（如 `https://monitor.bk.example.com/tapd/workspace`） | **传递给 TAPD 的校验地址**，用于 `redirect_uri` / `cb` 参数 |
+
+### 2.2 前端 → 后端传递
+
+```javascript
+// B-01 请求时，前端传两个参数
+GET /fta/issue/tapd/user_workspace/?bk_biz_id=2
+  &redirect_uri_real=https://monitor.bk.example.com/#/tapd/workspace
+  &redirect_uri_verify=https://monitor.bk.example.com/tapd/workspace
+```
+
+| 参数 | 来源 | 说明 |
+|------|------|------|
+| `redirect_uri_real` | 前端路由系统 | 含 hash 的真实 URL，回调时 302 跳转用 |
+| `redirect_uri_verify` | 前端构建 | 去掉 `#` 后的纯 path URL，仅在传给 TAPD 的 `redirect_uri` / `cb` 中使用 |
+
+### 2.3 后端存储与召回
+
+后端收到两个地址后，连同其他上下文一并存入状态载体，回调时取出 `redirect_uri_real` 进行重定向：
+
+| 授权类型 | 状态载体 | `redirect_uri_real` 存储位置 | 流转路径 |
+|----------|----------|----------------------------|----------|
+| **用户态 OAuth**（B-05） | Session | `request.session[f"tapd_oauth_state_{bk_biz_id}"] = state_json` | B-01 生成 auth_url → Session 存 state → B-05 回调取出 → 302 跳转 |
+| **应用态授权**（B-03） | `signed_state` | `signed_state.payload.redirect_uri_real` | B-01 生成 install_url → signed_state 烘焙 → TAPD 回调带回 → B-03 验签后取出 → 302 跳转 |
+
+### 2.4 使用规则
+
+1. **`redirect_uri_verify`** 仅传给 TAPD（作为 `redirect_uri` 或 `cb` 参数值），不在其他地方使用
+2. **`redirect_uri_real`** 仅用于 B-03 / B-05 回调成功后的 302 重定向，不传给 TAPD
+3. 两个地址均由**前端**决定并传入，后端不做 URL 构造或 path 猜测
+4. 若前端未传 `redirect_uri_verify`，后端回退到用 `redirect_uri_real` 作为 TAPD 校验地址并**记录警告日志**
+
+### 2.5 状态存储格式示例
+
+#### Session State（B-05）
+
+```python
+state_json = json.dumps({
+    "nonce": "adminuser:randomstr123",
+    "bk_biz_id": 2,
+    "redirect_uri_real": "https://monitor.bk.example.com/#/tapd/workspace"
+})
+request.session[f"tapd_oauth_state_{bk_biz_id}"] = state_json
+```
+
+> 注意：Session 中存的是 JSON 字符串（原明文 state `{nonce}:{bk_biz_id}` 升级为 JSON 对象）。
+
+#### signed_state Payload（B-03）
+
+```json
+{
+  "bk_biz_id": 2,
+  "bk_tenant_id": "default",
+  "space_uid": "bkcc__2",
+  "initiator": "artemis",
+  "exp": 1719072000,
+  "redirect_uri_real": "https://monitor.bk.example.com/#/tapd/bind"
+}
+```
+
+---
+
+## 三、响应格式
 
 ### 2.1 蓝鲸标准 Response Envelope
 
@@ -128,7 +201,7 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
 
 ---
 
-## 三、鉴权机制
+## 四、鉴权机制
 
 ### 3.1 前端暴露接口
 
@@ -148,7 +221,7 @@ TAPD 回调接口（B-03、B-05）返回 `302 Found` 重定向，**无 JSON 响�
 
 ---
 
-## 四、路由组织
+## 五、路由组织
 
 ### 4.1 接口类型与注册位置
 
@@ -178,7 +251,7 @@ TAPD 回调接口：
 
 ---
 
-## 五、WorkspaceItem 数据结构（四态）
+## 六、WorkspaceItem 数据结构（四态）
 
 **B-01（新增）的 WorkspaceItem 结构**：
 
@@ -201,7 +274,7 @@ TAPD 回调接口：
 
 ---
 
-## 六、错误处理
+## 七、错误处理
 
 **不使用自定义错误码体系**，统一复用蓝鲸平台标准 HTTP status + message。
 
@@ -219,3 +292,4 @@ TAPD 回调接口：
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-24 | AI | 新增 Redirect URI 双地址约定（`redirect_uri_real`/`redirect_uri_verify`）|

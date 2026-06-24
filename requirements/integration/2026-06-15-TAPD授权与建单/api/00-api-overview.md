@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 2
 tags: [integration, design, api]
 author: AI
 document_type: api-overview
@@ -23,11 +23,12 @@ document_type: api-overview
 | 编号 | 名称 | 文件 | 端点 | 方法   | 鉴权 | 用途 |
 |------|------|------|------|------|------|------|
 | B-01 | 查询用户可见 TAPD 项目列表 | [02-user-workspace.md](02-user-workspace.md) | `/fta/issue/tapd/user_workspace/` | GET  | `TAPD_REQUIRED` + IAM | 冷启动去关联下拉 |
+| B-04 | 解绑 TAPD 项目 | [07-unbind-workspace.md](07-unbind-workspace.md) | `/fta/issue/tapd/workspace/unbind/` | POST | IAM | 删除本地 binding |
 | B-07 | 查询 app 已授权 TAPD 项目列表 | [03-granted-workspace.md](03-granted-workspace.md) | `/fta/issue/tapd/workspace/` | POST | 日常建单下拉（**已有/无变更**） |
 | B-03 | 应用态授权回调 | [04-app-install-callback.md](04-app-install-callback.md) | `/fta/issue/tapd/app_install_callback/` | GET  | 请求来源校验 | 管理员安装后 TAPD 回调 |
 | B-05 | 用户态授权回调 | [05-oauth-callback.md](05-oauth-callback.md) | `/fta/issue/tapd/oauth_callback/` | GET  | Session state | 用户 OAuth 后 TAPD 回调 |
 
-> B-02 / B-04 / B-06 为后台内部 Resource 类定义，不在`.路由中暴露为独立端点，见 [06-resource-classes.md](06-resource-classes.md)。
+> B-02 / B-06 为后台内部 Resource 类定义，不在路由中暴露为独立端点，见 [06-resource-classes.md](06-resource-classes.md)。
 
 ---
 
@@ -52,8 +53,9 @@ api/
 |--------|------|------|
 | **URL 编码** | 后端返回 URL 字符串**不进行编码**，前端自行处理 | 01-common.md |
 | **错误码** | 不使用自定义 `error_code`，复用 HTTP status + `message`| 01-common.md |
-| **install_url** | 后端预写固定 URL，仅 `#selected_workspace_id={workspace_id}` 需前端替换 | 02-user-workspace.md |
-| **Session State** | OAuth `state` 存 Django Session，回调比对后删除防重放 | 05-oauth-callback.md |
+| **install_url** | 后端预写固定 URL，`cb` 中含 `redirect_uri_verify` 和 `signed_state.payload.redirect_uri_real`；`#selected_workspace_id={workspace_id}` 需前端替换 | 02-user-workspace.md |
+| **Redirect URI 双地址** | 前端传两条 URI：`redirect_uri_real`（含 `#`）和 `redirect_uri_verify`（无 `#`）；后者传给 TAPD 校验，前者存 state 用于回调 302 | 01-common.md §2、02-user-workspace.md §8 |
+| **Session State** | OAuth `state` 存 Django Session，格式 JSON（含 `redirect_uri_real`），回调比对后删除防重放 | 05-oauth-callback.md v2 |
 | **Token 存储** | AESCipher 加密后存 Redis，key=`tapd_uat:{tenant}:{user}`，TTL=7200s | 05-oauth-callback.md |
 | **IV 安全** | `AESCipher`**禁止传固定 IV**，每次随机生成 | 05-oauth-callback.md |
 | **回调响应** | B-03 / B-05 均返回 **302 重定向**，无 JSON 响应体 | [04-app-install-callback.md](04-app-install-callback.md)、[05-oauth-callback.md](05-oauth-callback.md) |
@@ -66,6 +68,7 @@ api/
 
 ```
 B-01 用户可见项目列表
+  ├── 入参：`redirect_uri_real`, `redirect_uri_verify`（B-01 接收）
   ├── Redis: tapd_uat:{tenant}:{user}（B-05 写入）
   ├── TapdUserAPIResource（B-06）→ Bearer Token 调用 TAPD 用户态 API
   ├── GetGrantedWorkspacesResource（B-02）→ Basic Auth 获取已授权项目
@@ -76,15 +79,17 @@ B-07 app 已授权项目列表
   └── 查本地 TapdWorkspaceBinding → 标记四态
 
 B-03 应用态授权回调
-  ├── request.state_querystring → 提取上下文参数校验来源
+  ├── signed_state → 从 query 提取，验签/验过期，含 `redirect_uri_real`
   ├── GetWorkspaceInfoResource（B-04）→ Basic Auth 获取项目信息
   └── TapdWorkspaceBinding.upsert → 幂等写入
+  └── 302 重定向到 `signed_state.payload.redirect_uri_real`
 
 B-05 用户态授权回调
-  ├── Session: tapd_oauth_state_{bk_biz_id}（B-01 写入）
+  ├── Session: tapd_oauth_state_{bk_biz_id}（B-01 写入）→ 格式：JSON 含 `redirect_uri_real`
   ├── RequestTokenResource（B-05）→ code 换 access_token
   ├── AESCipher → Token 加密
-  └── Redis: setex tapd_uat:{tenant}:{user} → Token 存储
+  ├── Redis: setex tapd_uat:{tenant}:{user} → Token 存储
+  └── 302 重定向到 `session_state.redirect_uri_real`
 ```
 
 ---
@@ -96,7 +101,8 @@ B-05 用户态授权回调
 | `client_id` | `fta_settings.TAPD_APP_ID` | 配置项 |
 | `client_secret` | `fta_settings.TAPD_APP_SECRET` | 配置项 |
 | `SECRET_KEY` | Django `settings.SECRET_KEY` | AESCipher 密钥（B-05 Token 加密）|
-| `redirect_uri` | `fta_settings.SAAS_OAUTH_CALLBACK_URL` | 配置项 |
+| `redirect_uri_verify` | B-01 前端请求参数（无 `#` 锚点）；或 fallback 到 `redirect_uri_real` | 传给 TAPD 的 redirect_uri/cb 校验地址 |
+| `redirect_uri_real`  | B-01 前端请求参数（含 `#` 锚点） | 回调成功后 302 重定向目标地址，存于 state/signed_state payload |
 | `bk_tenant_id` | `request.any_source("bk_tenant_id")` | 框架轮询获取 |
 
 ---
@@ -106,3 +112,4 @@ B-05 用户态授权回调
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-24 | AI | 增加 Redirect URI 双地址约定（`redirect_uri_real` / `redirect_uri_verify`），更新 B-01/B-03/B-05 依赖关系和约束速查 |

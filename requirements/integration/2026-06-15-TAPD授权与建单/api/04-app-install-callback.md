@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 3
+updated: 2026-06-24
+version: 4
 tags: [integration, design, api]
 author: AI
 document_type: design
@@ -99,6 +99,8 @@ Location: https://monitor.bk.example.com/tapd/bind?tapd_bind=error&reason=invali
 | `api_error` | TAPD API 异常 | `get_workspace_info` 调用失败 |
 | `db_error` | 数据库写入失败 | upsert binding 失败 |
 
+> 注：所有重定向地址均从 `signed_state.payload.redirect_uri_real` 获取，不依赖 `settings` 硬编码。
+
 ---
 
 ## signed_state 机制
@@ -120,7 +122,8 @@ signed_state = base64url(json_payload).hmac_signature
   "bk_tenant_id": "default",
   "space_uid": "bkcc__2",
   "initiator": "artemis",
-  "exp": 1719072000
+  "exp": 1719072000,
+  "redirect_uri_real": "https://monitor.bk.example.com/#/tapd/bind"
 }
 ```
 
@@ -131,6 +134,8 @@ signed_state = base64url(json_payload).hmac_signature
 | `space_uid` | `string` | 蓝鲸空间唯一标识 |
 | `initiator` | `string` | 关联动作的**真实发起人**（B-01 生成 install_url 时的当前登录用户 username） |
 | `exp` | `integer` | 过期时间戳（Unix epoch，建议 TTL = 15min） |
+| `redirect_uri_real` | `string` | 前端传入的真实重定向地址（含 `#`），B-03 回调成功后 302 跳转用。
+                     由 B-01 在生成 install_url 时从前端 `redirect_uri_real` 参数写入。 |
 
 ### HMAC 签名算法
 
@@ -224,7 +229,8 @@ TAPD 回调 GET /fta/issue/tapd/app_install_callback/
                workspace_id, workspace_name,
                create_user = initiator,       # ← 真实发起人
                update_user = initiator)       # 管理员在管理员端完成授权，不依赖管理员登录态
-            → 6. 302 ?tapd_bind=success&workspace_id=xxx
+                → 6. 提取 payload.redirect_uri_real
+        → 7. 302 {redirect_uri_real}?tapd_bind=success&workspace_id=xxx
 ```
 
 > **关键设计**：`create_user` 和 `update_user` 使用 `initiator`（从 `signed_state` 提取的 B-01 发起用户），而非 `current_user`（回调时管理员可能不在蓝鲸登录态）。这确保了跨浏览器/跨账号场景下的审计链完整性。
@@ -292,3 +298,4 @@ ON DUPLICATE KEY UPDATE
 | 1 | 2026-06-22 | AI | 初始创建（含 signed_state HMAC 验签） |
 | 2 | 2026-06-22 | AI | 简化：移除 signed_state/HMAC，改用 request.state_querystring 校验 |
 | 3 | 2026-06-22 | AI | **恢复**：按评审结论 A2 恢复 `signed_state` HMAC 机制，增加 `initiator` 从 `signed_state` 中提取替代 `current_user` |
+| 4 | 2026-06-24 | AI | signed_state payload 增加 `redirect_uri_real`，回调成功时 302 跳转到该地址（替代硬编码 `settings.FRONTEND_URL`） |

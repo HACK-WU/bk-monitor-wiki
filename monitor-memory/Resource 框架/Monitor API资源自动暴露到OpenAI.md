@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: Resource 框架
 relation: Monitor API资源自动暴露到OpenAI
-keywords: [monitor_api, OpenAI]
-exportedAt: "2026-06-23T09:13:14.682Z"
+keywords: [OpenAI, monitor_api, ResourceViewSet, 自动注册]
+exportedAt: "2026-06-24T08:54:48.852Z"
 ---
 ### Monitor API 资源自动暴露到 OpenAI
 - **自动注册机制**: `monitor_web/monitor_api/views/` 下新增的 `ResourceViewSet`（继承 `ResourceViewSet`）

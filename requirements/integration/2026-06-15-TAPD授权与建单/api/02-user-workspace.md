@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 3
 tags: [integration, design, api]
 author: AI
 document_type: design
@@ -38,11 +38,18 @@ document_type: design
 | 字段 | 类型 | 必填 | 默认值 | 约束 |
 |------|------|------|--------|------|
 | `bk_biz_id` | `integer` | 是 | — | 正整数 |
+| `redirect_uri_real` | `string (URL)` | 是 | — | 含 `#` 的真实前端页面地址 |
+| `redirect_uri_verify` | `string (URL)` | 是 | — | 不含 `#` 的 TAPD 校验地址 |
+
+> `redirect_uri_real` 与 `redirect_uri_verify` 的详细约定见 [01-common.md §2 Redirect URI 双地址约定](01-common.md)。
 
 ### 请求示例
 
 ```http
-GET /fta/issue/tapd/user_workspace/?bk_biz_id=2
+GET /fta/issue/tapd/user_workspace/
+  ?bk_biz_id=2
+  &redirect_uri_real=https://monitor.bk.example.com/#/tapd/workspace
+  &redirect_uri_verify=https://monitor.bk.example.com/tapd/workspace
 ```
 
 ---
@@ -71,14 +78,41 @@ class TAPD_REQUIRED(BasePermission):
 https://tapd.woa.com/oauth/authorize
   ?client_id={settings.TAPD_APP_ID}
   &response_type=code
-  &redirect_uri={settings.TAPD_OAUTH_CALLBACK_URL}
+  &redirect_uri={redirect_uri_verify}
   &scope=user_space
   &state={nonce}:{bk_biz_id}
 ```
 
-- `redirect_uri` 和 `state` **不进行 URL 编码**，前端自行处理
+- `redirect_uri` = 前端传入的 `redirect_uri_verify`（**不含 `#`**）
 - `state` 格式：`{username}:{随机串}:{bk_biz_id}`
-- `state` 连同完整值存入 `request.session[f'tapd_oauth_state_{bk_biz_id}']`
+- `state` 与 `redirect_uri_real` 一并存入 Session JSON，见下方 **Session State 存储**
+- URL 参数**不进行 URL 编码**，前端自行处理
+
+### Session State 存储（B-01 生成 auth_url 时）
+
+```python
+def generate_auth_url(bk_biz_id: int, redirect_uri_real: str, request) -> str:
+    """生成 TAPD OAuth 授权 URL，state JSON 存入 Session"""
+    nonce = f"{request.user.username}:{secrets.token_urlsafe(8)}"
+    state_value = f"{nonce}:{bk_biz_id}"
+
+    # state 升级为 JSON，存入 redirect_uri_real
+    state_json = json.dumps({
+        "nonce": nonce,
+        "bk_biz_id": bk_biz_id,
+        "redirect_uri_real": redirect_uri_real,
+    })
+    request.session[f"tapd_oauth_state_{bk_biz_id}"] = state_json
+
+    return (
+        f"https://tapd.woa.com/oauth/authorize"
+        f"?client_id={settings.TAPD_APP_ID}"
+        f"&response_type=code"
+        f"&redirect_uri={redirect_uri_verify}"  # 不含 #
+        f"&scope=user_space"
+        f"&state={state_value}"
+    )
+```
 
 ---
 
@@ -195,7 +229,7 @@ https://tapd.woa.com/oauth/open_app_install
 | `client_id` | 后端预写 | 固定值 `bkmonitor_tapd` |
 | `test` | 后端预写 | `1`=测试应用，`0`=正式应用（上架后改） |
 | `cb` | 后端生成 | 回跳 URL（**整体 URL 编码**，防止 query string 解析歧义），指向 B-03 回调端点，内嵌 `signed_state`。`#fragment` 中的 `{workspace_id}` 占位符**跳过编码** |
-| `signed_state` | 后端生成 | HMAC 签名状态串（`base64url(json).hmac`），内嵌在编码后的 `cb` 中，TAPD 原样带回回调 URL，B-03 验签 |
+| `signed_state` | 后端生成 | HMAC 签名状态串（`base64url(json).hmac`），内嵌在编码后的 `cb` 中，TAPD 原样带回回调 URL，B-03 验签。**payload 含 `redirect_uri_real`** |
 | `selected_workspace_id` | 前端填入 | `#fragment` 参数，值为 `item.workspace_id` |
 
 ### 占位符
@@ -203,6 +237,23 @@ https://tapd.woa.com/oauth/open_app_install
 | 占位符 | 替换值 | 来源 |
 |--------|--------|------|
 | `{workspace_id}` | TAPD 项目 ID | 前端从列表项 `item.workspace_id` 填入 |
+
+### signed_state 中的 redirect_uri_real
+
+`signed_state` 的 JSON payload 现在包含 `redirect_uri_real`：
+
+```json
+{
+  "bk_biz_id": 2,
+  "bk_tenant_id": "default",
+  "space_uid": "bkcc__2",
+  "initiator": "artemis",
+  "exp": 1719072000,
+  "redirect_uri_real": "https://monitor.bk.example.com/#/tapd/bind"
+}
+```
+
+> `redirect_uri_real` 在 B-03 回调验签后取出，用于 302 重定向到真实前端页面。
 
 ### 前端使用示例
 
@@ -303,3 +354,4 @@ def try_bind_importable(
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
 | 2 | 2026-06-22 | AI | 修复：`generate_auth_url` 签名增加 `request` 参数；`install_url` 条件补充 `stale` 状态；install_url 中 `state` 改 `signed_state` |
+| 3 | 2026-06-24 | AI | 新增 `redirect_uri_real`/`redirect_uri_verify` 双地址；auth_url 使用 `redirect_uri_verify`；Session state 升级为 JSON 含 `redirect_uri_real`；install_url 的 signed_state 含 `redirect_uri_real` |

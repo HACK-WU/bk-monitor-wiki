@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-15
-updated: 2026-06-22
-version: 1
+updated: 2026-06-24
+version: 2
 tags: [integration, design, api, resource]
 author: AI
 document_type: design
@@ -291,6 +291,73 @@ IssueAPIResource / BKMonitorAPIResource (api/issue/default.py)
 | `api/tapd/default.py` | `GetGrantedWorkspacesResource`、`GetWorkspaceInfoResource`、`RequestTokenResource` | B-02, B-04, B-05 |
 | `utils/tapd_auth.py` | `generate_auth_url`、`generate_install_url`、`generate_signed_state`、`verify_signed_state` | B-01, B-03 |
 
+### 工具函数签名变更
+
+#### `generate_auth_url`（B-01）
+
+```python
+# 变更前
+def generate_auth_url(bk_biz_id: int, request) -> str:
+    pass
+
+# 变更后 — 增加 redirect_uri_real
+from urllib.parse import quote
+
+def generate_auth_url(
+    bk_biz_id: int,
+    redirect_uri_real: str,      # ← 前端传入：含 # 的真实地址（回调 302 用）
+    request
+) -> str:
+    """生成 TAPD OAuth 授权 URL，state JSON 存入 Session"""
+    nonce = f"{request.user.username}:{secrets.token_urlsafe(8)}"
+    state_value = f"{nonce}:{bk_biz_id}"
+
+    state_json = json.dumps({
+        "nonce": nonce,
+        "bk_biz_id": bk_biz_id,
+        "redirect_uri_real": redirect_uri_real,
+    })
+    request.session[f"tapd_oauth_state_{bk_biz_id}"] = state_json
+
+    return (
+        f"https://tapd.woa.com/oauth/authorize"
+        f"?client_id={settings.TAPD_APP_ID}"
+        f"&response_type=code"
+        f"&redirect_uri={redirect_uri_verify}"  # ← 不含 #（TAPD 校验用）
+        f"&scope=user_space"
+        f"&state={state_value}"
+    )
+```
+
+> `redirect_uri_verify` 由 B-01 请求参数传入。
+
+#### `generate_install_url`（B-01）
+
+```python
+# 变更前 — 内部使用 settings.TAPD_OAUTH_CALLBACK_URL 构建 cb
+def generate_install_url(bk_biz_id: int, signed_state: str) -> str:
+    pass
+
+# 变更后 — cb 中的 redirect_uri_verify 来自前端请求参数
+def generate_install_url(
+    bk_biz_id: int,
+    signed_state: str,
+    redirect_uri_verify: str,    # ← 前端传入：不含 # 的校验地址
+) -> str:
+    """生成 TAPD open_app_install URL"""
+    cb = urllib.parse.quote(
+        f"{redirect_uri_verify}/fta/issue/tapd/app_install_callback/?signed_state={signed_state}",
+        safe=''
+    )
+    return (
+        f"https://tapd.woa.com/oauth/open_app_install"
+        f"?client_id={settings.TAPD_APP_ID}"
+        f"&test=1"
+        f"&cb={cb}"
+        f"#selected_workspace_id={{workspace_id}}"
+    )
+```
+
 ---
 
 ## 版本记录
@@ -298,3 +365,4 @@ IssueAPIResource / BKMonitorAPIResource (api/issue/default.py)
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-24 | AI | `generate_auth_url` 增加 `redirect_uri_real` 参数；`generate_install_url` 增加 `redirect_uri_verify` 参数；新增工具函数签名变更说明 |

@@ -1,8 +1,8 @@
 ---
-groupPath: 通用记忆片段
+groupPath: Resource 框架
 relation: Resource 框架使用小技巧
-keywords: [Resource, drf_resource, core.drf_resource, perform_request, bulk_request, ResourceManager, ResourceShortcut, thread_backend, ThreadPool]
-exportedAt: "2026-06-23T08:20:19.555Z"
+keywords: [Resource, drf_resource, perform_request, bulk_request, delay, serializer]
+exportedAt: "2026-06-24T08:54:48.850Z"
 ---
 # Resource 框架使用小技巧
 

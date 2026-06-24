@@ -201,9 +201,9 @@
         {
           "id": "rel_032",
           "text": "Resource 框架使用小技巧",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782305064976,
           "isImported": false
         },
         {
@@ -348,55 +348,6 @@
       ],
       "max_hot_count": 10
     },
-    "开发工具": {
-      "hot_relations": [
-        {
-          "id": "rel_042",
-          "text": "加密工具",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
-          "id": "rel_043",
-          "text": "批量操作框架",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
-          "id": "rel_044",
-          "text": "空间租户业务ID转换",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        }
-      ],
-      "keywords": [
-        "AESCipher",
-        "加密",
-        "AES",
-        "CBC",
-        "SHA256",
-        "SECRET_KEY",
-        "IV",
-        "批量",
-        "batch",
-        "ThreadPoolExecutor",
-        "并发",
-        "IssueFrozenError",
-        "space_uid",
-        "bk_biz_id",
-        "bk_tenant_id",
-        "SpaceApi",
-        "转换",
-        "lru_cache"
-      ],
-      "max_hot_count": 10
-    },
     "最近需求": {
       "hot_relations": [
         {
@@ -488,9 +439,9 @@
         {
           "id": "rel_054",
           "text": "业务空间与租户",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782305063014,
           "isImported": false,
           "memoryId": "90a6d92c-b65d-43a4-bf1e-a5e3936dcb36"
         },
@@ -505,9 +456,9 @@
         {
           "id": "rel_056",
           "text": "请求上下文与环境变量",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782305063969,
           "isImported": false
         }
       ],
@@ -541,5 +492,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-24T12:13:42.839Z"
+  "updatedAt": "2026-06-24T12:48:06.231Z"
 }

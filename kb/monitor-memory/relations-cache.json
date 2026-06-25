@@ -317,18 +317,27 @@
         {
           "id": "rel_040",
           "text": "Django配置加载体系",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782359687576,
           "isImported": false
         },
         {
           "id": "rel_041",
           "text": "异常处理流程",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782359688615,
+          "isImported": false
+        },
+        {
+          "id": "rel_061",
+          "text": "三种运行环境角色隔离与调用边界",
           "score": 0,
           "useCount": 0,
           "lastUsedTime": null,
-          "isImported": false
+          "isImported": false,
+          "memoryId": "884a006a-c56a-47c6-abef-8d4ef9d2e6ce"
         }
       ],
       "keywords": [
@@ -344,7 +353,12 @@
         "APIError",
         "BKAPIError",
         "CustomException",
-        "exception_handler"
+        "exception_handler",
+        "角色隔离",
+        "INSTALLED_APPS",
+        "kernel_api",
+        "monitor_saas",
+        "alarm_backends"
       ],
       "max_hot_count": 10
     },
@@ -353,16 +367,30 @@
         {
           "id": "rel_046",
           "text": "[2026-06-24] 补全 monitor-memory 和 user-profile 缺失的 Group 索引",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782353660417,
+          "isImported": false
+        },
+        {
+          "id": "rel_057",
+          "text": "[2026-06-25] B-01 POST改造与signed_state自包含机制重构",
           "score": 0,
           "useCount": 0,
           "lastUsedTime": null,
-          "isImported": false
+          "isImported": false,
+          "memoryId": "cf470658-8b50-4fa4-af64-074e7ab7da70"
         }
       ],
       "keywords": [
         "monitor-memory",
         "user-profile",
-        "模板"
+        "模板",
+        "B-01",
+        "POST",
+        "signed_state",
+        "OAuth",
+        "TAPD"
       ],
       "max_hot_count": 10
     },
@@ -371,36 +399,57 @@
         {
           "id": "rel_047",
           "text": "已完成: [2026-06-24] ✅ 补全 monitor-memory 和 user-profile 缺失的 Group 索引（monitor-memory +11, user-profile +2）",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782353661800,
+          "isImported": false
+        },
+        {
+          "id": "rel_058",
+          "text": "进行中: [2026-06-25] 🔄 B-01 POST改造与signed_state自包含机制编码完成，待修复Review问题",
           "score": 0,
           "useCount": 0,
           "lastUsedTime": null,
           "isImported": false
+        },
+        {
+          "id": "rel_059",
+          "text": "已完成: [2026-06-25] ✅ B-01 POST改造CodeReview完成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "bd543c78-7227-4357-b4ac-4a839a00900b"
         }
       ],
       "keywords": [
-        "进度"
+        "进度",
+        "B-01",
+        "进行中",
+        "POST",
+        "signed_state",
+        "完成"
       ],
       "max_hot_count": 10
     },
     "工具库": {
       "hot_relations": [
         {
-          "id": "rel_048",
-          "text": "Redis 缓存与分布式锁",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "id": "rel_054",
+          "text": "业务空间与租户",
+          "score": 1.9992545140893472,
+          "useCount": 2,
+          "lastUsedTime": 1782355239661,
           "isImported": false,
-          "memoryId": "c3f88056-42c2-43aa-b9ad-92171ddf65c4"
+          "memoryId": "912fc7ba-0577-48f7-8c38-7db0cf1081f7"
         },
         {
-          "id": "rel_049",
-          "text": "哈希与一致性哈希",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryId": "0270958a-91f3-490e-ab66-052a362ac4e6"
+          "id": "rel_056",
+          "text": "请求上下文与环境变量",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782305063969,
+          "isImported": false
         },
         {
           "id": "rel_050",
@@ -437,15 +486,6 @@
           "isImported": false
         },
         {
-          "id": "rel_054",
-          "text": "业务空间与租户",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782305063014,
-          "isImported": false,
-          "memoryId": "90a6d92c-b65d-43a4-bf1e-a5e3936dcb36"
-        },
-        {
           "id": "rel_055",
           "text": "K8S与元数据同步工具",
           "score": 0,
@@ -454,12 +494,30 @@
           "isImported": false
         },
         {
-          "id": "rel_056",
-          "text": "请求上下文与环境变量",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782305063969,
+          "id": "rel_062",
+          "text": "APP_CODE / SECRET_KEY 配置获取",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "97654df3-acb3-46af-b21d-9269a0e57258"
+        },
+        {
+          "id": "rel_063",
+          "text": "APP_CODE与SECRET_KEY配置获取",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": false
+        },
+        {
+          "id": "rel_065",
+          "text": "MonitorJSONRenderer 响应渲染器",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "c063e5ef-12e4-4c04-aa40-d6e0901f0e56"
         }
       ],
       "keywords": [
@@ -487,10 +545,56 @@
         "线程本地",
         "请求上下文",
         "环境变量",
-        "用户信息"
+        "用户信息",
+        "租户ID",
+        "bk_biz_id_to_bk_tenant_id",
+        "get_request_tenant_id",
+        "tenant",
+        "APP_CODE",
+        "SECRET_KEY",
+        "APP_TOKEN",
+        "配置",
+        "MonitorJSONRenderer",
+        "响应格式",
+        "CustomException",
+        "渲染器"
+      ],
+      "max_hot_count": 10
+    },
+    "项目踩坑点": {
+      "hot_relations": [
+        {
+          "id": "rel_060",
+          "text": "get_request_tenant_id 在标准请求中不安全",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_064",
+          "text": "signed_state签名密钥依赖SECRET_KEY",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "0750de5d-e4be-49c3-b6a1-bd443149b9e5"
+        }
+      ],
+      "keywords": [
+        "get_request_tenant_id",
+        "bk_tenant_id",
+        "中间件",
+        "request.user",
+        "bk_biz_id_to_bk_tenant_id",
+        "signed_state",
+        "SECRET_KEY",
+        "APP_TOKEN",
+        "分布式部署",
+        "签名密钥"
       ],
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-24T12:48:06.231Z"
+  "updatedAt": "2026-06-25T07:26:58.331Z"
 }

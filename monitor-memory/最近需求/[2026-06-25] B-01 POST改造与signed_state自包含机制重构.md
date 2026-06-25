@@ -1,0 +1,9 @@
+---
+groupPath: 最近需求
+relation: "[2026-06-25] B-01 POST改造与signed_state自包含机制重构"
+keywords: [B-01, POST, signed_state, OAuth, TAPD]
+exportedAt: "2026-06-25T02:14:58.756Z"
+---
+[2026-06-25] B-01 POST 改造与 signed_state 自包含机制重构
+
+改造 ListUserTapdWorkspaceResource 从 GET 为 POST，body 传递 bk_biz_id + redirect_uri_real + redirect_uri_verify；signed_state 承载自包含 state（含 username、tenant_id、nonce、exp、redirect_uri_*）用于 B-05 OAuth 回调，彻底移除对 Session 的依赖；同步修复 generate_auth_url、TAPDAuthPermission 参数透传；修复全部 DEFAULT_TENANT_ID 硬编码为 space_uid_to_bk_tenant_id / bk_biz_id_to_bk_tenant_id，修复 request.user.username 为 get_request_username()。

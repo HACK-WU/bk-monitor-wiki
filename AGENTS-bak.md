@@ -2,7 +2,7 @@
 
 > **本文件由 AI AGENT 自动维护，用于缓存索引信息、记录近期工作、跟踪新需求。**
 > 项目: bk-monitor
-> 最后自动更新: 2026-06-23
+> 最后自动更新: 2026-06-25
 
 ---
 
@@ -10,8 +10,8 @@
 
 ### Scope 列表
 - `monitor`: BK-Monitor Wiki 文档知识库（26 索引，热区 8 / 常温 13 / 冷区 5）
-- `monitor-memory`: BK-Monitor 项目记忆（11 索引，热区 4 / 常温 6 / 冷区 1）
-- `user-profile`: 用户画像（4 索引，热区 2 / 常温 2）
+- `monitor-memory`: BK-Monitor 项目记忆（**30 索引**，热区 10 / 常温 16 / 冷区 4）
+- `user-profile`: 用户画像（6 索引，热区 2 / 常温 3 / 冷区 1）
 
 ### monitor 索引
 
@@ -121,34 +121,43 @@ BKMonitorWiki/
 ├── 加密工具 [热]
 ├── APIResource 扩展模式
 ├── 异常处理流程
-└── 批量操作框架
+├── 批量操作框架
+├── 空间租户业务ID转换 [📥 热门]
+├── 外部API调用模式
+├── 内部API暴露模式
+├── Resource框架自动发现与使用
+├── Django配置加载体系 [📥 热门]
+├── Monitor API资源自动暴露到OpenAI
+├── 内核API内部Resource复用模式
+└── 前端接口与网关接口差异
+Resource 框架/ [常温]
+API 集成模式/ [常温]
+系统配置与异常/ [常温]
+开发工具/ [常温]
+团队约定/ [常温]
+项目历史/ [常温]
+当前状态/ [常温]
+外部依赖/ [常温]
+最近需求/ [常温]
+进度/ [常温]
+项目踩坑点/ [常温]
+项目架构/ [常温]
+工具库/ [热]
+│   ├── Redis 缓存与分布式锁 [📥 热门]
+│   ├── 哈希与一致性哈希 [📥 热门]
+│   ├── 时间日期处理工具 [📥 热门]
+│   ├── 组件连接工具 [📥 热门]
+│   ├── 并发批量与分页 [📥 热门]
+│   ├── 加密与Token生成 [📥 热门]
+│   ├── 业务空间与租户 [📥 热门]
+│   ├── K8S与元数据同步工具 [📥 热门]
+│   └── 请求上下文与环境变量 [📥 热门]
+常用命令/ [冷]
+部署运维/ [冷]
 ```
 
 #### 热门 Relation
 - **背景与目标 → 仓库结构**（score: 0.2）— `bk-monitor-wiki` 独立仓库，不与主工程 `bkmonitor` 共用 Git
-
-#### 关键 KB 内容摘要
-
-| Relation | 位置 | 摘要 |
-|----------|------|------|
-| 仓库结构 | 背景与目标/ | `bk-monitor-wiki` 为**独立仓库**，与 `bkmonitor` 主工程分开维护版本历史 |
-| 技术栈清单 | 技术栈选型/ | Python + Django（单体）+ duckdb（嵌入式 SQL）+ SiliconFlow Qwen3 Embedding（4096维）+ Qwen3 Reranker |
-| importable 自动关联 | 背景与目标/TAPD授权与建单 | B-01 调用时自动 `try_bind_importable()`，成功→`bound`，失败→`importable` |
-| 回调路径不走网关 | 背景与目标/TAPD授权与建单 | B-03/B-05 端点前缀 `/fta/issue/tapd/`，不走网关 |
-| 双回调安全机制 | 背景与目标/TAPD授权与建单 | B-03 `signed_state` HMAC-SHA256 验签 + B-05 Session nonce |
-| 四态标记设计 | 背景与目标/TAPD授权与建单 | `bound`/`stale`/`importable`/`unbound`，B-07 仅返回原始列表不含 `is_bound` |
-| IssueViewSet 权限控制 | 通用记忆片段/Issue | `READ_ONLY_ENDPOINTS`→VIEW_EVENT，其他→MANAGE_EVENT；`NO_BIZ_REQUIRED_ENDPOINTS` 无需业务 ID |
-| IssueQueryHandler ES 查询 | 通用记忆片段/Issue | `QUERY_FIELD_MAP` 注册字段映射；QSearch 仅查当天；`fingerprint`/`merge_status` 支持合并查询 |
-| Issue API Resource 模板 | 通用记忆片段/Issue | Search/Detail/Create/Update/Delete/Merge 等 12+ 个 Resource，统一继承 `Resource` + Serializer 模式 |
-| IssueDocument ES 模型 | 通用记忆片段/Issue | `IssueDocument` 含 `fingerprint`/`merge_status`；`IssueActivityDocument` 记录操作日志；状态机：active/member/split |
-| Resource 框架使用小技巧 | 通用记忆片段/ | `resource.xxx.yyy()` 线程安全；`bulk_request` 并行批量请求；`delay`/`apply_async` 异步任务；ThreadPool 自动继承上下文；请求采样记录；全局入口命名映射 |
-| 加密工具 | 通用记忆片段/ | `AESCipher` CBC 模式：key=SHA256(settings.SECRET_KEY)，不传 IV 时随机生成并前置密文；解密自动读回 IV。TAPD token 加密场景不传固定 IV |
-| APIResource 扩展模式 | 通用记忆片段/ | `TapdAPIResource` 模板：继承 APIResource，覆写 `base_url`/`INSERT_BK_USERNAME_TO_REQUEST_DATA=False`/`IS_STANDARD_FORMAT=False`/`get_headers()`(Basic Auth)/`render_response_data()`(非标准响应) |
-| 异常处理流程 | 通用记忆片段/ | 继承链 `Error`→`APIError`→`BKAPIError`；`exception_handler` 统一序列化 DRF 异常；`Error.extra` **平铺到响应顶层**；`CustomException`(code 3300002) 用于业务校验 fails |
-| 批量操作框架 | 通用记忆片段/ | `_run_batch(issues, action_fn, max_workers=10)`：ThreadPoolExecutor 并发，单条失败隔离；捕获 `IssueFrozenError`/`BKAPIError`/`IssueDocumentWriteError`；全部报错抛首个异常 |
-
-> 完整 11 条 relation 见 scope `monitor-memory`。
-
 ---
 
 ## 用户画像索引
@@ -164,6 +173,8 @@ BKMonitorWiki/
 └── 语言偏好
 工作习惯/ [常温]
 工具链/ [常温]
+代码风格/ [常温]
+技术背景/ [冷]
 ```
 
 #### 热门 Relation
@@ -182,162 +193,19 @@ BKMonitorWiki/
 ## 近期工作 (7天内)
 
 ### 最近需求
+- **[2026-06-25]** B-01 POST 改造与 signed_state 自包含机制重构：`ListUserTapdWorkspaceResource` 从 GET 改为 POST，body 传递 `bk_biz_id` + `redirect_uri_real` + `redirect_uri_verify`；`generate_auth_url` 改用自包含 signed_state（含 username/tenant_id/exp/redirect_uri）用于 B-05 OAuth 回调，彻底移除 Session 依赖；同步修复 `DEFAULT_TENANT_ID` 硬编码为 `space_uid_to_bk_tenant_id`，修复 `request.user.username` 为 `get_request_username()`
+- **[2026-06-24]** 实现 B-04 解绑接口 `UnbindTapdWorkspaceResource`（`POST /fta/issue/tapd/workspace/unbind/`），仅删除本地 `TapdWorkspaceBinding`，补充 API 设计文档 `07-unbind-workspace.md`，更新 `00-api-overview.md` 总览索引
+- **[2026-06-24]** 创建 `api-tester` skill（`bk-monitor-wiki/skills/api-tester/`）：在 Django 进程内直调 Resource 类实现自动化接口测试，支持 inspect/dry-run/run 三模式，自动提取 RequestSerializer 参数 schema 与示例
+- **[2026-06-24]** 将 `bk_agent_base/metadata/utils`（34 个文件）按分类录入 monitor-memory 工具库：Redis 缓存与分布式锁 / 哈希与一致性哈希 / 时间处理 / 组件连接（Consul/ES） / 并发批量 / 加密 / 空间租户 / K8S元数据同步 / 请求上下文 共 9 条 Relation，均含文件路径、类名、关键方法签名，支持后续代码快速定位
 - **[2026-06-23]** TAPD 授权与建单：`api/` 目录 7 个 API 设计文档定稿，`frontend-guide/` 4 个前端集成文档定稿，修复 `auth_method`/`has_more` 删除、`importable` 自动关联、Mermaid 语法等 15 处问题
 
 ### 进度
-- 已完成: [2026-06-23] ✅ `api/` 目录下 7 个 API 设计文档（00~06）定稿
-- 已完成: [2026-06-23] ✅ `frontend-guide/` 目录下 4 个前端集成文档（INDEX + 3 场景）定稿
-- 已完成: [2026-06-23] ✅ `importable` 自动关联策略（后端静默绑定）定稿
-- 已完成: [2026-06-23] ✅ AGENTS.md 重新初始化（ki 数据）
-- 已完成: [2026-06-23] ✅ TAPD 设计决策写入 `monitor-memory`（4 条 Relation：importable 自动关联、回调路径、双回调安全、四态标记）
-- 已完成: [2026-06-23] ✅ Issue 功能代码要点写入 snippet-memory（4 条：IssueViewSet 权限、IssueQueryHandler ES 查询、API Resource 模板、IssueDocument 模型）
-- 已完成: [2026-06-23] ✅ `core.drf_resource.base.Resource` 源码阅读，`bulk_request`/`delay`/`ThreadPool 上下文继承`等 10 条使用技巧写入 snippet-memory
-- 已完成: [2026-06-23] ✅ `api/tapd/default.py` + `core/errors/errors.py` + `core/errors/api.py` + `fta_web/issue/resources.py` + `core/drf_resource/exceptions.py` + `bkmonitor/utils/cipher.py` 源码阅读
-- 已完成: [2026-06-23] ✅ 4 条通用代码片段写入 snippet-memory：`加密工具` / `APIResource 扩展模式` / `异常处理流程` / `批量操作框架`
-- 已完成: [2026-06-23] ✅ AGENTS.md 索引增量更新（11 索引 → 11 索引，通用记忆片段从 1 条扩展到 5 条）
-
----
-
----
-description: 指导 AI 管理知识索引和记忆。平台内置记忆用于简洁通用偏好，ki 记忆用于详细项目知识。对话开始时加载 agents-md-init 缓存索引，按需加载 codekb-skill/memory-skill/snippet-memory。覆盖首次引导、自动记录、会话收尾。
-alwaysApply: true
-enabled: true
-updatedAt: 2026-06-23T10:00:00.000Z
-provider:
----
-# ai-codekb-memory AI 知识与记忆管理规则
-
-> **对话开始时首先检查本规则**。
-
----
-
-## 📋 AGENTS.md 缓存机制
-
-> **AGENTS.md 是 AI AGENT 的项目记忆文件，位于项目根目录。首次对话时自动缓存索引信息，避免重复查询。**
-
-### 缓存内容
-
-1. **知识库索引**：代码知识库的 scope 列表、Group 结构、热门 Relation
-2. **项目记忆索引**：项目记忆的 scope、Group 结构（含通用记忆片段）、热门 Relation
-3. **用户画像索引**：用户画像的 Group 结构、热门 Relation
-4. **近期工作**：7 天内的工作摘要（从项目记忆中提取）
-5. **新需求记录**：简要记录新需求（详细内容存入项目记忆）
-
-> AGENTS.md 的完整格式模板和初始化流程见 `agents-md-init` skill。
-
----
-
-## 🆕 首次使用引导
-
-> **当 ki 中无任何 scope 或 AGENTS.md 不存在时，AI 应主动引导用户完成初始化。**
-
-```
-① ki_manage_index_list → 检测是否有 scope
-    ├── 有 scope → 正常走 agents-md-init 初始化 AGENTS.md
-    └── 无 scope → 主动提示用户：
-        "检测到项目尚未配置知识库索引。是否需要我帮你初始化？"
-        用户确认后：
-          ② 确定 scope 名称（默认为项目名的小写简写，用户可自定义）
-          ③ ki_manage_index_create(scope, name: "项目概述") → 创建代码KB scope
-          ④ ki_manage_index_create(scope: "${scope}-memory", name: "背景与目标") → 创建项目记忆 scope
-          ⑤ ki_manage_index_create(scope: "user-profile", name: "沟通偏好") → 创建用户画像 scope
-          ⑥ 执行 agents-md-init 完整初始化
-```
-
-> 若用户暂时不需要，跳过初始化，后续对话中可按需再触发。
-
----
-
-## 自动缓存规则
-
-### 对话开始时自动执行
-
-> **步骤0：必须加载 `agents-md-init` skill（格式模板和初始化流程）。**
-> 若 skill 文件不存在 → 提示用户 "检测到 `agents-md-init` skill 未安装，请先安装 knowledge-indexer"，然后跳过 AGENTS.md 初始化。
-
-1. **检查 AGENTS.md 是否需要初始化**（详见 `agents-md-init` skill）
-    - 不存在 → 执行完整初始化
-    - 存在但索引章节缺失 → 执行完整初始化
-    - 存在且完整 → 检查一致性，不一致则增量更新
-
-2. **检查索引缓存**
-    - 若 AGENTS.md 中无"知识库索引"章节 → 执行索引缓存
-    - 若已缓存 → 跳过，直接使用缓存
-
-3. **索引缓存流程**（详见 `agents-md-init` skill）
-   ```
-   ① ki_manage_index_list → 获取所有 scope
-   ② 对每个 scope 执行 ki_query_group(mode: "full") → Group 结构
-   ③ 对每个 scope 执行 ki_query_group(mode: "hot") → 热门 Relation
-   ④ 写入 AGENTS.md（真实数据优先，无数据用示例格式兜底）
-   ```
-
-4. **近期工作记录**（详见 `agents-md-init` skill 第5章）
-    - 从项目记忆中提取 7 天内工作
-    - 超过 1 天未更新则自动刷新
-
-### 索引不一致时自动更新
-
-> **每次创建新索引后，必须自动更新 AGENTS.md 中的缓存。**
-
-触发条件：
-- 执行 `ki_manage_index_create` 创建新 Group 后
-- 执行 `ki_sync_relation` 写入新 Relation 后
-- 发现 AGENTS.md 中的 scope 列表与实际不一致时
-
-更新流程：
-```
-① 重新执行 ki_manage_index_list → 获取最新 scope 列表
-② 对变更的 scope 执行 ki_query_group(mode: "full,hot")
-③ 更新 AGENTS.md 中对应的章节
-```
-
-### 新需求自动记录
-
-> **当 AI 接受到新需求时，必须自动记录到项目记忆（详细）和 AGENTS.md（简要）。**
-
-触发信号：
-- 用户明确说"我需要..."、"帮我实现..."、"做一个...功能"
-- 用户提出功能改进、bug 修复、优化建议
-- 用户描述工作计划、待办事项
-
-记录流程：
-```
-① 提取需求描述（1-2句话）
-② 写入项目记忆（详细）：
-   ki_sync_relation(
-     scope: "${scope}-memory",
-     group: "最近需求",
-     relation: "[YYYY-MM-DD] 需求描述（详细）",
-     keywords: ["关键词1", "关键词2"]
-   )
-③ 写入 AGENTS.md（简要）：
-   在"近期工作"章节追加：
-   - [YYYY-MM-DD] 需求描述（简要）
-④ 刷新 AGENTS.md 缓存
-```
-
-### AI 自动记录行为规范
-
-> **AI 必须主动识别并自动记录，不得依赖人工提示或确认。**
-> 详细的触发条件表和写入流程见各 skill：`memory-skill`（项目记忆/用户偏好）、`snippet-memory`（代码片段）。
-
-**记录决策速查**：
-
-| 信息类型 | 走哪个 skill | 记录位置 |
-|----------|-------------|----------|
-| 项目信息/需求/进度/踩坑/用户偏好 | `memory-skill` | `${scope}-memory` 或 `user-profile` |
-| 代码要点（工具函数/关键逻辑/核心流程等） | `snippet-memory` | `${scope}-memory` / `通用记忆片段/` |
-| AGENTS.md 缓存刷新 | `agents-md-init` | 项目根目录 AGENTS.md |
-
-**自动记录的触发时机**：
-1. 对话中识别到上述信号时立即记录
-2. 对话结束前检查是否有遗漏需要记录
-3. 索引变更后自动更新缓存
-
-**记录优先级**：
-- 新需求 > 进度更新 > 项目信息 > 踩坑经验 > 用户偏好
-- 同一信息只记录一次，避免重复
+- 进行中: [2026-06-25] 🔄 B-01 POST 改造与 signed_state 自包含机制编码已完成，待修复 Review 问题（`utils/tapd.py` 缺失 `import time`(P0)、`initiator` 建议统一为 `username`(P1)）
+- 已完成: [2026-06-25] ✅ B-01 POST 改造 Code Review 完成：确认 redirect_uri 透传逻辑一致、租户/用户名硬编码修复无遗漏，发现 1 P0 + 1 P1
+- 已完成: [2026-06-24] ✅ B-04 UnbindTapdWorkspaceResource 实现（`POST /fta/issue/tapd/workspace/unbind/`）+ API 文档 `07-unbind-workspace.md`
+- 已完成: [2026-06-24] ✅ `00-api-overview.md` 索引表更新，标记 B-04 为新增接口
+- 已完成: [2026-06-24] ✅ `api-tester` skill 交付：`SKILL.md` + `reference.md` + `scripts/api_tester.py`，复用 `url-view-resolver` 的 resolve 机制定位 Resource 类，用 `get_serializer_fields()` 提取参数 schema，`Resource.request()` 直调执行；非 GET 需 `--confirm` 护栏；已通过 inspect 模式实测验证
+- 已完成: [2026-06-24] ✅ 补全 monitor-memory 和 user-profile 缺失的 Group 索引（monitor-memory +11, user-profile +2）
 
 ---
 
@@ -367,29 +235,6 @@ ki 记忆内部：代码知识 → `codekb-skill`（`${scope}`）；项目上下
 
 - ②a/②b/②c 可按需选择，但必须在 ① 之后
 - 当前会话已加载过的 skill 不重复加载；会话截断后视为未加载
-
----
-
-## 会话结束收尾
-
-> **检测到以下信号时，AI 应主动执行记忆更新，表示当前阶段即将结束、进入下一阶段。**
-
-**触发信号**（用户说）：
-- "好"、"OK"、"可以"、"没问题" — 确认当前讨论结果
-- "记录到文档"、"写入文档"、"保存" — 明确要求记录
-- "开始实施"、"开始做"、"开始写代码" — 进入实施阶段
-- "下一个"、"继续" — 切换到新话题
-
-**收尾动作**：
-```
-□ 是否有未记录的新需求？→ 写入项目记忆 + AGENTS.md
-□ 是否有未记录的代码要点？→ 写入 snippet-memory
-□ 是否有进度变化？→ 更新项目记忆的"进度" Group
-□ 索引是否有变更？→ agents-md-init 增量更新
-□ 近期工作是否超过 7 天？→ 触发归档（见 memory-skill 第8章）
-```
-
-> 不需要等用户说"结束"才执行，而是**在对话自然转折点主动执行**。
 
 ---
 
@@ -564,62 +409,10 @@ use_skill("challenger")
 - 修改明确属于非复杂场景（见上表）
 
 ---
----
-# snippet-memory 调用时机
-
-## 何时加载 `snippet-memory` skill
-
-### 必须加载的场景
-
-| 场景 | 触发信号 | 说明 |
-|------|----------|------|
-| 编码前查询 | AI 准备写代码 | 先查是否有可复用的工具函数或已知流程 |
-| 用户问"有没有现成的" | "有没有XX工具"、"XX怎么实现的" | 从通用记忆片段中快速定位 |
-| 构建记忆 | "根据这些代码构建记忆"、"把XX记录下来" | 批量或单个录入代码要点 |
-| 阅读代码发现要点 | AI 读代码时遇到通用工具/关键流程/重要模式 | 自动记录到对应分类 |
-
-### 不加载的场景（走其他 skill）
-
-| 场景 | 走哪个 | 原因 |
-|------|--------|------|
-| 模块架构、API设计 | `codekb-skill` | 架构级知识 |
-| 项目背景、进度、偏好 | `memory-skill` | 项目上下文 |
-| 定位具体文件/符号 | 直接用 grep/SearchSymbol | 定位级查询 |
-
-### 一句话判断
-
-> 问自己：这段信息是"一句话就能说清楚的代码要点（函数/流程/模式）"还是"需要段落描述的架构知识"？
-> 前者 → `snippet-memory`，后者 → `codekb-skill`。
-
----
 
 # url-view-resolver Skill 使用场景
 
 当用户提供了一个 API URL 路径，需要定位该 URL 对应的 Django 视图、处理逻辑或 Resource 类时，使用 `url-view-resolver` skill。
-
-## 使用命令
-
-```bash
-/root/bk-monitor/bkmonitor/.venv/bin/python /root/bk-monitor/django-url-view-resolver.py "<目标URL>" "<HTTP方法>"
-```
-
-## 使用流程
-
-1. 运行脚本，获取 URL 对应的视图和 Resource 类
-2. 从输出中提取「Resource 限定名」（如 `PreviewDutyRulePlanResource`）
-3. 搜索该类名，定位到源码文件
-4. 阅读 `perform_request` 方法，理解业务逻辑
-
-## 适用场景
-
-- 用户提供了一个 API URL，想知道对应的处理代码
-- 需要定位某个接口的 Resource 类以分析业务逻辑
-- 排查接口问题时，需要确认请求最终由哪个类处理
-
-## 不适用场景
-
-- 已知 Resource 类名，只需查看其实现 → 直接 grep 搜索类名
-- 需要了解 `resource.xxx.yyy` 格式的路径引用 → 使用 `resource-locator` skill
 
 ---
 
@@ -627,34 +420,124 @@ use_skill("challenger")
 
 当用户在代码中遇到 `resource.xxx.yyy` 或 `api.xxx.yyy` 格式的路径引用，需要定位其对应的 Python Resource 类源码时，使用 `resource-locator` skill。
 
-## 核心转换规则
+---
+当用户提出一个建议、想法或修改要求时，如果该建议：
+- 看起来不合理、存疑
+- 或改动范围较大、影响面广
+- 或与已有设计/约定可能冲突
 
-1. 提取路径最后一段（snake_case 格式）
-2. 转换为 PascalCase
-3. 添加 `Resource` 后缀
+**必须先调用 `request-guard` skill 进行质疑检查**，判断其合理性后再决定是否执行修改，不能盲从用户的突发奇想直接动手。
 
-## 转换示例
+---
 
-| 路径引用 | 提取 | PascalCase | 最终类名 |
-|----------|------|------------|----------|
-| `resource.alert.list_alert_log` | `list_alert_log` | `ListAlertLog` | `ListAlertLogResource` |
-| `api.metadata.get_label` | `get_label` | `GetLabel` | `GetLabelResource` |
+# 项目百科全书（`${scope}-memory`）
 
-## 定位流程
+> **`${scope}-memory` = AI 的项目百科全书。不懂就查，有新发现就写入，维护好它持续提效。**
 
-1. 转换类名（snake_case → PascalCase + Resource）
-2. 全局搜索类定义
-    - `resource.` 前缀 → 整个代码库 `bkmonitor/`
-    - `api.` 前缀 → `bkmonitor/api/` 目录
-3. 查看类实现，阅读 `perform_request` 方法
+---
 
-## 适用场景
+## 1. 判断：该走哪条路
 
-- 代码中出现了 `resource.alert.list_alert_log` 这类引用，想知道具体实现
-- 需要查看 `api.metadata.get_label` 对应的接口处理类
-- 搜索代码定位 Resource 类定义和 `perform_request` 方法
+| 信息类型 | 走哪个 | 说明 |
+|----------|--------|------|
+| 代码要点（函数/流程/工具/模式） | `snippet-memory` → `ki_sync_relation` | 一句话说得清的关键代码信息 |
+| 模块架构、API 设计 | `codekb-skill` | 需要段落描述的架构知识 |
+| 项目背景、进度、偏好 | `memory-skill` | 项目上下文级信息 |
+| 找具体文件/符号 | grep / SearchSymbol | 直接定位，不绕路 |
 
-## 注意事项
+---
 
-当用户提供了一个 HTTP URL 路径时，应该优先使用 `url-view-resolver`，而非 `resource-locator`。
+## 2. 写入：该记什么、怎么归类
+
+### 强制要求
+
+**禁止纯文字总结。** 必须包含：
+
+| 必须 | 示例 |
+|------|------|
+| 文件路径 | `src/utils/hash-ring.ts` |
+| 类名/方法名 | `HashRing.getNode(key)` |
+
+> ❌ 废话：*"提供一致性哈希环，支持虚拟节点和二分查找"*
+> ✅ 可用：*`src/utils/hash-ring.ts` — `HashRing` 类：`getNode(key: string)` 二分定位、`addNode(addr, weight)` 配权重*
+
+### 归类原则
+
+**禁止全部扔进"通用记忆片段"。** 思考最适合的 Group → 没有则新建 → 实在不行才兜底。
+
+| 内容 | 优先归到 |
+|------|----------|
+| 工具函数/脚本 | `工具库` |
+| 踩坑/注意事项 | `项目踩坑点` |
+| 构建/调试命令 | `常用命令` |
+| 部署/环境 | `部署运维` |
+| 需求记录 | `最近需求` |
+| 完成状态 | `进度` |
+| 实在无法归类 | `通用记忆片段`（仅兜底） |
+
+```bash
+# 通用写入模板（scope 始终用 ${scope}-memory）
+ki sync-relation --scope ${scope}-memory --group "目标Group" \
+  --relation "标题（需求加日期前缀 [YYYY-MM-DD]）" \
+  --module-info "内容（必须含文件路径+类/方法名）" \
+  --keywords "关键词1,关键词2"
+```
+
+> 需求写入 `最近需求`，进度写入 `进度`。写完记得同步 AGENTS.md（追加 + 删超过 7 天的）。
+
+---
+
+## 3. 查询：疑问排查优先级
+
+| 优先 | 动作 | 命令 |
+|------|------|------|
+| 1 | 查项目记忆 | `ki_query_group` scope=`${scope}-memory` |
+| 2 | 查知识库记忆 | `ki_query_group` scope=`${scope}` |
+| 3 | 代码搜索 | grep / SearchSymbol |
+| 4 | 语义兜底 | `ki_search` |
+
+---
+
+## 4. 收尾：会话转折点主动执行
+
+**触发信号**：用户说"好/OK/可以"、"记录一下"、"开始写代码"、"下一个"。
+
+```
+□ 有新需求？→ ki_sync_relation → 最近需求 + 同步 AGENTS.md
+□ 有代码要点？→ ki_sync_relation → 对应 Group
+□ 进度变了？→ ki_sync_relation → 进度
+□ 索引变了？→ agents-md-init 更新
+□ 7 天前的？→ 触发归档
+```
+
+---
+
+## 5. 禁忌
+
+| # | 红线 |
+|---|------|
+| 🔴 | 将代码/架构知识存入平台记忆 → **走 ki** |
+| 🔴 | 将通用偏好存入 ki → **走平台记忆** |
+| 🔴 | 跳过 ki-foundation 直接用 codekb/memory-skill |
+| 🔴 | scope 未确认就执行 ki 命令 |
+| 🔴 | 对 ki scope 用 memory MCP（禁止 `memory_store`/`memory_recall` 等） |
+| 🔴 | 忽略 AGENTS.md：对话开始必须检查缓存，索引变更必须同步 |
+| 🔴 | 等用户提醒才记录：AI 必须**主动识别**并写入 |
+
+---
+# 记忆存储位置决策
+
+简洁 + 通用 + 跨项目 + 每次对话都需要 → 平台内置记忆（`update_memory`）
+其他一切 → ki 记忆，按内容类型分流：
+
+- 代码要点（函数/流程/模式） → `snippet-memory`
+- 模块架构、API 设计 → `codekb-skill`
+- 项目背景、进度、偏好 → `memory-skill`
+
+> 详细路由判断见 `project-encyclopedia.md`
+
+- 内置示例："用中文回复"、"不要擅自提交代码"
+- ki 示例：工具函数用法、架构决策、踩坑经验、需求记录
+
+禁忌：详细知识禁存内置，简洁偏好禁存 ki。
 

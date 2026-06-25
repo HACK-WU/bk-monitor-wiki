@@ -1,5 +1,7 @@
 {
   "已完成: [2026-06-24] ✅ 补全 monitor-memory 和 user-profile 缺失的 Group 索引（monitor-memory +11, user-profile +2）": "已成功创建所有缺失的 Group：monitor-memory 新增 团队约定、项目历史、当前状态、外部依赖、最近需求、进度、项目踩坑点、项目架构、工具库、常用命令、部署运维；user-profile 新增 代码风格、技术背景。已更新 AGENTS.md 索引缓存。",
   "version": 1,
-  "updatedAt": "2026-06-24T10:15:23.012Z"
+  "updatedAt": "2026-06-25T02:15:06.498Z",
+  "进行中: [2026-06-25] 🔄 B-01 POST改造与signed_state自包含机制编码完成，待修复Review问题": "进行中: [2026-06-25] 🔄 B-01 POST 改造与 signed_state 自包含机制编码已完成\n- ListUserTapdWorkspaceResource 改为 POST + 新增 redirect_uri_real/verify 参数\n- generate_auth_url 改为自包含 signed_state，TAPDAuthPermission 从 POST body 透传参数\n- B-05 callback 移除 Session 依赖，改用 verify_signed_state 解析\n- 租户/用户名硬编码统一修复\n待修复: utils/tapd.py 缺失 `import time`（P0），resources.py payload 中 `initiator` 建议统一为 `username`（P1）",
+  "已完成: [2026-06-25] ✅ B-01 POST改造CodeReview完成": "已完成: [2026-06-25] ✅ B-01 POST 改造 Code Review 完成\n- 确认 redirect_uri 透传逻辑一致\n- 确认租户/用户名硬编码修复无遗漏\n- Review 报告已输出，发现 1 个 P0（utils/tapd.py time 未导入）和 1 个 P1（payload `initiator` vs `username` 命名统一）"
 }

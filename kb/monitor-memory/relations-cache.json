@@ -137,9 +137,9 @@
         {
           "id": "rel_009",
           "text": "IssueViewSet 权限控制模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1782458649288,
           "isImported": false
         },
         {
@@ -435,6 +435,15 @@
     "工具库": {
       "hot_relations": [
         {
+          "id": "rel_056",
+          "text": "请求上下文与环境变量",
+          "score": 2.9993246312418886,
+          "useCount": 3,
+          "lastUsedTime": 1782459769156,
+          "isImported": false,
+          "memoryId": "6a315a09-ef63-4368-92d1-a00f716ccf1e"
+        },
+        {
           "id": "rel_054",
           "text": "业务空间与租户",
           "score": 1.9992545140893472,
@@ -442,14 +451,6 @@
           "lastUsedTime": 1782355239661,
           "isImported": false,
           "memoryId": "912fc7ba-0577-48f7-8c38-7db0cf1081f7"
-        },
-        {
-          "id": "rel_056",
-          "text": "请求上下文与环境变量",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782305063969,
-          "isImported": false
         },
         {
           "id": "rel_050",
@@ -557,7 +558,11 @@
         "MonitorJSONRenderer",
         "响应格式",
         "CustomException",
-        "渲染器"
+        "渲染器",
+        "Local",
+        "get_request",
+        "get_request_username",
+        "bkmonitor"
       ],
       "max_hot_count": 10
     },
@@ -579,6 +584,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "0750de5d-e4be-49c3-b6a1-bd443149b9e5"
+        },
+        {
+          "id": "rel_066",
+          "text": "bk_monitor_base 工具库禁用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "f05c9315-e836-4784-9fc5-9ee16b26d910"
         }
       ],
       "keywords": [
@@ -591,10 +605,13 @@
         "SECRET_KEY",
         "APP_TOKEN",
         "分布式部署",
-        "签名密钥"
+        "签名密钥",
+        "bk_monitor_base",
+        "get_request",
+        "get_request_username"
       ],
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-25T07:26:58.331Z"
+  "updatedAt": "2026-06-26T07:43:13.086Z"
 }

@@ -3,8 +3,8 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-22
-updated: 2026-06-22
-version: 1
+updated: 2026-06-29
+version: 2
 tags: [integration, design, frontend, guide]
 author: AI
 document_type: frontend-guide
@@ -12,7 +12,7 @@ document_type: frontend-guide
 
 # 前端 API 集成指南：TAPD 授权与建单
 
-> 基于 API 设计文档版本：v1（2026-06-22 评审后修正版）
+> 基于 API 设计文档版本：v2（2026-06-29 修正版）
 >
 > 本指南面向前端开发者，描述如何在蓝鲸监控前端中集成 TAPD 项目关联授权流程。文档按用户操作场景拆分，不依赖后端设计文档，自包含完整。
 
@@ -24,7 +24,8 @@ document_type: frontend-guide
 
 | # | 接口 | 方法 | 路径 | 说明 | 详细文档 |
 |---|------|------|------|------|----------|
-| 1 | 查询用户可见 TAPD 项目列表 | `GET` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态；**新增** `redirect_uri_real` + `redirect_uri_verify` 必传参数 | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
+| 1 | 查询用户可见 TAPD 项目列表 | `POST` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态；Body 传 `bk_biz_id` + `success_url` + `error_url` | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
+| 2 | 解绑 TAPD 项目 | `POST` | `/fta/issue/tapd/workspace/unbind/` | 解除 TAPD 项目与当前业务的关联，仅删除本地 binding | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) |
 
 ### 1.2 前端跳转（非 API 调用）
 
@@ -42,8 +43,9 @@ document_type: frontend-guide
 | 场景 | 文档 | 前台角色 | 触发条件 | 核心动作 |
 |------|------|---------|----------|---------|
 | 加载 TAPD 项目列表 | [load-tapd-workspaces.md](load-tapd-workspaces.md) | 普通用户 | 进入去关联页面时页面加载 | 请求列表 → 按四态渲染 → 操作 |
+| 解绑 TAPD 项目 | [load-tapd-workspaces.md](load-tapd-workspaces.md) | 有 MANAGE_EVENT 权限的用户 | 点击已关联项目的「解绑」按钮 | 发 POST 请求 → 后端删除本地 binding |
 | TAPD 应用态授权安装 | [tapd-install-authorization.md](tapd-install-authorization.md) | 普通用户发起 / TAPD 管理员执行 | 列表中存在「未授权」或「授权失效」状态的项目 | 替换占位符 → `window.open` 打开安装页 → 管理员完成授权 → 页面回到监控 → 刷新列表 |
-| TAPD 用户态 OAuth 授权 | [tapd-oauth-authorization.md](tapd-oauth-authorization.md) | 普通用户 | 列表接口返回 403，响应内含 `auth_url` | 直接跳转授权页 → TAPD 完成 OAuth → 回调后端 → 重定向回监控 → 刷新列表 |
+| TAPD 用户态 OAuth 授权 | [tapd-oauth-authorization.md](tapd-oauth-authorization.md) | 普通用户 | 列表接口返回 403，响应内含 `auth_url` | 跳转 TAPD OAuth → 回调后端 → 重定向到 success_url/error_url → 刷新列表 |
 
 > 注意：以上三个场景在真实使用中可能交叉发生。例如冷启动加载列表时（场景一）可能同时触发 Token 过期（场景三），也可能触发应用态授权（场景二）。
 
@@ -71,17 +73,20 @@ document_type: frontend-guide
 | TAPD API 异常 | 500 | "TAPD 服务暂时不可用，请稍后重试" | 显示错误提示 + 重试按钮 | ✅ 是 |
 | 用户无 TAPD 项目 | 200 | "OK" | `items=[]`，显示空状态「暂无 TAPD 项目」 | ✅ 是 |
 
-### 3.3 OAuth 回调错误（URL Query 解析）
+### 3.3 OAuth 回调处理
 
 用户态授权回调重定向后，前端解析 URL query：
 
-| `auth` | `reason` | 含义 | 前端行为 |
-|--------|----------|------|---------|
-| `success` | — | 授权成功，个人 Token 已写入 Redis | 自动重新请求项目列表，刷新状态 |
-| `error` | `state_mismatch` | Session state 不匹配（CSRF 或 Session 过期） | 提示「授权验证失败，请重新授权」 |
-| `error` | `code_invalid` | 授权码过期（超过 10 分钟）或已使用 | 提示「授权已过期，请重新授权」 |
-| `error` | `api_error` | TAPD API 异常 | 提示「TAPD 服务异常，请稍后重试」 |
-| `error` | `storage_error` | Token 写入 Redis 失败 | 提示「服务器内部错误，请稍后重试」 |
+> **v2 变更**：B-05 OAuth 回调不再附加 `auth`/`reason` query 参数。成功时 302 重定向到 `success_url`（不含额外参数），失败时 302 重定向到 `error_url`（不含额外参数）。前端需**根据页面重新加载事件**（如 `window.onpageshow` / `document.visibilitychange`）判断是否需要刷新列表，而非解析 URL query。
+
+用户态授权回调后，前端行为：
+
+| 场景 | 前端表现 | 建议行为 |
+|------|---------|---------|
+| 页面加载且 URL 匹配 `success_url` | OAuth 成功结束 | 自动刷新项目列表 |
+| 页面加载且 URL 匹配 `error_url` | OAuth 失败 | 提示「授权失败，请重试」并展示重试按钮 |
+
+> 建议方式：在发起 OAuth 前将当前页面状态存入 sessionStorage（如 `{ oauthFlow: true, timestamp: Date.now() }`），页面从 `success_url` 或 `error_url` 返回时检测到该标记 + 时间戳在合理范围内（如 < 5 分钟），即可触发列表刷新。
 
 应用态授权回调重定向后，前端解析 URL query：
 
@@ -156,3 +161,4 @@ document_type: frontend-guide
 | 版本 | 日期 | 作者 | 变更 |
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
+| 2 | 2026-06-29 | AI | B-01 接口由 GET 改为 POST，参数改为 `success_url`/`error_url`；B-05 OAuth `state` 改用自包含 signed_state，回调不再附加 `auth`/`reason` 参数；新增 B-04 解绑接口；OAuth 错误处理改为 sessionStorage 标记判断 |

@@ -2,8 +2,8 @@
 id: REQ-20260615-001
 feature: TAPD授权与建单
 created: 2026-06-22
-updated: 2026-06-24
-version: 2
+updated: 2026-06-29
+version: 3
 tags: [integration, design, frontend, guide]
 author: AI
 document_type: frontend-guide
@@ -16,6 +16,8 @@ document_type: frontend-guide
 > 前置条件：用户已在告警处理页点击「创建单据」→ 选择「TAPD 单据」，触发授权状态检查
 >
 > **对应 UI 设计稿**：见 [ui-mockup.md](../ui-design/ui-mockup.md) P-03「关联 TAPD 项目列表页」
+>
+> ⚠️ **版本 3 变更**：B-01 接口方法由 GET 改为 POST，参数从 Query 改为 Body，新增 `success_url` + `error_url` 替代老的 `redirect_uri_real` / `redirect_uri_verify`，删除 `method` 返回字段
 
 ---
 
@@ -25,7 +27,7 @@ document_type: frontend-guide
 
 ```mermaid
 flowchart TD
-    A["页面加载\nGET /fta/issue/tapd/user_workspace/"] --> B{HTTP 状态}
+    A["页面加载\nPOST /fta/issue/tapd/user_workspace/"] --> B{HTTP 状态}
 
     B -->|200| C["渲染项目卡片列表"]
         C --> D{is_bound}
@@ -45,22 +47,25 @@ flowchart TD
 ### 步骤 1：页面加载，请求 TAPD 项目列表
 
 → 触发时机：去关联页面（P-03）生命周期挂载时
-→ 调用接口：`GET /fta/issue/tapd/user_workspace/`
-→ 请求参数：
+→ 调用接口：`POST /fta/issue/tapd/user_workspace/`
+→ Content-Type: `application/json`
+→ 请求 Body：
 
 ```json
 {
   "bk_biz_id": 2,
-  "redirect_uri_real": "https://monitor.example.com/#/tapd/workspace",
-  "redirect_uri_verify": "https://monitor.example.com/tapd/workspace"
+  "success_url": "https://monitor.example.com/#/tapd/workspace",
+  "error_url": "https://monitor.example.com/error/tapd"
 }
 ```
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|:----:|:------:|------|
 | `bk_biz_id` | `integer` | 是 | — | 蓝鲸业务 ID，从当前 URL 或状态管理中读取 |
-| `redirect_uri_real`  | `string` | 是 | — | 含 `#` 的真实前端地址，用于回调成功后的 302 重定向 |
-| `redirect_uri_verify` | `string` | 是（建议） | `redirect_uri_real` | 不含 `#` 的校验地址，传给 TAPD 作为 `redirect_uri`；若未传回退到 `redirect_uri_real` |
+| `success_url` | `string` | 是 | — | 含 `#` 的前端页面地址，OAuth 或应用态授权回调成功后（或失败后），后端 302 重定向到该地址 |
+| `error_url` | `string` | 否 | `success_url` | 授权失败时的回退地址，未传时回退到 `success_url`。建议前端传与 `success_url` 不同的地址以区分成功/失败；若传相同地址，需通过 sessionStorage 标记明确区分 |
+
+> `success_url` / `error_url` 替代了老版 `redirect_uri_real` / `redirect_uri_verify` 双地址，由后端自行生成传给 TAPD 的校验地址。
 
 → 成功响应（HTTP 200）：
 
@@ -93,8 +98,7 @@ flowchart TD
         "is_bound": "unbound"
       }
     ],
-    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}",
-    "method": "GET"
+    "install_url": "https://tapd.woa.com/oauth/open_app_install?client_id=bkmonitor_tapd&test=1&cb=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Fapp_install_callback%2F%3Fsigned_state%3DeyJ4e...#selected_workspace_id={workspace_id}"
   }
 }
 ```
@@ -104,7 +108,6 @@ flowchart TD
 | `total` | `integer` | 项目总数（不分页统计） |
 | `items` | `WorkspaceItem[]` | 项目列表，按四态标记 |
 | `install_url` | `string`（可能缺失） | 当列表中存在 `stale` 或 `unbound` 项目时返回，否则为空或不返回 |
-| `method` | `string` | `install_url` 的请求方式，固定为 `GET` |
 
 → 成功后：按 `is_bound` 四态渲染每个项目的操作按钮
 
@@ -118,7 +121,7 @@ flowchart TD
   "code": 403,
   "message": "TAPD 用户态授权未生效",
   "data": {
-    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Foauth_callback%2F&scope=user_space&state=nonce123:2"
+    "auth_url": "https://tapd.woa.com/oauth/authorize?client_id=bkmonitor_tapd&response_type=code&redirect_uri=https%3A%2F%2Fmonitor.example.com%2Ffta%2Fissue%2Ftapd%2Foauth_callback%2F&scope=story%23read+story%23write+bug%23read+bug%23write&state=eyJub25jZSI6ImFiYzEyMyIsImJrX2Jpel9pZCI6MiwiYmtfdGVuYW50X2lkIjoiZGVmYXVsdCIsInNwYWNlX3VpZCI6ImJrY2NfXzIiLCJpbml0aWF0b3IiOiJhcnRlbWlzIiwiZXhwIjoxNzE5MDcyMDAwLCJzdWNjZXNzX3VybCI6Imh0dHBzOi8vbW9uaXRvci5leGFtcGxlLmNvbS8jL3RhcGQvd29ya3NwYWNlIiwiZXJyb3JfdXJsIjoiaHR0cHM6L21vbml0b3IuZXhhbXBsZS5jb20vLi4uIiwiYmFja2VuZF9jYWxsYmFjayI6Imh0dHBzOi8vbW9uaXRvci5leGFtcGxlLmNvbS9mdGEvaXNzdWUvdGFwZC9vYXV0aF9jYWxsYmFjay8ifQ==...
   }
 }
 ```
@@ -169,7 +172,7 @@ flowchart TD
 
 | `is_bound` | 状态文案（灰色小字） | 操作按钮  | 按钮行为 | 对应 UI 设计稿 |
 |------------|---------------------|-------|---------|--------------|
-| `bound` | 已关联 | [已关联] | 点击进入 TAPD 建单流程（调用已有接口，不在本文档范围内） | P-03 |
+| `bound` | 已关联 | [已关联] / [解绑] | 点击「已关联」进入建单流程；点击「解绑」取消本地关联 | P-03 |
 | `importable` | TAPD 侧已安装应用 · 后端自动尝试关联中 | [去关联] | 跳转应用安装页重新安装 | P-03 |
 | `stale` | TAPD 侧已解绑，需重新关联 | [去关联] | 跳转应用安装页重新安装| P-03 |
 | `unbound` | 用户态授权已拉取 · 需完成蓝鲸监控关联项目授权 | [去关联] | 跳转应用安装页重新安装| P-03 |
@@ -214,3 +217,64 @@ flowchart TD
 ### Q1：`install_url` 什么时候有、什么时候没有？
 
 当用户可见的 TAPD 项目列表中，包含至少一个 `stale` 或 `unbound` 状态的项目时，后端在响应中会返回 `install_url`。如果全部项目都是 `bound` 或 `importable` 状态，`install_url` 字段为空或不返回。
+
+---
+
+## 解绑 TAPD 项目
+
+### 接口地址
+
+```
+POST /fta/issue/tapd/workspace/unbind/
+```
+
+### 请求 Body
+
+```json
+{
+    "bk_biz_id": 2,
+    "workspace_id": "69990779"
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `bk_biz_id` | `string` | 是 | 蓝鲸业务 ID |
+| `workspace_id` | `string` | 是 | 要解绑的 TAPD 项目 ID |
+
+### 请求头
+
+```
+X-CSRFToken: {{csrf_token}}
+Content-Type: application/json
+Cookie: {{蓝鲸登录态 Cookie}}
+```
+
+### 成功响应（HTTP 200）
+
+```json
+{
+  "result": true,
+  "code": 200,
+  "message": "OK",
+  "data": {
+    "success": true
+  }
+}
+```
+
+### 前端交互
+
+- 点击 `bound` 状态卡片上的「解绑」按钮（仅对有 MANAGE_EVENT 权限的用户展示）
+  > 前端可通过列表接口的 HTTP 状态码或业务导航/菜单权限接口判断当前用户是否拥有 `MANAGE_EVENT` 权限。若用户无此权限，则隐藏「解绑」按钮仅展示「已关联」。如无法前置判断权限，可始终展示按钮但用户无权限时后端返回 403 并提示「无操作权限」
+- 弹出二次确认弹窗：「取消后，TAPD 侧授权不会被撤销，但蓝鲸侧不再与该 TAPD 项目关联。确认解绑吗？」
+- 用户确认后发送 POST 请求
+- 接口成功后刷新列表，该项目状态变为 `unbound`（若 TAPD 侧应用仍在）或 `stale`（若 TAPD 侧已解绑），并展示 `install_url` 引导"去关联"
+
+### 错误码（HTTP ≠ 200）
+
+| HTTP Code | `code` | `message` | 触发条件 |
+|-----------|--------|-----------|---------|
+| 400 | `MISSING_KEY_FIELD` | missing bk_biz_id or workspace_id | Body 中 `bk_biz_id` 或 `workspace_id` 缺失 |
+| 403 | `PERMISSION_DENIED` | No permission for this action | 当前用户对该业务无 MANAGE_EVENT 权限 |
+| 404 | `RESOURCE_NOT_FOUND` | Workspace not found for this biz | `workspace_id` 不是当前业务下的关联项目 |

@@ -194,7 +194,7 @@ API 集成模式/ [常温]
 
 ### 最近需求
 - **[2026-06-25]** B-01 POST 改造与 signed_state 自包含机制重构：`ListUserTapdWorkspaceResource` 从 GET 改为 POST，body 传递 `bk_biz_id` + `redirect_uri_real` + `redirect_uri_verify`；`generate_auth_url` 改用自包含 signed_state（含 username/tenant_id/exp/redirect_uri）用于 B-05 OAuth 回调，彻底移除 Session 依赖；同步修复 `DEFAULT_TENANT_ID` 硬编码为 `space_uid_to_bk_tenant_id`，修复 `request.user.username` 为 `get_request_username()`
-- **[2026-06-24]** 实现 B-04 解绑接口 `UnbindTapdWorkspaceResource`（`POST /fta/issue/tapd/workspace/unbind/`），仅删除本地 `TapdWorkspaceBinding`，补充 API 设计文档 `07-unbind-workspace.md`，更新 `00-api-overview.md` 总览索引
+- **[2026-06-24]** 实现 B-04 解绑接口 `UnbindTapdWorkspaceResource`（`POST /fta/issue/tapd/unbind_workspace`），仅删除本地 `TapdWorkspaceBinding`，补充 API 设计文档 `07-unbind-workspace.md`，更新 `00-api-overview.md` 总览索引
 - **[2026-06-24]** 创建 `api-tester` skill（`bk-monitor-wiki/skills/api-tester/`）：在 Django 进程内直调 Resource 类实现自动化接口测试，支持 inspect/dry-run/run 三模式，自动提取 RequestSerializer 参数 schema 与示例
 - **[2026-06-24]** 将 `bk_agent_base/metadata/utils`（34 个文件）按分类录入 monitor-memory 工具库：Redis 缓存与分布式锁 / 哈希与一致性哈希 / 时间处理 / 组件连接（Consul/ES） / 并发批量 / 加密 / 空间租户 / K8S元数据同步 / 请求上下文 共 9 条 Relation，均含文件路径、类名、关键方法签名，支持后续代码快速定位
 - **[2026-06-23]** TAPD 授权与建单：`api/` 目录 7 个 API 设计文档定稿，`frontend-guide/` 4 个前端集成文档定稿，修复 `auth_method`/`has_more` 删除、`importable` 自动关联、Mermaid 语法等 15 处问题
@@ -202,7 +202,7 @@ API 集成模式/ [常温]
 ### 进度
 - 进行中: [2026-06-25] 🔄 B-01 POST 改造与 signed_state 自包含机制编码已完成，待修复 Review 问题（`utils/tapd.py` 缺失 `import time`(P0)、`initiator` 建议统一为 `username`(P1)）
 - 已完成: [2026-06-25] ✅ B-01 POST 改造 Code Review 完成：确认 redirect_uri 透传逻辑一致、租户/用户名硬编码修复无遗漏，发现 1 P0 + 1 P1
-- 已完成: [2026-06-24] ✅ B-04 UnbindTapdWorkspaceResource 实现（`POST /fta/issue/tapd/workspace/unbind/`）+ API 文档 `07-unbind-workspace.md`
+- 已完成: [2026-06-24] ✅ B-04 UnbindTapdWorkspaceResource 实现（`POST /fta/issue/tapd/unbind_workspace`）+ API 文档 `07-unbind-workspace.md`
 - 已完成: [2026-06-24] ✅ `00-api-overview.md` 索引表更新，标记 B-04 为新增接口
 - 已完成: [2026-06-24] ✅ `api-tester` skill 交付：`SKILL.md` + `reference.md` + `scripts/api_tester.py`，复用 `url-view-resolver` 的 resolve 机制定位 Resource 类，用 `get_serializer_fields()` 提取参数 schema，`Resource.request()` 直调执行；非 GET 需 `--confirm` 护栏；已通过 inspect 模式实测验证
 - 已完成: [2026-06-24] ✅ 补全 monitor-memory 和 user-profile 缺失的 Group 索引（monitor-memory +11, user-profile +2）

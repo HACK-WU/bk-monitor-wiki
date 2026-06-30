@@ -225,7 +225,7 @@ flowchart TD
 ### 接口地址
 
 ```
-POST /fta/issue/tapd/workspace/unbind/
+POST /fta/issue/tapd/unbind_workspace
 ```
 
 ### 请求 Body

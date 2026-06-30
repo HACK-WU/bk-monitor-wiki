@@ -25,7 +25,7 @@ document_type: frontend-guide
 | # | 接口 | 方法 | 路径 | 说明 | 详细文档 |
 |---|------|------|------|------|----------|
 | 1 | 查询用户可见 TAPD 项目列表 | `POST` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态；Body 传 `bk_biz_id` + `success_url` + `error_url` | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
-| 2 | 解绑 TAPD 项目 | `POST` | `/fta/issue/tapd/workspace/unbind/` | 解除 TAPD 项目与当前业务的关联，仅删除本地 binding | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) |
+| 2 | 解绑 TAPD 项目 | `POST` | `/fta/issue/tapd/unbind_workspace` | 解除 TAPD 项目与当前业务的关联，仅删除本地 binding | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) |
 
 ### 1.2 前端跳转（非 API 调用）
 

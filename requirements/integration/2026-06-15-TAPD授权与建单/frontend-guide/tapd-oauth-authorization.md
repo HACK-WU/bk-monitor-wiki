@@ -2,7 +2,8 @@
 id: REQ-20260615-001
 feature: TAPD授权与建单
 created: 2026-06-22
-version: 2
+updated: 2026-07-01
+version: 3
 tags: [integration, design, frontend, guide]
 author: AI
 document_type: frontend-guide
@@ -13,6 +14,8 @@ document_type: frontend-guide
 > 所属功能：TAPD 授权与建单
 > 角色：普通用户
 > 前置条件：请求项目列表接口返回 HTTP 403，响应中包含 `auth_url`
+>
+> ⚠️ **版本 3 变更**：增加「取消授权」按钮交互描述，与 `revoke_auth` 接口联动。
 >
 > ⚠️ **版本 2 变更**：`auth_url` 中的 `state` 改为自包含 signed_state（含用户名、租户、过期时间等），`scope` 细化为 `story#read story#write bug#read bug#write`
 
@@ -44,11 +47,15 @@ document_type: frontend-guide
 
 ---
 
-### 步骤 2：用户触发 OAuth 跳转
+### 步骤 2：用户触发 OAuth 跳转（或选择取消授权）
 
 → 触发时机：用户点击授权引导弹窗中的「前往 TAPD 授权」按钮
 → 操作：直接跳转至 `auth_url` 所指的 TAPD OAuth 授权页
 → 该 URL 已包含 `redirect_uri`（回调端点）、`scope`（权限范围）和 `state`（自包含签名状态串），前端无需修改
+
+→ **替代操作**：用户点击弹窗中的「取消授权」按钮（可选）
+→ 操作：调用 `POST /fta/issue/tapd/revoke_auth`（Body: `{ "bk_biz_id": <业务ID> }`）撤销当前用户 TAPD 用户态授权，关闭弹窗
+→ 详见 [revoke-tapd-auth.md](revoke-tapd-auth.md)
 
 ---
 
@@ -125,7 +132,8 @@ flowchart TD
 授权引导弹窗应包含以下信息：
 - 当前状态说明：「您的 TAPD 个人授权已过期或尚未完成」
 - 操作提示：「请在 TAPD 完成授权后自动回到本页面」
-- 操作按钮：「前往 TAPD 授权」
+- 主操作按钮：「前往 TAPD 授权」
+- 辅助按钮（可选）：「取消授权」—— 调用 `POST /fta/issue/tapd/revoke_auth`（Body: `{ "bk_biz_id": <业务ID> }`）撤销用户态授权，关闭弹窗。下次请求列表时再次触发本弹窗
 - 辅助信息：「授权完成后页面将自动返回」
 
 **注意**：版本 2 变更后不再依赖 Session。`state` 改为自包含 signed_state（JWT-like），内嵌 `success_url`、`error_url`、`backend_callback`、用户信息等，支持多浏览器、跨标签页、Session 过期场景。前端无需关心 `state` 的内部结构，拿到 `auth_url` 后直接在浏览器地址栏打开即可。

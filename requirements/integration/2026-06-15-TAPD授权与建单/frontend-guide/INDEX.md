@@ -3,16 +3,10 @@ id: REQ-20260615-001
 feature: TAPD授权与建单
 status: 设计中
 created: 2026-06-22
-updated: 2026-06-29
-version: 2
-tags: [integration, design, frontend, guide]
-author: AI
-document_type: frontend-guide
----
+updated: 2026-07-01
+version: 3
 
-# 前端 API 集成指南：TAPD 授权与建单
-
-> 基于 API 设计文档版本：v2（2026-06-29 修正版）
+> 基于 API 设计文档版本：v3（2026-07-01 五态版）
 >
 > 本指南面向前端开发者，描述如何在蓝鲸监控前端中集成 TAPD 项目关联授权流程。文档按用户操作场景拆分，不依赖后端设计文档，自包含完整。
 
@@ -24,8 +18,10 @@ document_type: frontend-guide
 
 | # | 接口 | 方法 | 路径 | 说明 | 详细文档 |
 |---|------|------|------|------|----------|
-| 1 | 查询用户可见 TAPD 项目列表 | `POST` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及四态；Body 传 `bk_biz_id` + `success_url` + `error_url` | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
-| 2 | 解绑 TAPD 项目 | `POST` | `/fta/issue/tapd/unbind_workspace` | 解除 TAPD 项目与当前业务的关联，仅删除本地 binding | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) |
+| 1 | 查询用户可见 TAPD 项目列表 | `POST` | `/fta/issue/tapd/user_workspace/` | 冷启动去关联时展示 TAPD 项目及五态；Body 传 `bk_biz_id` + `success_url` + `error_url` | [load-tapd-workspaces.md](load-tapd-workspaces.md) |
+| 2 | 解绑 TAPD 项目 | `POST` | `/fta/issue/tapd/unbind_workspace` | 解除 TAPD 项目与当前业务的关联，仅删除本地 binding（成功后变为 `manually_unbound`） | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) |
+| 3 | 重新关联 TAPD 项目 | `POST` | `/fta/issue/tapd/rebind_workspace` | 将 `manually_unbound` 状态的项目重新关联到当前业务，恢复为 `bound` | [load-tapd-workspaces.md §重新关联](load-tapd-workspaces.md) |
+| 4 | 撤销 TAPD 用户态授权 | `POST` | `/fta/issue/tapd/revoke_auth` | 清除当前用户的 TAPD 用户态 Token（OAuth），下次请求列表会引导重新授权；Body 传 `bk_biz_id` | [revoke-tapd-auth.md](revoke-tapd-auth.md) |
 
 ### 1.2 前端跳转（非 API 调用）
 
@@ -42,12 +38,14 @@ document_type: frontend-guide
 
 | 场景 | 文档 | 前台角色 | 触发条件 | 核心动作 |
 |------|------|---------|----------|---------|
-| 加载 TAPD 项目列表 | [load-tapd-workspaces.md](load-tapd-workspaces.md) | 普通用户 | 进入去关联页面时页面加载 | 请求列表 → 按四态渲染 → 操作 |
-| 解绑 TAPD 项目 | [load-tapd-workspaces.md](load-tapd-workspaces.md) | 有 MANAGE_EVENT 权限的用户 | 点击已关联项目的「解绑」按钮 | 发 POST 请求 → 后端删除本地 binding |
-| TAPD 应用态授权安装 | [tapd-install-authorization.md](tapd-install-authorization.md) | 普通用户发起 / TAPD 管理员执行 | 列表中存在「未授权」或「授权失效」状态的项目 | 替换占位符 → `window.open` 打开安装页 → 管理员完成授权 → 页面回到监控 → 刷新列表 |
+| 加载 TAPD 项目列表 | [load-tapd-workspaces.md](load-tapd-workspaces.md) | 普通用户 | 进入去关联页面时页面加载 | 请求列表 → 按五态渲染 → 操作 |
+| 解绑 TAPD 项目 | [load-tapd-workspaces.md §解绑](load-tapd-workspaces.md) | 有 MANAGE_EVENT 权限的用户 | 点击已关联项目的「解绑」按钮 | 发 POST 请求 → 后端删除本地 binding → 状态变为 `manually_unbound` |
+| 重新关联 TAPD 项目 | [load-tapd-workspaces.md §重新关联](load-tapd-workspaces.md) | 有 MANAGE_EVENT 权限的用户 | 点击 `manually_unbound` 项目的「重新关联」按钮 | 发 POST 请求 → 后端创建 binding → 状态变为 `bound` |
+| 撤销 TAPD 用户态授权 | [revoke-tapd-auth.md](revoke-tapd-auth.md) | 普通用户 | 用户在 OAuth 弹窗中选择「取消授权」或在设置中主动撤销 | 发 POST 请求 → 后端删除用户态 Token → 下次请求列表触发 403 |
+| TAPD 应用态授权安装 | [tapd-install-authorization.md](tapd-install-authorization.md) | 普通用户发起 / TAPD 管理员执行 | 列表中存在 `stale` 或 `unbound` 状态的项目 | 替换占位符 → `window.open` 打开安装页 → 管理员完成授权 → 页面回到监控 → 刷新列表 |
 | TAPD 用户态 OAuth 授权 | [tapd-oauth-authorization.md](tapd-oauth-authorization.md) | 普通用户 | 列表接口返回 403，响应内含 `auth_url` | 跳转 TAPD OAuth → 回调后端 → 重定向到 success_url/error_url → 刷新列表 |
 
-> 注意：以上三个场景在真实使用中可能交叉发生。例如冷启动加载列表时（场景一）可能同时触发 Token 过期（场景三），也可能触发应用态授权（场景二）。
+> 注意：以上场景在真实使用中可能交叉发生。例如冷启动加载列表时（加载列表）可能同时触发 Token 过期（OAuth 授权），也可能触发应用态授权（去关联/重新关联）。
 
 ---
 
@@ -110,16 +108,17 @@ document_type: frontend-guide
 |------|------|:----:|------|
 | `workspace_id` | `string` | 是 | TAPD 项目 ID |
 | `workspace_name` | `string` | 是 | TAPD 项目名称 |
-| `is_bound` | `string` | 是 | 四态标记：`bound` / `importable` / `stale` / `unbound` |
+| `is_bound` | `string` | 是 | 五态标记：`bound` / `importable` / `stale` / `unbound` / `manually_unbound` |
 
-### 4.2 四态定义
+### 4.2 五态定义
 
 | 状态值 | 含义 | 前端展示文案 | 颜色建议 | 可操作按钮               |
 |--------|------|--------|---------|---------------------|
-| `bound` | 该项目已关联监控业务，可直接建单 | 已关联    | 绿色 | 「已关联」（进入建单流程）       |
+| `bound` | 该项目已关联监控业务，可直接建单 | 已关联    | 绿色 | 「已关联」（进入建单流程）+「解绑」       |
 | `importable` | TAPD 已授权 · 后端自动关联中（若关联失败则返回此状态） | 去关联 | 蓝色 | 「去关联」（跳转应用安装页重新安装） |
 | `stale` | TAPD 侧已解绑蓝鲸监控应用，关联已失效 | 去关联    | 橙色/黄色 | 「去关联」（跳转应用安装页重新安装）  |
 | `unbound` | 该项目在 TAPD 上未授权蓝鲸监控 | 去关联    | 灰色 | 「去关联」（跳转应用安装页重新安装）  |
+| `manually_unbound` | 用户曾在蓝鲸侧主动解绑，TAPD 侧授权仍在 | 已手动解绑 | 灰色 | 「重新关联」（无需管理员，用户态鉴权后本地重建绑定）  |
 
 ---
 
@@ -162,3 +161,4 @@ document_type: frontend-guide
 |------|------|------|------|
 | 1 | 2026-06-22 | AI | 初始创建 |
 | 2 | 2026-06-29 | AI | B-01 接口由 GET 改为 POST，参数改为 `success_url`/`error_url`；B-05 OAuth `state` 改用自包含 signed_state，回调不再附加 `auth`/`reason` 参数；新增 B-04 解绑接口；OAuth 错误处理改为 sessionStorage 标记判断 |
+| 3 | 2026-07-01 | AI | 项目状态从四态扩展为五态，新增 `manually_unbound`；新增「重新关联」接口（`rebind_workspace`）和「撤销授权」接口（`revoke_auth`）；解绑后状态更新为 `manually_unbound` 而非 `unbound`/`stale` |

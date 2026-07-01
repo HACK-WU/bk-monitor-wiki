@@ -201,9 +201,9 @@
         {
           "id": "rel_032",
           "text": "Resource 框架使用小技巧",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782305064976,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1782787974726,
           "isImported": false
         },
         {
@@ -380,6 +380,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "cf470658-8b50-4fa4-af64-074e7ab7da70"
+        },
+        {
+          "id": "rel_067",
+          "text": "[2026-06-30] TAPD手动解绑持久化与重新关联：新增 TapdWorkspaceManualUnbind tombstone 表+显式重新关联接口+撤销用户授权接口（REQ-20260630-001）",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "448bfbb1-c84c-4f8b-9706-29f7e9fac318"
         }
       ],
       "keywords": [
@@ -390,7 +399,9 @@
         "POST",
         "signed_state",
         "OAuth",
-        "TAPD"
+        "TAPD",
+        "tombstone",
+        "rebind"
       ],
       "max_hot_count": 10
     },
@@ -420,6 +431,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "bd543c78-7227-4357-b4ac-4a839a00900b"
+        },
+        {
+          "id": "rel_068",
+          "text": "[2026-07-01] TAPD 接口强制用户态授权校验",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "4351f8a8-7c75-476e-afe1-6fed8dd888e6"
         }
       ],
       "keywords": [
@@ -428,7 +448,12 @@
         "进行中",
         "POST",
         "signed_state",
-        "完成"
+        "完成",
+        "TAPD",
+        "授权校验",
+        "TAPDAuthPermission",
+        "TAPD_ENDPOINTS",
+        "IssueViewSet"
       ],
       "max_hot_count": 10
     },
@@ -613,5 +638,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-26T07:43:13.086Z"
+  "updatedAt": "2026-07-01T07:15:48.297Z"
 }

@@ -327,7 +327,7 @@ Content-Type: application/json
 
 ### 前端交互
 
-- 点击 `manually_unbound` 状态卡片上的「重新关联」按钮（仅对有 MANAGE_EVENT 权限的用户展示）。权限判断同解绑按钮。
+- 点击 `manually_unbound` 状态卡片上的「去关联」按钮（仅对有 MANAGE_EVENT 权限的用户展示）。权限判断同解绑按钮。
 - 发送 POST 请求。
 - 接口成功后刷新列表，该项目状态变为 `bound`（进入可用状态）。
 

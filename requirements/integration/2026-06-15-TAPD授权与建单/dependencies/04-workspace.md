@@ -1,6 +1,7 @@
 # 项目（Workspace）API
 
-> 查询 TAPD 项目信息，用于本需求的四态判定和项目名获取。
+> 查询 TAPD 项目信息，用于本需求的四态判定、项目名获取、用户授权后展示可绑定项目列表。
+> 涵盖应用态（Basic Auth）和用户态（Bearer Token）两种鉴权方式下的项目查询接口。
 
 ---
 
@@ -86,3 +87,112 @@ curl -u 'api_user:api_password' \
 
 > 本需求用途：B-03 应用态授权回调时，从 `resource["workspace_id"]` 获取 ID 后，调用本接口获取 `name`，写入 `TAPD_WORKSPACE_BINDING`。
 > 现网已有封装：`bkmonitor/api/tapd/default.py` -> `TapdAPIResource`，设计应直接复用。
+
+---
+
+## 3. get_user_participant_projects — 获取当前用户参与的项目列表
+
+获取当前用户（OAuth 授权用户）在 TAPD 中参与的所有项目列表。
+
+> 📎 官方文档：`https://o.tapd.woa.com/document/api-doc/API文档/api_reference/user/get_user_participant_projects.html`
+
+| 项目 | 内容 |
+|------|------|
+| **请求方式** | GET |
+| **请求 URL** | `http://apiv2.tapd.woa.com/workspaces/get_participant_projects` |
+| **认证方式** | **Bearer Token**（OAuth Access Token） |
+
+### 特殊约束
+
+- 仅支持用户态 OAuth Access Token 调用，**不支持 Basic Auth**。
+- 无分页，一次返回所有符合条件的项目。
+
+### 请求参数（Query）
+
+| 字段名 | 必选 | 类型 | 说明 |
+|--------|------|------|------|
+| `status` | 否 | string | 项目状态过滤，多个状态用逗号隔开。例如 `normal,suspend`。不传则返回所有状态 |
+
+### 请求示例（curl）
+
+```bash
+# 获取当前用户参与的全部项目（OAuth Access Token）
+curl -H 'Authorization: Bearer ACCESS_TOKEN' \
+  'http://apiv2.tapd.woa.com/workspaces/get_participant_projects'
+
+# 仅获取正常和挂起状态的项目
+curl -H 'Authorization: Bearer ACCESS_TOKEN' \
+  'http://apiv2.tapd.woa.com/workspaces/get_participant_projects?status=normal,suspend'
+```
+
+### 返回参数
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `status` | integer | 1 = 成功 |
+| `data` | array | 项目列表，每项包含一个 `Workspace` 对象 |
+| `info` | string | 提示信息 |
+
+### 返回示例
+
+```json
+{
+    "status": 1,
+    "data": [
+        {
+            "Workspace": {
+                "id": "755",
+                "name": "TAPD平台",
+                "pretty_name": "tapd",
+                "category": "product",
+                "status": "normal",
+                "description": "研发管理平台",
+                "begin_date": "2006-04-13",
+                "end_date": "2017-09-27",
+                "external_on": "1",
+                "creator": "",
+                "created": "2007-05-01 00:00:00"
+            }
+        },
+        {
+            "Workspace": {
+                "id": "10022001",
+                "name": "Demo项目",
+                "pretty_name": "tapd_demo",
+                "category": "product",
+                "status": "normal",
+                "description": "",
+                "begin_date": "2015-07-04",
+                "end_date": "2015-07-31",
+                "external_on": "1",
+                "creator": "",
+                "created": "2010-04-19 18:46:30"
+            }
+        }
+    ],
+    "info": "success"
+}
+```
+
+### Workspace 字段说明
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `id` | string | 项目 ID |
+| `name` | string | 项目名称 |
+| `pretty_name` | string | 项目英文昵称 |
+| `category` | string | 项目类别 |
+| `status` | string | 项目状态：`normal`=正常，`closed`=关闭，`suspend`=挂起 |
+| `description` | string | 项目描述 |
+| `begin_date` | string | 开始时间 |
+| `end_date` | string / null | 结束时间 |
+| `external_on` | string | 是否开通外网：`1`=是，`0`=否 |
+| `creator` | string | 项目创建者 |
+| `created` | string | 项目创建时间 |
+
+### 本需求用途
+
+- **B-01 授权流程**：用户完成 OAuth 授权后，可调用本接口列出其在 TAPD 中参与的项目，供选择绑定。
+- **与 `get_granted_workspaces` 的区别**：
+  - `get_granted_workspaces` 返回**当前 app** 已获授权安装的项目（应用视角，需 Basic Auth）。
+  - `get_user_participant_projects` 返回**当前用户**参与的所有项目（用户视角，需 Bearer Token），可用于判断用户是否有权限将某项目绑定到本系统。

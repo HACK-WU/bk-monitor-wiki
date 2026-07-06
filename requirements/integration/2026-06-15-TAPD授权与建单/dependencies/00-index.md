@@ -12,7 +12,7 @@
 | [01-api-common.md](01-api-common.md) | 通用响应格式、认证方式、请求参数 | 接入任意 TAPD API 前必读 |
 | [02-oauth-user.md](02-oauth-user.md) | 用户态 OAuth（授权码 → token） | B-05 用户态授权流程 |
 | [03-oauth-app.md](03-oauth-app.md) | 应用态 OAuth（安装/卸载 URL） | B-01 install_url、B-03 回调、revoke_app_install |
-| [04-workspace.md](04-workspace.md) | 项目查询 API | B-01 四态判定、B-03 获取项目名 |
+| [04-workspace.md](04-workspace.md) | 项目查询 API（含用户态/应用态两种视角） | B-01 四态判定、B-03 获取项目名、用户授权后展示项目列表 |
 | [05-error-codes.md](05-error-codes.md) | 全量错误码与排查建议 | 问题排查、日志设计 |
 | [06-config.md](06-config.md) | 认证对照表、配置项清单 | 部署配置、安全审计 |
 | [07-existing-code.md](07-existing-code.md) | 现网已有封装与复用建议 | 编码实施前必读 |

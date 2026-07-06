@@ -84,87 +84,42 @@
       ],
       "max_hot_count": 10
     },
-    "背景与目标/TAPD授权与建单": {
-      "hot_relations": [
-        {
-          "id": "rel_005",
-          "text": "importable 自动关联策略",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
-          "id": "rel_006",
-          "text": "回调路径不走网关",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
-          "id": "rel_007",
-          "text": "双回调安全机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
-          "id": "rel_008",
-          "text": "四态标记设计",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        }
-      ],
-      "keywords": [
-        "后端静默绑定",
-        "应用态授权",
-        "用户态授权",
-        "验签",
-        "安全",
-        "四态标记",
-        "绑定状态",
-        "同步状态",
-        "设计取舍"
-      ],
-      "max_hot_count": 10
-    },
     "通用记忆片段/Issue": {
       "hot_relations": [
         {
           "id": "rel_009",
           "text": "IssueViewSet 权限控制模式",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782458649288,
-          "isImported": false
+          "score": 1.9958549050444307,
+          "useCount": 2,
+          "lastUsedTime": 1783310419030,
+          "isImported": false,
+          "memoryId": "847673b6-3aff-40e9-a786-5d817e4bbe59"
         },
         {
           "id": "rel_010",
           "text": "IssueQueryHandler ES 查询构建",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 0.998093779505281,
+          "useCount": 1,
+          "lastUsedTime": 1783310434657,
           "isImported": false
         },
         {
           "id": "rel_011",
           "text": "Issue API Resource 业务逻辑模板",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
+          "score": 0.9980882912599073,
+          "useCount": 1,
+          "lastUsedTime": 1783310435607,
+          "isImported": false,
+          "memoryId": "9172d402-4493-486b-bb02-20b459d2b9b1"
         },
         {
           "id": "rel_012",
           "text": "IssueDocument ES 模型关键字段",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
+          "score": 0.9980858584645635,
+          "useCount": 1,
+          "lastUsedTime": 1783310436815,
+          "isImported": false,
+          "memoryId": "7386414d-7037-49d2-b5fd-1677d535a87e"
         }
       ],
       "keywords": [
@@ -187,7 +142,9 @@
         "issue_merge",
         "IssueDocument",
         "IssueActivityDocument",
-        "activity"
+        "activity",
+        "移动",
+        "专题记忆"
       ],
       "max_hot_count": 10
     },
@@ -636,7 +593,83 @@
         "get_request_username"
       ],
       "max_hot_count": 10
+    },
+    "专题记忆/Issue": {
+      "hot_relations": [
+        {
+          "id": "rel_069",
+          "text": "IssueViewSet 权限控制模式",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_070",
+          "text": "IssueQueryHandler ES 查询构建",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "5f951162-e66f-4c4b-89bb-df88a60d34fd"
+        },
+        {
+          "id": "rel_071",
+          "text": "Issue API Resource 业务逻辑模板",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_072",
+          "text": "IssueDocument ES 模型关键字段",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "IssueViewSet",
+        "权限控制",
+        "IAM",
+        "READ_ONLY",
+        "MANAGE_EVENT",
+        "IssueQueryHandler",
+        "QUERY_FIELD_MAP",
+        "fingerprint",
+        "Issue API",
+        "Resource",
+        "业务逻辑",
+        "模板",
+        "IssueDocument",
+        "关键字段",
+        "merge_status"
+      ],
+      "max_hot_count": 10
+    },
+    "专题记忆": {
+      "hot_relations": [
+        {
+          "id": "rel_073",
+          "text": "TAPD相关功能概览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "caf8987f-5cc3-4073-8fb4-933bfc3abdbb"
+        }
+      ],
+      "keywords": [
+        "TAPD",
+        "IssueViewSet",
+        "TapdAPIResource",
+        "OAuth",
+        "用户态授权"
+      ],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-01T07:15:48.297Z"
+  "updatedAt": "2026-07-06T04:12:49.880Z"
 }

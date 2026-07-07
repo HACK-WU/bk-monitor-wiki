@@ -1,8 +1,8 @@
 ---
-groupPath: 专题记忆
+groupPath: 专题记忆/TAPD功能模块
 relation: TAPD相关功能概览
 keywords: [TAPD, IssueViewSet, TapdAPIResource, OAuth, 用户态授权]
-exportedAt: "2026-07-06T04:12:46.637Z"
+exportedAt: "2026-07-06T06:04:41.760Z"
 ---
 ### TAPD相关功能概览
 

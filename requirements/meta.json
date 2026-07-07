@@ -90,6 +90,36 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-07-07-Host页面接口拆分重构": {
+      "id": "REQ-20260707-001",
+      "feature": "Host页面接口拆分重构",
+      "created": "2026-07-07",
+      "updated": "2026-07-07",
+      "status": "已确认",
+      "tags": [
+        "feat",
+        "refactor"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建：需求文档与前端Wiki落盘"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "references/frontend-api-wiki.md",
+          "type": "reference"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
   }
 }

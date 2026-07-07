@@ -575,6 +575,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "f05c9315-e836-4784-9fc5-9ee16b26d910"
+        },
+        {
+          "id": "rel_076",
+          "text": "CMDB Process类字段丢失",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "711e8792-d126-45ce-82e9-4e11d963e2ad"
         }
       ],
       "keywords": [
@@ -590,7 +599,13 @@
         "签名密钥",
         "bk_monitor_base",
         "get_request",
-        "get_request_username"
+        "get_request_username",
+        "Process",
+        "CMDB",
+        "_extra_attr",
+        "start_cmd",
+        "create_time",
+        "get_process_info"
       ],
       "max_hot_count": 10
     },
@@ -654,11 +669,33 @@
         {
           "id": "rel_073",
           "text": "TAPD相关功能概览",
+          "score": 1.9994857109843147,
+          "useCount": 2,
+          "lastUsedTime": 1783317865717,
+          "isImported": false,
+          "memoryId": "daad0af5-325e-4574-a75a-e32f3885b731"
+        }
+      ],
+      "keywords": [
+        "TAPD",
+        "IssueViewSet",
+        "TapdAPIResource",
+        "OAuth",
+        "用户态授权",
+        "移动",
+        "TAPD功能模块"
+      ],
+      "max_hot_count": 10
+    },
+    "专题记忆/TAPD功能模块": {
+      "hot_relations": [
+        {
+          "id": "rel_074",
+          "text": "TAPD相关功能概览",
           "score": 0,
           "useCount": 0,
           "lastUsedTime": null,
-          "isImported": false,
-          "memoryId": "caf8987f-5cc3-4073-8fb4-933bfc3abdbb"
+          "isImported": false
         }
       ],
       "keywords": [
@@ -669,7 +706,41 @@
         "用户态授权"
       ],
       "max_hot_count": 10
+    },
+    "通用记忆片段/关键逻辑": {
+      "hot_relations": [
+        {
+          "id": "rel_075",
+          "text": "Host场景视图生成与拆分链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "c900b6b5-c7b8-4db0-8056-04de8db6cbac"
+        },
+        {
+          "id": "rel_077",
+          "text": "进程列表字段补全可行性",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "e3230805-f7d2-40f0-836a-546f4328ba3d"
+        }
+      ],
+      "keywords": [
+        "HostBuiltinProcessor",
+        "get_auto_view_panels",
+        "panels",
+        "order",
+        "system.proc",
+        "ProcessItem",
+        "时序查询",
+        "pid",
+        "cpu_usage"
+      ],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-06T04:12:49.880Z"
+  "updatedAt": "2026-07-07T07:55:27.440Z"
 }

@@ -203,19 +203,19 @@ def get_auto_view_panels(view: SceneViewModel) -> tuple[list[dict], list[dict]]:
 
 ---
 
-## 8. 待确认事项
+## 8. 边界注意
 
-1. **字段映射精度**：Wiki 中 `ProcessItem` 接口包含 14 个字段（`bindIp`, `cpuUsage`, `hostIp`, `id`, `memRss`, `memUsage`, `name`, `pid`, `port`, `portStatus`, `protocol`, `startCommand`, `uptime`, `user`）。当前后端 `GetHostProcessListResource` 仅返回 `status`, `name`, `id`。需确认：
-   - `status` 是否映射为 `portStatus`？
-   - `startCommand` 是否指 CMDB 的 `start_cmd`？
-   - `uptime`、`memRss` 是否来自 `system.proc` 运行时数据？
-
-> 以上映射关系需与前端对齐后方可进入技术设计阶段。
+1. **`portStatus` 非现有 `status`**：后端 `get_process_info` 已返回进程运行状态 `status`（ON/OFF/UNKNOWN），但前端 Wiki 中的 `portStatus`（0=Normal, 1=Abnormal）是**端口健康状态**，需额外查询 `system.proc_port` 的 `port_health` 指标。两者语义不同。
+2. **`startCommand` 需改 CMDB `Process` 类**：原始 CMDB JSON 包含 `start_cmd`，但 `Process.__init__` 无 `_extra_attr` 兜底，构造对象后丢弃。需调整 `Process` 类或绕过封装才能获取。
 
 ---
 
 ## 调研结论
 
 1. **4 个新接口实现成本低**：`get_auto_view_panels` 已按 `host` / `process` 区分并返回 `(panels, order)`，只需封装 4 个新 Resource 类分别取对应字段。
-2. **进程列表字段补全需分阶段**：CMDB 侧可直接补全 `display_name`、`bind_ip`、`listen_ip`、`listen_port`；运行时指标 `pid`、`cpu_usage`、`mem_usage`、`running_status` 需要额外时序查询；`start_cmdline`、`created_at`、`param_regex` 受限于 `Process` 类无 `_extra_attr` 兜底。
+2. **进程列表字段补全路径清晰**：
+   - **CMDB 侧直接补全（无需额外查询）**：`bindIp`→`pp.bind_ip`、`protocol`→`pp.protocol`、`port`→`ports[0]`、`startCommand`→`pp.start_cmd`（需改 `Process` 类保留 `_extra_attr` 或绕过封装）。
+   - **`system.proc` 实时查询（新增时序查询逻辑）**：`pid`、`cpuUsage`、`memRss`、`memUsage`、`uptime`、`user`。按 `bk_host_id` + `display_name` 维度查最新时序数据点。
+   - **`system.proc_port` 查询（新增）**：`portStatus`（端口健康状态，0/1），区别于当前进程运行状态 `status`（ON/OFF）。
+   - **`hostIp` 与 `id`**：`hostIp` 直接取主机 IP；`id` 延续当前做法（进程名），前端自行拼接为 `name@hostIp`。
 3. **建议路由归属**：新接口统一挂在 `SceneViewViewSet` 下，保持与 `get_scene_view`、`get_host_process_list` 同模块。

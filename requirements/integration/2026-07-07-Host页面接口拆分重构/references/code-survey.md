@@ -217,5 +217,69 @@ def get_auto_view_panels(view: SceneViewModel) -> tuple[list[dict], list[dict]]:
    - **CMDB 侧直接补全（无需额外查询）**：`bindIp`→`pp.bind_ip`、`protocol`→`pp.protocol`、`port`→`ports[0]`、`startCommand`→`pp.start_cmd`（需改 `Process` 类保留 `_extra_attr` 或绕过封装）。
    - **`system.proc` 实时查询（新增时序查询逻辑）**：`pid`、`cpuUsage`、`memRss`、`memUsage`、`uptime`、`user`。按 `bk_host_id` + `display_name` 维度查最新时序数据点。
    - **`system.proc_port` 查询（新增）**：`portStatus`（端口健康状态，0/1），区别于当前进程运行状态 `status`（ON/OFF）。
-   - **`hostIp` 与 `id`**：`hostIp` 直接取主机 IP；`id` 延续当前做法（进程名），前端自行拼接为 `name@hostIp`。
+    - **`hostIp` 与 `id`**：`hostIp` 直接取主机 IP；`id` 延续当前做法（进程名），前端自行拼接为 `name@hostIp`。
 3. **建议路由归属**：新接口统一挂在 `SceneViewViewSet` 下，保持与 `get_scene_view`、`get_host_process_list` 同模块。
+
+---
+
+## 9. [项目记忆 - 开发参考] Resource 框架关键机制
+
+> 本节从 `monitor-memory` 项目记忆缓存，供 Host 拆分接口开发参照。
+
+### 9.1 两类核心基类
+
+| 基类 | 路径 | 用途 |
+|------|------|------|
+| `Resource` | `core/drf_resource/base.py` | 封装**本地业务逻辑**，`perform_request()` 写 Python 业务代码 |
+| `APIResource` | `core/drf_resource/contrib/api.py` | 封装**远程 ESB/APIGW** 调用，`perform_request()` 发 HTTP |
+
+### 9.2 自动发现与入口
+
+- `ResourceManager` 在 Django `AppConfig.ready()` 时自动扫描各模块的 `resources.py` / `adapter/default.py`
+- 两种调用方式等效：`resource.alert.search_alert(params)` 或 `SearchAlertResource().request(params)`
+- **线程安全**：`resource.xxx.yyy()` 临时创建实例，天然线程安全；直接持实例复用需注意状态安全
+- TLS 参数透传：HTTP 请求自动携带 `bk_app_code`/`bk_app_secret`/`bk_username`
+
+### 9.3 批量/异步能力
+
+```python
+# 批量并行（内部 ThreadPool，自动继承上下文）
+results = resource.alert.search_alert.bulk_request(params_list)
+
+# 简单异步（Celery）
+task_info = resource.alert.search_alert.delay(params)  # → {"task_id": "xxx"}
+```
+
+### 9.4 Serializer 自动发现规则
+
+| 不定义 Serializer 时自动查找名称 | 示例 |
+|-----------------------------------|------|
+| RequestSerializer | `SearchAlertRequestSerializer` |
+| ResponseSerializer | `SearchAlertResponseSerializer` |
+
+### 9.5 ResourceViewSet 路由注册范式
+
+```python
+class SomeViewSet(ResourceViewSet):
+    resource_routes = [
+        ResourceRoute("POST", SomeResource, endpoint="xxx"),  # ← 路由名
+        ResourceRoute("GET", AnotherResource, endpoint="yyy"),
+    ]
+```
+
+### 9.6 API 三层分工
+
+| 层 | 目录 | 用途 |
+|----|------|------|
+| resource | 各模块 `resources.py` | 本地业务逻辑 |
+| api | `api/cmdb/`、`api/tapd/` 等 | 封装外部系统 HTTP 调用 |
+| kernel_api | `kernel_api/` | 对外暴露（API 网关），不供前端直接调用 |
+
+### 9.7 本次开发应遵守的范式
+
+1. **新接口写 Resource 类**（继承 `Resource`），在 `scene_view/resources/` 中实现
+2. **路由注册**用 `ResourceRoute` 挂在 `SceneViewViewSet` 下
+3. **参数校验**显式定义 `RequestSerializer`，可选 `ResponseSerializer`
+4. **Serializer 自动发现**优先：不定义则按类名自动查找 `XxxRequestSerializer`
+
+**来源**：`monitor-memory` → Resource 框架、API 集成模式

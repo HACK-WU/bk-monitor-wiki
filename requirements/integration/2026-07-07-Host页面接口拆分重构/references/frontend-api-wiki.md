@@ -543,7 +543,6 @@ type GetHostViewsPanelsResult = HostViewsRowPanel[];
 
 **请求参数**：无
 
-> 进程图表面板 `id` 约定为 `process.{指标 id}`，作为 panel 与 order 的关联键。
 
 #### 返回数据类型
 

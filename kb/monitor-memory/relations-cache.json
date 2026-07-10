@@ -158,17 +158,17 @@
         {
           "id": "rel_032",
           "text": "Resource 框架使用小技巧",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1782787974726,
+          "score": 3,
+          "useCount": 3,
+          "lastUsedTime": 1783563283882,
           "isImported": false
         },
         {
           "id": "rel_033",
           "text": "Resource框架自动发现与使用",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1783563286625,
           "isImported": false
         },
         {
@@ -204,9 +204,9 @@
         {
           "id": "rel_045",
           "text": "前端接口与网关接口差异",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782292678237,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1783563326674,
           "isImported": false,
           "memoryId": "53878a68-3ffa-4674-b5ae-52b815df7b88"
         },
@@ -221,25 +221,25 @@
         {
           "id": "rel_036",
           "text": "内部API暴露模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1783563294374,
           "isImported": false
         },
         {
           "id": "rel_037",
           "text": "外部API调用模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1783563325330,
           "isImported": false
         },
         {
           "id": "rel_038",
           "text": "APIResource 扩展模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1783563285508,
           "isImported": false
         }
       ],
@@ -397,6 +397,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "4351f8a8-7c75-476e-afe1-6fed8dd888e6"
+        },
+        {
+          "id": "rel_078",
+          "text": "[2026-07-07] Host 页面接口拆分重构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "b243aad1-b724-4f9c-9180-5d6236a88934"
         }
       ],
       "keywords": [
@@ -410,7 +419,11 @@
         "授权校验",
         "TAPDAuthPermission",
         "TAPD_ENDPOINTS",
-        "IssueViewSet"
+        "IssueViewSet",
+        "REQ-20260707-001",
+        "design-review",
+        "接口拆分",
+        "进程列表字段补全"
       ],
       "max_hot_count": 10
     },
@@ -683,7 +696,12 @@
         "OAuth",
         "用户态授权",
         "移动",
-        "TAPD功能模块"
+        "TAPD功能模块",
+        "元数据管理",
+        "模型层",
+        "数据源",
+        "结果表",
+        "存储集群"
       ],
       "max_hot_count": 10
     },
@@ -740,7 +758,88 @@
         "cpu_usage"
       ],
       "max_hot_count": 10
+    },
+    "专题记忆/数据源查询机制": {
+      "hot_relations": [
+        {
+          "id": "rel_079",
+          "text": "数据源查询三层架构与表名字段来源",
+          "score": 0.9996800676672329,
+          "useCount": 1,
+          "lastUsedTime": 1783583523339,
+          "isImported": false,
+          "memoryId": "6df6cac1-5400-4baf-b9ea-60030ec57d43"
+        }
+      ],
+      "keywords": [
+        "load_data_source",
+        "UnifyQuery",
+        "ResultTable",
+        "ResultTableField",
+        "system.load",
+        "metric_field",
+        "result_table_id",
+        "DataSource",
+        "DataSourceResultTable",
+        "bk_data_id"
+      ],
+      "max_hot_count": 10
+    },
+    "专题记忆/元数据初始化数据": {
+      "hot_relations": [
+        {
+          "id": "rel_080",
+          "text": "监控系统元数据初始化文件全览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "ResultTable",
+        "DataSource",
+        "Label"
+      ],
+      "max_hot_count": 10
+    },
+    "专题记忆/场景视图模型": {
+      "hot_relations": [
+        {
+          "id": "rel_081",
+          "text": "场景视图(SceneViewModel)模型作用与调用关系",
+          "score": 2.992666857803249,
+          "useCount": 3,
+          "lastUsedTime": 1783673158289,
+          "isImported": false,
+          "memoryId": "74394ec2-fabc-4d99-a163-04098be981a0"
+        }
+      ],
+      "keywords": [
+        "SceneViewModel",
+        "SceneModel",
+        "SceneViewOrderModel",
+        "BuiltinProcessor",
+        "get_view_config",
+        "scene_view",
+        "overview",
+        "detail",
+        "panels",
+        "variables",
+        "UpdateSceneViewResource",
+        "create_or_update_view",
+        "BulkUpdateSceneViewOrderAndNameResource",
+        "GetSceneViewListResource",
+        "get_panel_count",
+        "get_view_list",
+        "GetSceneResource",
+        "BUILTIN_SCENES",
+        "view_configs",
+        "_read_builtin_view_config",
+        "load_builtin_views"
+      ],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-07T07:55:27.440Z"
+  "updatedAt": "2026-07-10T08:49:30.001Z"
 }

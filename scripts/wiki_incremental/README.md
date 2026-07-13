@@ -26,7 +26,7 @@ change_detection.py  ──▶  affected_wiki_paths (list)
 | `index_builder.py` | 全量构建 `source_to_wiki` / `wiki_to_source` 索引 | `build_index()`, `parse_citations()`, `build_indexes()` |
 | `change_detection.py` | git diff 变更检测 + 三级匹配 + 新文件聚类 | `detect_changes()`, `ChangeReport`, `FeatureCluster`, `MatchResult` |
 | `citation_cleanup.py` | 清理 wiki 中已删除/重命名源文件的引用 | `cleanup_dead_citations()` |
-| `format_validation.py` | R1-R6 格式校验 + 可机械修复的格式问题 | `validate_and_fix()`, `Violation` |
+| `format_validation.py` | R1-R5 格式校验 + 可机械修复的格式问题（R6 行号需人工补全） | `validate_and_fix()`, `Violation` |
 | `incremental_index.py` | 增量更新受影响 wiki 的索引 | `incremental_index_update()`, `safe_index_update()`, `save_metadata()` |
 | `json_utils.py` | 原子化 JSON 读写 | `load_json()`, `atomic_save_json()` |
 || `cli.py` | 命令行入口 | `build-index`, `detect`, `lookup` 子命令 |

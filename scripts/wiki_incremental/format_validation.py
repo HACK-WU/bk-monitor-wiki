@@ -6,6 +6,10 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+# Sections explicitly marked as having no source are exempt from R3 (must be
+# kept in sync with wiki_format_check.NO_SOURCE_NOTE_RE).
+NO_SOURCE_NOTE_RE = re.compile(r"无\s*[“\"]?章节来源[”\"]?|本节为概念性内容|不直接分析具体文件")
+
 
 @dataclass
 class Violation:
@@ -30,9 +34,9 @@ def _fix_missing_file_scheme(content: str) -> str:
         label, path = match.group(1), match.group(2)
         if path.startswith(("file://", "#", "http://", "https://", "mailto:")):
             return match.group(0)
-        if "/" in path:
-            return f"- [{label}](file://{path})"
-        return match.group(0)
+        # Builder ENTRY_RE only matches file://...; any other entry would be
+        # silently dropped from the index, so prefix it.
+        return f"- [{label}](file://{path})"
 
     return re.sub(r"^- \[([^\]]+)\]\(([^)]+)\)\s*$", repl, content, flags=re.MULTILINE)
 
@@ -64,6 +68,8 @@ def _fix_section_sources(content: str) -> tuple[str, list[str]]:
         if title == "目录":
             continue
         if re.search(r"^\*{0,2}章节来源\*{0,2}\s*$", block, re.MULTILINE):
+            continue
+        if NO_SOURCE_NOTE_RE.search(block):
             continue
         missing.append(title)
         insert = "\n章节来源\n"
@@ -106,7 +112,7 @@ MAX_FIX_ROUNDS = 3
 
 
 def _validate_one_round(wiki_content: str) -> tuple[str, list[Violation]]:
-    """Single-pass R1/R5/R3/R4/R6 validation and fixing."""
+    """Single-pass R1/R5/R3/R4/R2 validation and fixing."""
     content = wiki_content
     violations: list[Violation] = []
 
@@ -130,14 +136,17 @@ def _validate_one_round(wiki_content: str) -> tuple[str, list[Violation]]:
     headings = _headings(content)
     toc_titles = _toc_titles(content)
     if toc_titles and toc_titles != headings:
-        violations.append(Violation("R6", "目录与章节不一致", True))
+        violations.append(Violation("R2", "目录与章节不一致", True))
         content = _fix_toc(content)
 
     return content, violations
 
 
 def validate_and_fix(wiki_content: str) -> tuple[str, list[Violation]]:
-    """R1-R6 multi-round validation; up to 3 rounds to converge cascading fixes."""
+    """R1-R5 multi-round validation; up to 3 rounds to converge cascading fixes.
+
+    R6 (#Lx-Ly 行号) 无法机械修复，需人工核对源码补全。
+    """
     content = wiki_content
     all_violations: list[Violation] = []
 

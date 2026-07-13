@@ -341,6 +341,74 @@ Raise --> Resp
 - [bkmonitor/middlewares/authentication.py:97-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L97-L123)
 - [packages/monitor_api/middlewares.py:73-106](file://bkmonitor/packages/monitor_api/middlewares.py#L73-L106)
 
+### API 调用示例（Demo）
+
+下列示例展示了三种主要认证方式下如何构造请求头，以及统一异常响应的处理方式。示例中的 URL、Token 与业务 ID 均为占位符，请按实际环境替换。
+
+#### 示例一：经 API 网关（JWT）调用
+
+当请求来自蓝鲸 API 网关时，网关会注入 `X-Bkapi-From: apigw` 与签名后的 JWT 头 `X-Bkapi-Jwt`，中间件据此拉取公钥并校验签名。开启多租户模式时还需携带 `X-Bk-Tenant-Id`。
+
+```bash
+curl -X GET "https://{apigw-host}/api/bkmonitor/prod/app_monitor/list_alarm/?bk_biz_id=2" \
+  -H "X-Bkapi-From: apigw" \
+  -H "X-Bkapi-Jwt: xxxxxxxxxxxxxxxxxxxxxxx.<payload>.<signature>" \
+  -H "X-Bk-Tenant-Id: system"
+```
+
+> 判定条件：`use_apigw_auth` 要求 `X-Bkapi-From == "apigw"` 且存在 `X-Bkapi-Jwt` 头；签名算法为 RS512。
+
+#### 示例二：使用 API Token 调用
+
+直接以 `Bearer` 令牌调用后端接口。中间件从 `Authorization` 头中截取令牌（去掉 `Bearer ` 前缀），依次校验令牌是否存在、是否过期、是否允许访问该视图、以及命名空间 `biz#{bk_biz_id}` 是否被授权，因此 `bk_biz_id` 通常必传。
+
+```bash
+curl -X GET "https://{backend-host}/app_monitor/list_alarm/?bk_biz_id=2" \
+  -H "Authorization: Bearer <your_token>"
+```
+
+> 令牌类型（`as_code` / `grafana` / `entity` / 观测场景）决定了后续注入的用户角色与是否跳过权限校验。
+
+#### 示例三：MCP 场景调用
+
+MCP 请求需携带 `X-Bkapi-Mcp-Server-Name` 标识来源，并可通过 `X-Bkapi-Permission-Action` 指定权限动作；中间件会解析 `bk_biz_id`（GET 参数、POST 表单或 JSON body 均可）并进行权限校验。
+
+```bash
+curl -X POST "https://{apigw-host}/api/bkmonitor/prod/mcp/get_alarm/" \
+  -H "X-Bkapi-From: apigw" \
+  -H "X-Bkapi-Jwt: <jwt>" \
+  -H "X-Bkapi-Mcp-Server-Name: bkmonitor-mcp" \
+  -H "X-Bkapi-Permission-Action: view_business" \
+  -H "Content-Type: application/json" \
+  -d '{"bk_biz_id": 2}'
+```
+
+> 若缺少 `bk_biz_id`，中间件返回 `403 Missing bk_biz_id in request parameters`；权限不足返回 `403 Permission denied: insufficient MCP permissions`。
+
+#### 统一异常响应示例
+
+对于 Ajax 请求，即使内部发生 5xx 异常，`MonitorAPIMiddleware` 也会将 HTTP 状态码改写为 200，并在响应体中以统一结构返回错误码、名称与消息，客户端应据此判断成功与否，而非仅依赖 HTTP 状态码：
+
+```json
+{
+  "result": false,
+  "code": 3300001,
+  "name": "CustomError",
+  "message": "params `bk_biz_id` is required",
+  "data": null
+}
+```
+
+> 客户端务必检查 `result` 字段：`result == false` 表示业务失败，需读取 `code` / `message` 做相应处理。
+
+**章节来源**
+- [kernel_api/middlewares/authentication.py:224-229](file://bkmonitor/kernel_api/middlewares/authentication.py#L224-L229)
+- [kernel_api/middlewares/authentication.py:251-252](file://bkmonitor/kernel_api/middlewares/authentication.py#L251-L252)
+- [kernel_api/middlewares/authentication.py:561-601](file://bkmonitor/kernel_api/middlewares/authentication.py#L561-L601)
+- [kernel_api/middlewares/authentication.py:603-625](file://bkmonitor/kernel_api/middlewares/authentication.py#L603-L625)
+- [kernel_api/middlewares/authentication.py:407-460](file://bkmonitor/kernel_api/middlewares/authentication.py#L407-L460)
+- [packages/monitor_api/middlewares.py:44-106](file://bkmonitor/packages/monitor_api/middlewares.py#L44-L106)
+
 ### 常见安全问题与解决方案
 - 越权访问
   - 通过API Token命名空间与MCP权限动作双重校验，严格限制业务域访问。

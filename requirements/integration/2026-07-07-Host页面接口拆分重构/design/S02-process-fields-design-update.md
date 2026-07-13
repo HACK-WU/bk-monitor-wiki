@@ -67,10 +67,6 @@ data.info[]                          # 服务实例列表
 | `bk_process_name` | string | 进程别名 | `name` |
 | `start_cmd` | string | 启动命令 | `startCommand` |
 | `user` | string | 启动用户 | `user`（CMDB 优先） |
-| `work_path` | string | 工作路径 | `workPath` |
-| `priority` | int | 启动优先级 | `priority` |
-| `proc_num` | int | 启动数量 | `procNum` |
-| `auto_start` | bool | 是否自动拉起 | `autoStart` |
 | `bind_info[]` | object[] | 绑定信息 | — |
 | `bind_info[].ip` | string | 绑定IP | `bindIp` |
 | `bind_info[].port` | string | 绑定端口 | `port` |
@@ -80,7 +76,9 @@ data.info[]                          # 服务实例列表
 > 注：`process.user` 是 **启动用户**（CMDB 配置值）；运行时实际运行用户在 TSDB `system.proc.username`。两源都有时按 §1 取 CMDB 优先。
 
 ### 3.3 字段完整性结论
-CMDB 接口**已覆盖**需求 S02 中全部配置侧字段（`bindIp`/`port`/`protocol`/`startCommand`/`user`/`workPath`/`autoStart`/`priority`/`procNum`/`id`/`name`），无需另起查询。运行时指标（§2 纯 TSDB 列）CMDB 不提供，继续走 TSDB。
+CMDB 接口**已覆盖**需求 S02 中前端 `ProcessItem`（frontend-api-wiki.md）所需的全部配置侧字段（`id`/`name`/`bindIp`/`port`/`protocol`/`startCommand`/`user`），无需另起查询。运行时指标（§2 纯 TSDB 列）CMDB 不提供，继续走 TSDB。
+
+> 注：CMDB `process` 还提供 `work_path`/`priority`/`proc_num`/`auto_start` 等配置字段，但前端 `ProcessItem` 契约（14 字段）未使用，故后端 `Process`/`get_process_info` 仅显式透传 `user`/`start_cmd`，其余仍走 `_extra_attr` 兜底，不纳入响应。
 
 ---
 

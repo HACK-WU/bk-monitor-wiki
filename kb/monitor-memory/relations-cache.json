@@ -762,6 +762,24 @@
     "专题记忆/数据源查询机制": {
       "hot_relations": [
         {
+          "id": "rel_082",
+          "text": "统一查询参数拼接链路(data_source_class→query_list→params)",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1783995174222,
+          "isImported": false,
+          "memoryId": "48bbcb06-d3d9-4e09-b5fb-55d61e79bfb7"
+        },
+        {
+          "id": "rel_090",
+          "text": "query_list 多条目语义与查询效率",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1784004648400,
+          "isImported": false,
+          "memoryId": "64d863dc-e409-460d-b318-4c60f2b53a94"
+        },
+        {
           "id": "rel_079",
           "text": "数据源查询三层架构与表名字段来源",
           "score": 0.9996800676672329,
@@ -769,6 +787,69 @@
           "lastUsedTime": 1783583523339,
           "isImported": false,
           "memoryId": "6df6cac1-5400-4baf-b9ea-60030ec57d43"
+        },
+        {
+          "id": "rel_083",
+          "text": "UnifyQuery全查询链路调研索引",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "57e54df7-670e-4781-bbf3-3c1dc1fe97ab"
+        },
+        {
+          "id": "rel_084",
+          "text": "query_data参数拼装链路（基线篇）",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "4ce2c9da-2a44-4c48-b23d-08dd75afbcd5"
+        },
+        {
+          "id": "rel_085",
+          "text": "query_data_with_stat参数拼装链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "c7a4aeb8-bff3-46a4-890f-c89edd55e7ec"
+        },
+        {
+          "id": "rel_086",
+          "text": "query_reference参数拼装链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "602f0025-0328-4b09-8ad6-ff0cdb3c5181"
+        },
+        {
+          "id": "rel_087",
+          "text": "query_log参数拼装链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "f47a3566-7d1f-4c80-8bd8-12cc8b92ce47"
+        },
+        {
+          "id": "rel_088",
+          "text": "query_dimensions参数拼装链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "00818fa2-c78a-400c-9e7f-b1923f6353bc"
+        },
+        {
+          "id": "rel_089",
+          "text": "query_data_using_datasource分支链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "f1e4186f-1348-4d37-90e0-b420f5128a7f"
         }
       ],
       "keywords": [
@@ -781,7 +862,38 @@
         "result_table_id",
         "DataSource",
         "DataSourceResultTable",
-        "bk_data_id"
+        "bk_data_id",
+        "统一查询参数拼接",
+        "指标聚合映射",
+        "瞬时查询",
+        "平铺",
+        "时间对齐",
+        "query_data",
+        "数据源查询机制",
+        "with_series_stat",
+        "to_unify_query_config",
+        "get_unify_query_params",
+        "query_data_with_stat",
+        "process_unify_query_series_stat",
+        "QueryReferenceResource",
+        "query_log",
+        "QueryRawResource",
+        "process_unify_query_log",
+        "原始日志查询",
+        "query_dimensions",
+        "get_dimension_data",
+        "InfluxdbDimensionFetcher",
+        "use_unify_query",
+        "DataQueryHandler",
+        "query_data_using_datasource",
+        "_query_data_using_datasource",
+        "api.metadata.get_es_data",
+        "query_list 多条目",
+        "合并后单跑",
+        "引擎内部并行",
+        "故障隔离",
+        "响应体积",
+        "关联计算"
       ],
       "max_hot_count": 10
     },
@@ -841,5 +953,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-10T08:49:30.001Z"
+  "updatedAt": "2026-07-14T04:50:48.401Z"
 }

@@ -120,6 +120,29 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-07-14-CodeToWiki 工具链抽离": {
+      "id": "REQ-001",
+      "feature": "CodeToWiki 工具链抽离",
+      "created": "2026-07-14",
+      "updated": "2026-07-14",
+      "status": "已确认",
+      "tags": [
+        "integration",
+        "tool"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ]
     }
   }
 }

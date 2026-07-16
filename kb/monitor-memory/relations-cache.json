@@ -789,24 +789,6 @@
           "memoryId": "6df6cac1-5400-4baf-b9ea-60030ec57d43"
         },
         {
-          "id": "rel_083",
-          "text": "UnifyQuery全查询链路调研索引",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryId": "57e54df7-670e-4781-bbf3-3c1dc1fe97ab"
-        },
-        {
-          "id": "rel_084",
-          "text": "query_data参数拼装链路（基线篇）",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryId": "4ce2c9da-2a44-4c48-b23d-08dd75afbcd5"
-        },
-        {
           "id": "rel_085",
           "text": "query_data_with_stat参数拼装链路",
           "score": 0,
@@ -850,6 +832,14 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "f1e4186f-1348-4d37-90e0-b420f5128a7f"
+        },
+        {
+          "id": "rel_092",
+          "text": "system.proc display_name 维度真实格式(=进程名或bk_process_name)",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
         }
       ],
       "keywords": [
@@ -893,7 +883,14 @@
         "引擎内部并行",
         "故障隔离",
         "响应体积",
-        "关联计算"
+        "关联计算",
+        "system.proc",
+        "display_name",
+        "进程显示名称",
+        "bk_process_name",
+        "get_process_runtime_metrics",
+        "GetHostProcessListResource",
+        "进程名"
       ],
       "max_hot_count": 10
     },
@@ -953,5 +950,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-14T04:50:48.401Z"
+  "updatedAt": "2026-07-16T02:15:03.909Z"
 }

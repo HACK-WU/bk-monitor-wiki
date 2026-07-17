@@ -1,4 +1,9 @@
-# BK-Monitor Wiki 反查
+---
+name: wiki-lookup
+description: 根据 commit 或修改的文件路径，快速反查受影响的 Wiki 文档并按命中文件数降序排列。当用户在修改代码前想了解设计上下文、code review 时查受影响 Wiki、排查问题时理解模块架构，或评估变更影响范围时使用。
+---
+
+# Wiki 反查
 
 > 已知 commit 或修改的文件路径，快速反查受影响的 Wiki 文档，按命中文件数降序排列。在修改代码前、code review 时、排查问题时使用。
 
@@ -16,27 +21,34 @@
 
 | 依赖 | 说明 |
 |------|------|
-| `wiki/metadata.json` | 必须包含 `source_to_wiki` 字段（由 `build-index` 构建） |
+| `bk-monitor-wiki/wiki/metadata.json` | 必须包含 `source_to_wiki` 字段（由 `codetowiki build-index` 构建） |
 | 源代码仓库 | `--repo-dir` 指向的工作区（commit 模式需要 git 可用） |
 
-如果 `metadata.json` 不含 `source_to_wiki`，先执行：
+如果 `metadata.json` 不含 `source_to_wiki`，先构建索引：
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
+codetowiki build-index \
   --wiki-dir bk-monitor-wiki/wiki \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --repo-dir . \
   --repo-url git@github.com:TencentBlueKing/bk-monitor.git \
   --branch master \
+  --check-paths \
   --output bk-monitor-wiki/wiki/metadata.json
 ```
 
+- `--metadata` 读取已有配置（excluded_paths/noise_paths 等），防止被默认值覆盖。
+- `--repo-prefix`（可选）：仓库根下的路径前缀（如 `src/`），供 Wiki 目录推断使用。
+- `--check-paths`（可选）：校验 wiki 引用的源码路径是否真实存在，发现幽灵引用时写入 `metadata.warnings`。
+
 ## 命令速查
+
+所有能力通过 `codetowiki` CLI 暴露，本 Skill 不直接调用内部模块。
 
 ### 按文件路径反查
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+codetowiki lookup \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --files <file1> <file2> ...
 ```
@@ -44,16 +56,18 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
 ### 按 commit 反查（自动 diff 父提交）
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+codetowiki lookup \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --new-commit <hash> \
   --repo-dir .
 ```
 
+> `--new-commit` 省略 `--old-commit` 时，自动与父提交 `<hash>~1` 做 `git diff --name-only`。
+
 ### 按 commit 范围反查
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+codetowiki lookup \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --new-commit <hash> \
   --old-commit <earlier_hash> \
@@ -65,7 +79,7 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
 同一文件在两种来源中自动去重：
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
+codetowiki lookup \
   --metadata bk-monitor-wiki/wiki/metadata.json \
   --files <file1> \
   --new-commit <hash> \
@@ -97,7 +111,7 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
 | 首行 summary | 输入来源和文件数 | 确认输入正确 |
 | `[ N 文件]` | 该 Wiki 被 N 个变更文件引用 | N 越大优先级越高，优先阅读 |
 | `↳ file1, file2 ... +M` | 前 3 个匹配文件 + 剩余 M 个 | 了解哪些具体文件触发了匹配 |
-| `未匹配文件` | 在 `source_to_wiki` 中无匹配的文件 | 这些文件可能没有对应 Wiki，或用 `detect` 命令查看是否需要新建 |
+| `未匹配文件` | 在 `source_to_wiki` 中无匹配的文件 | 这些文件可能没有对应 Wiki，或用 `codetowiki detect` 查看是否需要新建 |
 | 排序规则 | 命中文件数降序 | 排名越靠前的 Wiki 与变更关联越紧密 |
 
 ## 行动策略
@@ -126,22 +140,6 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli lookup \
 2. 查看关键文件在整体变更中的 Wiki 覆盖情况
 3. 对 `--files` 指定的文件，确认其在 Wiki 中的角色是否与变更意图一致
 
-## Python API 备选
-
-如果需要在脚本中调用而非 CLI：
-
-```python
-from wiki_incremental import load_json, lookup_wikis, format_lookup
-
-metadata = load_json("wiki/metadata.json")
-source_to_wiki = metadata["source_to_wiki"]
-
-ranked, unmatched = lookup_wikis(source_to_wiki, [
-    "bkmonitor/alarm_backends/engine.py",
-])
-print(format_lookup(ranked, unmatched=unmatched))
-```
-
 ## 与 detect 的区别
 
 | | `lookup` | `detect` |
@@ -156,10 +154,10 @@ print(format_lookup(ranked, unmatched=unmatched))
 ## 常见问题
 
 **Q: 输出为空？**
-A: `source_to_wiki` 不包含你传入的文件。检查文件路径是否准确（工作区相对路径），或先跑 `build-index` 重建索引。
+A: `source_to_wiki` 不包含你传入的文件。检查文件路径是否准确（工作区相对路径），或先跑 `codetowiki build-index` 重建索引。
 
 **Q: 命中数感觉不准确？**
 A: `lookup` 精确匹配 `source_to_wiki` 的键。检查文件中是否正确添加了 `<cite>` 标签和 `file://` 引用。
 
 **Q: 想同时看变更影响和新功能簇？**
-A: 先用 `lookup` 了解相关 Wiki，再用 `detect` 分析完整变更和新文件聚类。
+A: 先用 `lookup` 了解相关 Wiki，再用 `codetowiki detect` 分析完整变更和新文件聚类。

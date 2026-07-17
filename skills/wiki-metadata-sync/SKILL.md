@@ -3,7 +3,7 @@ name: wiki-metadata-sync
 description: When wiki markdown files are directly created, edited, or deleted (not through code-change-driven pipeline), automatically sync metadata.json bidirectional mappings (source_to_wiki / wiki_to_source) using build-index. Use after manually creating or editing wiki pages, updating cite blocks, or when the user asks to update metadata.json mappings.
 ---
 
-# BK-Monitor Wiki 元数据映射同步
+# Wiki 元数据映射同步
 
 > Wiki 文件直接编辑后，自动同步 `metadata.json` 中的 `source_to_wiki` / `wiki_to_source` 双向映射。
 
@@ -23,30 +23,30 @@ description: When wiki markdown files are directly created, edited, or deleted (
 | 核心命令 | `detect` + 人工更新 Wiki 内容 | `build-index` 自动全量重建 |
 | 适用场景 | 源码变更后，需要 AI 分析并更新 Wiki | Wiki 原文手动创建/编辑后，更新映射关系 |
 
-## 关键文件
+## 相关命令
 
-| 文件 | 说明 |
+所有能力通过 `codetowiki` CLI 暴露，本 Skill 不直接调用内部模块。
+
+| 命令 | 说明 |
 |------|------|
-| `wiki/metadata.json` | 元信息、双向索引、源代码仓库信息 |
-| `scripts/wiki_incremental/index_builder.py` | 扫描 wiki markdown，解析 `<cite>` 和 `章节来源` 引用，重建 `source_to_wiki` / `wiki_to_source` |
-| `scripts/wiki_incremental/cli.py` | `build-index` 命令行入口 |
-| `scripts/wiki_incremental/incremental_index.py` | 增量更新（仅更新指定 Wiki 的映射） |
+| `codetowiki build-index` | 扫描 wiki markdown，解析 `<cite>` 和 `章节来源` 引用，重建 `source_to_wiki` / `wiki_to_source` |
+| `codetowiki sync-index` | 仅更新指定 Wiki 的映射（增量）；失败自动降级全量 build-index |
+| `codetowiki wiki-format` | Wiki 格式校验 |
 
 ## 前置检查
 
-1. 确认 `bk-monitor-wiki` 是独立 git 仓库（submodule），操作在其根目录下执行
-2. 确认 `bk-monitor-wiki/wiki/metadata.json` 存在
-3. Wiki 文件中的引用格式必须符合规范：`- [名称](file://相对路径#Lx-Ly)`
+1. 确认 `<wiki_dir>/metadata.json` 存在
+2. Wiki 文件中的引用格式必须符合规范：`- [名称](file://相对路径#Lx-Ly)`
 
 ## 标准流程
 
 ### Step 1: 提交 Wiki 变更
 
-Wiki 文件变更必须先提交，确保 `build-index` 扫描到最新内容：
+Wiki 文件变更建议先提交，确保 `build-index` 扫描到最新内容：
 
 ```bash
-cd bk-monitor-wiki
-git add wiki/...
+cd <wiki-repo>
+git add <wiki_dir>/...
 git commit -m "docs(wiki): 描述变更内容"
 ```
 
@@ -55,18 +55,22 @@ git commit -m "docs(wiki): 描述变更内容"
 回到项目根目录执行 `build-index`：
 
 ```bash
-cd /path/to/bk-monitor && \
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
-  --wiki-dir bk-monitor-wiki/wiki \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
+cd <source-repo> && \
+codetowiki build-index \
+  --wiki-dir <wiki_dir> \
+  --metadata <wiki_dir>/metadata.json \
   --repo-dir . \
-  --output bk-monitor-wiki/wiki/metadata.json
+  --repo-prefix <repo-prefix> \
+  --check-paths \
+  --output <wiki_dir>/metadata.json
 ```
 
 参数说明：
 - `--wiki-dir`：wiki 文档目录（相对路径）
-- `--metadata`：已有 metadata.json（保留 excluded_paths、noise_paths 等配置）
+- `--metadata`：已有 metadata.json（保留 excluded_paths、noise_paths 等配置，并自动继承其 `source.repo_url`/`branch`）
 - `--repo-dir`：源代码仓库根目录（用于获取当前 commit_id）
+- `--repo-prefix`（可选）：仓库路径前缀，供 Wiki 目录推断使用，对应 `metadata.repo_prefix`
+- `--check-paths`（可选）：校验 wiki 引用是否指向真实存在的源码，发现幽灵引用时输出到 stderr 并写入 `metadata.warnings`
 - `--output`：输出路径（原地更新）
 
 ### Step 3: 验证映射
@@ -74,8 +78,8 @@ PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
 检查生成的映射是否覆盖了新增/变更的 Wiki 页面：
 
 ```bash
-cd bk-monitor-wiki
-git diff wiki/metadata.json | grep "新增的Wiki文件名"
+cd <wiki-repo>
+git diff <wiki_dir>/metadata.json | grep "新增的Wiki文件名"
 ```
 
 关注点：
@@ -86,8 +90,8 @@ git diff wiki/metadata.json | grep "新增的Wiki文件名"
 ### Step 4: 提交 metadata
 
 ```bash
-cd bk-monitor-wiki
-git add wiki/metadata.json
+cd <wiki-repo>
+git add <wiki_dir>/metadata.json
 git commit -m "chore: 更新 metadata.json 双向映射"
 ```
 
@@ -95,23 +99,20 @@ git commit -m "chore: 更新 metadata.json 双向映射"
 
 如果仅少量 Wiki 文件变更，可使用增量方式避免全量重建：
 
-```python
-from wiki_incremental.incremental_index import incremental_index_update, save_metadata
-from wiki_incremental.json_utils import load_json
-
-metadata = load_json("bk-monitor-wiki/wiki/metadata.json")
-new_commit = "当前HEAD的commit_id"
-affected_wikis = ["告警系统设计/Issue功能/Issue 聚合引擎.md"]
-
-updated = incremental_index_update(metadata, affected_wikis, new_commit, "bk-monitor-wiki/wiki")
-save_metadata(updated, "bk-monitor-wiki/wiki/metadata.json")
+```bash
+codetowiki sync-index \
+  --metadata <wiki_dir>/metadata.json \
+  --wiki-dir <wiki_dir> \
+  --wikis 核心组件/聚合引擎.md \
+  --commit <new_commit> \
+  --output <wiki_dir>/metadata.json
 ```
 
-增量失败时自动降级为全量 `build_index`（`safe_index_update` 函数已内置此逻辑）。
+增量失败时自动降级为全量 `codetowiki build-index`（已内置该逻辑）。
 
 ## build-index 解析机制
 
-`index_builder.py` 的 `parse_citations()` 函数解析以下引用类型：
+`codetowiki build-index` 解析以下引用类型：
 
 | 引用类型 | 识别方式 | 示例 |
 |----------|---------|------|
@@ -123,15 +124,15 @@ save_metadata(updated, "bk-monitor-wiki/wiki/metadata.json")
 ```json
 {
   "source_to_wiki": {
-    "bkmonitor/constants/issue.py": [
-      "告警系统设计/Issue功能/Issue 状态管理.md",
-      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    "源文件A.py": [
+      "某功能/状态管理.md",
+      "某功能/系统设计总览.md"
     ]
   },
   "wiki_to_source": {
-    "告警系统设计/Issue功能/Issue 状态管理.md": [
-      "bkmonitor/bkmonitor/documents/issue.py",
-      "bkmonitor/constants/issue.py"
+    "某功能/状态管理.md": [
+      "源文件B.py",
+      "源文件A.py"
     ]
   }
 }

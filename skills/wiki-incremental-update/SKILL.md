@@ -1,56 +1,83 @@
-# BK-Monitor Wiki 增量更新
+---
+name: wiki-incremental-update
+description: 根据代码 commit 增量检测受影响的 Wiki 页面，辅助 AI 更新 Wiki 内容并同步 metadata.json 双向索引。当用户要求根据某个 commit 更新 Wiki、分析代码变更会影响哪些 Wiki 页面、或维护 source/wiki 双向索引时使用。
+---
 
-> 根据 `wiki/metadata.json` 中的源文件与 Wiki 映射关系，以及用户指定的 commit，分析并增量更新受影响的 Wiki 页面。
+# Wiki 增量更新
+
+> 根据 `<wiki_dir>/metadata.json` 中的源文件与 Wiki 映射关系，以及用户指定的 commit，分析并增量更新受影响的 Wiki 页面。
 
 ## 触发场景
 
-- 用户要求根据某个 commit 更新 BK-Monitor Wiki
+- 用户要求根据某个 commit 更新 Wiki
 - 用户要求分析代码变更会影响哪些 Wiki 页面
-- 用户要求维护 `wiki/metadata.json` 中的 source/wiki 双向索引
+- 用户要求维护 `metadata.json` 中的 source/wiki 双向索引
 
-## 关键文件
+## 相关命令
 
-| 文件 | 说明 |
+所有能力通过 `codetowiki` CLI 暴露，本 Skill 不直接调用内部模块。
+
+| 命令 | 说明 |
 |------|------|
-| `wiki/metadata.json` | Wiki 元信息、排除规则、双向索引、**源代码仓库信息** (`source.repo_url`, `source.branch`, `source.commit_id`) |
-| `scripts/wiki_incremental/index_builder.py` | 全量构建 `source_to_wiki` / `wiki_to_source`，记录源代码仓库 URL/分支/commit |
-| `scripts/wiki_incremental/change_detection.py` | git diff 变更检测和三级匹配 |
-| `scripts/wiki_incremental/pattern_inference.py` | 从 `source_to_wiki` 归纳路径模式，为新文件推断 Wiki 目录归属 |
-| `scripts/wiki_incremental/citation_cleanup.py` | 删除/重命名文件的旧引用清理 |
-| `scripts/wiki_incremental/format_validation.py` | Wiki 格式校验和机械修复 |
-| `scripts/wiki_incremental/incremental_index.py` | 受影响 Wiki 的增量索引同步 |
+| `codetowiki init` | 生成 metadata.json 骨架（默认 excluded/noise 规则） |
+| `codetowiki build-index` | 全量构建 `source_to_wiki` / `wiki_to_source`，记录仓库 URL/分支/commit |
+| `codetowiki detect` | git diff 变更检测与三级匹配，输出受影响 Wiki |
+| `codetowiki cleanup-citations` | 删除/重命名源文件后清理 Wiki 中的失效引用 |
+| `codetowiki wiki-format` | Wiki 格式校验与机械修复（R1-R6） |
+| `codetowiki sync-index` | 受影响 Wiki 的增量索引同步 |
+
+## 相关 Skill
+
+| Skill | 何时查看 |
+|-------|----------|
+| `code-to-wiki` | **新建 Wiki 页面（Step 4b）或更新页面章节时**，其 Wiki 格式规范（页面结构模板、R1-R6、`<cite>`/章节来源/图表来源 引用规则、中文序号文件名规则等）是本仓库的**单一权威定义**。动笔前必须先查看该 Skill 的「Wiki 格式规范」一节，按其中模板与规则撰写，确保增量新建的页面与全量生成的页面风格、格式完全一致；本 Skill 内联的模板仅为摘要，不替代完整规范。 |
 
 ## 前置检查
 
-1. 确认当前工作目录是仓库根目录。
-2. 确认 `bk-monitor-wiki/wiki/metadata.json` 存在。
+1. 确认当前工作目录是源代码仓库根目录。
+2. 确认 `<wiki_dir>/metadata.json` 是否存在：
+   - **不存在**：先 `init` 生成骨架（写入默认 `excluded_paths`/`noise_paths`，`source.commit_id` 留空，后续由 build-index 填充）：
+
+     ```bash
+     codetowiki init \
+       --project-name <project> \
+       --wiki-dir <wiki_dir> \
+       --repo-url <repo-url> \
+       --branch <branch> \
+       --output <wiki_dir>/metadata.json
+     ```
+   - **已存在**：直接进入下一步。
 3. 如果 `metadata.json` 不含 `source_to_wiki` 或 `wiki_to_source`，先构建索引：
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli build-index \
-  --wiki-dir bk-monitor-wiki/wiki \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
+codetowiki build-index \
+  --wiki-dir <wiki_dir> \
+  --metadata <wiki_dir>/metadata.json \
   --repo-dir . \
-  --repo-url git@github.com:TencentBlueKing/bk-monitor.git \
-  --branch master \
-  --output bk-monitor-wiki/wiki/metadata.json
+  --repo-url <repo-url> \
+  --branch <branch> \
+  --repo-prefix <repo-prefix> \
+  --check-paths \
+  --output <wiki_dir>/metadata.json
 ```
 
-`--metadata` 读取已有配置（excluded_paths/noise_paths 等），防止被 `setdefault` 默认值覆盖。
+- `--metadata` 读取已有配置（excluded_paths/noise_paths 等），防止被 `setdefault` 默认值覆盖。
+- `--repo-prefix`（可选）：仓库根下的路径前缀（如 `src/`），供新文件 Wiki 目录推断使用，与 `metadata.repo_prefix` 对应。
+- `--check-paths`（可选）：校验 wiki 引用的源码路径是否真实存在，发现幽灵引用时写入 `metadata.warnings` 并输出到 stderr；它不改写索引，仅辅助暴露失效引用，引用仓库外源码时可省略。
 
 ## 标准流程
 
 ### Step 1: 确认 commit 范围
 
-- `old_commit` 默认读取 `bk-monitor-wiki/wiki/metadata.json` 的 `source.commit_id`
+- `old_commit` 默认读取 `<wiki_dir>/metadata.json` 的 `source.commit_id`
 - `new_commit` 必须由用户指定（`--new-commit` 为必填参数）
 - `source.repo_url` 和 `source.branch` 记录了源代码仓库的地址和分支，仅作追溯用途，不参与 diff 计算
 
 ### Step 2: Dry-run 变更检测
 
 ```bash
-PYTHONPATH=bk-monitor-wiki/scripts python3 -m wiki_incremental.cli detect \
-  --metadata bk-monitor-wiki/wiki/metadata.json \
+codetowiki detect \
+  --metadata <wiki_dir>/metadata.json \
   --new-commit <new_commit> \
   --repo-dir .
 ```
@@ -107,8 +134,8 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 
 | 文件簇 | 文件数 | 建议 | 理由 |
 |--------|--------|------|------|
-| packages/fta_web/issue/ | 6 | 🆕 新建 Issue 功能 Wiki | 新 Django app，6 文件构成独立告警处理子域 |
-| alarm_backends/service/scheduler/ | 1 | 📎 扩展已有 wiki | 单文件工具类，无独立领域概念 |
+| src/issue/ | 6 | 🆕 新建 Issue 功能 Wiki | 新模块，6 文件构成独立子域 |
+| core/scheduler/ | 1 | 📎 扩展已有 wiki | 单文件工具类，无独立领域概念 |
 | core/drf/ | 2 | ⏭️ 跳过 | 基础设施增强，无需文档 |
 ```
 
@@ -132,16 +159,16 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 
 ### Step 4: 更新受影响 Wiki
 
-> **⚠️ 禁止使用脚本自动更新 Wiki 内容。** Wiki 内容必须由 Agent 读取源文件后**手动分析和撰写**，不得使用任何脚本（如 `sed`、`awk`、Python 脚本等）自动生成或替换 Wiki 正文内容。脚本仅用于**辅助工具调用**（如 `citation_cleanup` 清理引用、`format_validation` 格式校验），不参与正文生成。原因：脚本批量处理容易丢失上下文、破坏格式一致性、引入难以觉察的内容错误。
+> **⚠️ 禁止使用脚本自动更新 Wiki 内容。** Wiki 内容必须由 Agent 读取源文件后**手动分析和撰写**，不得使用任何脚本（如 `sed`、`awk`、Python 脚本等）自动生成或替换 Wiki 正文内容。仅允许调用 `codetowiki` 命令做辅助（如 `codetowiki cleanup-citations` 清理失效引用、`codetowiki wiki-format` 格式校验），脚本不参与正文生成。原因：脚本批量处理容易丢失上下文、破坏格式一致性、引入难以觉察的内容错误。
 
 对每个受影响 Wiki：
 
 1. 读取当前 Wiki 内容，保留手动编辑内容。
 2. 读取相关源文件的旧版本、新版本和 diff。
 3. 只更新受变更影响的章节，避免重写整篇文档。
-4. 如果源文件删除，调用 `citation_cleanup.cleanup_dead_citations(content, dead_files=[path], renamed_files={})` 清理失效引用。
-5. 如果源文件重命名，调用 `citation_cleanup.cleanup_dead_citations(content, dead_files=[], renamed_files={old: new})` 替换路径。
-6. 保持现有 Wiki 风格：
+4. 如果源文件删除，运行 `codetowiki cleanup-citations --file <wiki.md> --dead <path>` 清理失效引用。
+5. 如果源文件重命名，运行 `codetowiki cleanup-citations --file <wiki.md> --renamed <old>:<new>` 替换路径。
+6. 保持现有 Wiki 风格（权威规范见 `code-to-wiki` 的「Wiki 格式规范」一节，撰写前务必先查看）：
    - 文件顶部标题后保留 `<cite>`
    - 目录使用中文标题锚点，如 `[简介](#简介)`
    - 来源标题使用现有纯文本风格：`章节来源`、`图表来源`、`图示来源`
@@ -149,17 +176,19 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 
 ### Step 4b: 新建 Wiki 页面（新功能簇）
 
+> **📖 动笔前先查看 `code-to-wiki` Skill。** 新建页面的格式规范（页面结构模板、R1-R6、引用与来源规范、中文序号文件名规则）以该 Skill 的「Wiki 格式规范」为**权威定义**。本步骤内联模板仅为摘要，撰写前务必先打开 `code-to-wiki` 对齐完整格式，避免新建页面与既有 Wiki 风格脱节、格式校验（Step 5）不通过。
+
 对 Step 2.5 中用户确认需要新建 Wiki 的文件簇：
 
 #### 确定 Wiki 结构
 
 1. **如果簇中已有 `可推断放置位置` 的建议 Wiki 目录**：使用建议的顶级目录 + 根据功能模块创建子目录
-2. **如果簇无推断结果但文件数 ≥ 5**：建议按功能拆分为总览 + 子功能多篇 Wiki（参考 Issue 功能的拆分结构）
+2. **如果簇无推断结果但文件数 ≥ 5**：建议按功能拆分为总览 + 子功能多篇 Wiki
 3. **如果簇文件数 2-4**：建议单篇 Wiki 覆盖所有文件
 
 #### 生成 Wiki 内容
 
-> **⚠️ 禁止使用脚本生成 Wiki 内容。** 新建 Wiki 页面必须由 Agent 读取源文件后**手动分析撰写**，不得使用任何脚本自动生成正文。格式校验脚本 `validate_and_fix` 仅用于事后格式检查，不参与内容生成。
+> **⚠️ 禁止使用脚本生成 Wiki 内容。** 新建 Wiki 页面必须由 Agent 读取源文件后**手动分析撰写**，不得使用任何脚本自动生成正文。格式校验仅通过 `codetowiki wiki-format` 命令进行，不参与内容生成。
 
 1. **读取簇中所有源文件**：理解功能定位、核心类和接口
 2. **确定放置路径**：在建议的 Wiki 顶级目录下创建子目录
@@ -170,7 +199,7 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
    - 每个章节后附 `章节来源`（引用格式：`[名称](file://相对路径#Lx-Ly)`）
    - 如有架构图，使用 Mermaid 并附 `图示来源`
 4. **标注审核状态**：新建页面在文件首行添加 `<!-- [待审核] AI 自动生成，请人工确认后移除此标记 -->`
-5. **格式校验**：同 Step 5，使用 `validate_and_fix` 校验格式。
+5. **格式校验**：同 Step 5，使用 `codetowiki wiki-format` 校验格式。
 6. **索引同步**：同 Step 6，新建页面参与增量索引更新。
 
 对 `strategy=extend_existing` 的文件：
@@ -186,11 +215,10 @@ dry-run 阶段不得写入任何 Wiki 或 metadata 文件。
 
 写入前对每个更新或新建的 wiki 执行格式校验：
 
-```python
-from wiki_incremental.format_validation import validate_and_fix
-
-content, violations = validate_and_fix(updated_content)
-# violations 中包含所有 R1-R6 违规及修复状态
+```bash
+codetowiki wiki-format --file <wiki.md> --json
+# 退出码 0=合规；1=存在 error（或 --strict 时 warning）；2=运行异常
+# 可加 --fix 机械修复 R1-R5，修复后须复检至退出码 0
 ```
 
 校验规则：
@@ -207,8 +235,13 @@ content, violations = validate_and_fix(updated_content)
 
 更新完成后，只扫描受影响 Wiki 并更新 metadata：
 
-```python
-from wiki_incremental.incremental_index import incremental_index_update, save_metadata
+```bash
+codetowiki sync-index \
+  --metadata <wiki_dir>/metadata.json \
+  --wiki-dir <wiki_dir> \
+  --wikis <受影响wiki1.md> <受影响wiki2.md> \
+  --commit <new_commit> \
+  --output <wiki_dir>/metadata.json
 ```
 
 更新内容：
@@ -220,7 +253,7 @@ from wiki_incremental.incremental_index import incremental_index_update, save_me
 - `stats.wiki_count`
 - `stats.citation_count`
 
-如果增量索引失败，降级为全量 `build_index`。
+如果增量索引失败，降级为全量 `codetowiki build-index`。
 
 ## AI 更新原则
 

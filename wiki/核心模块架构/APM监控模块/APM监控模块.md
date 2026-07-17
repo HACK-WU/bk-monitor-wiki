@@ -297,7 +297,7 @@ Conf["ApmTopoDiscoverRule/ApmMetricDimension"] --> Disc
 **章节来源**
 - [core/discover/base.py:491-504](file://bkmonitor/apm/core/discover/base.py#L491-L504)
 - [core/discover/base.py:331-330](file://bkmonitor/apm/core/discover/base.py#L331-L330)
-- [constants.py:44-45](file://bkmonitor/apm/constants.py#L44-L45)
+- [constants.py:45-46](file://bkmonitor/apm/constants.py#L45-L46)
 
 ## 故障排查指南
 - 应用不存在：当应用未在数据库中存在时，发现器会抛出异常提示业务下的应用不存在，需先创建应用并正确配置数据源。
@@ -326,7 +326,9 @@ E --> F["端点/实例/关系入库"]
 F --> G["缓存刷新与去重"]
 ```
 
-[本图为概念性示意，无需图表来源标注]
+**图表来源**
+
+- [本图为概念性示意架构图，汇总自 APM 模块核心组件（应用配置、发现器、数据模型等），无单一对应源码文件]
 
 ### 监控指标体系（示例）
 - 指标维度：服务名、接口名、Span类型、分类（HTTP/RPC/DB/消息队列）、状态码、SDK语言/版本等。

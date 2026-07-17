@@ -342,10 +342,10 @@ Root --> Kernel["Kernel API<br/>kernel_api.urls"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-88](file://bkmonitor/urls.py#L58-L88)
+- [bkmonitor/urls.py:58-89](file://bkmonitor/urls.py#L58-L89)
 
 章节来源
-- [bkmonitor/urls.py:58-88](file://bkmonitor/urls.py#L58-L88)
+- [bkmonitor/urls.py:58-89](file://bkmonitor/urls.py#L58-L89)
 
 ## 核心组件
 - 认证与权限中间件
@@ -381,7 +381,7 @@ Serializers --> Utils
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-88](file://bkmonitor/urls.py#L58-L88)
+- [bkmonitor/urls.py:58-89](file://bkmonitor/urls.py#L58-L89)
 - [bkmonitor/bkmonitor/middlewares/authentication.py:97-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L97-L123)
 - [bkmonitor/apm/views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 - [bkmonitor/kernel_api/resource.py](file://bkmonitor/kernel_api/resource.py)
@@ -590,13 +590,13 @@ Serializers --> Utils["utils/*.py"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-88](file://bkmonitor/urls.py#L58-L88)
+- [bkmonitor/urls.py:58-89](file://bkmonitor/urls.py#L58-L89)
 - [bkmonitor/bkmonitor/middlewares/authentication.py:97-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L97-L123)
 - [bkmonitor/apm/views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 - [bkmonitor/kernel_api/resource.py](file://bkmonitor/kernel_api/resource.py)
 
 章节来源
-- [bkmonitor/urls.py:58-88](file://bkmonitor/urls.py#L58-L88)
+- [bkmonitor/urls.py:58-89](file://bkmonitor/urls.py#L58-L89)
 - [bkmonitor/bkmonitor/middlewares/authentication.py:97-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L97-L123)
 
 ## 性能考虑

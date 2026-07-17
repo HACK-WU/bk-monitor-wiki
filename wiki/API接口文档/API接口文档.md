@@ -75,14 +75,14 @@ Calendar --> CalendarViews["calendars/views.py"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [monitor_api/urls.py](file://bkmonitor/monitor_api/urls.py)
 - [monitor_web/urls.py](file://bkmonitor/monitor_web/urls.py)
 - [monitor_adapter/urls.py](file://bkmonitor/monitor_adapter/urls.py)
 - [apm/urls.py:19-21](file://bkmonitor/apm/apm/urls.py#L19-L21)
 
 章节来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [settings.py](file://bkmonitor/settings.py)
 
 ## 核心组件
@@ -99,7 +99,7 @@ Calendar --> CalendarViews["calendars/views.py"]
 - [rest_framework/permissions.py:22](file://bkmonitor/rest_framework/permissions.py#L22)
 - [drf_yasg/views.py:35-44](file://bkmonitor/drf_yasg/views.py#L35-L44)
 - [core/prometheus/tools.py:24](file://bkmonitor/core/prometheus/tools.py#L24)
-- [bkmonitor/urls.py:82-88](file://bkmonitor/urls.py#L82-L88)
+- [bkmonitor/urls.py:83-89](file://bkmonitor/urls.py#L83-L89)
 
 ## 架构总览
 下图展示API请求从入口到各业务域的流转过程，以及文档与指标端点的接入方式。
@@ -124,7 +124,7 @@ Django->>Metrics : 暴露 /metrics 指标
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [drf_yasg/views.py:35-44](file://bkmonitor/drf_yasg/views.py#L35-L44)
 - [core/prometheus/tools.py:24](file://bkmonitor/core/prometheus/tools.py#L24)
 
@@ -246,7 +246,7 @@ Django->>Metrics : 暴露 /metrics 指标
 章节来源
 - [drf_yasg/views.py:35-44](file://bkmonitor/drf_yasg/views.py#L35-L44)
 - [drf_yasg/openapi.py:36-41](file://bkmonitor/drf_yasg/openapi.py#L36-L41)
-- [bkmonitor/urls.py:82-88](file://bkmonitor/urls.py#L82-L88)
+- [bkmonitor/urls.py:83-89](file://bkmonitor/urls.py#L83-L89)
 
 ### 指标与可观测性
 - 指标端点：
@@ -317,7 +317,7 @@ Trace --> TraceViews["apm_trace/views.py"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [drf_yasg/views.py:35-44](file://bkmonitor/drf_yasg/views.py#L35-L44)
 - [core/prometheus/tools.py:24](file://bkmonitor/core/prometheus/tools.py#L24)
 
@@ -339,7 +339,7 @@ Trace --> TraceViews["apm_trace/views.py"]
   - 检查API_SUB_PATH与实际部署路径是否一致。
 
 章节来源
-- [bkmonitor/urls.py:90-96](file://bkmonitor/urls.py#L90-L96)
+- [bkmonitor/urls.py:91-97](file://bkmonitor/urls.py#L91-L97)
 - [bkmonitor/urls.py:47-55](file://bkmonitor/urls.py#L47-L55)
 - [blueapps/account/decorators.py:13](file://bkmonitor/blueapps/account/decorators.py#L13)
 

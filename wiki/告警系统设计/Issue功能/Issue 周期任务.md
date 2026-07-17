@@ -57,7 +57,7 @@ flowchart TD
 ```
 
 图表来源
-- [issue_tasks.py:36-100](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L36-L100)
+- [issue_tasks.py:40-105](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L36-L100)
 
 ## sync_issue_alert_stats 主任务
 
@@ -92,7 +92,7 @@ def sync_issue_alert_stats():
 | 批量写入 | 告警 backfill 结果批量 UPSERT，而非逐条更新 |
 
 章节来源
-- [issue_tasks.py:36-100](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L36-L100)
+- [issue_tasks.py:40-105](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L36-L100)
 
 ## 单条 Issue 处理流程
 
@@ -122,7 +122,7 @@ flowchart TD
 | aggregate_dims 容错 | `None` 与 `[]` 等价处理 |
 
 章节来源
-- [issue_tasks.py:146-217](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L146-L217)
+- [issue_tasks.py:149-225](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L149-L225)
 
 ## 漏关联补偿（backfill）
 
@@ -182,7 +182,7 @@ flowchart TD
 | 不预跳过空 data_dimensions | catch-all group 不读 data_dimensions 仍能命中；第三方告警也可被 catch-all Issue backfill |
 
 章节来源
-- [issue_tasks.py:220-373](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L220-L373)
+- [issue_tasks.py:226-447](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L226-L447)
 
 ## 影响范围重算（impact_scope）
 
@@ -220,7 +220,7 @@ Set 的展示名通过批量查询 CMDB 获得：
 3. 否则按 `bk_biz_id` 分组，批量调用 `SetManager.mget` 获得 `{biz_name}/{set_name}`
 
 章节来源
-- [issue_tasks.py:399-756](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L399-L756)
+- [issue_tasks.py:448-809](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L448-L809)
 
 ## orphan Issue 检测
 
@@ -231,8 +231,8 @@ Set 的展示名通过批量查询 CMDB 获得：
 **检测位置**：`_process_single_issue` 中，当 `alert_count == 0` 且 `now - issue.create_time > 5min` 时触发。
 
 章节来源
-- [issue_tasks.py:28-29](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L28-L29)
-- [issue_tasks.py:185-199](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L185-L199)
+- [issue_tasks.py:31-31](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L31-L31)
+- [issue_tasks.py:196-199](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L196-L199)
 
 ## Legacy 迁移哨兵续命
 
@@ -260,7 +260,7 @@ flowchart TD
 - 仅当确认 legacy=0 时才 set 哨兵，否则交给下次 deploy 的 migrate 处理
 
 章节来源
-- [issue_tasks.py:103-143](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L103-L143)
+- [issue_tasks.py:106-148](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L106-L148)
 
 ## 遍历与分页工具
 
@@ -273,7 +273,7 @@ flowchart TD
 同样使用 `search_after` 分页，默认按 `begin_time, id` 排序。
 
 章节来源
-- [issue_tasks.py:807-850](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L807-L850)
+- [issue_tasks.py:810-838](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L810-L838)
 
 ## LLM 标题生成任务
 
@@ -312,6 +312,9 @@ flowchart TD
     Rename --> FinishOK["finish: ok"]
 ```
 
+图表来源
+- [issue_tasks.py:1061-1234](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1061-L1234)
+
 **关键设计决策**：
 
 | 决策 | 说明 |
@@ -326,7 +329,7 @@ flowchart TD
 | few-shot 示例 | `resolve_examples` 按 strategy / biz 两级聚合，支持动态 + 静态示例 |
 
 章节来源
-- [issue_tasks.py:854-1147](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L854-L1147)
+- [issue_tasks.py:1061-1234](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1061-L1234)
 
 ## LLM 标题示例缓存刷新
 
@@ -352,7 +355,7 @@ flowchart TD
 - 周期任务任一环节失败均静默，不阻塞调度
 
 章节来源
-- [issue_tasks.py:1000-1047](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1000-L1047)
+- [issue_tasks.py:1235-1260](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1235-L1260)
 
 ## 结论
 

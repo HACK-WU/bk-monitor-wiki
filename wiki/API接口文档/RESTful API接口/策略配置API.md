@@ -54,8 +54,8 @@ V --> T
 **图表来源**
 - [views.py:1-629](file://bkmonitor/packages/apm_web/strategy/views.py#L1-L629)
 - [urls.py:1-22](file://bkmonitor/packages/apm_web/strategy/urls.py#L1-L22)
-- [strategy.py:1-800](file://bkmonitor/alarm_backends/core/cache/strategy.py#L1-L800)
-- [strategy.py:1-384](file://bkmonitor/alarm_backends/core/control/strategy.py#L1-L384)
+- [strategy.py:1-808](file://bkmonitor/alarm_backends/core/cache/strategy.py#L1-L808)
+- [strategy.py:1-400](file://bkmonitor/alarm_backends/core/control/strategy.py#L1-L400)
 - [threshold.py:1-69](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L1-L69)
 
 **章节来源**
@@ -70,8 +70,8 @@ V --> T
 - 阈值算法：提供阈值表达式的生成与校验，支持AND/OR连接的多阈值组合。
 
 **章节来源**
-- [strategy.py:60-800](file://bkmonitor/alarm_backends/core/cache/strategy.py#L60-L800)
-- [strategy.py:33-384](file://bkmonitor/alarm_backends/core/control/strategy.py#L33-L384)
+- [strategy.py:62-808](file://bkmonitor/alarm_backends/core/cache/strategy.py#L62-L808)
+- [strategy.py:33-400](file://bkmonitor/alarm_backends/core/control/strategy.py#L33-L400)
 - [threshold.py:28-69](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L28-L69)
 
 ## 架构概览
@@ -95,8 +95,8 @@ View-->>Client : 返回结果
 
 **图表来源**
 - [views.py:145-174](file://bkmonitor/packages/apm_web/strategy/views.py#L145-L174)
-- [strategy.py:362-448](file://bkmonitor/alarm_backends/core/cache/strategy.py#L362-L448)
-- [strategy.py:310-362](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L362)
+- [strategy.py:370-456](file://bkmonitor/alarm_backends/core/cache/strategy.py#L370-L456)
+- [strategy.py:310-378](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L378)
 - [threshold.py:42-69](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L42-L69)
 
 ## 详细组件分析
@@ -143,8 +143,8 @@ StrategyTemplateViewSet --> Threshold : "生成阈值表达式"
 
 **图表来源**
 - [views.py:42-629](file://bkmonitor/packages/apm_web/strategy/views.py#L42-L629)
-- [strategy.py:362-448](file://bkmonitor/alarm_backends/core/cache/strategy.py#L362-L448)
-- [strategy.py:310-384](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L384)
+- [strategy.py:370-456](file://bkmonitor/alarm_backends/core/cache/strategy.py#L370-L456)
+- [strategy.py:310-400](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L400)
 - [threshold.py:42-69](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L42-L69)
 
 **章节来源**
@@ -172,10 +172,10 @@ Related --> End(["返回结果"])
 ```
 
 **图表来源**
-- [strategy.py:362-581](file://bkmonitor/alarm_backends/core/cache/strategy.py#L362-L581)
+- [strategy.py:370-589](file://bkmonitor/alarm_backends/core/cache/strategy.py#L370-L589)
 
 **章节来源**
-- [strategy.py:60-800](file://bkmonitor/alarm_backends/core/cache/strategy.py#L60-L800)
+- [strategy.py:62-808](file://bkmonitor/alarm_backends/core/cache/strategy.py#L62-L808)
 
 ### 策略控制与快照（Strategy 控制类）
 - 配置读取：从缓存获取策略配置，支持属性懒加载与缓存命中。
@@ -200,11 +200,11 @@ S-->>Caller : 返回快照键
 
 **图表来源**
 - [strategy.py:156-237](file://bkmonitor/alarm_backends/core/control/strategy.py#L156-L237)
-- [strategy.py:310-362](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L362)
+- [strategy.py:310-378](file://bkmonitor/alarm_backends/core/control/strategy.py#L310-L378)
 - [strategy.py:261-284](file://bkmonitor/alarm_backends/core/control/strategy.py#L261-L284)
 
 **章节来源**
-- [strategy.py:33-384](file://bkmonitor/alarm_backends/core/control/strategy.py#L33-L384)
+- [strategy.py:33-400](file://bkmonitor/alarm_backends/core/control/strategy.py#L33-L400)
 
 ### 阈值算法（Threshold）
 - AND/OR连接：支持多阈值AND/OR连接，生成表达式与描述模板。
@@ -275,14 +275,14 @@ T["threshold.py"] --> SZ["阈值序列化器"]
 
 **图表来源**
 - [views.py:37-39](file://bkmonitor/packages/apm_web/strategy/views.py#L37-L39)
-- [strategy.py:23-55](file://bkmonitor/alarm_backends/core/cache/strategy.py#L23-L55)
+- [strategy.py:24-57](file://bkmonitor/alarm_backends/core/cache/strategy.py#L24-L57)
 - [strategy.py:19-28](file://bkmonitor/alarm_backends/core/control/strategy.py#L19-L28)
 - [threshold.py:19-23](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L19-L23)
 
 **章节来源**
 - [views.py:1-629](file://bkmonitor/packages/apm_web/strategy/views.py#L1-L629)
-- [strategy.py:1-800](file://bkmonitor/alarm_backends/core/cache/strategy.py#L1-L800)
-- [strategy.py:1-384](file://bkmonitor/alarm_backends/core/control/strategy.py#L1-L384)
+- [strategy.py:1-808](file://bkmonitor/alarm_backends/core/cache/strategy.py#L1-L808)
+- [strategy.py:1-400](file://bkmonitor/alarm_backends/core/control/strategy.py#L1-L400)
 - [threshold.py:1-69](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L1-L69)
 
 ## 性能考虑
@@ -300,7 +300,7 @@ T["threshold.py"] --> SZ["阈值序列化器"]
 - 阈值配置错误：当阈值配置无效时，抛出阈值配置错误，需检查阈值表达式与比较方法。
 
 **章节来源**
-- [strategy.py:137-246](file://bkmonitor/alarm_backends/core/cache/strategy.py#L137-L246)
+- [strategy.py:139-254](file://bkmonitor/alarm_backends/core/cache/strategy.py#L139-L254)
 - [threshold.py:56-56](file://bkmonitor/alarm_backends/service/detect/strategy/threshold.py#L56-L56)
 
 ## 结论

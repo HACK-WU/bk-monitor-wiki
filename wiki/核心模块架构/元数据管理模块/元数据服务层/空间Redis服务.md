@@ -60,7 +60,7 @@ F --> H
 ```
 
 **图表来源**
-- [space_table_id_redis.py:61-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L116)
+- [space_table_id_redis.py:61-117](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L117)
 - [space_redis.py:34-42](file://bkmonitor/metadata/service/space_redis.py#L34-L42)
 - [constants.py:61-91](file://bkmonitor/metadata/models/space/constants.py#L61-L91)
 - [redis.py:20-65](file://bkmonitor/config/tools/redis.py#L20-L65)
@@ -70,7 +70,7 @@ F --> H
 - [redis_cluster.py:16-226](file://bkmonitor/alarm_backends/core/storage/redis_cluster.py#L16-L226)
 
 **章节来源**
-- [space_table_id_redis.py:61-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L116)
+- [space_table_id_redis.py:61-117](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L117)
 - [space_redis.py:34-42](file://bkmonitor/metadata/service/space_redis.py#L34-L42)
 - [constants.py:61-91](file://bkmonitor/metadata/models/space/constants.py#L61-L91)
 - [redis.py:20-65](file://bkmonitor/config/tools/redis.py#L20-L65)
@@ -88,7 +88,7 @@ F --> H
 - 缓存后端与集群路由：提供多种缓存后端类型与哨兵模式支持；通过KeyRouter与PipelineProxy实现按策略ID路由与管道化执行。连接层新增韧性参数（`gen_resilient_socket_conf`），包含有界 socket 超时与 TCP keepalive，避免节点故障时连接无限挂起。
 
 **章节来源**
-- [space_table_id_redis.py:61-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L116)
+- [space_table_id_redis.py:61-117](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L61-L117)
 - [space_redis.py:34-42](file://bkmonitor/metadata/service/space_redis.py#L34-L42)
 - [constants.py:61-91](file://bkmonitor/metadata/models/space/constants.py#L61-L91)
 - [redis.py:20-65](file://bkmonitor/config/tools/redis.py#L20-L65)
@@ -121,12 +121,12 @@ Redis-->>Consumer : "返回路由/配置"
 ```
 
 **图表来源**
-- [space_table_id_redis.py:103-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L103-L115)
+- [space_table_id_redis.py:104-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L104-L116)
 - [space_redis.py:34-42](file://bkmonitor/metadata/service/space_redis.py#L34-L42)
 - [redis_tools.py:65-98](file://bkmonitor/metadata/utils/redis_tools.py#L65-L98)
 
 **章节来源**
-- [space_table_id_redis.py:103-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L103-L115)
+- [space_table_id_redis.py:104-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L104-L116)
 - [space_redis.py:34-42](file://bkmonitor/metadata/service/space_redis.py#L34-L42)
 - [redis_tools.py:65-98](file://bkmonitor/metadata/utils/redis_tools.py#L65-L98)
 
@@ -153,16 +153,16 @@ Pub --> End
 ```
 
 **图表来源**
-- [space_table_id_redis.py:96-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L96-L115)
-- [space_table_id_redis.py:182-196](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L182-L196)
-- [space_table_id_redis.py:254-273](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L254-L273)
+- [space_table_id_redis.py:97-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L97-L116)
+- [space_table_id_redis.py:183-197](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L183-L197)
+- [space_table_id_redis.py:255-274](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L255-L274)
 
 **章节来源**
-- [space_table_id_redis.py:67-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L67-L115)
-- [space_table_id_redis.py:135-198](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L135-L198)
-- [space_table_id_redis.py:200-281](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L200-L281)
-- [space_table_id_redis.py:322-395](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L322-L395)
-- [space_table_id_redis.py:509-617](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L509-L617)
+- [space_table_id_redis.py:67-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L67-L116)
+- [space_table_id_redis.py:136-199](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L136-L199)
+- [space_table_id_redis.py:201-282](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L201-L282)
+- [space_table_id_redis.py:323-396](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L323-L396)
+- [space_table_id_redis.py:306-414](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L306-L414)
 
 ### Redis键空间与通道常量
 - 空间路由键：SPACE_TO_RESULT_TABLE_KEY
@@ -252,13 +252,13 @@ RT --> Redis["Redis服务器"]
 ```
 
 **图表来源**
-- [space_table_id_redis.py:103-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L103-L115)
+- [space_table_id_redis.py:104-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L104-L116)
 - [constants.py:61-91](file://bkmonitor/metadata/models/space/constants.py#L61-L91)
 - [redis_tools.py:23-134](file://bkmonitor/metadata/utils/redis_tools.py#L23-L134)
 - [redis_client.py:35-85](file://bkmonitor/packages/utils/redis_client.py#L35-L85)
 
 **章节来源**
-- [space_table_id_redis.py:103-115](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L103-L115)
+- [space_table_id_redis.py:104-116](file://bkmonitor/metadata/models/space/space_table_id_redis.py#L104-L116)
 - [constants.py:61-91](file://bkmonitor/metadata/models/space/constants.py#L61-L91)
 - [redis_tools.py:23-134](file://bkmonitor/metadata/utils/redis_tools.py#L23-L134)
 - [redis_client.py:35-85](file://bkmonitor/packages/utils/redis_client.py#L35-L85)

@@ -78,7 +78,7 @@ EH --> ET
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [urls.py:16-22](file://bkmonitor/apm/urls.py#L16-L22)
 - [core/discover/base.py:138-276](file://bkmonitor/apm/core/discover/base.py#L138-L276)
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 - [apm_ebpf/resource.py](file://bkmonitor/apm_ebpf/resource.py)
 - [apm_ebpf/handlers/deepflow.py](file://bkmonitor/apm_ebpf/handlers/deepflow.py)
 - [apm_ebpf/handlers/provisioning.py](file://bkmonitor/apm_ebpf/handlers/provisioning.py)
@@ -101,7 +101,7 @@ EH --> ET
 - [apps.py:30-69](file://bkmonitor/apm/apps.py#L30-L69)
 - [views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 
 ## 架构总览
 APM系统由“数据接入-拓扑发现-查询代理-可视化与告警”构成闭环。数据经OpenTelemetry等采集后进入ES/自定义指标存储；拓扑发现器基于规则与字段谓词提取服务、端点、实例、关系等；查询代理屏蔽底层存储差异，提供统一的查询DSL；eBPF处理器与DeepFlow联动，补充Workload与网络关系。
@@ -132,7 +132,7 @@ View-->>Client : 返回JSON
 - [views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [core/discover/base.py:138-276](file://bkmonitor/apm/core/discover/base.py#L138-L276)
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 
 ## 详细组件分析
 
@@ -187,12 +187,12 @@ Page --> End(["结束"])
 ```
 
 图表来源
-- [core/handlers/query/base.py:40-388](file://bkmonitor/apm/core/handlers/query/base.py#L40-L388)
+- [core/handlers/query/base.py:40-391](file://bkmonitor/apm/core/handlers/query/base.py#L40-L391)
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [serializers.py:18-78](file://bkmonitor/apm/serializers.py#L18-L78)
 
 章节来源
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [serializers.py:18-78](file://bkmonitor/apm/serializers.py#L18-L78)
 
@@ -238,15 +238,17 @@ T-->>FE : 任务状态/结果
 - APM常量与枚举：包含Apdex、可见性、缓存类型、Profile查询类型、聚合方法、统计属性等。
 - 应用配置：支持Apdex、采样、实例名、维度、自定义服务、License、DB配置、探针配置、慢SQL规则、返回码重定义、QPS等。
 - eBPF配置：包含Workload、ClusterRelation、DashboardRecord等迁移与模型定义。
+- V4链路查询资源：GetV4MetricsMsgsStat（api/bkdata）按 resource/start/end/step 查询 V4 链路 DataId 的消息统计，配套 V4 链路接入与监控。
 
 章节来源
-- [constants.py:20-737](file://bkmonitor/apm/constants.py#L20-L737)
+- [constants.py:20-740](file://bkmonitor/apm/constants.py#L20-L740)
 - [resources.py:353-784](file://bkmonitor/apm/resources.py#L353-L784)
 - [apm_ebpf/migrations/0001_initial.py](file://bkmonitor/apm_ebpf/migrations/0001_initial.py)
 - [apm_ebpf/migrations/0002_clusterrelation.py](file://bkmonitor/apm_ebpf/migrations/0002_clusterrelation.py)
 - [apm_ebpf/migrations/0003_auto_20231207_1520.py](file://bkmonitor/apm_ebpf/migrations/0003_auto_20231207_1520.py)
 - [apm_ebpf/migrations/0004_merge_20231211_1735.py](file://bkmonitor/apm_ebpf/migrations/0004_merge_20231211_1735.py)
 - [apm_ebpf/migrations/0005_deepflowdashboardrecord.py](file://bkmonitor/apm_ebpf/migrations/0005_deepflowdashboardrecord.py)
+- [api/bkdata/default.py:1501-1518](file://bkmonitor/api/bkdata/default.py#L1501-L1518)
 
 ## 依赖分析
 - 组件耦合：资源层依赖发现器容器与查询基类；发现器容器依赖规则模型与数据源；查询基类依赖统一查询配置与UnifyQuerySet。
@@ -266,7 +268,7 @@ EBPFHandlers --> EBPFModels["apm_ebpf/models/workload.py"]
 图表来源
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [core/discover/base.py:138-276](file://bkmonitor/apm/core/discover/base.py#L138-L276)
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 - [apm_ebpf/resource.py](file://bkmonitor/apm_ebpf/resource.py)
 - [apm_ebpf/handlers/workload.py](file://bkmonitor/apm_ebpf/handlers/workload.py)
 - [apm_ebpf/models/workload.py](file://bkmonitor/apm_ebpf/models/workload.py)
@@ -274,7 +276,7 @@ EBPFHandlers --> EBPFModels["apm_ebpf/models/workload.py"]
 章节来源
 - [resources.py:113-800](file://bkmonitor/apm/resources.py#L113-L800)
 - [core/discover/base.py:138-276](file://bkmonitor/apm/core/discover/base.py#L138-L276)
-- [core/handlers/query/base.py:132-388](file://bkmonitor/apm/core/handlers/query/base.py#L132-L388)
+- [core/handlers/query/base.py:132-391](file://bkmonitor/apm/core/handlers/query/base.py#L132-L391)
 
 ## 性能考量
 - 并发与批处理：TopoHandler使用线程池并发拉取Span并分批处理，避免单轮OOM；按索引max_result_window动态调整批次大小。
@@ -285,7 +287,7 @@ EBPFHandlers --> EBPFModels["apm_ebpf/models/workload.py"]
 章节来源
 - [core/discover/base.py:332-571](file://bkmonitor/apm/core/discover/base.py#L332-L571)
 - [core/handlers/query/base.py:214-248](file://bkmonitor/apm/core/handlers/query/base.py#L214-L248)
-- [constants.py:578-636](file://bkmonitor/apm/constants.py#L578-L636)
+- [constants.py:581-639](file://bkmonitor/apm/constants.py#L581-L639)
 
 ## 故障排查指南
 - 拓扑发现失败：检查发现器注册与规则是否存在；确认Trace索引可用与权限；查看TopoHandler日志中的错误堆栈。
@@ -295,7 +297,7 @@ EBPFHandlers --> EBPFModels["apm_ebpf/models/workload.py"]
 
 章节来源
 - [core/discover/base.py:442-468](file://bkmonitor/apm/core/discover/base.py#L442-L468)
-- [core/handlers/query/base.py:294-319](file://bkmonitor/apm/core/handlers/query/base.py#L294-L319)
+- [core/handlers/query/base.py:294-326](file://bkmonitor/apm/core/handlers/query/base.py#L294-L326)
 - [apm_ebpf/task/tasks.py](file://bkmonitor/apm_ebpf/task/tasks.py)
 
 ## 结论

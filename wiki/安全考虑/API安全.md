@@ -150,7 +150,7 @@ IPCheck --> M1
 **图表来源**
 - [kernel_api/middlewares/authentication.py:188-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L188-L605)
 - [bkmonitor/middlewares/authentication.py:49-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L123)
-- [bkmonitor/middlewares/request_middlewares.py:25-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L25-L56)
+- [bkmonitor/middlewares/request_middlewares.py:24-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L24-L63)
 - [packages/monitor_api/middlewares.py:38-106](file://bkmonitor/packages/monitor_api/middlewares.py#L38-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 - [bkmonitor/models/__init__.py](file://bkmonitor/bkmonitor/models/__init__.py)
@@ -162,7 +162,7 @@ IPCheck --> M1
 **章节来源**
 - [kernel_api/middlewares/authentication.py:188-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L188-L605)
 - [bkmonitor/middlewares/authentication.py:49-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L123)
-- [bkmonitor/middlewares/request_middlewares.py:25-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L25-L56)
+- [bkmonitor/middlewares/request_middlewares.py:24-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L24-L63)
 - [packages/monitor_api/middlewares.py:38-106](file://bkmonitor/packages/monitor_api/middlewares.py#L38-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 - [bkmonitor/models/__init__.py](file://bkmonitor/bkmonitor/models/__init__.py)
@@ -182,7 +182,7 @@ IPCheck --> M1
 **章节来源**
 - [kernel_api/middlewares/authentication.py:188-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L188-L605)
 - [bkmonitor/middlewares/authentication.py:49-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L123)
-- [bkmonitor/middlewares/request_middlewares.py:25-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L25-L56)
+- [bkmonitor/middlewares/request_middlewares.py:24-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L24-L63)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 - [bk_dataview/authentication.py:16-40](file://bkmonitor/bk_dataview/authentication.py#L16-L40)
 - [scripts/sensitive_info_check/check_ip.py](file://scripts/sensitive_info_check/check_ip.py)
@@ -214,7 +214,7 @@ EH-->>KM : "异常继续抛出"
 **图表来源**
 - [kernel_api/middlewares/authentication.py:511-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L511-L605)
 - [bkmonitor/middlewares/authentication.py:97-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L97-L123)
-- [bkmonitor/middlewares/request_middlewares.py:30-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L30-L56)
+- [bkmonitor/middlewares/request_middlewares.py:29-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L29-L63)
 - [packages/monitor_api/middlewares.py:73-106](file://bkmonitor/packages/monitor_api/middlewares.py#L73-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 
@@ -307,12 +307,12 @@ Raise --> Resp
 **图表来源**
 - [packages/monitor_api/middlewares.py:73-106](file://bkmonitor/packages/monitor_api/middlewares.py#L73-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
-- [bkmonitor/middlewares/request_middlewares.py:52-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L52-L56)
+- [bkmonitor/middlewares/request_middlewares.py:52-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L52-L63)
 
 **章节来源**
 - [packages/monitor_api/middlewares.py:38-106](file://bkmonitor/packages/monitor_api/middlewares.py#L38-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
-- [bkmonitor/middlewares/request_middlewares.py:52-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L52-L56)
+- [bkmonitor/middlewares/request_middlewares.py:52-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L52-L63)
 
 ### API版本控制、向后兼容与安全更新
 - 版本控制
@@ -450,14 +450,14 @@ EH["异常日志中间件"] --> Const
 **图表来源**
 - [kernel_api/middlewares/authentication.py:188-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L188-L605)
 - [bkmonitor/middlewares/authentication.py:49-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L123)
-- [bkmonitor/middlewares/request_middlewares.py:25-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L25-L56)
+- [bkmonitor/middlewares/request_middlewares.py:24-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L24-L63)
 - [packages/monitor_api/middlewares.py:38-106](file://bkmonitor/packages/monitor_api/middlewares.py#L38-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 
 **章节来源**
 - [kernel_api/middlewares/authentication.py:188-605](file://bkmonitor/kernel_api/middlewares/authentication.py#L188-L605)
 - [bkmonitor/middlewares/authentication.py:49-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L123)
-- [bkmonitor/middlewares/request_middlewares.py:25-56](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L25-L56)
+- [bkmonitor/middlewares/request_middlewares.py:24-63](file://bkmonitor/bkmonitor/middlewares/request_middlewares.py#L24-L63)
 - [packages/monitor_api/middlewares.py:38-106](file://bkmonitor/packages/monitor_api/middlewares.py#L38-L106)
 - [kernel_api/middlewares/exception_handler.py:17-20](file://bkmonitor/kernel_api/middlewares/exception_handler.py#L17-L20)
 

@@ -82,13 +82,13 @@ CC --> PC
 - [views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 - [urls.py:16-22](file://bkmonitor/apm/urls.py#L16-L22)
 - [resources.py:121-200](file://bkmonitor/apm/resources.py#L121-L200)
-- [application_config.py:52-243](file://bkmonitor/apm/core/application_config.py#L52-L243)
-- [platform_config.py:42-123](file://bkmonitor/apm/core/platform_config.py#L42-L123)
+- [application_config.py:59-424](file://bkmonitor/apm/core/application_config.py#L59-L424)
+- [platform_config.py:43-141](file://bkmonitor/apm/core/platform_config.py#L43-L141)
 - [cluster_config.py:22-54](file://bkmonitor/apm/core/cluster_config.py#L22-L54)
 - [application.py:36-288](file://bkmonitor/apm/models/application.py#L36-L288)
-- [datasource.py:56-191](file://bkmonitor/apm/models/datasource.py#L56-L191)
+- [datasource.py:56-192](file://bkmonitor/apm/models/datasource.py#L56-L192)
 - [config.py:614-714](file://bkmonitor/apm/models/config.py#L614-L714)
-- [constants.py:534-567](file://bkmonitor/apm/constants.py#L534-L567)
+- [constants.py:535-570](file://bkmonitor/apm/constants.py#L535-L570)
 
 章节来源
 - [views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
@@ -113,13 +113,13 @@ CC --> PC
   - 配置类型枚举、默认属性过滤、默认指标派生规则等
 
 章节来源
-- [application_config.py:52-243](file://bkmonitor/apm/core/application_config.py#L52-L243)
-- [platform_config.py:42-123](file://bkmonitor/apm/core/platform_config.py#L42-L123)
+- [application_config.py:59-424](file://bkmonitor/apm/core/application_config.py#L59-L424)
+- [platform_config.py:43-141](file://bkmonitor/apm/core/platform_config.py#L43-L141)
 - [cluster_config.py:22-54](file://bkmonitor/apm/core/cluster_config.py#L22-L54)
 - [application.py:36-288](file://bkmonitor/apm/models/application.py#L36-L288)
-- [datasource.py:56-191](file://bkmonitor/apm/models/datasource.py#L56-L191)
+- [datasource.py:56-192](file://bkmonitor/apm/models/datasource.py#L56-L192)
 - [config.py:614-714](file://bkmonitor/apm/models/config.py#L614-L714)
-- [constants.py:534-567](file://bkmonitor/apm/constants.py#L534-L567)
+- [constants.py:535-570](file://bkmonitor/apm/constants.py#L535-L570)
 
 ## 架构总览
 APM架构围绕“配置生成—配置下发—数据采集—数据处理—可视化查询”闭环展开：
@@ -156,8 +156,8 @@ Collector-->>Client : 返回下发结果
 图表来源
 - [views.py:76-123](file://bkmonitor/apm/views.py#L76-L123)
 - [resources.py:121-200](file://bkmonitor/apm/resources.py#L121-L200)
-- [application_config.py:58-84](file://bkmonitor/apm/core/application_config.py#L58-L84)
-- [platform_config.py:52-101](file://bkmonitor/apm/core/platform_config.py#L52-L101)
+- [application_config.py:65-201](file://bkmonitor/apm/core/application_config.py#L65-L201)
+- [platform_config.py:53-119](file://bkmonitor/apm/core/platform_config.py#L53-L119)
 
 ## 详细组件分析
 
@@ -168,7 +168,8 @@ Collector-->>Client : 返回下发结果
 - 资源过滤与实例ID组装
 - 队列批次大小与速率限制
 - 探针配置与过滤规则
-- 全局覆盖配置（all_app_config/all_service_configs/all_instance_configs）
+- 全局覆盖配置（all_app_config/all_service_configs/all_instance_configs，对应全局配置键 APM_GLOBAL_CONFIG_KEY="APM_GLOBAL"）
+- 配置缓存层（ApmConfigCache）：集中加载并缓存数据源、应用配置、实例发现等信息，对外提供 get_datasource / get_app_configs / get_qps / get_license_config / get_probe_config / get_custom_service_configs / get_instance_discovers 等读取接口，避免重复 DB 查询；ApplicationConfig 通过 refresh_k8s / get_cluster_application_config / get_application_config / merge_config / get_drop_fields_config / is_resource_filter_enabled / get_resource_filter_config_logs|metrics 完成配置组装与下发。
 
 ```mermaid
 flowchart TD
@@ -184,12 +185,13 @@ Merge --> Out(["输出应用配置上下文"])
 ```
 
 图表来源
-- [application_config.py:149-243](file://bkmonitor/apm/core/application_config.py#L149-L243)
-- [application_config.py:282-307](file://bkmonitor/apm/core/application_config.py#L282-L307)
-- [application_config.py:443-486](file://bkmonitor/apm/core/application_config.py#L443-L486)
+- [application_config.py:59-207](file://bkmonitor/apm/core/application_config.py#L59-L207)
+- [application_config.py:311-424](file://bkmonitor/apm/core/application_config.py#L311-L424)
+- [application_config.py:505-562](file://bkmonitor/apm/core/application_config.py#L505-L562)
+- [application_config.py:751-793](file://bkmonitor/apm/core/application_config.py#L751-L793)
 
 章节来源
-- [application_config.py:52-243](file://bkmonitor/apm/core/application_config.py#L52-L243)
+- [application_config.py:59-424](file://bkmonitor/apm/core/application_config.py#L59-L424)
 
 ### 集群配置管理
 集群配置管理通过BkCollectorInstaller检测K8s集群是否已安装bk-collector，并将平台配置以Secret/ConfigMap形式下发：
@@ -215,18 +217,18 @@ end
 
 图表来源
 - [cluster_config.py:29-42](file://bkmonitor/apm/core/cluster_config.py#L29-L42)
-- [platform_config.py:81-101](file://bkmonitor/apm/core/platform_config.py#L81-L101)
+- [platform_config.py:82-119](file://bkmonitor/apm/core/platform_config.py#L82-L119)
 
 章节来源
 - [cluster_config.py:22-54](file://bkmonitor/apm/core/cluster_config.py#L22-L54)
-- [platform_config.py:72-101](file://bkmonitor/apm/core/platform_config.py#L72-L101)
+- [platform_config.py:73-119](file://bkmonitor/apm/core/platform_config.py#L73-L119)
 
 ### 平台配置
 平台配置提供全局默认规则，包括：
 - Apdex规则（覆盖所有SpanKind）
 - 采样率（默认100%）
 - 令牌校验（AES256，支持从应用推断DataID）
-- 资源过滤（实例ID组装、默认值、丢弃敏感字段）
+- 资源过滤（实例ID组装、默认值、丢弃敏感字段，敏感字段丢弃规则由全局配置键 DROP_FIELDS_CONFIG="drop_fields_config" 控制）
 - 指标派生规则（bk_apm_*系列指标）
 - 字段标准化（可选）
 
@@ -252,11 +254,11 @@ PlatformConfig --> BkCollectorClusterConfig : "使用"
 ```
 
 图表来源
-- [platform_config.py:42-123](file://bkmonitor/apm/core/platform_config.py#L42-L123)
-- [platform_config.py:102-123](file://bkmonitor/apm/core/platform_config.py#L102-L123)
+- [platform_config.py:43-141](file://bkmonitor/apm/core/platform_config.py#L43-L141)
+- [platform_config.py:120-141](file://bkmonitor/apm/core/platform_config.py#L120-L141)
 
 章节来源
-- [platform_config.py:42-123](file://bkmonitor/apm/core/platform_config.py#L42-L123)
+- [platform_config.py:43-141](file://bkmonitor/apm/core/platform_config.py#L43-L141)
 
 ### 数据模型设计
 - 应用模型ApmApplication
@@ -396,14 +398,14 @@ APM_APPLICATION ||--o{ CUSTOM_SERVICE_CONFIG : "配置"
 
 图表来源
 - [application.py:36-288](file://bkmonitor/apm/models/application.py#L36-L288)
-- [datasource.py:56-191](file://bkmonitor/apm/models/datasource.py#L56-L191)
+- [datasource.py:56-192](file://bkmonitor/apm/models/datasource.py#L56-L192)
 - [config.py:614-714](file://bkmonitor/apm/models/config.py#L614-L714)
 
 章节来源
 - [application.py:36-288](file://bkmonitor/apm/models/application.py#L36-L288)
-- [datasource.py:56-191](file://bkmonitor/apm/models/datasource.py#L56-L191)
+- [datasource.py:56-192](file://bkmonitor/apm/models/datasource.py#L56-L192)
 - [config.py:614-714](file://bkmonitor/apm/models/config.py#L614-L714)
-- [constants.py:534-567](file://bkmonitor/apm/constants.py#L534-L567)
+- [constants.py:535-570](file://bkmonitor/apm/constants.py#L535-L570)
 
 ### 配置管理机制与扩展点
 - 配置类型与默认值
@@ -417,8 +419,8 @@ APM_APPLICATION ||--o{ CUSTOM_SERVICE_CONFIG : "配置"
   - 支持业务级与全局级规则叠加
 
 章节来源
-- [constants.py:534-567](file://bkmonitor/apm/constants.py#L534-L567)
-- [application_config.py:638-688](file://bkmonitor/apm/core/application_config.py#L638-L688)
+- [constants.py:535-570](file://bkmonitor/apm/constants.py#L535-L570)
+- [application_config.py:958-1028](file://bkmonitor/apm/core/application_config.py#L958-L1028)
 - [config.py:36-277](file://bkmonitor/apm/models/config.py#L36-L277)
 - [config.py:478-553](file://bkmonitor/apm/models/config.py#L478-L553)
 
@@ -446,14 +448,14 @@ Core --> NodeMan["节点管理(NodeMan)"]
 
 图表来源
 - [resources.py:121-200](file://bkmonitor/apm/resources.py#L121-L200)
-- [application_config.py:52-84](file://bkmonitor/apm/core/application_config.py#L52-L84)
-- [platform_config.py:42-101](file://bkmonitor/apm/core/platform_config.py#L42-L101)
-- [datasource.py:135-191](file://bkmonitor/apm/models/datasource.py#L135-L191)
+- [application_config.py:59-201](file://bkmonitor/apm/core/application_config.py#L59-L201)
+- [platform_config.py:43-119](file://bkmonitor/apm/core/platform_config.py#L43-L119)
+- [datasource.py:136-192](file://bkmonitor/apm/models/datasource.py#L136-L192)
 
 章节来源
 - [resources.py:121-200](file://bkmonitor/apm/resources.py#L121-L200)
-- [application_config.py:52-84](file://bkmonitor/apm/core/application_config.py#L52-L84)
-- [platform_config.py:42-101](file://bkmonitor/apm/core/platform_config.py#L42-L101)
+- [application_config.py:59-201](file://bkmonitor/apm/core/application_config.py#L59-L201)
+- [platform_config.py:43-119](file://bkmonitor/apm/core/platform_config.py#L43-L119)
 
 ## 性能考虑
 - 批量下发与缓存
@@ -478,8 +480,8 @@ Core --> NodeMan["节点管理(NodeMan)"]
   - 检查all_*_configs覆盖逻辑与主键唯一性校验
 
 章节来源
-- [application_config.py:568-637](file://bkmonitor/apm/core/application_config.py#L568-L637)
-- [platform_config.py:488-551](file://bkmonitor/apm/core/platform_config.py#L488-L551)
+- [application_config.py:888-957](file://bkmonitor/apm/core/application_config.py#L888-L957)
+- [platform_config.py:507-568](file://bkmonitor/apm/core/platform_config.py#L507-L568)
 - [cluster_config.py:29-42](file://bkmonitor/apm/core/cluster_config.py#L29-L42)
 - [application.py:140-210](file://bkmonitor/apm/models/application.py#L140-L210)
 

@@ -34,6 +34,9 @@ Issue 功能完整覆盖以下能力：
 - **影响范围**：自动按关联告警汇总受影响的主机、集群、Pod、APM 服务实例等
 - **周期任务**：后台定期同步告警统计（alert_count / last_alert_time）、漏关联补偿、影响范围重算
 - **Web API**：提供列表查询、TopN 统计、导出、批量操作等完整 RESTful 接口
+- **TAPD 关联管理**：将 Issue 与 TAPD 工作项打通——获取字段、搜索项、创建/关联 TAPD 单、查询关联列表；支持工作区手动解绑（持久化 tombstone 阻断自动回绑）与重新关联；用户态授权经 OAuth 回调写入 `tapd_uat` token
+- **Issue 趋势**：`IssueTrendResource` 按时间分片聚合活跃/已解决趋势，并内置缺失 `resolved` 活动修复逻辑
+- **Issue 合并**：`IssueMergeResolver` 将合并后的 Issue 展开为完整 ID 集合并解析展示主 Issue（`display_id`），查询层注入 `merge_status` 摘要
 - **LLM 标题生成**：新建 Issue 后异步调用 LLM 总结关联日志生成可读标题，失败静默保留默认名
 - **RPC/CLI**：通过 bkm-cli `inspect-issue` 支持 Issue 详情、按策略/指纹查询、活动日志查询
 
@@ -82,12 +85,25 @@ graph TB
     WebAPI --> ActivityDoc
     RPCAPI --> IssueDoc
     GWAPI --> WebAPI
+
+    subgraph "TAPD 关联"
+        TapdAPI["TAPD 关联接口<br/>create/link/unbind/rebind"]
+        TapdAuth["TAPDAuthPermission<br/>用户态 token 校验"]
+        TapdOAuth["OAuth 回调<br/>tapd_uat 写入"]
+        TapdRel["IssueTapdRelation<br/>关联持久化"]
+    end
+    WebAPI --> TapdAPI
+    TapdAPI --> TapdAuth
+    TapdAuth --> TapdOAuth
+    TapdAPI --> TapdRel
 ```
 
 图表来源
 - [issue_processor.py:109-221](file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L109-L221)
-- [documents/issue.py:42-782](file://bkmonitor/bkmonitor/documents/issue.py#L42-L782)
-- [issue_tasks.py:37-1147](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L37-L1147)
+- [documents/issue.py:42-820](file://bkmonitor/bkmonitor/documents/issue.py#L42-L820)
+- [issue_tasks.py:37-1380](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L37-L1380)
+- [fta_web/issue/views.py:50-178](file://bkmonitor/packages/fta_web/issue/views.py#L50-L178)
+- [fta_web/issue/resources.py:1554-3100](file://bkmonitor/packages/fta_web/issue/resources.py#L1554-L3100)
 
 ## 模块拓扑
 
@@ -101,6 +117,8 @@ Issue 功能跨越 6 个代码模块，各模块职责如下：
 | `constants/issue.py` | 常量枚举：状态、优先级、活动类型、影响范围维度 | `IssueStatus`, `IssuePriority`, `IssueActivityType`, `ImpactScopeDimension` |
 | `packages/fta_web/issue/` | Web 接口层：RESTful API、查询处理器、序列化 | `IssueViewSet`, `IssueQueryHandler`, `IssueQueryTransformer` |
 | `kernel_api/rpc/functions/bkm_cli/issue.py` | CLI/RPC 接口：bkm-cli inspect-issue 后端 | `inspect_issue`, `_inspect_issue_detail`, `_list_issues_by_strategy` |
+| `packages/fta_web/issue/resources.py` | Web 接口层：TAPD 关联（创建/关联/解绑/授权）、Issue 趋势等 Resource | `IssueTrendResource`, `GetTapdFieldsResource`, `SearchTAPDItemsResource`, `CreateTapdResource`, `LinkIssueToTapdResource`, `ListUserTapdWorkspaceResource`, `UnbindTapdWorkspaceResource`, `RebindTapdWorkspaceResource`, `RevokeTapdUserAuthResource` |
+| `bkmonitor/issue_merge.py` | Issue 合并/展开：合并 ID 扩展、展示主 Issue 解析、合并上下文加载 | `IssueMergeResolver`, `MergeResolverContext` |
 
 ## 数据模型
 
@@ -228,6 +246,8 @@ sequenceDiagram
 | `assignee_change` | 负责人变更 |
 | `priority_change` | 优先级变更 |
 | `name_change` | 名称变更 |
+| `create_tapd` | 创建 TAPD |
+| `tapd_link` | 关联 TAPD |
 
 ### ImpactScopeDimension — 影响范围维度
 

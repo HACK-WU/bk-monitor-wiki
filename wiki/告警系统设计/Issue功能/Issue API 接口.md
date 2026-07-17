@@ -87,22 +87,32 @@ graph TB
 | POST | `/issue/rename` | MANAGE_EVENT | 重命名 Issue |
 | POST | `/issue/add_follow_up` | MANAGE_EVENT | 添加跟进评论（支持批量） |
 | POST | `/issue/edit_follow_up` | MANAGE_EVENT | 编辑跟进评论 |
-| POST | `/tapd/workspace` | VIEW_EVENT | 获取已授权的 TAPD 项目列表 |
+| POST | `/issue/trend` | VIEW_EVENT | Issue 趋势统计（按时间分片聚合活跃/已解决数量） |
+| POST | `/issue/get_tapd_fields` | VIEW_EVENT | 获取 TAPD 单类型的可选字段定义 |
+| POST | `/issue/search_tapd_items` | VIEW_EVENT | 搜索 TAPD 项（需求/缺陷/任务） |
+| POST | `/issue/create_tapd` | MANAGE_EVENT | 创建 TAPD 单并关联到当前 Issue |
+| POST | `/issue/link_tapd` | MANAGE_EVENT | 将 Issue 关联到已有 TAPD 单 |
+| POST | `/issue/tapd_relations` | VIEW_EVENT | 查询 Issue 的 TAPD 关联列表 |
+| POST | `/tapd/workspace` | VIEW_EVENT | 获取已授权的 TAPD 项目列表（应用态） |
+| POST | `/tapd/user_workspace` | VIEW_EVENT | 当前用户可见的 TAPD 项目列表（含 install_url，需用户态授权） |
+| POST | `/tapd/unbind_workspace` | MANAGE_EVENT | 手动解绑 TAPD 工作区（持久化 tombstone，阻断自动回绑） |
+| POST | `/tapd/rebind_workspace` | MANAGE_EVENT | 重新关联已解绑的 TAPD 工作区 |
+| POST | `/tapd/revoke_auth` | MANAGE_EVENT | 撤销用户 TAPD 授权（清除 Redis `tapd_uat:{tenant}:{user}` token） |
 
 章节来源
-- [fta_web/issue/views.py:85-118](file://bkmonitor/packages/fta_web/issue/views.py#L85-L118)
+- [fta_web/issue/views.py:185-243](file://bkmonitor/packages/fta_web/issue/views.py#L185-L243)
 
 ### 只读 vs 写操作
 
-- **只读接口**（VIEW_EVENT）：`search`, `detail`, `activities`, `history`, `top_n`, `export`, `recent_assignees`, `list_tapd_workspace`
-- **写操作**（MANAGE_EVENT）：`assign`, `resolve`, `reopen`, `archive`, `restore`, `update_priority`, `rename`, `add_follow_up`, `edit_follow_up`
+- **只读接口**（VIEW_EVENT）：`search`, `detail`, `activities`, `history`, `top_n`, `export`, `recent_assignees`, `trend`, `get_tapd_fields`, `search_tapd_items`, `tapd_relations`, `tapd/workspace`, `tapd/user_workspace`
+- **写操作**（MANAGE_EVENT）：`assign`, `resolve`, `reopen`, `archive`, `restore`, `update_priority`, `rename`, `add_follow_up`, `edit_follow_up`, `create_tapd`, `link_tapd`, `unbind_workspace`, `rebind_workspace`, `revoke_auth`
 
 ### 无需业务 ID 的接口
 
-`search`, `top_n`, `recent_assignees`, `tapd/workspace` 四个接口允许不传 `bk_biz_id`，由业务层自行限制数据范围。这支持跨业务空间的 Issue 查询场景。
+`search`, `top_n`, `recent_assignees`, `tapd/workspace`, `tapd/user_workspace` 五个接口允许不传 `bk_biz_id`，由业务层自行限制数据范围。这支持跨业务空间的 Issue 查询与 TAPD 用户态授权场景。
 
 章节来源
-- [fta_web/issue/views.py:21-34](file://bkmonitor/packages/fta_web/issue/views.py#L21-L34)
+- [fta_web/issue/views.py:23-63](file://bkmonitor/packages/fta_web/issue/views.py#L23-L63)
 
 ### 批量操作框架
 
@@ -120,7 +130,7 @@ def _run_batch(issues: list[dict], action_fn: Callable[[int, str], dict], max_wo
 | 异常类型 | `IssueNotFoundError` / `IssueDocumentWriteError` / 通用 Exception |
 
 章节来源
-- [fta_web/issue/resources.py:53-114](file://bkmonitor/packages/fta_web/issue/resources.py#L53-L114)
+- [fta_web/issue/resources.py:85-150](file://bkmonitor/packages/fta_web/issue/resources.py#L85-L150)
 
 ### Issue TopN 查询
 
@@ -134,7 +144,7 @@ def _run_batch(issues: list[dict], action_fn: Callable[[int, str], dict], max_wo
 | 业务权限 | 自动拆分 authorized / unauthorized bizs，无权限业务补 0 计数 |
 
 章节来源
-- [fta_web/issue/resources.py:124-200](file://bkmonitor/packages/fta_web/issue/resources.py#L124-L200)
+- [fta_web/issue/resources.py:216-455](file://bkmonitor/packages/fta_web/issue/resources.py#L216-L455)
 
 ### TAPD 工作空间查询
 
@@ -149,7 +159,46 @@ def _run_batch(issues: list[dict], action_fn: Callable[[int, str], dict], max_wo
 | 容错 | 单个 workspace 获取失败不阻塞其他，降级返回基本信息 |
 
 章节来源
-- [fta_web/issue/resources.py:1300-1392](file://bkmonitor/packages/fta_web/issue/resources.py#L1300-L1392)
+- [fta_web/issue/resources.py:1461-1553](file://bkmonitor/packages/fta_web/issue/resources.py#L1461-L1553)
+
+### Issue 趋势查询
+
+`IssueTrendResource`（`POST /issue/trend`）按时间分片聚合 Issue 活跃/已解决趋势，便于前端绘制趋势曲线：
+
+| 特性 | 说明 |
+|------|------|
+| 时间分片 | 复用 `slice_time_interval` 按天/小时切片，大跨度下并行查询降低 ES 压力 |
+| 聚合维度 | 按 `status`（`active`/`resolved`）与 `priority` 做基数/计数聚合 |
+| 业务权限 | 自动拆分 authorized / unauthorized bizs，无权限业务补 0 计数 |
+| 修复逻辑 | 内置 `_repair_missing_resolved_activity`，补全缺失的 `resolved` 活动记录以保证趋势准确 |
+
+章节来源
+- [fta_web/issue/resources.py:458-660](file://bkmonitor/packages/fta_web/issue/resources.py#L458-L660)
+
+### TAPD 关联管理（创建 / 关联 / 解绑 / 授权）
+
+Issue 通过 TAPD 关联能力将告警问题单与 TAPD 工作项打通。相关端点由 `TAPD_ENDPOINTS` 统一圈定，全部前置校验 `TAPDAuthPermission`（用户态 TAPD token）：
+
+| 端点 | Resource 类 | 说明 |
+|------|-------------|------|
+| `issue/get_tapd_fields` | `GetTapdFieldsResource` | 拉取 TAPD 单类型（需求/缺陷/任务）的字段定义与可选项 |
+| `issue/search_tapd_items` | `SearchTAPDItemsResource` | 按关键字/类型搜索 TAPD 项 |
+| `issue/create_tapd` | `CreateTapdResource` | 创建 TAPD 单，写 `IssueTapdRelation` 并记 `create_tapd` 活动 |
+| `issue/link_tapd` | `LinkIssueToTapdResource` | 关联 Issue 到已有 TAPD 单（批量查重 + 记 `tapd_link` 活动） |
+| `issue/tapd_relations` | `ListIssueTapdRelationsResource` | 列出 Issue 的全部 TAPD 关联 |
+| `tapd/user_workspace` | `ListUserTapdWorkspaceResource` | 当前用户可见 TAPD 项目（含 `install_url`），携带 `success_url` 可触发授权跳转 |
+| `tapd/unbind_workspace` | `UnbindTapdWorkspaceResource` | 手动解绑工作区，持久化 tombstone（`TapdWorkspaceManualUnbind`），阻断周期任务自动回绑 |
+| `tapd/rebind_workspace` | `RebindTapdWorkspaceResource` | 重新关联已解绑工作区（清除 tombstone） |
+| `tapd/revoke_auth` | `RevokeTapdUserAuthResource` | 撤销用户授权，清除 Redis `tapd_uat:{tenant}:{user}` |
+
+**OAuth 回调**：`tapd/oauth_callback/`、`tapd/app_install_callback/` 两个 `csrf_exempt` 路由完成用户态授权码兑换并写回 `tapd_uat` token。
+
+**用户态授权校验**：`TAPDAuthPermission` 对所有 `TAPD_ENDPOINTS` 中的接口前置检查 Redis `tapd_uat:{tenant}:{user}`；未授权时若携带 `success_url`（当前仅 `tapd/user_workspace`）返回 403 + `auth_url` 引导前端跳转授权页，其余接口返回 403 提示先授权。
+
+章节来源
+- [fta_web/issue/views.py:50-178](file://bkmonitor/packages/fta_web/issue/views.py#L50-L178)
+- [fta_web/issue/resources.py:1554-3100](file://bkmonitor/packages/fta_web/issue/resources.py#L1554-L3100)
+- [packages/fta_web/issue/urls.py:1-20](file://bkmonitor/packages/fta_web/issue/urls.py#L1-L20)
 
 ## API Gateway 接口
 
@@ -265,8 +314,10 @@ flowchart TD
 | 只读接口 | `VIEW_EVENT` |
 | 写操作 | `MANAGE_EVENT` |
 
+**用户态授权（TAPD 接口）**：所有 `TAPD_ENDPOINTS` 中的接口在 IAM 校验之外，额外由 `TAPDAuthPermission` 前置校验 Redis `tapd_uat:{tenant}:{user}` 用户态 token。未授权时携带 `success_url` 的接口（当前仅 `tapd/user_workspace`）返回 403 + `auth_url` 引导前端跳转授权页，其余接口返回 403 提示先完成授权。`tapd/revoke_auth` 用于主动清除该 token。
+
 章节来源
-- [fta_web/issue/views.py:36-76](file://bkmonitor/packages/fta_web/issue/views.py#L36-L76)
+- [fta_web/issue/views.py:65-178](file://bkmonitor/packages/fta_web/issue/views.py#L65-L178)
 
 ## 查询处理器
 

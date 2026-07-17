@@ -101,10 +101,10 @@ AV --> ADM
 ```
 
 **图表来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [kernel_api/views/v2/monitorapi.py:1-110](file://bkmonitor/kernel_api/views/v2/monitorapi.py#L1-L110)
 - [packages/monitor_api/views.py:1-214](file://bkmonitor/packages/monitor_api/views.py#L1-L214)
-- [metadata/health_check.py:1-787](file://bkmonitor/metadata/health_check.py#L1-L787)
+- [metadata/health_check.py:1-831](file://bkmonitor/metadata/health_check.py#L1-L831)
 - [metadata/models/data_link/data_link.py](file://bkmonitor/metadata/models/data_link/data_link.py)
 - [metadata/models/space/constants.py](file://bkmonitor/metadata/models/space/constants.py)
 - [metadata/utils/redis_tools.py](file://bkmonitor/metadata/utils/redis_tools.py)
@@ -116,10 +116,10 @@ AV --> ADM
 - [apm/models/datasource.py](file://bkmonitor/apm/models/datasource.py)
 
 **章节来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [kernel_api/views/v2/monitorapi.py:1-110](file://bkmonitor/kernel_api/views/v2/monitorapi.py#L1-L110)
 - [packages/monitor_api/views.py:1-214](file://bkmonitor/packages/monitor_api/views.py#L1-L214)
-- [metadata/health_check.py:1-787](file://bkmonitor/metadata/health_check.py#L1-L787)
+- [metadata/health_check.py:1-831](file://bkmonitor/metadata/health_check.py#L1-L831)
 
 ## 核心组件
 - API路由与版本化
@@ -134,14 +134,19 @@ AV --> ADM
   - 用户配置、业务配置、全局配置、快照主机指标等的增删改查与过滤
 - APM数据链路
   - 应用模型与多种数据源模型（Trace/Metric/Log/Profiling）联动，支持按应用聚合健康状态
+- 数据链路策略与图关系（Graph Relation）
+  - 新增 `GRAPH_RELATION_TIME_SERIES`（图关系时序链路）数据链路策略：监控数据经 SurrealDB 图存储落库构建图关系时序数据链路，表名追加 `_graph` 后缀（`SURREALDB_RT_SUFFIX`）
+  - 组件合成：`compose_graph_relation_time_series_configs`、`_compose_graph_relation_surrealdb_configs` 生成 SurrealDB/结果表配置，由 `GraphRelationBindingConfig` 持久化图关系绑定（含写入模式、集群等）
 
 **章节来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
-- [metadata/health_check.py:551-787](file://bkmonitor/metadata/health_check.py#L551-L787)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
+- [metadata/health_check.py:593-831](file://bkmonitor/metadata/health_check.py#L593-L831)
 - [bkmonitor/middlewares/prometheus.py](file://bkmonitor/middlewares/prometheus.py)
 - [packages/monitor_api/views.py:91-214](file://bkmonitor/packages/monitor_api/views.py#L91-L214)
 - [apm/models/application.py](file://bkmonitor/apm/models/application.py)
 - [apm/models/datasource.py](file://bkmonitor/apm/models/datasource.py)
+- [metadata/models/data_link/data_link.py:154-167](file://bkmonitor/metadata/models/data_link/data_link.py#L154-L167)
+- [metadata/models/data_link/data_link.py:585-720](file://bkmonitor/metadata/models/data_link/data_link.py#L585-L720)
 
 ## 架构总览
 系统运维API围绕“统一入口 + 多版本路由 + 场景化健康检查 + 性能监控 + 配置管理”展开，形成闭环的运维观测与处置能力。
@@ -164,10 +169,10 @@ HC-->>OP : 返回健康检查报告
 ```
 
 **图表来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [kernel_api/views/v2/monitorapi.py:1-110](file://bkmonitor/kernel_api/views/v2/monitorapi.py#L1-L110)
 - [packages/monitor_api/views.py:42-80](file://bkmonitor/packages/monitor_api/views.py#L42-L80)
-- [metadata/health_check.py:551-787](file://bkmonitor/metadata/health_check.py#L551-L787)
+- [metadata/health_check.py:593-831](file://bkmonitor/metadata/health_check.py#L593-L831)
 
 ## 详细组件分析
 
@@ -175,6 +180,7 @@ HC-->>OP : 返回健康检查报告
 - 功能要点
   - 场景化检查：服务拨测、主机、自定义指标、K8s、APM、自定义事件、日志
   - 数据链路聚合：数据ID状态、数据平台接入状态、查询路由状态
+  - 图关系组件检查：对 `GraphRelationBindingConfig` 类型的图关系数据链路组件，依据 `_get_graph_component_name_filters` 校验组件状态并纳入健康报告
   - 可解释输出：将复杂状态转换为可读报告，便于自动化巡检与告警
 - 关键流程
   - 输入场景参数与上下文（租户、业务、集群、应用）
@@ -206,10 +212,12 @@ Explain --> End(["结束"])
 ```
 
 **图表来源**
-- [metadata/health_check.py:551-787](file://bkmonitor/metadata/health_check.py#L551-L787)
+- [metadata/health_check.py:593-831](file://bkmonitor/metadata/health_check.py#L593-L831)
 
 **章节来源**
-- [metadata/health_check.py:59-787](file://bkmonitor/metadata/health_check.py#L59-L787)
+- [metadata/health_check.py:60-831](file://bkmonitor/metadata/health_check.py#L60-L831)
+- [metadata/health_check.py:216-284](file://bkmonitor/metadata/health_check.py#L216-L284)
+- [metadata/models/data_link/data_link.py:585-720](file://bkmonitor/metadata/models/data_link/data_link.py#L585-L720)
 
 ### 性能监控组件
 - 功能要点
@@ -267,7 +275,7 @@ NestedRouterMixin <|-- AlarmTypeViewSet
 **章节来源**
 - [apm/models/application.py](file://bkmonitor/apm/models/application.py)
 - [apm/models/datasource.py](file://bkmonitor/apm/models/datasource.py)
-- [metadata/health_check.py:625-665](file://bkmonitor/metadata/health_check.py#L625-L665)
+- [metadata/health_check.py:667-707](file://bkmonitor/metadata/health_check.py#L667-L707)
 
 ## 依赖分析
 - 路由与视图
@@ -293,9 +301,9 @@ PMW["middlewares/prometheus.py"] --> PCM["core/prometheus/__init__.py"]
 ```
 
 **图表来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [packages/monitor_api/views.py:83-89](file://bkmonitor/packages/monitor_api/views.py#L83-L89)
-- [metadata/health_check.py:216-274](file://bkmonitor/metadata/health_check.py#L216-L274)
+- [metadata/health_check.py:216-316](file://bkmonitor/metadata/health_check.py#L216-L316)
 - [metadata/models/data_link/data_link.py](file://bkmonitor/metadata/models/data_link/data_link.py)
 - [metadata/models/space/constants.py](file://bkmonitor/metadata/models/space/constants.py)
 - [metadata/utils/redis_tools.py](file://bkmonitor/metadata/utils/redis_tools.py)
@@ -303,9 +311,9 @@ PMW["middlewares/prometheus.py"] --> PCM["core/prometheus/__init__.py"]
 - [bkmonitor/core/prometheus/__init__.py](file://bkmonitor/core/prometheus/__init__.py)
 
 **章节来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [packages/monitor_api/views.py:83-89](file://bkmonitor/packages/monitor_api/views.py#L83-L89)
-- [metadata/health_check.py:216-274](file://bkmonitor/metadata/health_check.py#L216-L274)
+- [metadata/health_check.py:216-316](file://bkmonitor/metadata/health_check.py#L216-L316)
 
 ## 性能考虑
 - 中间件开销
@@ -332,7 +340,7 @@ PMW["middlewares/prometheus.py"] --> PCM["core/prometheus/__init__.py"]
   - 应用不存在或未启用：确认应用模型与数据源启用状态
 
 **章节来源**
-- [metadata/health_check.py:490-548](file://bkmonitor/metadata/health_check.py#L490-L548)
+- [metadata/health_check.py:532-590](file://bkmonitor/metadata/health_check.py#L532-L590)
 - [packages/monitor_api/views.py:91-108](file://bkmonitor/packages/monitor_api/views.py#L91-L108)
 - [bkmonitor/middlewares/prometheus.py](file://bkmonitor/middlewares/prometheus.py)
 
@@ -362,10 +370,10 @@ PMW["middlewares/prometheus.py"] --> PCM["core/prometheus/__init__.py"]
   - 对敏感场景（如配置变更）增加审计日志
 
 **章节来源**
-- [kernel_api/urls.py:79-120](file://bkmonitor/kernel_api/urls.py#L79-L120)
+- [kernel_api/urls.py:76-118](file://bkmonitor/kernel_api/urls.py#L76-L118)
 - [kernel_api/views/v2/monitorapi.py:1-110](file://bkmonitor/kernel_api/views/v2/monitorapi.py#L1-L110)
 - [packages/monitor_api/views.py:42-80](file://bkmonitor/packages/monitor_api/views.py#L42-L80)
-- [metadata/health_check.py:721-787](file://bkmonitor/metadata/health_check.py#L721-L787)
+- [metadata/health_check.py:765-831](file://bkmonitor/metadata/health_check.py#L765-L831)
 
 ### 运维自动化参考
 - 巡检流程
@@ -377,5 +385,5 @@ PMW["middlewares/prometheus.py"] --> PCM["core/prometheus/__init__.py"]
   - 结合Grafana代理入口与查询API，统一日志检索与分析
 
 **章节来源**
-- [kernel_api/urls.py:101-114](file://bkmonitor/kernel_api/urls.py#L101-L114)
+- [kernel_api/urls.py:98-111](file://bkmonitor/kernel_api/urls.py#L98-L111)
 - [packages/monitor_api/views.py:42-80](file://bkmonitor/packages/monitor_api/views.py#L42-L80)

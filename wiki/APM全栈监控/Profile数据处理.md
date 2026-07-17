@@ -72,13 +72,13 @@ C --> COLLECTOR
 
 图表来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:1899-1910](file://bkmonitor/apm/resources.py#L1899-L1910)
+- [bkmonitor/apm/resources.py:1908-1919](file://bkmonitor/apm/resources.py#L1908-L1919)
 - [bkmonitor/apm/core/handlers/profile/query.py:82-172](file://bkmonitor/apm/core/handlers/profile/query.py#L82-L172)
 - [bkmonitor/packages/apm_web/profile/collector.py:53-134](file://bkmonitor/packages/apm_web/profile/collector.py#L53-L134)
 
 章节来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:1899-2084](file://bkmonitor/apm/resources.py#L1899-L2084)
+- [bkmonitor/apm/resources.py:1908-2093](file://bkmonitor/apm/resources.py#L1908-L2093)
 
 ## 核心组件
 - Profile服务模型：记录业务、应用、服务、采样周期/频率、采样类型、是否大数据量等元信息
@@ -95,7 +95,7 @@ C --> COLLECTOR
 - [bkmonitor/apm/core/handlers/profile/query.py:82-172](file://bkmonitor/apm/core/handlers/profile/query.py#L82-L172)
 - [bkmonitor/packages/apm_web/profile/collector.py:53-134](file://bkmonitor/packages/apm_web/profile/collector.py#L53-L134)
 - [bkmonitor/packages/apm_web/profile/constants.py:12-62](file://bkmonitor/packages/apm_web/profile/constants.py#L12-L62)
-- [bkmonitor/apm/constants.py:638-660](file://bkmonitor/apm/constants.py#L638-L660)
+- [bkmonitor/apm/constants.py:641-663](file://bkmonitor/apm/constants.py#L641-L663)
 
 ## 架构总览
 Profile数据处理从采集到查询的总体流程如下：
@@ -215,7 +215,7 @@ ProfileQueryBuilder --> ApiParam : "组合"
 章节来源
 - [bkmonitor/apm/core/handlers/profile/query.py:23-79](file://bkmonitor/apm/core/handlers/profile/query.py#L23-L79)
 - [bkmonitor/apm/core/handlers/profile/query.py:82-172](file://bkmonitor/apm/core/handlers/profile/query.py#L82-L172)
-- [bkmonitor/apm/constants.py:638-660](file://bkmonitor/apm/constants.py#L638-L660)
+- [bkmonitor/apm/constants.py:641-663](file://bkmonitor/apm/constants.py#L641-L663)
 
 ### 3) 数据模型与存储
 - ProfileService模型：记录业务ID、应用名、服务名、采样周期/类型/频率、数据类型、是否大数据量、时间戳等
@@ -297,12 +297,12 @@ View-->>Client : "JSON响应"
 
 图表来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:2033-2084](file://bkmonitor/apm/resources.py#L2033-L2084)
+- [bkmonitor/apm/resources.py:2042-2093](file://bkmonitor/apm/resources.py#L2042-L2093)
 - [bkmonitor/api/apm_api/default.py:372-387](file://bkmonitor/api/apm_api/default.py#L372-L387)
 
 章节来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:1899-2084](file://bkmonitor/apm/resources.py#L1899-L2084)
+- [bkmonitor/apm/resources.py:1908-2093](file://bkmonitor/apm/resources.py#L1908-L2093)
 - [bkmonitor/api/apm_api/default.py:372-387](file://bkmonitor/api/apm_api/default.py#L372-L387)
 - [bkmonitor/packages/apm_web/profile/resources.py:230-391](file://bkmonitor/packages/apm_web/profile/resources.py#L230-L391)
 
@@ -330,13 +330,13 @@ Collector --> Pyroscope["/pyroscope/ingest"]
 
 图表来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:1899-2084](file://bkmonitor/apm/resources.py#L1899-L2084)
+- [bkmonitor/apm/resources.py:1908-2093](file://bkmonitor/apm/resources.py#L1908-L2093)
 - [bkmonitor/apm/core/handlers/profile/query.py:82-172](file://bkmonitor/apm/core/handlers/profile/query.py#L82-L172)
 - [bkmonitor/packages/apm_web/profile/collector.py:53-134](file://bkmonitor/packages/apm_web/profile/collector.py#L53-L134)
 
 章节来源
 - [bkmonitor/apm/views.py:135-142](file://bkmonitor/apm/views.py#L135-L142)
-- [bkmonitor/apm/resources.py:1899-2084](file://bkmonitor/apm/resources.py#L1899-L2084)
+- [bkmonitor/apm/resources.py:1908-2093](file://bkmonitor/apm/resources.py#L1908-L2093)
 - [bkmonitor/apm/core/handlers/profile/query.py:82-172](file://bkmonitor/apm/core/handlers/profile/query.py#L82-L172)
 - [bkmonitor/packages/apm_web/profile/collector.py:53-134](file://bkmonitor/packages/apm_web/profile/collector.py#L53-L134)
 
@@ -390,7 +390,7 @@ Collector --> Pyroscope["/pyroscope/ingest"]
   - 分页与排序：支持offset/rows与排序表达式
 
 章节来源
-- [bkmonitor/apm/constants.py:638-660](file://bkmonitor/apm/constants.py#L638-L660)
+- [bkmonitor/apm/constants.py:641-663](file://bkmonitor/apm/constants.py#L641-L663)
 - [bkmonitor/apm/core/handlers/profile/query.py:50-79](file://bkmonitor/apm/core/handlers/profile/query.py#L50-L79)
 - [bkmonitor/apm/core/handlers/profile/query.py:157-172](file://bkmonitor/apm/core/handlers/profile/query.py#L157-L172)
 
@@ -417,4 +417,4 @@ Collector --> Pyroscope["/pyroscope/ingest"]
 章节来源
 - [bkmonitor/packages/apm_web/profile/resources.py:230-391](file://bkmonitor/packages/apm_web/profile/resources.py#L230-L391)
 - [bkmonitor/api/apm_api/default.py:372-387](file://bkmonitor/api/apm_api/default.py#L372-L387)
-- [bkmonitor/apm/resources.py:2033-2084](file://bkmonitor/apm/resources.py#L2033-L2084)
+- [bkmonitor/apm/resources.py:2042-2093](file://bkmonitor/apm/resources.py#L2042-L2093)

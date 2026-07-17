@@ -251,6 +251,8 @@ flowchart TD
 | `name_change` | 旧名称 | 新名称 | — | 重命名 |
 | `comment` | — | — | 评论内容 | 添加跟进 |
 | `comment_edit` | 旧内容 | 新内容 | — | 编辑评论 |
+| `create_tapd` | — | — | TAPD 单信息 | 创建并关联 TAPD 单 |
+| `tapd_link` | — | — | 关联目标 | 关联已有 TAPD 单 |
 
 ### 活动日志读取
 
@@ -333,7 +335,7 @@ Web API 层 `_run_batch()` 支持对多条 Issue 执行批量操作。每条 Iss
 并行度由 `max_workers`（默认 10）控制。
 
 章节来源
-- [fta_web/issue/resources.py:53-114](file://bkmonitor/packages/fta_web/issue/resources.py#L53-L114)
+- [fta_web/issue/resources.py:85-150](file://bkmonitor/packages/fta_web/issue/resources.py#L85-L150)
 
 ### 3. 幂等性
 

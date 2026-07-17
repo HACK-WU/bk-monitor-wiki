@@ -10,9 +10,10 @@
     "*.pyc",
     "^docs/"
   ],
+  "repo_prefix": "",
   "source": {
     "branch": "master",
-    "commit_id": "a0bfd0a105",
+    "commit_id": "af9c3350d6",
     "repo_url": "git@github.com:TencentBlueKing/bk-monitor.git"
   },
   "source_to_wiki": {
@@ -621,6 +622,9 @@
       "告警系统设计/Issue功能/Issue 系统设计总览.md",
       "告警系统设计/Issue功能/Issue 聚合引擎.md"
     ],
+    "bkmonitor/alarm_backends/service/fta_action/llm_title.py": [
+      "告警系统设计/Issue功能/Issue 系统设计总览.md"
+    ],
     "bkmonitor/alarm_backends/service/fta_action/message_queue/client.py": [
       "告警系统设计/通知渠道管理/通知队列管理.md"
     ],
@@ -820,6 +824,7 @@
       "扩展开发指南/第三方服务集成.md"
     ],
     "bkmonitor/api/bkdata/default.py": [
+      "APM全栈监控/APM全栈监控.md",
       "APM全栈监控/Profile数据处理.md",
       "告警系统设计/通知渠道管理/通知渠道管理.md",
       "核心模块架构/元数据管理模块/元数据服务层/数据链路操作服务.md"
@@ -3312,6 +3317,11 @@
     "bkmonitor/constants/result_table.py": [
       "核心模块架构/元数据管理模块/元数据模型设计/结果表模型.md"
     ],
+    "bkmonitor/constants/rum.py": [
+      "真实用户监控(RUM)/Span数据协议.md",
+      "真实用户监控(RUM)/数据模型.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
+    ],
     "bkmonitor/core/drf_resource/__init__.py": [
       "核心模块架构/元数据管理模块/元数据资源接口.md"
     ],
@@ -4676,6 +4686,44 @@
     "bkmonitor/packages/monitor_web/urls.py": [
       "API接口文档/RESTful API接口/监控数据API.md"
     ],
+    "bkmonitor/packages/rum_web/constants.py": [
+      "真实用户监控(RUM)/应用管理与配置.md",
+      "真实用户监控(RUM)/指标查询与可视化.md",
+      "真实用户监控(RUM)/数据模型.md"
+    ],
+    "bkmonitor/packages/rum_web/docs/spec/span/span.md": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/Span数据协议.md"
+    ],
+    "bkmonitor/packages/rum_web/handlers/backend_data_handler.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/指标查询与可视化.md"
+    ],
+    "bkmonitor/packages/rum_web/handlers/service_handler.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/应用管理与配置.md",
+      "真实用户监控(RUM)/指标查询与可视化.md"
+    ],
+    "bkmonitor/packages/rum_web/meta/resources.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/应用管理与配置.md",
+      "真实用户监控(RUM)/指标查询与可视化.md"
+    ],
+    "bkmonitor/packages/rum_web/meta/views.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/应用管理与配置.md"
+    ],
+    "bkmonitor/packages/rum_web/metric/resources.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/指标查询与可视化.md"
+    ],
+    "bkmonitor/packages/rum_web/metric/views.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/指标查询与可视化.md"
+    ],
+    "bkmonitor/packages/rum_web/models/application.py": [
+      "真实用户监控(RUM)/应用管理与配置.md"
+    ],
     "bkmonitor/packages/utils/redis_client.py": [
       "核心模块架构/元数据管理模块/元数据服务层/空间Redis服务.md",
       "核心模块架构/告警后端模块/告警存储系统.md"
@@ -4720,6 +4768,42 @@
     ],
     "bkmonitor/rest_framework/permissions.py": [
       "API接口文档/API接口文档.md"
+    ],
+    "bkmonitor/rum/constants.py": [
+      "真实用户监控(RUM)/数据模型.md"
+    ],
+    "bkmonitor/rum/core/application_config.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/Span数据协议.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
+    ],
+    "bkmonitor/rum/core/handlers/application_helper.py": [
+      "真实用户监控(RUM)/数据模型.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
+    ],
+    "bkmonitor/rum/models/application.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/数据模型.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
+    ],
+    "bkmonitor/rum/models/config.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/数据模型.md"
+    ],
+    "bkmonitor/rum/models/datasource.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/Span数据协议.md",
+      "真实用户监控(RUM)/数据模型.md"
+    ],
+    "bkmonitor/rum/resources.py": [
+      "真实用户监控(RUM)/应用管理与配置.md",
+      "真实用户监控(RUM)/数据模型.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
+    ],
+    "bkmonitor/rum/task/tasks.py": [
+      "真实用户监控(RUM)/RUM全栈监控.md",
+      "真实用户监控(RUM)/应用管理与配置.md",
+      "真实用户监控(RUM)/数据采集与上报.md"
     ],
     "bkmonitor/scripts/dev/run.sh": [
       "部署与运维/容器化部署.md"
@@ -5023,9 +5107,9 @@
     ]
   },
   "stats": {
-    "citation_count": 10323,
-    "source_count": 1421,
-    "wiki_count": 137
+    "citation_count": 2208,
+    "source_count": 1440,
+    "wiki_count": 140
   },
   "wiki_path": "wiki",
   "wiki_to_source": {
@@ -5623,6 +5707,7 @@
       "bkmonitor/urls.py"
     ],
     "APM全栈监控/APM全栈监控.md": [
+      "bkmonitor/api/bkdata/default.py",
       "bkmonitor/apm/apps.py",
       "bkmonitor/apm/constants.py",
       "bkmonitor/apm/core/discover/base.py",
@@ -5743,6 +5828,7 @@
     ],
     "告警系统设计/Issue功能/Issue 系统设计总览.md": [
       "bkmonitor/alarm_backends/service/fta_action/issue_processor.py",
+      "bkmonitor/alarm_backends/service/fta_action/llm_title.py",
       "bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py",
       "bkmonitor/api/issue/default.py",
       "bkmonitor/bkmonitor/documents/issue.py",
@@ -7144,6 +7230,61 @@
       "bkmonitor/metadata/models/result_table.py",
       "bkmonitor/metadata/models/storage.py",
       "bkmonitor/settings.py"
+    ],
+    "真实用户监控(RUM)/RUM全栈监控.md": [
+      "bkmonitor/packages/rum_web/docs/spec/span/span.md",
+      "bkmonitor/packages/rum_web/handlers/backend_data_handler.py",
+      "bkmonitor/packages/rum_web/handlers/service_handler.py",
+      "bkmonitor/packages/rum_web/meta/resources.py",
+      "bkmonitor/packages/rum_web/meta/views.py",
+      "bkmonitor/packages/rum_web/metric/resources.py",
+      "bkmonitor/packages/rum_web/metric/views.py",
+      "bkmonitor/rum/core/application_config.py",
+      "bkmonitor/rum/models/application.py",
+      "bkmonitor/rum/models/config.py",
+      "bkmonitor/rum/models/datasource.py",
+      "bkmonitor/rum/task/tasks.py"
+    ],
+    "真实用户监控(RUM)/Span数据协议.md": [
+      "bkmonitor/constants/rum.py",
+      "bkmonitor/packages/rum_web/docs/spec/span/span.md",
+      "bkmonitor/rum/core/application_config.py",
+      "bkmonitor/rum/models/datasource.py"
+    ],
+    "真实用户监控(RUM)/应用管理与配置.md": [
+      "bkmonitor/packages/rum_web/constants.py",
+      "bkmonitor/packages/rum_web/handlers/service_handler.py",
+      "bkmonitor/packages/rum_web/meta/resources.py",
+      "bkmonitor/packages/rum_web/meta/views.py",
+      "bkmonitor/packages/rum_web/models/application.py",
+      "bkmonitor/rum/resources.py",
+      "bkmonitor/rum/task/tasks.py"
+    ],
+    "真实用户监控(RUM)/指标查询与可视化.md": [
+      "bkmonitor/packages/rum_web/constants.py",
+      "bkmonitor/packages/rum_web/handlers/backend_data_handler.py",
+      "bkmonitor/packages/rum_web/handlers/service_handler.py",
+      "bkmonitor/packages/rum_web/meta/resources.py",
+      "bkmonitor/packages/rum_web/metric/resources.py",
+      "bkmonitor/packages/rum_web/metric/views.py"
+    ],
+    "真实用户监控(RUM)/数据模型.md": [
+      "bkmonitor/constants/rum.py",
+      "bkmonitor/packages/rum_web/constants.py",
+      "bkmonitor/rum/constants.py",
+      "bkmonitor/rum/core/handlers/application_helper.py",
+      "bkmonitor/rum/models/application.py",
+      "bkmonitor/rum/models/config.py",
+      "bkmonitor/rum/models/datasource.py",
+      "bkmonitor/rum/resources.py"
+    ],
+    "真实用户监控(RUM)/数据采集与上报.md": [
+      "bkmonitor/constants/rum.py",
+      "bkmonitor/rum/core/application_config.py",
+      "bkmonitor/rum/core/handlers/application_helper.py",
+      "bkmonitor/rum/models/application.py",
+      "bkmonitor/rum/resources.py",
+      "bkmonitor/rum/task/tasks.py"
     ],
     "部署与运维/Kubernetes集群管理.md": [
       "README.md",

@@ -59,14 +59,14 @@ C --> G["kernel_api/views/v4/*<br/>v4视图"]
 图表来源
 - [settings.py:1-110](file://bkmonitor/settings.py#L1-L110)
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:1-142](file://bkmonitor/apm/views.py#L1-L142)
 - [views.py:52-325](file://bkmonitor/bk_dataview/views.py#L52-L325)
 
 章节来源
 - [settings.py:1-110](file://bkmonitor/settings.py#L1-L110)
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:1-142](file://bkmonitor/apm/views.py#L1-L142)
 - [views.py:52-325](file://bkmonitor/bk_dataview/views.py#L52-L325)
 
@@ -103,7 +103,7 @@ APM-->>Client : "返回查询结果"
 
 图表来源
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:70-142](file://bkmonitor/apm/views.py#L70-L142)
 
 ## 详细组件分析
@@ -130,11 +130,11 @@ Resp --> End
 ```
 
 图表来源
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:52-134](file://bkmonitor/bk_dataview/views.py#L52-L134)
 
 章节来源
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:52-134](file://bkmonitor/bk_dataview/views.py#L52-L134)
 
 ### 组件B：APM视图集
@@ -245,13 +245,13 @@ U --> APM["bkmonitor/apm/views.py"]
 图表来源
 - [settings.py:1-110](file://bkmonitor/settings.py#L1-L110)
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:67-67](file://bkmonitor/apm/views.py#L67-L67)
 
 章节来源
 - [settings.py:1-110](file://bkmonitor/settings.py#L1-L110)
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 - [views.py:67-67](file://bkmonitor/apm/views.py#L67-L67)
 
 ## 性能考虑
@@ -292,7 +292,7 @@ U --> APM["bkmonitor/apm/views.py"]
 
 章节来源
 - [urls.py](file://bkmonitor/urls.py)
-- [urls.py:46-84](file://bkmonitor/kernel_api/urls.py#L46-L84)
+- [urls.py:43-81](file://bkmonitor/kernel_api/urls.py#L43-L81)
 
 ### 消息格式与事件类型
 - 现有视图返回JSON格式响应，事件类型与消息格式由各端点定义。建议在新增WebSocket接口时：

@@ -66,9 +66,9 @@ ST --> GPERM
 
 图表来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:1-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L1-L140)
-- [bkmonitor\bkmonitor\iam\permission.py:1-519](file://bkmonitor/bkmonitor/iam/permission.py#L1-L519)
-- [bkmonitor\bkmonitor\iam\action.py:1-681](file://bkmonitor/bkmonitor/iam/action.py#L1-L681)
-- [bkmonitor\bkmonitor\iam\resource.py:1-214](file://bkmonitor/bkmonitor/iam/resource.py#L1-L214)
+- [bkmonitor\bkmonitor\iam\permission.py:1-521](file://bkmonitor/bkmonitor/iam/permission.py#L1-L521)
+- [bkmonitor\bkmonitor\iam\action.py:1-720](file://bkmonitor/bkmonitor/iam/action.py#L1-L720)
+- [bkmonitor\bkmonitor\iam\resource.py:1-268](file://bkmonitor/bkmonitor/iam/resource.py#L1-L268)
 - [bkmonitor\bkmonitor\iam\drf.py:1-363](file://bkmonitor/bkmonitor/iam/drf.py#L1-L363)
 - [bkmonitor\bk_dataview\authentication.py:1-41](file://bkmonitor/bk_dataview/authentication.py#L1-L41)
 - [bkmonitor\bk_dataview\permissions.py:1-96](file://bkmonitor/bk_dataview/permissions.py#L1-L96)
@@ -77,9 +77,9 @@ ST --> GPERM
 
 章节来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:1-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L1-L140)
-- [bkmonitor\bkmonitor\iam\permission.py:1-519](file://bkmonitor/bkmonitor/iam/permission.py#L1-L519)
-- [bkmonitor\bkmonitor\iam\action.py:1-681](file://bkmonitor/bkmonitor/iam/action.py#L1-L681)
-- [bkmonitor\bkmonitor\iam\resource.py:1-214](file://bkmonitor/bkmonitor/iam/resource.py#L1-L214)
+- [bkmonitor\bkmonitor\iam\permission.py:1-521](file://bkmonitor/bkmonitor/iam/permission.py#L1-L521)
+- [bkmonitor\bkmonitor\iam\action.py:1-720](file://bkmonitor/bkmonitor/iam/action.py#L1-L720)
+- [bkmonitor\bkmonitor\iam\resource.py:1-268](file://bkmonitor/bkmonitor/iam/resource.py#L1-L268)
 - [bkmonitor\bkmonitor\iam\drf.py:1-363](file://bkmonitor/bkmonitor/iam/drf.py#L1-L363)
 - [bkmonitor\bk_dataview\authentication.py:1-41](file://bkmonitor/bk_dataview/authentication.py#L1-L41)
 - [bkmonitor\bk_dataview\permissions.py:1-96](file://bkmonitor/bk_dataview/permissions.py#L1-L96)
@@ -104,7 +104,7 @@ ST --> GPERM
 
 章节来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:25-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L25-L140)
-- [bkmonitor\bkmonitor\iam\permission.py:83-519](file://bkmonitor/bkmonitor/iam/permission.py#L83-L519)
+- [bkmonitor\bkmonitor\iam\permission.py:85-521](file://bkmonitor/bkmonitor/iam/permission.py#L85-L521)
 - [bkmonitor\bkmonitor\iam\drf.py:34-363](file://bkmonitor/bkmonitor/iam/drf.py#L34-L363)
 - [bkmonitor\bk_dataview\permissions.py:16-96](file://bkmonitor/bk_dataview/permissions.py#L16-L96)
 - [bkmonitor\bkmonitor\models\token.py](file://bkmonitor/bkmonitor/models/token.py)
@@ -143,7 +143,7 @@ Note over M,G : "Grafana场景使用角色/权限模型"
 
 图表来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:49-124](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L124)
-- [bkmonitor\bkmonitor\iam\permission.py:293-360](file://bkmonitor/bkmonitor/iam/permission.py#L293-L360)
+- [bkmonitor\bkmonitor\iam\permission.py:295-362](file://bkmonitor/bkmonitor/iam/permission.py#L295-L362)
 - [bkmonitor\bkmonitor\iam\drf.py:34-68](file://bkmonitor/bkmonitor/iam/drf.py#L34-L68)
 - [bkmonitor\bk_dataview\permissions.py:75-96](file://bkmonitor/bk_dataview/permissions.py#L75-L96)
 
@@ -195,6 +195,11 @@ Other --> End
 - 动作与资源定义
   - 动作：包含读/写类型、关联资源类型、依赖动作、版本等元信息
   - 资源：业务空间、APM应用、Grafana仪表盘等，支持实例属性与路径构建
+  - 新增动作（RUM 与运维 MCP 场景）：
+    - `USING_OPERATION_MCP`：操作 MCP 使用权限，依赖 `VIEW_BUSINESS`
+    - `VIEW_RUM_APPLICATION`：RUM 应用查看权限，依赖 `VIEW_BUSINESS`
+    - `MANAGE_RUM_APPLICATION`：RUM 应用管理权限，无依赖动作
+  - 新增资源：`RumApplication`（id=`rum_application`，名称“RUM应用”），选择模式为实例，关联实例选择 `rum_application_list_v2`；其 `_get_app_simple_info_by_id_or_none` 引入 60 分钟内存缓存（`lru_cache_with_ttl`）以加速鉴权
 - 权限封装
   - 初始化：根据租户ID选择IAM客户端，支持后台API模式下的SaaS身份
   - 鉴权：支持单动作、多动作、批量资源多动作；读权限使用缓存提升性能
@@ -233,6 +238,14 @@ class ResourceMeta {
 +create_instance(id, attribute)
 +create_simple_instance(id, attribute)
 }
+class RumApplication {
++id = "rum_application"
++name = "RUM应用"
++create_instance_by_info(item)
++create_simple_instance(id, attribute)
++_get_app_simple_info_by_id_or_none(id)
+}
+ResourceMeta <|-- RumApplication : "继承"
 class IAMPermission {
 +has_permission(request, view)
 +has_object_permission(request, view, obj)
@@ -248,16 +261,19 @@ BusinessActionPermission --> IAMPermission : "继承"
 ```
 
 图表来源
-- [bkmonitor\bkmonitor\iam\permission.py:83-519](file://bkmonitor/bkmonitor/iam/permission.py#L83-L519)
-- [bkmonitor\bkmonitor\iam\action.py:18-681](file://bkmonitor/bkmonitor/iam/action.py#L18-L681)
-- [bkmonitor\bkmonitor\iam\resource.py:27-214](file://bkmonitor/bkmonitor/iam/resource.py#L27-L214)
+- [bkmonitor\bkmonitor\iam\permission.py:85-521](file://bkmonitor/bkmonitor/iam/permission.py#L85-L521)
+- [bkmonitor\bkmonitor\iam\action.py:18-720](file://bkmonitor/bkmonitor/iam/action.py#L18-L720)
+- [bkmonitor\bkmonitor\iam\resource.py:26-268](file://bkmonitor/bkmonitor/iam/resource.py#L26-L268)
 - [bkmonitor\bkmonitor\iam\drf.py:34-181](file://bkmonitor/bkmonitor/iam/drf.py#L34-L181)
 
 章节来源
-- [bkmonitor\bkmonitor\iam\permission.py:83-519](file://bkmonitor/bkmonitor/iam/permission.py#L83-L519)
-- [bkmonitor\bkmonitor\iam\action.py:88-681](file://bkmonitor/bkmonitor/iam/action.py#L88-L681)
-- [bkmonitor\bkmonitor\iam\resource.py:66-214](file://bkmonitor/bkmonitor/iam/resource.py#L66-L214)
+- [bkmonitor\bkmonitor\iam\permission.py:85-521](file://bkmonitor/bkmonitor/iam/permission.py#L85-L521)
+- [bkmonitor\bkmonitor\iam\action.py:88-720](file://bkmonitor/bkmonitor/iam/action.py#L88-L720)
+- [bkmonitor\bkmonitor\iam\resource.py:65-268](file://bkmonitor/bkmonitor/iam/resource.py#L65-L268)
 - [bkmonitor\bkmonitor\iam\drf.py:34-363](file://bkmonitor/bkmonitor/iam/drf.py#L34-L363)
+- [bkmonitor\bkmonitor\iam\action.py:166-166](file://bkmonitor/bkmonitor/iam/action.py#L166-L166)
+- [bkmonitor\bkmonitor\iam\action.py:591-601](file://bkmonitor/bkmonitor/iam/action.py#L591-L601)
+- [bkmonitor\bkmonitor\iam\resource.py:192-260](file://bkmonitor/bkmonitor/iam/resource.py#L192-L260)
 
 ### Grafana权限模型与可视化场景
 - 角色与权限等级：支持匿名、查看者、编辑者、管理员等角色，以及视图、编辑、管理等权限等级
@@ -279,7 +295,7 @@ BusinessActionPermission --> IAMPermission : "继承"
 章节来源
 - [bkmonitor\bkmonitor\models\token.py](file://bkmonitor/bkmonitor/models/token.py)
 - [bkmonitor\bkmonitor\middlewares\authentication.py:104-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L104-L123)
-- [bkmonitor\bkmonitor\iam\permission.py:88-108](file://bkmonitor/bkmonitor/iam/permission.py#L88-L108)
+- [bkmonitor\bkmonitor\iam\permission.py:90-110](file://bkmonitor/bkmonitor/iam/permission.py#L90-L110)
 
 ### 来源应用识别与审计
 - 从请求上下文中解析调用方APP_CODE，作为审计与策略下发的依据
@@ -311,13 +327,13 @@ GPERM["Grafana权限模型"] -.-> AUTH
 
 图表来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:11-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L11-L140)
-- [bkmonitor\bkmonitor\iam\permission.py:119-127](file://bkmonitor/bkmonitor/iam/permission.py#L119-L127)
+- [bkmonitor\bkmonitor\iam\permission.py:121-129](file://bkmonitor/bkmonitor/iam/permission.py#L121-L129)
 - [bkmonitor\bkmonitor\iam\drf.py:27-31](file://bkmonitor/bkmonitor/iam/drf.py#L27-L31)
 - [bkmonitor\bk_dataview\permissions.py:75-96](file://bkmonitor/bk_dataview/permissions.py#L75-L96)
 
 章节来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:1-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L1-L140)
-- [bkmonitor\bkmonitor\iam\permission.py:1-519](file://bkmonitor/bkmonitor/iam/permission.py#L1-L519)
+- [bkmonitor\bkmonitor\iam\permission.py:1-521](file://bkmonitor/bkmonitor/iam/permission.py#L1-L521)
 - [bkmonitor\bkmonitor\iam\drf.py:1-363](file://bkmonitor/bkmonitor/iam/drf.py#L1-L363)
 - [bkmonitor\bk_dataview\permissions.py:1-96](file://bkmonitor/bk_dataview/permissions.py#L1-L96)
 
@@ -328,7 +344,7 @@ GPERM["Grafana权限模型"] -.-> AUTH
 - 豁免策略：在开发环境与特定场景下跳过鉴权，减少不必要的调用
 
 章节来源
-- [bkmonitor\bkmonitor\iam\permission.py:330-340](file://bkmonitor/bkmonitor/iam/permission.py#L330-L340)
+- [bkmonitor\bkmonitor\iam\permission.py:332-342](file://bkmonitor/bkmonitor/iam/permission.py#L332-L342)
 - [bkmonitor\bkmonitor\iam\drf.py:233-253](file://bkmonitor/bkmonitor/iam/drf.py#L233-L253)
 - [bkmonitor\bkmonitor\iam\drf.py:270-290](file://bkmonitor/bkmonitor/iam/drf.py#L270-L290)
 
@@ -349,7 +365,7 @@ GPERM["Grafana权限模型"] -.-> AUTH
 
 章节来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:49-124](file://bkmonitor/bkmonitor/middlewares/authentication.py#L49-L124)
-- [bkmonitor\bkmonitor\iam\permission.py:293-360](file://bkmonitor/bkmonitor/iam/permission.py#L293-L360)
+- [bkmonitor\bkmonitor\iam\permission.py:295-362](file://bkmonitor/bkmonitor/iam/permission.py#L295-L362)
 - [bkmonitor\bk_dataview\permissions.py:75-96](file://bkmonitor/bk_dataview/permissions.py#L75-L96)
 
 ## 结论
@@ -365,7 +381,7 @@ GPERM["Grafana权限模型"] -.-> AUTH
 章节来源
 - [bkmonitor\bkmonitor\middlewares\authentication.py:126-140](file://bkmonitor/bkmonitor/middlewares/authentication.py#L126-L140)
 - [bkmonitor\bkmonitor\middlewares\authentication.py:115-123](file://bkmonitor/bkmonitor/middlewares/authentication.py#L115-L123)
-- [bkmonitor\bkmonitor\iam\permission.py:113-118](file://bkmonitor/bkmonitor/iam/permission.py#L113-L118)
+- [bkmonitor\bkmonitor\iam\permission.py:115-120](file://bkmonitor/bkmonitor/iam/permission.py#L115-L120)
 
 ### 权限申请流程
 - 无权限触发：在DRF视图中抛出权限异常
@@ -373,8 +389,8 @@ GPERM["Grafana权限模型"] -.-> AUTH
 - SaaS空间批量申请：针对业务空间与最小权限集合的一并申请
 
 章节来源
-- [bkmonitor\bkmonitor\iam\permission.py:256-291](file://bkmonitor/bkmonitor/iam/permission.py#L256-L291)
-- [bkmonitor\bkmonitor\iam\permission.py:361-374](file://bkmonitor/bkmonitor/iam/permission.py#L361-L374)
+- [bkmonitor\bkmonitor\iam\permission.py:258-293](file://bkmonitor/bkmonitor/iam/permission.py#L258-L293)
+- [bkmonitor\bkmonitor\iam\permission.py:363-376](file://bkmonitor/bkmonitor/iam/permission.py#L363-L376)
 
 ### 安全最佳实践
 - 使用短期Token并定期轮换
@@ -384,5 +400,5 @@ GPERM["Grafana权限模型"] -.-> AUTH
 - 在开发环境谨慎开启豁免开关
 
 章节来源
-- [bkmonitor\bkmonitor\iam\permission.py:330-340](file://bkmonitor/bkmonitor/iam/permission.py#L330-L340)
+- [bkmonitor\bkmonitor\iam\permission.py:332-342](file://bkmonitor/bkmonitor/iam/permission.py#L332-L342)
 - [bkmonitor\bkmonitor\iam\drf.py:233-253](file://bkmonitor/bkmonitor/iam/drf.py#L233-L253)

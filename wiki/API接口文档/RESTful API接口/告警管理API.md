@@ -101,7 +101,7 @@ V2 --> CONST
 
 **图表来源**
 - [fta_web/alert/views.py:174-225](file://bkmonitor/packages/fta_web/alert/views.py#L174-L225)
-- [fta_web/alert_v2/views.py:22-40](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L40)
+- [fta_web/alert_v2/views.py:22-38](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L38)
 - [monitor_web/alert_events/views.py:18-55](file://bkmonitor/packages/monitor_web/alert_events/views.py#L18-L55)
 - [core.drf_resource/viewsets.py](file://bkmonitor/core/drf_resource/viewsets.py)
 - [core.drf_resource/resource.py](file://bkmonitor/core/drf_resource/resource.py)
@@ -110,7 +110,7 @@ V2 --> CONST
 
 **章节来源**
 - [fta_web/alert/views.py:174-225](file://bkmonitor/packages/fta_web/alert/views.py#L174-L225)
-- [fta_web/alert_v2/views.py:22-40](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L40)
+- [fta_web/alert_v2/views.py:22-38](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L38)
 - [monitor_web/alert_events/views.py:18-55](file://bkmonitor/packages/monitor_web/alert_events/views.py#L18-L55)
 
 ## 核心组件
@@ -120,7 +120,7 @@ V2 --> CONST
 
 **章节来源**
 - [fta_web/alert/views.py:29-225](file://bkmonitor/packages/fta_web/alert/views.py#L29-L225)
-- [fta_web/alert_v2/views.py:22-57](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L57)
+- [fta_web/alert_v2/views.py:22-55](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L55)
 - [monitor_web/alert_events/views.py:18-55](file://bkmonitor/packages/monitor_web/alert_events/views.py#L18-L55)
 
 ## 架构总览
@@ -218,11 +218,11 @@ V-->>C : "趋势数据"
 ```
 
 **图表来源**
-- [fta_web/alert_v2/views.py:28-40](file://bkmonitor/packages/fta_web/alert_v2/views.py#L28-L40)
+- [fta_web/alert_v2/views.py:28-38](file://bkmonitor/packages/fta_web/alert_v2/views.py#L28-L38)
 - [core.drf_resource/resource.py](file://bkmonitor/core/drf_resource/resource.py)
 
 **章节来源**
-- [fta_web/alert_v2/views.py:22-40](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L40)
+- [fta_web/alert_v2/views.py:22-38](file://bkmonitor/packages/fta_web/alert_v2/views.py#L22-L38)
 
 ### 告警确认/关闭与快捷处理
 - 端点：POST /alert/ack

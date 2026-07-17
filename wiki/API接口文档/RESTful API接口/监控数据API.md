@@ -168,7 +168,7 @@ C --> G["内核资源扩展工具<br/>kernel_api/extend_utils/*"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [bkmonitor/packages/monitor_web/urls.py:15-46](file://bkmonitor/packages/monitor_web/urls.py#L15-L46)
 - [bkmonitor/api/unify_query/default.py:69-142](file://bkmonitor/api/unify_query/default.py#L69-L142)
 - [bkmonitor/api/monitor/default.py:18-30](file://bkmonitor/api/monitor/default.py#L18-L30)
@@ -177,7 +177,7 @@ C --> G["内核资源扩展工具<br/>kernel_api/extend_utils/*"]
 - [bkmonitor/kernel_api/extend_utils/__init__.py](file://bkmonitor/kernel_api/extend_utils/__init__.py)
 
 章节来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [bkmonitor/packages/monitor_web/urls.py:15-46](file://bkmonitor/packages/monitor_web/urls.py#L15-L46)
 
 ## 核心组件
@@ -507,7 +507,7 @@ KR --> KU["扩展工具集<br/>kernel_api/extend_utils/*"]
 ```
 
 图表来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [bkmonitor/packages/monitor_web/urls.py:15-46](file://bkmonitor/packages/monitor_web/urls.py#L15-L46)
 - [bkmonitor/api/unify_query/default.py:69-142](file://bkmonitor/api/unify_query/default.py#L69-L142)
 - [bkmonitor/api/monitor/default.py:18-30](file://bkmonitor/api/monitor/default.py#L18-L30)
@@ -515,7 +515,7 @@ KR --> KU["扩展工具集<br/>kernel_api/extend_utils/*"]
 - [bkmonitor/kernel_api/extend_utils/__init__.py](file://bkmonitor/kernel_api/extend_utils/__init__.py)
 
 章节来源
-- [bkmonitor/urls.py:58-79](file://bkmonitor/urls.py#L58-L79)
+- [bkmonitor/urls.py:58-80](file://bkmonitor/urls.py#L58-L80)
 - [bkmonitor/packages/monitor_web/urls.py:15-46](file://bkmonitor/packages/monitor_web/urls.py#L15-L46)
 
 ## 性能考虑

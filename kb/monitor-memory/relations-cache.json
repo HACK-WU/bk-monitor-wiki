@@ -346,6 +346,15 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "448bfbb1-c84c-4f8b-9706-29f7e9fac318"
+        },
+        {
+          "id": "rel_093",
+          "text": "[2026-07-20] Host页面进程列表新增三字段（实例数/连接数/文件句柄）",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "2f9577a3-c323-4139-93cc-f82ed5d3044b"
         }
       ],
       "keywords": [
@@ -358,7 +367,13 @@
         "OAuth",
         "TAPD",
         "tombstone",
-        "rebind"
+        "rebind",
+        "进程列表",
+        "实例数",
+        "连接数",
+        "文件句柄",
+        "fd_num",
+        "thread_connected"
       ],
       "max_hot_count": 10
     },
@@ -564,6 +579,15 @@
     "项目踩坑点": {
       "hot_relations": [
         {
+          "id": "rel_094",
+          "text": "GetHostProcessListResource 三字段扩展数据来源",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1784605630916,
+          "isImported": false,
+          "memoryId": "c61a1381-4f02-4c95-b5c1-0c690b4d812d"
+        },
+        {
           "id": "rel_060",
           "text": "get_request_tenant_id 在标准请求中不安全",
           "score": 0,
@@ -618,7 +642,14 @@
         "_extra_attr",
         "start_cmd",
         "create_time",
-        "get_process_info"
+        "get_process_info",
+        "进程列表",
+        "fd_num",
+        "thread_connected",
+        "system.proc",
+        "mysql.net",
+        "proc_num",
+        "instanceCount"
       ],
       "max_hot_count": 10
     },
@@ -950,5 +981,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-16T02:15:03.909Z"
+  "updatedAt": "2026-07-21T03:47:17.415Z"
 }

@@ -93,11 +93,18 @@
 - `startCommand`: 启动命令
 - `uptime`: 运行时长
 - `user`: 运行用户
+- `instanceCount`: 进程实例数（取自 CMDB `proc_num` 字段）
+- `fdNum`: 文件句柄数量
+- ~~`threadConnected`: 连接数——已放弃，CMDB/指标库均无对应指标~~
 
 **后端数据来源分析**：
 - 当前 `GetHostProcessListResource` 调用 `resource.cc.get_process_info()` 获取进程信息
 - 需要调研 `get_process_info` 的原始返回结构，确认能否提供上述字段
 - 部分字段（如 `cpuUsage`, `memUsage`, `uptime`）可能需要从指标库查询
+- **新增字段数据源（2026-07-20 补充，2026-07-21 定稿）**：
+  - `instanceCount`：取自 CMDB 进程 `proc_num` 字段（进程实例数）。实现：`Process` 模型（`bkmonitor/api/cmdb/define.py`）新增 `proc_num` 属性，`get_process_info` 透出，前端映射为 `instanceCount`。**不再按 display_name 分组计数**（原方案废弃）
+  - `fdNum`：`system.proc` 表 `fd_num` 字段（`bk-monitor-base/src/bk_monitor_base/metadata/data/init_resulttable.json` 行 6100-6108，描述"进程文件句柄数"，unit=short），加入 `get_process_runtime_metrics` 的 `METRIC_FIELDS`
+  - ~~`threadConnected`（连接数）：已放弃。经核查 CMDB 与指标库（`system.proc`/`mysql.net`）均无对应指标字段，无法提供，前端移除该列即可~~
 
 ### 4.2 面板配置接口（4 个新接口）
 
@@ -150,3 +157,4 @@
 
 - 前端文档中标注"**数据不太够，需要安装设计稿中补充字段**"的 `getHostProcessList`，需要与前端确认最终字段定义
 - 前端文档中标注"**新 API 根据原 host scene panel配置拆分**"的面板接口，需保证与现有 `get_scene_view` 返回的 panels/order 格式兼容
+- **[2026-07-20 ~ 2026-07-21]** `getHostProcessList` 字段扩展定稿：新增 `fdNum`（来自 `system.proc` 的 `fd_num`）、`instanceCount`（来自 CMDB 进程 `proc_num` 字段，需在 `Process` 模型新增 `proc_num` 属性）；`threadConnected`（连接数）经核查无对应指标，**已放弃**。另：`get_process_runtime_metrics` 支持 `start_time`/`end_time` 区间查询，`get_process_port_health` 端口健康聚合由 AVG 改为 MIN。代码要点见项目记忆 `项目踩坑点/GetHostProcessListResource 三字段扩展数据来源`

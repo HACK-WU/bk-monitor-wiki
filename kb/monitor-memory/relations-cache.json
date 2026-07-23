@@ -581,11 +581,11 @@
         {
           "id": "rel_094",
           "text": "GetHostProcessListResource 三字段扩展数据来源",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1784605630916,
+          "score": 1.997028287847913,
+          "useCount": 2,
+          "lastUsedTime": 1784771227176,
           "isImported": false,
-          "memoryId": "c61a1381-4f02-4c95-b5c1-0c690b4d812d"
+          "memoryId": "9ad095a9-5dba-44d4-a114-f01597c6eb4f"
         },
         {
           "id": "rel_060",
@@ -649,7 +649,10 @@
         "system.proc",
         "mysql.net",
         "proc_num",
-        "instanceCount"
+        "instanceCount",
+        "GetHostProcessListResource",
+        "UnifyQuery",
+        "get_process_instance_count"
       ],
       "max_hot_count": 10
     },
@@ -871,10 +874,18 @@
           "useCount": 0,
           "lastUsedTime": null,
           "isImported": false
+        },
+        {
+          "id": "rel_095",
+          "text": "instant 参数与两层聚合语义（avg_over_time vs mean）",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryId": "426d2d70-2346-41b5-8d85-1aefd0033f6e"
         }
       ],
       "keywords": [
-        "load_data_source",
         "UnifyQuery",
         "ResultTable",
         "ResultTableField",
@@ -921,7 +932,10 @@
         "bk_process_name",
         "get_process_runtime_metrics",
         "GetHostProcessListResource",
-        "进程名"
+        "进程名",
+        "时间聚合",
+        "两层聚合",
+        "采样步长"
       ],
       "max_hot_count": 10
     },
@@ -981,5 +995,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-21T03:47:17.415Z"
+  "updatedAt": "2026-07-23T01:49:19.645Z"
 }

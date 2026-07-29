@@ -1,0 +1,26 @@
+# 空间与自定义上报专家
+
+- **一句话职责**：管理监控系统的业务空间隔离（Space）、自定义上报（CustomReport：时序/事件/日志）和记录规则（RecordRule）三大能力域
+- **负责的模块**：
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/` — 空间模型与 Redis 路由推送（6 文件）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/custom_report/` — 自定义上报模型（5 文件：时序/事件/日志/基类/订阅配置）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/record_rule/` — 记录规则模型（4 文件）
+- **何时找这个专家**：
+  - 需要理解空间隔离原理（BKCC/BCS/BKCI/BKSAAS 四种空间类型如何路由数据）
+  - 需要创建/修改/删除自定义时序、事件或日志上报
+  - 需要配置预计算记录规则（从 PromQL 到计算平台数据流）
+  - 需要排查空间路由 Redis 推送或数据标签路由问题
+  - 需要了解自定义上报从接入→校验→存储→查询的完整链路
+- **契约层就绪**：C0 + C1 就绪
+- **所属专题**：[元数据管理专题](../T0-专题总览.md)
+- **子专家清单**：
+  - **空间管理子专家** — 覆盖 space/ 全包，重点 `space_table_id_redis.py`(74KB) 的 Redis 路由推送机制
+  - **自定义上报子专家** — 覆盖 custom_report/ + record_rule/，重点 `time_series.py`(106KB) 的时序上报全链路
+- **包含的资产**：
+  - 契约层：`C0-使用总览.md`、`C1-能力契约.md`
+  - 实现层：`implementation/01-架构.md`、`implementation/02-实现.md`、`implementation/03-数据流转.md`、`implementation/04-模型.md`、`implementation/05-接口.md`
+- **与其他专家的关系**：
+  - 专家5（API与工具库）：`service/space_redis.py` 接口契约归专家5，实现细节由本专家的空间管理子专家覆盖
+  - 专家1（元数据核心模型）：Space 隔离作用于 DataSource/ResultTable，CustomReport 依赖 ResultTable 创建
+  - 专家2（存储与数据链路）：CustomReport 创建时关联存储引擎（InfluxDB/ES/VM）
+- **出处**：2026-07-28，由 expert-team 全量生成

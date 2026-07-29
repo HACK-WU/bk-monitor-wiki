@@ -1,0 +1,27 @@
+# 空间管理子专家
+
+- **一句话职责**：管理监控系统的业务空间隔离模型（Space/SpaceType/SpaceDataSource/SpaceResource）和 Redis 路由推送机制（SpaceTableIDRedis）
+- **负责的模块**：
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/space.py` — Space/SpaceType/SpaceDataSource/SpaceResource/SpaceStickyInfo/BkAppSpaceRecord 模型定义（223 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/constants.py` — 空间常量、枚举、Redis 键空间定义（197 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/managers.py` — SpaceManager/SpaceTypeManager/SpaceResourceManager（171 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/space_table_id_redis.py` — SpaceTableIDRedis 路由推送核心类（1684 行，74KB）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/space/utils.py` — 空间工具函数：创建/更新/合并/禁用空间、数据源授权、BCS 空间创建（1161 行）
+- **何时找这个子专家**：
+  - 需要理解四种空间类型（BKCC/BCS/BKCI/BKSAAS）的隔离原理和差异
+  - 需要排查空间路由推送到 Redis 的问题（空间-结果表映射、数据标签路由、结果表详情）
+  - 需要创建/修改/合并/禁用空间
+  - 需要理解多租户模式下的 Redis 键名拼接逻辑
+  - 需要查询空间关联的数据源、资源、结果表
+  - 需要理解 BKCC 空间类型下的 `_is_need_filter_for_bkcc` 过滤逻辑
+- **契约层就绪**：C0 + C1 就绪
+- **所属父专家**：[空间与自定义上报专家](../agent.md)
+- **包含的资产**：
+  - 契约层：`C0-使用总览.md`、`C1-能力契约.md`
+  - 实现层：`implementation/01-架构.md`、`implementation/02-实现.md`、`implementation/03-数据流转.md`、`implementation/04-模型.md`、`implementation/05-接口.md`
+- **与其他专家的关系**：
+  - 父专家（空间与自定义上报专家）：本子专家是父专家的空间管理子域
+  - 自定义上报子专家：RecordRule 的 `get_src_table_ids` 依赖 `get_space_table_id_data_id`
+  - 专家5（API与工具库）：`service/space_redis.py` 接口契约归专家5，实现细节由本子专家覆盖
+  - 专家1（元数据核心模型）：Space 隔离作用于 DataSource/ResultTable
+- **出处**：2026-07-28，由 expert-team 全量生成

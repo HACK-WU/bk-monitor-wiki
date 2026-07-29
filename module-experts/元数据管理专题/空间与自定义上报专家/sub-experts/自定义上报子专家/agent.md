@@ -1,0 +1,27 @@
+# 自定义上报子专家
+
+- **一句话职责**：管理监控系统的自定义上报（时序/事件/日志）和记录规则（RecordRule）两大能力域
+- **负责的模块**：
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/custom_report/base.py` — CustomGroupBase 抽象基类，定义 create/modify/delete 统一流程（503 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/custom_report/time_series.py` — TimeSeriesGroup 时序自定义上报，三层模型 Group→Scope→Metric（2593 行，106KB）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/custom_report/event.py` — EventGroup 事件自定义上报，ES 存储（471 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/custom_report/log.py` — LogGroup 日志自定义上报，计算平台存储（153 行）
+  - `bk-monitor-base/src/bk_monitor_base/metadata/models/record_rule/rules.py` — RecordRule 预计算规则 + ResultTableFlow 计算平台数据流（399 行）
+- **何时找这个子专家**：
+  - 需要创建/修改/删除自定义时序、事件或日志上报
+  - 需要了解自定义上报从接入→校验→存储→查询的完整链路
+  - 需要理解时序指标同步的双通道机制（Redis Transfer + BkData）
+  - 需要配置单指标单表（`is_split_measurement`）模式
+  - 需要配置预计算记录规则（从 PromQL 到计算平台 BKSQL 数据流）
+  - 需要排查事件维度自动发现或日志 Token 生成问题
+- **契约层就绪**：C0 + C1 就绪
+- **所属父专家**：[空间与自定义上报专家](../agent.md)
+- **包含的资产**：
+  - 契约层：`C0-使用总览.md`、`C1-能力契约.md`
+  - 实现层：`implementation/01-架构.md`、`implementation/02-实现.md`、`implementation/03-数据流转.md`、`implementation/04-模型.md`、`implementation/05-接口.md`
+- **与其他专家的关系**：
+  - 父专家（空间与自定义上报专家）：本子专家是父专家的自定义上报和记录规则子域
+  - 空间管理子专家：RecordRule 的 `get_src_table_ids` 依赖空间管理子专家的 `get_space_table_id_data_id`
+  - 专家1（元数据核心模型）：CustomReport 依赖 ResultTable/ResultTableField 创建
+  - 专家2（存储与数据链路）：CustomReport 创建时关联存储引擎（InfluxDB/ES/VM）
+- **出处**：2026-07-28，由 expert-team 全量生成

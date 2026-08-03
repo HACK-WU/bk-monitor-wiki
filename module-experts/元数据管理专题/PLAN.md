@@ -4,7 +4,7 @@
 > **最后更新**: 2026-07-28
 > **模块路径**: `bk-monitor-base/src/bk_monitor_base/metadata/`
 > **专题路径**: `.module-experts/元数据管理专题/`
-> **状态**: ✅ 全部批次完成（Batch 0/1/2/3）
+> **状态**: ✅ 全部批次完成（Batch 0/1/2/3/4）
 
 ---
 
@@ -123,6 +123,7 @@
 | 3 | 空间与自定义上报 | space/, custom_report/, record_rule/ | 2 | Batch 1 |
 | 4 | 任务调度与运维 | task/, management/commands/, dataflow/, health_check | 0 | Batch 2 |
 | 5 | API与工具库 | resources/, utils/, service/, bcs/ | 2 | Batch 2 |
+| 6 | 元数据种子数据与数据字典 | data/ 种子数据文件 + 加载机制 | 0 | Batch 4 |
 
 ### 3.2 专家 1：元数据核心模型
 

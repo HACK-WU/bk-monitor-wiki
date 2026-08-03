@@ -20,12 +20,13 @@
 | 3 | 空间与自定义上报 | space/, custom_report/, record_rule/ | 2 | Batch 1 |
 | 4 | 任务调度与运维 | task/, management/commands/, dataflow/, health_check | 0 | Batch 2 |
 | 5 | API与工具库 | resources/, utils/, service/, bcs/ | 2 | Batch 2 |
+| 6 | 元数据种子数据与数据字典 | data/ 种子数据文件 + 加载机制 | 0 | Batch 4 |
 
 ## 创建信息
 
 - **创建方式**: expert-team skill 专题机制（三级结构：专题 → 专家 → 子专家）
-- **分批策略**: 4 批执行（Batch 0 架构先行 → Batch 1 三专家并行 → Batch 2 两专家并行 → Batch 3 汇总）
-- **预计总产出**: ~100 份文档
+- **分批策略**: 5 批执行（Batch 0 架构先行 → Batch 1 三专家并行 → Batch 2 两专家并行 → Batch 3 汇总 → Batch 4 种子数据专家）
+- **预计总产出**: ~118 份文档
 - **详细计划**: 见 [PLAN.md](PLAN.md)
 
 ## 参考文档

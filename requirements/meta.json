@@ -143,6 +143,33 @@
           "type": "requirement"
         }
       ]
+    },
+    "integration/2026-07-29-移动端维度屏蔽支持regex规则": {
+      "id": "REQ-20260729-001",
+      "feature": "移动端维度屏蔽支持regex规则",
+      "created": "2026-07-29",
+      "updated": "2026-07-29",
+      "status": "已确认",
+      "tags": [
+        "feat",
+        "integration"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-07-29 v2: 需求已确认并落盘"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
   }
 }

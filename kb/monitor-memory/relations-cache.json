@@ -20,17 +20,17 @@
         {
           "id": "rel_001",
           "text": "项目简介",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1785737812896,
           "isImported": false
         },
         {
           "id": "rel_002",
           "text": "仓库结构",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1782200521799,
+          "score": 3,
+          "useCount": 3,
+          "lastUsedTime": 1785737813364,
           "isImported": false
         }
       ],
@@ -49,9 +49,9 @@
         {
           "id": "rel_003",
           "text": "目录结构",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1785737794975,
           "isImported": false
         }
       ],
@@ -69,9 +69,9 @@
         {
           "id": "rel_004",
           "text": "技术栈清单",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782200529426,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785737801876,
           "isImported": false
         }
       ],
@@ -158,17 +158,17 @@
         {
           "id": "rel_032",
           "text": "Resource 框架使用小技巧",
-          "score": 3,
-          "useCount": 3,
-          "lastUsedTime": 1783563283882,
+          "score": 4,
+          "useCount": 4,
+          "lastUsedTime": 1785737800899,
           "isImported": false
         },
         {
           "id": "rel_033",
           "text": "Resource框架自动发现与使用",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1783563286625,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785737801312,
           "isImported": false
         },
         {
@@ -274,25 +274,25 @@
         {
           "id": "rel_040",
           "text": "Django配置加载体系",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782359687576,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785737795438,
           "isImported": false
         },
         {
           "id": "rel_041",
           "text": "异常处理流程",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1782359688615,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785737796372,
           "isImported": false
         },
         {
           "id": "rel_061",
           "text": "三种运行环境角色隔离与调用边界",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1785737795878,
           "isImported": false,
           "memoryId": "884a006a-c56a-47c6-abef-8d4ef9d2e6ce"
         }
@@ -798,27 +798,27 @@
         {
           "id": "rel_082",
           "text": "统一查询参数拼接链路(data_source_class→query_list→params)",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1783995174222,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785132486296,
           "isImported": false,
           "memoryId": "48bbcb06-d3d9-4e09-b5fb-55d61e79bfb7"
         },
         {
           "id": "rel_090",
           "text": "query_list 多条目语义与查询效率",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1784004648400,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785132485455,
           "isImported": false,
           "memoryId": "64d863dc-e409-460d-b318-4c60f2b53a94"
         },
         {
           "id": "rel_079",
           "text": "数据源查询三层架构与表名字段来源",
-          "score": 0.9996800676672329,
-          "useCount": 1,
-          "lastUsedTime": 1783583523339,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1785132484504,
           "isImported": false,
           "memoryId": "6df6cac1-5400-4baf-b9ea-60030ec57d43"
         },
@@ -995,5 +995,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-07-23T01:49:19.645Z"
+  "updatedAt": "2026-08-03T06:16:53.365Z"
 }

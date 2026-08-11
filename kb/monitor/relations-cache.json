@@ -1,0 +1,2713 @@
+{
+  "version": 1,
+  "scope": "monitor",
+  "partition_config": {
+    "hotPercent": 0.3,
+    "warmPercent": 0.5,
+    "reservedEmerging": 10,
+    "recentHours": 48,
+    "minHotCount": 1,
+    "decayStep": 5,
+    "halfLifeHours": 24,
+    "maxHotCount": 10,
+    "maxWarmCount": 50,
+    "maxColdCount": null,
+    "maxKeywordCount": 50
+  },
+  "groups": {
+    "wiki/API接口文档": {
+      "hot_relations": [
+        {
+          "id": "rel_001",
+          "text": "API接口文档",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4098127dd58da90ea694e3e9ee95b8ff",
+            "add945d4f8967ba0517b5c59694f9497",
+            "87ed8711b1fae5849b06845838c74fe6",
+            "be4c1558e99f3e457aae810f67debb2b",
+            "5df1287f99c410e9a251108ad29394f0",
+            "823b597d34e146a0bef8a070838d4b40"
+          ],
+          "sourcePath": "API接口文档/API接口文档.md",
+          "memoryId": "4098127dd58da90ea694e3e9ee95b8ff"
+        },
+        {
+          "id": "rel_002",
+          "text": "API认证与授权",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b218e147192f21a38ad7908999e1a498",
+            "ebc863d8fe88481293d9c3f5b132f72a",
+            "10fdbcc25f96ddffbfe0880161f1842f",
+            "2430898fe59177d5f4f10ec9286c725a",
+            "6b60ceb27661a435b2c5b700ad0e8847",
+            "ef71cfd25a2862cef952d6ec1ac01330",
+            "c706154237c7c2a1224abc57df7fb377",
+            "de62df883de59a04818505007c15c80d"
+          ],
+          "sourcePath": "API接口文档/API认证与授权.md",
+          "memoryId": "b218e147192f21a38ad7908999e1a498"
+        },
+        {
+          "id": "rel_003",
+          "text": "API错误处理与状态码",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f8e5d96036630bd542cabc9ec2f5f242",
+            "13d5e2b48e13f9777309b205da10f060",
+            "3a414e663a9a9aa5f849fc7a1c6e2bf4",
+            "4a405cf8281fdeafbfaebfe8ace463a2"
+          ],
+          "sourcePath": "API接口文档/API错误处理与状态码.md",
+          "memoryId": "f8e5d96036630bd542cabc9ec2f5f242"
+        },
+        {
+          "id": "rel_011",
+          "text": "RPC远程过程调用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4e52f07bac66a99c556a99f6af0cd7ae",
+            "ad3b1b5591a829135f6713b3bcf781db",
+            "c0899ff664d879c2d137ee71d2b24e68",
+            "cd0071e9c08e77fb5ed8db422f2f4a48",
+            "f6056c844af7658606517b86c67edca7",
+            "a31f9aee2296113c7da47cf1f84169e0"
+          ],
+          "sourcePath": "API接口文档/RPC远程过程调用.md",
+          "memoryId": "4e52f07bac66a99c556a99f6af0cd7ae"
+        },
+        {
+          "id": "rel_012",
+          "text": "WebSocket实时通信",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "459c77dd38fa0a043febacff20193795",
+            "17baefcff79527fe9f23817680fe2e32",
+            "6c821a2922f2a8c8a83d4008915158ae",
+            "8f592bac5a1386ac54a31b29809235ac",
+            "df23a05ee46dea1553dad119e961f8d3"
+          ],
+          "sourcePath": "API接口文档/WebSocket实时通信.md",
+          "memoryId": "459c77dd38fa0a043febacff20193795"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/API接口文档/RESTful API接口": {
+      "hot_relations": [
+        {
+          "id": "rel_004",
+          "text": "RESTful API接口",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786432508077,
+          "isImported": true,
+          "memoryIds": [
+            "beac0903b9c937e87b59a48889f83f37",
+            "9ae6a027751e28e96eb20ed263504c00",
+            "6434a2033fa192c173a94f11261e6903",
+            "33beffa7017ea18c03b3b8f3b2bc8e8e"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/RESTful API接口.md",
+          "memoryId": "beac0903b9c937e87b59a48889f83f37"
+        },
+        {
+          "id": "rel_005",
+          "text": "仪表板配置API",
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786436250024,
+          "isImported": true,
+          "memoryIds": [
+            "fb7d66e239b7de55b815a34d9f09e0bc",
+            "737f48f7cb5daf2df1b0f502abb6c8c5",
+            "9a1d00ede656a6ba6d129900d648a0b9",
+            "e0cd87a7be9e5bdab213deee20fed0b2",
+            "4ed7adcde2b0a11c35bf23f8d6acecf8"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/仪表板配置API.md",
+          "memoryId": "fb7d66e239b7de55b815a34d9f09e0bc"
+        },
+        {
+          "id": "rel_006",
+          "text": "告警管理API",
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786426771042,
+          "isImported": true,
+          "memoryIds": [
+            "6dfee4c29a067c0ccc2d4efd46e29f67",
+            "02174b30eb1fb7d7482add51dfbd2c72",
+            "325598d5f10f552f076c9124e9181c2d",
+            "a74bb8f4718c13f4df3eda955e3fb7f0"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/告警管理API.md",
+          "memoryId": "6dfee4c29a067c0ccc2d4efd46e29f67"
+        },
+        {
+          "id": "rel_007",
+          "text": "用户权限API",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786435370649,
+          "isImported": true,
+          "memoryIds": [
+            "26837f67102297f9a81075d1c4018540",
+            "d6cbf7d758bbeb17645fb2abc1c268b6",
+            "ec2d6a24f3d9dcfe59b9f5c88d95438f",
+            "9cb36f4833c21b6241be0ac2d644549f",
+            "777dba0303496ae1979ca4de1a893ab3",
+            "82949d92ba48fcdf9d6827a97b928c06",
+            "0f53ba260de255f9ca6dbe7ecd879ea3",
+            "c8c296613a0aeac2791125cf48a0fed0"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/用户权限API.md",
+          "memoryId": "26837f67102297f9a81075d1c4018540"
+        },
+        {
+          "id": "rel_008",
+          "text": "监控数据API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1e66ebe0949c4de221949365fdaace20",
+            "427198e281e9b0e25246974c46b2a756",
+            "c1cca3a72b24aa8c08bc92e0dd84e23d",
+            "59cfe1a64c85fc91358c8a4321101182",
+            "415a74d2c93169fa489e65987e0acb0d",
+            "adb9bbb81a6604f152e7d78c121bcbe9",
+            "cda59936fb6cd62082630bfed9208a9a",
+            "1e51802026a690267fbc69c4b44911f6",
+            "0c5ce81edbc0d9c5e41b77f972c5b177"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/监控数据API.md",
+          "memoryId": "1e66ebe0949c4de221949365fdaace20"
+        },
+        {
+          "id": "rel_009",
+          "text": "策略配置API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f357431453fc2bc20f34d12cba4a91af",
+            "734940f9356fa82ec7a99d74a7cea6c9",
+            "f48579cf1eb75c543ea6a393be5aed3e",
+            "1e337cad402d712f0e5ab842b4b0889d",
+            "e4b2a75db6424d74b4a58ffa31437872"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/策略配置API.md",
+          "memoryId": "f357431453fc2bc20f34d12cba4a91af"
+        },
+        {
+          "id": "rel_010",
+          "text": "系统运维API",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b6c162a990b9e39703941a3fb904fcc0",
+            "cc02ef3d0988362a81bed2cdcd9f5ac7",
+            "6845026a5695587d98a65f42681b79cc",
+            "e31adbc5bd8c501593a69bd1412443c9",
+            "39e67fc6b38fb8a5270cd3f28c0cca8c"
+          ],
+          "sourcePath": "API接口文档/RESTful API接口/系统运维API.md",
+          "memoryId": "b6c162a990b9e39703941a3fb904fcc0"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/APM全栈监控": {
+      "hot_relations": [
+        {
+          "id": "rel_013",
+          "text": "APM全栈监控",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a799af313fc2bf71816e5989bf1cdfb5",
+            "d1bf9b080e807c34d50004ea7e45d6c6",
+            "d4ae6fe837cb040c4ff0bd90a44b7bd5",
+            "47be1c85beefe5975bf5c0daa7b66a7d"
+          ],
+          "sourcePath": "APM全栈监控/APM全栈监控.md",
+          "memoryId": "a799af313fc2bf71816e5989bf1cdfb5"
+        },
+        {
+          "id": "rel_014",
+          "text": "APM核心架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "59518109be847a6ba79f76e7433a19bc",
+            "db4769147f5b88af7c04a477a58090a6",
+            "95824795ba266bcf1de39d63eab1c5dc",
+            "3d35523c90e3ec9b1b28991db927cdf6",
+            "71e60b47d44f1b56a817a39d2a388a10",
+            "019642119a11883b425723066cd21304",
+            "211e6f3a6b81d5d1fa314145f1085112"
+          ],
+          "sourcePath": "APM全栈监控/APM核心架构.md",
+          "memoryId": "59518109be847a6ba79f76e7433a19bc"
+        },
+        {
+          "id": "rel_015",
+          "text": "Profile数据处理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5651205335d292c1a215f404b00b4371",
+            "a72735b0873bbbcee4423e6703acf03f",
+            "710f4b2dfb618f2adb8c549be246518f",
+            "ccf50c2e45657f2e39f0e470aa84ada0"
+          ],
+          "sourcePath": "APM全栈监控/Profile数据处理.md",
+          "memoryId": "5651205335d292c1a215f404b00b4371"
+        },
+        {
+          "id": "rel_016",
+          "text": "性能指标分析",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "87e77a6e4c7c8e7336769592f966b6f6",
+            "d5b9838ef7dfe47633a3781042d79a14",
+            "c5da53cd712bc569a18d64aafe60566a",
+            "e1599938df491d403cc7235540d6c1ed",
+            "0cb0453ee95f3c8ebee095964887e3c8",
+            "e845841560f93b7e5c12007e1d593a76"
+          ],
+          "sourcePath": "APM全栈监控/性能指标分析.md",
+          "memoryId": "87e77a6e4c7c8e7336769592f966b6f6"
+        },
+        {
+          "id": "rel_017",
+          "text": "拓扑发现算法",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "562070b01a004f659d26f77d59f69885",
+            "2232691e23ee9ae0c317a2d4bbabb542",
+            "843660d97f0c56f5fb7d9c862a144a4e",
+            "6cb0dbf0f817a27ae41be8f955fd4a30",
+            "a826f480d40d467158baa912adb5269b"
+          ],
+          "sourcePath": "APM全栈监控/拓扑发现算法.md",
+          "memoryId": "562070b01a004f659d26f77d59f69885"
+        },
+        {
+          "id": "rel_018",
+          "text": "链路追踪系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2deab36934a2aa39302e65931fcd07fd",
+            "c2e483b336eed11267fe87e037034488",
+            "d628f4cf58e0cc7f3b9a70a4f42dd293",
+            "e007f2a4ec6407aa0509d4b13e2b565d"
+          ],
+          "sourcePath": "APM全栈监控/链路追踪系统.md",
+          "memoryId": "2deab36934a2aa39302e65931fcd07fd"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/告警系统设计/Issue功能": {
+      "hot_relations": [
+        {
+          "id": "rel_019",
+          "text": "Issue API 接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d8bed962ad970c98a32699f607552299",
+            "ecb15b50f6c13808efd58175f1a5c596",
+            "c223855b8426d5660b2517d86e61aff5",
+            "bf8fc82edf5c1cff7ababc9f9916d9c3",
+            "4715412e12be1c08ce8d8d3bfc25e403",
+            "74b40b65abe5ed871b54df1b3ef246e2",
+            "fe72d93159894eef70ad522087d8b502",
+            "75f932bdf09bfe011b8b64cd13206639",
+            "009d6362e29ecc0fb593d4322fef9429",
+            "26bd8d1ecead11a0769279c4b969576d",
+            "4454c83f615063d2d00d49cc7454d901"
+          ],
+          "sourcePath": "告警系统设计/Issue功能/Issue API 接口.md",
+          "memoryId": "d8bed962ad970c98a32699f607552299"
+        },
+        {
+          "id": "rel_020",
+          "text": "Issue 周期任务",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786444002302,
+          "isImported": true,
+          "memoryIds": [
+            "4565a3c2fa8fa121ba5d3b3426723c49",
+            "bbf982f62040aaaf1fe996f9b806afa3",
+            "9da362ea7b7d5d6f11c41e7bc4a22e50",
+            "1454d8ca0189df3e2c7ccf2e5a0ccd61",
+            "493f4cced85127bc26be9e13b67ce965",
+            "04bab533eee44cfc2fce53b4a23decce",
+            "bf709fdaea525b53b96071dfa3273a0c",
+            "d1fb41c7747470196eea911f79985e7e"
+          ],
+          "sourcePath": "告警系统设计/Issue功能/Issue 周期任务.md",
+          "memoryId": "4565a3c2fa8fa121ba5d3b3426723c49"
+        },
+        {
+          "id": "rel_021",
+          "text": "Issue 状态管理",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786444010769,
+          "isImported": true,
+          "memoryIds": [
+            "a4a2872e7fc8d3732db4d40f1ac3d396",
+            "03e166a5f6f95c12b80c4a81d53e906e",
+            "28ae4327691c61d095f9fbcd0e4eb11f",
+            "1ec782b20cf341d2c16b7b53ccab0ad8",
+            "d26c688000c4f679211c0a54480e5f1c",
+            "7365fca9cc439e95e13425c37cc6fa9d",
+            "4105c7c43cd8795193bb044250070abe"
+          ],
+          "sourcePath": "告警系统设计/Issue功能/Issue 状态管理.md",
+          "memoryId": "a4a2872e7fc8d3732db4d40f1ac3d396"
+        },
+        {
+          "id": "rel_022",
+          "text": "Issue 系统设计总览",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786444003279,
+          "isImported": true,
+          "memoryIds": [
+            "c4b1c6cfe63971a8e89f3ed79bf55ee7",
+            "2aab07bc6f5c5a583e76b6902b2fb9ed",
+            "6da1159e1c1934d070fc8989427ec7f7",
+            "3e1cb4511f7aa5d6e1f8c55d2ac01190",
+            "3886cf4260bb13ccfe4153e56ac5ae13",
+            "adbac893372cfece29cbda47d33647c0",
+            "275cc08a3ffcd847a0ba4dc487a82dd7"
+          ],
+          "sourcePath": "告警系统设计/Issue功能/Issue 系统设计总览.md",
+          "memoryId": "c4b1c6cfe63971a8e89f3ed79bf55ee7"
+        },
+        {
+          "id": "rel_023",
+          "text": "Issue 聚合引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "45d0d2c1f3cc853d24e017669aa1dc8f",
+            "0d3e709aeba4a6baeaa792fc9821f81b",
+            "410c6b573a9eb9b1e7ad516f9591b40b",
+            "bf127ab44f2a333214ef50c7d3b764ef",
+            "d501b82103ad8ab5aaa799b6150483ff",
+            "ee5b09d3030baba9aa28138abc059163",
+            "351115e6b4ae3e3217ba648c958411ea"
+          ],
+          "sourcePath": "告警系统设计/Issue功能/Issue 聚合引擎.md",
+          "memoryId": "45d0d2c1f3cc853d24e017669aa1dc8f"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/告警系统设计/告警处理服务": {
+      "hot_relations": [
+        {
+          "id": "rel_024",
+          "text": "告警处理服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a36094d3ca87a4e746c9bcd54927d39d",
+            "d015730a9c42ad8d4b0fe5084fa292ac",
+            "e51d38230b32847a4d8e49f496890e55"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/告警处理服务.md",
+          "memoryId": "a36094d3ca87a4e746c9bcd54927d39d"
+        },
+        {
+          "id": "rel_025",
+          "text": "告警复合服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "15d1ee25304e357f9d186f4ac5350ecb",
+            "9a82791e4a7d3decc2e141541efde0d3",
+            "e3f5197000e20e8a1d1835a259567c41",
+            "d56d244d831c230042e66f1b962f2517",
+            "8410cc118f18e8779ce165028b552e06"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/告警复合服务.md",
+          "memoryId": "15d1ee25304e357f9d186f4ac5350ecb"
+        },
+        {
+          "id": "rel_026",
+          "text": "告警收敛服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "60bfe18fb3564e5687d78b216efe9c29",
+            "3c8c7dd6e36f792ca68c01094fccce08",
+            "31fc5cea103f6e61a3a6dafa0f2a4d5c",
+            "632ce73d70af4e517c231aaedb6aa8cd",
+            "c70aa58ce8154310a2c4318e9bcc6b64",
+            "adbd216d8a6bcddc71082fef13485506"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/告警收敛服务.md",
+          "memoryId": "60bfe18fb3564e5687d78b216efe9c29"
+        },
+        {
+          "id": "rel_027",
+          "text": "告警检测服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8b4029daa06f9acbab4634048addef6a",
+            "4b4e2e9887c91de1bb99ba40f937222d",
+            "068ed0d1162c5a5ade6ce65c94dc0189",
+            "9ebe343950eeb0bbd3266687e5e54509",
+            "68ba041d0817bb58f77bbbb207c8b83a",
+            "284bdb9d6a17b96e3bd66442fe26c674"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/告警检测服务.md",
+          "memoryId": "8b4029daa06f9acbab4634048addef6a"
+        },
+        {
+          "id": "rel_028",
+          "text": "告警触发服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b154eef39fd5c8129989948293afa4be",
+            "926049fe09ee348b373053c6537009af",
+            "bb9e0dc8d216819f21c4f1f19e947598",
+            "d6f65fdc3b4ea4b28d6c253672f5362a"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/告警触发服务.md",
+          "memoryId": "b154eef39fd5c8129989948293afa4be"
+        },
+        {
+          "id": "rel_029",
+          "text": "无数据告警服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2fa570a9b58b77f8a90fd3ccacc2c582",
+            "3620fd6b721182bb0f4fd6e6e5fda0bd",
+            "41ae3bcd5b218748530f920dc749842b",
+            "1213b5e0a362fba3987893255c8d74c2",
+            "616c16112d0da2c7a3b23cc8e5ccfa61"
+          ],
+          "sourcePath": "告警系统设计/告警处理服务/无数据告警服务.md",
+          "memoryId": "2fa570a9b58b77f8a90fd3ccacc2c582"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/告警系统设计": {
+      "hot_relations": [
+        {
+          "id": "rel_030",
+          "text": "告警存储与缓存",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "08c622140ad6a23af6d7b73250eb52e9",
+            "04eba8df439359ff7fec938f5f3cdac2",
+            "50fb9a6d8d1b60b4e15aef9c24e151e1",
+            "091d7f67fcaf5e1cf9c8a1e3d2502f66"
+          ],
+          "sourcePath": "告警系统设计/告警存储与缓存.md",
+          "memoryId": "08c622140ad6a23af6d7b73250eb52e9"
+        },
+        {
+          "id": "rel_038",
+          "text": "告警收敛机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "36f93628bdf63e7d661465da743fa7f5",
+            "e12dce28ca569fe224b156502dffa71f",
+            "1e25b6d74cb47cd5e5573df78169c40c",
+            "79bbb2792c5031dee209300741fa6d1c",
+            "1257fb615f7269eb84bccb69559d02dd",
+            "1fabedc967c90f1e703e419e5434ffb4"
+          ],
+          "sourcePath": "告警系统设计/告警收敛机制.md",
+          "memoryId": "36f93628bdf63e7d661465da743fa7f5"
+        },
+        {
+          "id": "rel_039",
+          "text": "告警策略管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "13c156bb59ccd39858d0f41cc2b3f515",
+            "6d6108ac14babd986a686afb8b7057ca",
+            "ab698fd438a3ef34a7f0d1fa631e4539",
+            "1d200e29c06c2c16abe73fe73d9cd72f",
+            "133854bab86915f762890baf1e8b222d",
+            "333525b61c44549196ee0825d15644cb",
+            "08a9986900c9a3910f0d2ae346302346"
+          ],
+          "sourcePath": "告警系统设计/告警策略管理.md",
+          "memoryId": "13c156bb59ccd39858d0f41cc2b3f515"
+        },
+        {
+          "id": "rel_040",
+          "text": "告警系统设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "23cf586cbd17235bfde48e6bbd6986dc",
+            "b4e7514661b4a9e5d7d965e5546462e6",
+            "12a13b6bfef18fd76650e18c7e5f242b",
+            "c07af99c3badebcb11360365b775d351",
+            "77f6dc9b10e0ba6a558485e6e65af2d0",
+            "817647847fc1e3a11e4a7bffe3eea3a2",
+            "959b9fcac92521da47ff0a6f308ab7b4"
+          ],
+          "sourcePath": "告警系统设计/告警系统设计.md",
+          "memoryId": "23cf586cbd17235bfde48e6bbd6986dc"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/告警系统设计/告警引擎核心": {
+      "hot_relations": [
+        {
+          "id": "rel_031",
+          "text": "告警上下文管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d30feab2368cd62e68dea695645b9a75",
+            "767252af22a8f13d60e15d3322ea8ca5",
+            "e8ebb1057e098e8532afe6e574817134",
+            "b5b2487c10be5899355c5b218032a7bc",
+            "6d18db3fe890890802fe73fb1723f38f",
+            "411ecf7ed439a6171a7208dc7e398258"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/告警上下文管理.md",
+          "memoryId": "d30feab2368cd62e68dea695645b9a75"
+        },
+        {
+          "id": "rel_032",
+          "text": "告警处理引擎",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786425330111,
+          "isImported": true,
+          "memoryIds": [
+            "1999f1958cac763ee8184b44ef1875ea",
+            "bc40a7a5c537edd6bbbdbf05f949c7a3",
+            "db5461964f0331ded2ed03d0283dcec0",
+            "d0760b2e0af95d0b0fcf9ab0abbfd8b4",
+            "d6852e01f190022a14d0d3899819ef67",
+            "9bd5245bde4cca450304849005416ad5"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/告警处理引擎.md",
+          "memoryId": "1999f1958cac763ee8184b44ef1875ea"
+        },
+        {
+          "id": "rel_033",
+          "text": "告警引擎核心",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "62020bf9cf69e5f8df714094625623c6",
+            "86ee8e5f2ac5203c352de50e1fc86162",
+            "c472846fbb50f236df6be92f2de84d13",
+            "bb051a77817b7090a1af88d4a1aadca7",
+            "400486b293c261e44513c59a8e6979e7",
+            "1e9760b532034615630b586741cf7f5d"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/告警引擎核心.md",
+          "memoryId": "62020bf9cf69e5f8df714094625623c6"
+        },
+        {
+          "id": "rel_034",
+          "text": "存储系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6e1bd376942642535b6a00731eeb36d1",
+            "bb76582035509cf3c4e0b0d0a9e99447",
+            "e562a5d48fc5bd89da38dbbe0c32eeb7",
+            "b1fffb967d6be2583cacc969b26cf846"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/存储系统.md",
+          "memoryId": "6e1bd376942642535b6a00731eeb36d1"
+        },
+        {
+          "id": "rel_035",
+          "text": "控制流程管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "80286cd34c0dc30df5b115c36e4981e8",
+            "ec391e588d0b45454bb678ca9f7288c6",
+            "70e8dc1090a4f43083a5cdd9d00ada90",
+            "38797c952b0e5683fb4d19fcf49d9b96",
+            "7462dea255053910915a23b360d7c4a3"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/控制流程管理.md",
+          "memoryId": "80286cd34c0dc30df5b115c36e4981e8"
+        },
+        {
+          "id": "rel_036",
+          "text": "检测结果管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7bbea741ba4c66a6fa067be98569d526",
+            "c8b0b2a920b6771d8702a4ce5e6bf015",
+            "986214ba34c3fb7388314af94b29547b"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/检测结果管理.md",
+          "memoryId": "7bbea741ba4c66a6fa067be98569d526"
+        },
+        {
+          "id": "rel_037",
+          "text": "缓存系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c16974586c6a0c1f881bd1040ba5d8e9",
+            "e7381c8b124cf820e8fd02951222f2c6",
+            "a0640e5f6630a1cc132c1bce3d1225ce",
+            "bf3b02cf29abc18c8b20f52eaf92ad8e"
+          ],
+          "sourcePath": "告警系统设计/告警引擎核心/缓存系统.md",
+          "memoryId": "c16974586c6a0c1f881bd1040ba5d8e9"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/告警系统设计/通知渠道管理": {
+      "hot_relations": [
+        {
+          "id": "rel_041",
+          "text": "企业微信集成",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786430691129,
+          "isImported": true,
+          "memoryIds": [
+            "790efe914da1d9f63de7e996e444c404",
+            "3037ed4c2569c6d2a46ea4bdad05f022",
+            "fc5b84bd8c17525b144c80065533a411",
+            "24c7e7838a63d51f80d08abfeb2f9d1f",
+            "fd9f23cb3f075d658a977d115a270ad5"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/企业微信集成.md",
+          "memoryId": "790efe914da1d9f63de7e996e444c404"
+        },
+        {
+          "id": "rel_042",
+          "text": "通知投递追踪",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "01a885ef35db18bbc48f30f1e08c7a35",
+            "d52d3b07ddbb1adf65b64b6a601b89c8",
+            "9181aa8cade0fa37e1d6ca5b55159bfd",
+            "f90494afdf22eba967eecadd40b95745",
+            "9e8926d6b66b97bc1cfd8e9648931cec",
+            "824ceccd29a0da9b05db76fc1f30a5c0"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/通知投递追踪.md",
+          "memoryId": "01a885ef35db18bbc48f30f1e08c7a35"
+        },
+        {
+          "id": "rel_043",
+          "text": "通知模板管理",
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786426477595,
+          "isImported": true,
+          "memoryIds": [
+            "0c4ff3d5c548d09d8604c6f47634f086",
+            "dc08066d7d2373e08c51a383e0c883a4",
+            "e01896dd9f599cce03ee7d7acc956e8f"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/通知模板管理.md",
+          "memoryId": "0c4ff3d5c548d09d8604c6f47634f086"
+        },
+        {
+          "id": "rel_044",
+          "text": "通知渠道管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e27c6af51ba08ebf2ee44d6a69586f8d",
+            "dccdbe5d29b48007c8beac87dba8eb13",
+            "7e8bf516cc8d5128cdeda207897e0475",
+            "a4f34f095d631ed10f5276e5be584f2a",
+            "dd216e5ed4e8fd346eb65cde33adf17e",
+            "b94030d6eafdd1e1a8d74b646d798c47",
+            "9dc513ef6fc83cd5a44a229f4a5e1bce"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/通知渠道管理.md",
+          "memoryId": "e27c6af51ba08ebf2ee44d6a69586f8d"
+        },
+        {
+          "id": "rel_045",
+          "text": "通知队列管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "51ddcc22a42765e0138e4bfee28be920",
+            "a11fe1253d5332db85cafeb99591b55c",
+            "fed454e9229ae368626e7fc33bcd8c2d",
+            "592196e8772a9a03c796ec47cdf5ae0c",
+            "8e0f1d34630abd02e8b5e2930ec9016d",
+            "5bf3e7b1ce087697eea9fc668b0f7f85"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/通知队列管理.md",
+          "memoryId": "51ddcc22a42765e0138e4bfee28be920"
+        },
+        {
+          "id": "rel_046",
+          "text": "邮件短信集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a846255ccc18b51ea57dd854efb2b036",
+            "d857b8ecc4a784b16289857c0043c769",
+            "b45366d36ed1f5941f618dbe7bc64a14",
+            "2d88192fe09edaf9456a1f4402956ddc",
+            "c2ee4a59b5f7c98bb19f7511e414043c",
+            "5587668aae3b6099e030f7f8c020c474",
+            "fd42252daaf0a6ba612843bb8838bb36",
+            "bdbaf90abb7fc834717b2813ad9bd07c"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/邮件短信集成.md",
+          "memoryId": "a846255ccc18b51ea57dd854efb2b036"
+        },
+        {
+          "id": "rel_047",
+          "text": "钉钉集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "dc1c3dce03b34327b8fda861b3625d03",
+            "bdc21a7b9b8ef4cd49a6f5d8909e338d",
+            "907e476ab52031fca4201bc550dd3b0a",
+            "478dfcfbb830b95227d2cc43798edac6",
+            "8aac1762e8ecebcbc8676ec59a385781"
+          ],
+          "sourcePath": "告警系统设计/通知渠道管理/钉钉集成.md",
+          "memoryId": "dc1c3dce03b34327b8fda861b3625d03"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/安全考虑": {
+      "hot_relations": [
+        {
+          "id": "rel_048",
+          "text": "API安全",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4ac769a744fbb40d9d7c6dff687210bc",
+            "9e2857c29e76c40764238e940b3756e6",
+            "17ccb60479e02dfaaf3dedd09f4bfe8a",
+            "551f60a5e76ae2a080d02e58fe875585",
+            "13ef35e13173fb95970be628f1c60518",
+            "d6d996bd272bcfa0e68887bff3def742",
+            "9305ffbe0cb22739a493f8f41543cb07"
+          ],
+          "sourcePath": "安全考虑/API安全.md",
+          "memoryId": "4ac769a744fbb40d9d7c6dff687210bc"
+        },
+        {
+          "id": "rel_049",
+          "text": "安全考虑",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6be176a901426bbe2ffa7bac9476bceb",
+            "eb8150bd04cac3e70e5a01394ea0ce6b",
+            "7deb088dfc33fd8fbb359b2b7c0be492",
+            "e058892af8e44305dc24036fd7e53299",
+            "78b392953311c93d7815903c970d114a",
+            "c0a65c31266edb761c9f9af04cca380a"
+          ],
+          "sourcePath": "安全考虑/安全考虑.md",
+          "memoryId": "6be176a901426bbe2ffa7bac9476bceb"
+        },
+        {
+          "id": "rel_050",
+          "text": "审计与日志",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9765537f38e17762659b66087ab821c4",
+            "9a00e6e2e8ef85656f0cc8c640df8b3f",
+            "c07f3f2a1ab15b57ba841b3f0777d4e1",
+            "499e5ffb0ff985961cc3702d9017e5bd",
+            "57e45a85e98dd1a285c7467769ed4c32"
+          ],
+          "sourcePath": "安全考虑/审计与日志.md",
+          "memoryId": "9765537f38e17762659b66087ab821c4"
+        },
+        {
+          "id": "rel_051",
+          "text": "数据安全",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a8ce57d2306212717b1a01cef60df4dd",
+            "184db640be335bd4fac15225e13f5ec3",
+            "3008b36333e45014ac11c53b79cbf77b",
+            "17b869e004d5c999fcc216a33aeca52a"
+          ],
+          "sourcePath": "安全考虑/数据安全.md",
+          "memoryId": "a8ce57d2306212717b1a01cef60df4dd"
+        },
+        {
+          "id": "rel_052",
+          "text": "认证与授权",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "cb085b4ed7eca48bb610dc657fe29b83",
+            "699fe7fb38c0271af5c9cf7d64873d93",
+            "c3239a9b7f1b7286ccda36ad87ed28e9",
+            "d77aeedf412b4818286425f761dc11fd",
+            "fc34e34db1717833221cd027db498a74",
+            "718af7f81eca845aa6aa5398727d4e76",
+            "efc4f23508e3ffb8f264ae200ae5695a",
+            "538e352dc45f776694816a4ea217dde4",
+            "150ca89f963b778e8c198c9f3c096029"
+          ],
+          "sourcePath": "安全考虑/认证与授权.md",
+          "memoryId": "cb085b4ed7eca48bb610dc657fe29b83"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki": {
+      "hot_relations": [
+        {
+          "id": "rel_053",
+          "text": "快速开始",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a10ef4c3b35512cdc1360d8d0bb26e32",
+            "bae5d86cf360c0e65cd89fa6967da9f4",
+            "18adbf87df820c182f0b280e4fe47995",
+            "c172c001f7849be26a23d9774db174a7",
+            "de918b990ab101eef947f85538f20b72"
+          ],
+          "sourcePath": "快速开始.md",
+          "memoryId": "a10ef4c3b35512cdc1360d8d0bb26e32"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/扩展开发指南": {
+      "hot_relations": [
+        {
+          "id": "rel_054",
+          "text": "AS-Code配置开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e70f7dcf05d70ba543f75d04ca73c48b",
+            "ab025cf73916fa37abcba75262f5d446",
+            "c177dfd49bcfab51e084dac75b3b5091",
+            "685e232a8b1c72f61b5e5e64db6a38d9",
+            "03cb586ac6b6b515eb11cbdcecb7d7eb"
+          ],
+          "sourcePath": "扩展开发指南/AS-Code配置开发.md",
+          "memoryId": "e70f7dcf05d70ba543f75d04ca73c48b"
+        },
+        {
+          "id": "rel_055",
+          "text": "可视化组件开发",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786429741923,
+          "isImported": true,
+          "memoryIds": [
+            "a0a1dd8519732840a9130ab6c44b9cef",
+            "e81817591c5a4a007d6fc4f8f49958b5",
+            "725ce5a11ccb3d2da850e19ecea77316",
+            "cecbf163618a7ce6702f72b9888a56d9"
+          ],
+          "sourcePath": "扩展开发指南/可视化组件开发.md",
+          "memoryId": "a0a1dd8519732840a9130ab6c44b9cef"
+        },
+        {
+          "id": "rel_056",
+          "text": "扩展开发指南",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e33618427ed951b4a67cffb913e97838",
+            "7b690939b22dceafa8b52fb5a49bbf58",
+            "7a2a44d51ff34e11ee6f1a2f78ed296b",
+            "1d0310184678d04e99259dca277756c2",
+            "d5283ce8694944de7d7441e7a5939924",
+            "9c824b9597024c6ed6b5a6841e415df3",
+            "a438690eabad777a124db7040257e29c",
+            "d6c256813b18acd68d93d8b8be7b28d1"
+          ],
+          "sourcePath": "扩展开发指南/扩展开发指南.md",
+          "memoryId": "e33618427ed951b4a67cffb913e97838"
+        },
+        {
+          "id": "rel_057",
+          "text": "插件系统开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "eddac53aa4ca186c4965280069776345",
+            "57c7ba47ecb68c33b86c7a94d3b9bf56",
+            "c7f863768397fbd8adc3572c2b81dd68",
+            "def4c0a35c6729133e44eb2e96e462e0"
+          ],
+          "sourcePath": "扩展开发指南/插件系统开发.md",
+          "memoryId": "eddac53aa4ca186c4965280069776345"
+        },
+        {
+          "id": "rel_058",
+          "text": "数据源扩展开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "23787e78e994ff4196c2797cb5d17bbc",
+            "c1db0f730693ff96d33da68332645e2b",
+            "3863c6970b526984a7f62b107c1ae941",
+            "36b3548e45f2f24e6eca5342b58bfe80"
+          ],
+          "sourcePath": "扩展开发指南/数据源扩展开发.md",
+          "memoryId": "23787e78e994ff4196c2797cb5d17bbc"
+        },
+        {
+          "id": "rel_059",
+          "text": "第三方服务集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "af3bbb3cace67f8e82bb5bfbad636be1",
+            "6e5981529a46ded595455818846b604b",
+            "8c675f16874ad2d3e2785148ef8c7a1d",
+            "b98e3bd44f09698870efa51fcc4e374d",
+            "ee88cfc058df62b65fefc956bc4e21f0"
+          ],
+          "sourcePath": "扩展开发指南/第三方服务集成.md",
+          "memoryId": "af3bbb3cace67f8e82bb5bfbad636be1"
+        },
+        {
+          "id": "rel_060",
+          "text": "通知渠道扩展开发",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f84510c68fb2cf99d6526d12a333b03c",
+            "823897648b71d86cc1540293af563c6a",
+            "d8baf1e531cacbe0c381a49733b00eb1",
+            "0fb45ca368162fd0b1f365ed3ea8e6d2",
+            "d1f3e000d04c6495c32c8e85050cfeee",
+            "d25c8ca7d55a6810d67a6c2292694802",
+            "7633361bfd0740b4c9021837ad472a7d",
+            "ffc03c73d5f84d3246a9a4592b09d7a8",
+            "11a9385d160861f5b028b2289241f3c1"
+          ],
+          "sourcePath": "扩展开发指南/通知渠道扩展开发.md",
+          "memoryId": "f84510c68fb2cf99d6526d12a333b03c"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/故障排查": {
+      "hot_relations": [
+        {
+          "id": "rel_061",
+          "text": "常见问题诊断",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5a459f5f494cd60d41a780ed9fcd9905"
+          ],
+          "sourcePath": "故障排查/常见问题诊断.md",
+          "memoryId": "5a459f5f494cd60d41a780ed9fcd9905"
+        },
+        {
+          "id": "rel_062",
+          "text": "性能优化建议",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "defc2a9d760eb79a409ccb28a05e9360",
+            "d8a0b0df2bbde34ba120ad170447ab2a",
+            "d3078c3fc47c35e55b7cb1d29b8a9b3e",
+            "31dc8c35e4b7f77f789ffa6ad2ceb1be",
+            "bb8dcc1a2fb11ce9b507d769ca1ab946",
+            "5dc287beef49df95e4e238e04d6034fd",
+            "e10edfa58c92939a560af7315f5cd362",
+            "277de75715d020203c432b62d60a55c1",
+            "1290f8ca67e5d5efb7d808ef7bef24a7",
+            "a61c7bd464b23aeb9e5821df0f5368ae",
+            "82256f8665ed37298abe40bb02022081",
+            "54b9e51aeaa0bcdf55b702628669fc53",
+            "b67fb4420f65d3a269c3c81d430c20fd"
+          ],
+          "sourcePath": "故障排查/性能优化建议.md",
+          "memoryId": "defc2a9d760eb79a409ccb28a05e9360"
+        },
+        {
+          "id": "rel_063",
+          "text": "故障排查",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8e9fd89e6ae869bbecfd1b8932785832",
+            "4fda4043d03ba121a19272436c36e19c",
+            "fbd6d505fd81d8902bcab4b12790b7fb",
+            "90abda028de4fe313d780f66ce26fe82",
+            "27307aa76e187c038f03e25f1668915c",
+            "af9045f7fd2fa4a3813f53c16c0d7837",
+            "0c52aaf6a66f874ec0632d59cb65e00b",
+            "4bdf30e299b1b8ee785023f7fdb2e886",
+            "a9bd34e356e22096b6e6a0dbd7eed9fe"
+          ],
+          "sourcePath": "故障排查/故障排查.md",
+          "memoryId": "8e9fd89e6ae869bbecfd1b8932785832"
+        },
+        {
+          "id": "rel_064",
+          "text": "日志分析方法",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f74d9b414dfd6902fc87f2296e4a1a9a",
+            "a8cd91a82626a8148f430cb9f95d6c3a",
+            "f814b364029535dbbdae52574b33ebab",
+            "7bd8ad192c2a4d039377e9a997fcd958",
+            "cf21e2a83bed3bbd8ce82127078fa6dd",
+            "04508d16296de7515a14f613bffa13c7",
+            "85000b662b200d4ba68bccd63c5b9bde"
+          ],
+          "sourcePath": "故障排查/日志分析方法.md",
+          "memoryId": "f74d9b414dfd6902fc87f2296e4a1a9a"
+        },
+        {
+          "id": "rel_065",
+          "text": "紧急处理流程",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f47d5b1002cbe36f0fc90fed7dfd84cb",
+            "b9892000bc3d35d1338f2dda632bcd31",
+            "1f32d2b411818323ab1c3ce0b61227aa",
+            "12b9656e0cfe3bde2d69cd5078b035ef"
+          ],
+          "sourcePath": "故障排查/紧急处理流程.md",
+          "memoryId": "f47d5b1002cbe36f0fc90fed7dfd84cb"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/数据库设计": {
+      "hot_relations": [
+        {
+          "id": "rel_066",
+          "text": "数据库设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f390b9daaaf5c16c439bc337f4669c95",
+            "ca438301d24b4ae02f890ca41bfc281b",
+            "b70e2e5b6e1bf81b5ee7ebb209dc294f",
+            "3652a03aa02c92480202bb142494afe6",
+            "ed3d5973b7074a546255f5ea7d9ca310"
+          ],
+          "sourcePath": "数据库设计/数据库设计.md",
+          "memoryId": "f390b9daaaf5c16c439bc337f4669c95"
+        },
+        {
+          "id": "rel_067",
+          "text": "数据模型设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4aeaf7c681468f28a8839e42f3337f20",
+            "fbbc17b2f4fc85d140ff568e9e538ae0",
+            "5664ff6e7ecbf3bad172406532bc572f",
+            "7e2fa8e1d67cd4e91ea44cdb0d9b1e57",
+            "22f7301170419656b20e994115b57c18",
+            "d1f1061b4c4731c2b59b12f17437c1a6"
+          ],
+          "sourcePath": "数据库设计/数据模型设计.md",
+          "memoryId": "4aeaf7c681468f28a8839e42f3337f20"
+        },
+        {
+          "id": "rel_068",
+          "text": "数据迁移方案",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "fcc72c8998d33e5495c805c82200a607",
+            "432ad4c4175823f30d25c808b7172860",
+            "fead0d05fdb1dc986d7379448df3966d",
+            "c9a48aa2fcf8e582d7fb8b35d88665a9",
+            "8bb3136932e1f21202e41689e6a9fd7a",
+            "fe26fb88b6e645448168a85eac17d0e4",
+            "4f16cd13a3bc62ed70692ff1f27c221c",
+            "d28268c82f12e76de92e98bc10f522fb"
+          ],
+          "sourcePath": "数据库设计/数据迁移方案.md",
+          "memoryId": "fcc72c8998d33e5495c805c82200a607"
+        },
+        {
+          "id": "rel_069",
+          "text": "索引优化策略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "74c77ff87e07f827fdbb6dfb6cc7622d",
+            "3a08cf12762d1447932b33da1df5110b",
+            "d5e80188cfd605bd3c91a4316400b72d",
+            "87b0df2d2828d263f091d8365879423e",
+            "447fcbe0d0aa0f330babfbc328770700"
+          ],
+          "sourcePath": "数据库设计/索引优化策略.md",
+          "memoryId": "74c77ff87e07f827fdbb6dfb6cc7622d"
+        },
+        {
+          "id": "rel_070",
+          "text": "表结构设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "83d3d1ac7089d5f5839b383da00cb77b",
+            "a110c02bc09ed57d1f33c3ed0db6fe60",
+            "38c17a6c207133f7d76d33f9badffd7d",
+            "c7e7f76f8dc62462261046839a26e616",
+            "a4c53789fb4df5229f0748b89d4ae130"
+          ],
+          "sourcePath": "数据库设计/表结构设计.md",
+          "memoryId": "83d3d1ac7089d5f5839b383da00cb77b"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/APM监控模块": {
+      "hot_relations": [
+        {
+          "id": "rel_071",
+          "text": "APM监控模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5d72f5923d4fe286e25aa6602facb0e9",
+            "61e146d4c0f1389e0878074c70e3dc2a",
+            "f91dfae1d0e37cda6263ed93bbda60df",
+            "6bd7c47f0dbe7d3aa976a4afb83ca729"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/APM监控模块.md",
+          "memoryId": "5d72f5923d4fe286e25aa6602facb0e9"
+        },
+        {
+          "id": "rel_072",
+          "text": "eBPF集成模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4cd750eeb2d84ea2440b3839167c757f",
+            "d28d69f4407143156903591f64ae9c86",
+            "904342aafeccb413b7628295ae0c6253",
+            "e2a808faa20a178769ada424f5b91d69"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/eBPF集成模块.md",
+          "memoryId": "4cd750eeb2d84ea2440b3839167c757f"
+        },
+        {
+          "id": "rel_073",
+          "text": "任务调度和管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "131efb46f54236ba196e839809b887ea",
+            "a9a6465090f1336cc8a7a9d17965b79e",
+            "a880c7938cee4c85b75cc0dc3a5aed03",
+            "5ee448fc136284afbbb752cd2eb32828",
+            "2594119e280550d681f19fe971000e7f",
+            "ffd4cc00df3f9791013bd679c8524501"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/任务调度和管理.md",
+          "memoryId": "131efb46f54236ba196e839809b887ea"
+        },
+        {
+          "id": "rel_074",
+          "text": "工具类和实用程序",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bde6c2fbbedeaa07dffcc5e543936a72",
+            "609ae4e5aae45e668ca2addce9fd2baa",
+            "556fd64c2e006dff1ac82eae19ede3be",
+            "323d34ae2dcc28dd0116ba6b20280dae",
+            "af15856eb64e19f81ee5c8e9f8d93b30",
+            "fa8a80a901353b2dfc35c583550d9f5a",
+            "71b5ebc80123143c3624b4f370fbd80a"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/工具类和实用程序.md",
+          "memoryId": "bde6c2fbbedeaa07dffcc5e543936a72"
+        },
+        {
+          "id": "rel_075",
+          "text": "数据模型定义",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bba4877e01ee2193a56781b26787082d",
+            "c515f963e6a4d1906072f134c013c99a",
+            "48e5f5705c38e76449b037304c031f05",
+            "c379794563b721eb7458e3af5bfbffb7",
+            "53b5ad3aa662a455ea3204d2d9485a93",
+            "4869a374f8c572d25ebeb84d01024177"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/数据模型定义.md",
+          "memoryId": "bba4877e01ee2193a56781b26787082d"
+        },
+        {
+          "id": "rel_076",
+          "text": "核心发现模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6941d60d3ca370a7d6aea9edfdcb1bdd",
+            "822c5cb04624e6bc8ef96473eda37bfa",
+            "f96be7cb421dcd8b12d865322360d4d4",
+            "260be699bb06d9bcab2b5d4cdceb965b",
+            "c5db0903698b195728b51025cac22537",
+            "303b9e8d4bcd50b5d2355a1c52984ddf",
+            "87a65b9f5d71f9f87b29ce867871635f"
+          ],
+          "sourcePath": "核心模块架构/APM监控模块/核心发现模块.md",
+          "memoryId": "6941d60d3ca370a7d6aea9edfdcb1bdd"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构": {
+      "hot_relations": [
+        {
+          "id": "rel_077",
+          "text": "Django应用架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "16ef24cef3a1a0f2307786bff289bcc9",
+            "932235b1ca01cc866152ebd1f3365f8b",
+            "93621cad3b6e69cb3c706ef050a2ffd1",
+            "3a7a3ab78c59f3bd08a635eaae732538",
+            "e3ac2d05241a7615dacf8e79a4e52dfa"
+          ],
+          "sourcePath": "核心模块架构/Django应用架构.md",
+          "memoryId": "16ef24cef3a1a0f2307786bff289bcc9"
+        },
+        {
+          "id": "rel_108",
+          "text": "核心模块架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e7eadeaf08a85deb71b78d3b7a43f9fb",
+            "c79a07f995bc497d58d5dae08fd00d10",
+            "ab500d1fd835a66f707ee5ed051d105b",
+            "cae8ee4219fee2a402ec65a39eba9afc",
+            "23d88f3f835816d24ee1db7882732272"
+          ],
+          "sourcePath": "核心模块架构/核心模块架构.md",
+          "memoryId": "e7eadeaf08a85deb71b78d3b7a43f9fb"
+        },
+        {
+          "id": "rel_109",
+          "text": "监控主应用模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f3603c691522525089a22485041c24bf",
+            "79f7ec6ec326156f4a4ae2b136bf5df8",
+            "5d441b343ffff805a884bb6653d01600",
+            "cf983738d737edfbc1ae8fb37b25b549",
+            "8516fa51ac30d0e47393a76705dbd76b",
+            "193c863f93180d25ed2f34a9b02b0fe9"
+          ],
+          "sourcePath": "核心模块架构/监控主应用模块.md",
+          "memoryId": "f3603c691522525089a22485041c24bf"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/元数据管理模块": {
+      "hot_relations": [
+        {
+          "id": "rel_078",
+          "text": "元数据任务调度",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c17eec85de37b7db0cc186f49817b015",
+            "83b3b35ee2398e8f63fe1bf6657a902c",
+            "17b4d9a44f02d349845cd51ba3d6950c",
+            "477fd10d5bfbf472d87560881c251c3e",
+            "edaf2f87b674cddba90971d50282841b"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据任务调度.md",
+          "memoryId": "c17eec85de37b7db0cc186f49817b015"
+        },
+        {
+          "id": "rel_086",
+          "text": "元数据管理命令",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8fae53b33ddd614a19cc000de4472293",
+            "461deb16582830fac6973157203bd436",
+            "c4316ebc55ac42407ec7c6c2fe03499d",
+            "0565ba2630b4df0c92970f8d9818c6eb"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据管理命令.md",
+          "memoryId": "8fae53b33ddd614a19cc000de4472293"
+        },
+        {
+          "id": "rel_087",
+          "text": "元数据管理模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ee179354fc7562a8ba1b3e1d314ce010",
+            "32a76e863b35bf69063cefa98523acf6",
+            "c1ab63dd4e449d34c95071baa2bd1c13",
+            "67342f08eacedf1065f6042cfd98cdaa",
+            "097eaa0d77bc093fa8ad76f1a37a089d"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据管理模块.md",
+          "memoryId": "ee179354fc7562a8ba1b3e1d314ce010"
+        },
+        {
+          "id": "rel_088",
+          "text": "元数据资源接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e3ea2d64e344effdcea57ae623187a02",
+            "0196e285a0147197df412ac840c8c983",
+            "9f55f63e41bf4e4863fbbf1b5e50aad9",
+            "37ef8c4205fe18fca73d6dcaebcfec2a",
+            "d21fd1752584ec3cd6beb114719bf520",
+            "a4f4e9ac0203a5cd17e76eaeec83c1d1",
+            "964e72baf3697cbd5961952fac44759c",
+            "79b309d5c5e09793eb01d0b321a0f403",
+            "4a0386d26abb2726203e79daf6582882",
+            "b3687a5e11de54ef2ff93cb22bc518dc",
+            "c50bb4306cd8c188e4706061b1e0fc3f",
+            "c731f9c2d7ea3e7e952fbc4dc726cd23"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据资源接口.md",
+          "memoryId": "e3ea2d64e344effdcea57ae623187a02"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/元数据管理模块/元数据服务层": {
+      "hot_relations": [
+        {
+          "id": "rel_079",
+          "text": "元数据服务层",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "12d6065c102b3ac7af8efa64d9fd2e57",
+            "645006348db26fb9f680c9c22401d701",
+            "58a2f546ef52aaf81be835f63897a599",
+            "a43127accddfa9318f8609a5dab35323",
+            "d4cbdeb8cd6aa761211dc98553ef9415"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/元数据服务层.md",
+          "memoryId": "12d6065c102b3ac7af8efa64d9fd2e57"
+        },
+        {
+          "id": "rel_080",
+          "text": "实体关系服务",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786436713854,
+          "isImported": true,
+          "memoryIds": [
+            "ae00158cfe09dc1b582a7cffb9a521c6",
+            "2a80df2147b7827b4043a1e885451cef",
+            "a63252433d821819ba36f0f6432353a1",
+            "99cbd092593c72be6e0f214e542a9915",
+            "65ed62a21c1ea32dd291bf48704654e9",
+            "1e56e71b8274bb565c8361077a497626"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/实体关系服务.md",
+          "memoryId": "ae00158cfe09dc1b582a7cffb9a521c6"
+        },
+        {
+          "id": "rel_081",
+          "text": "数据链路操作服务",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1786436693765,
+          "isImported": true,
+          "memoryIds": [
+            "9c4d7917233afdfc0b6d778617cbabda",
+            "bddea252c84df5841b6b7adad17ba3f8",
+            "f2986ead7f0a8d89653290fed4a47382"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/数据链路操作服务.md",
+          "memoryId": "9c4d7917233afdfc0b6d778617cbabda"
+        },
+        {
+          "id": "rel_082",
+          "text": "空间Redis服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bc15da48d256a68a9a6f7c817397dd4c",
+            "b143a40986b14971bbe7af70a86988b4",
+            "08cbf20752f633fbd6fc099ca258d971",
+            "24f0ed9771e50dd2a56088fb54e52281",
+            "61ba97a35d77c7f720237aaa77fa6ef5"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据服务层/空间Redis服务.md",
+          "memoryId": "bc15da48d256a68a9a6f7c817397dd4c"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/元数据管理模块/元数据模型设计": {
+      "hot_relations": [
+        {
+          "id": "rel_083",
+          "text": "元数据模型设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6b1f7054085f3f0d0b8581f51700474c",
+            "13cb9333d410de5a77b8289c749ec704",
+            "1127eb3552680f9a78b8ea68e216ddab",
+            "9af4d09174abec2dec2fada8b50c262d",
+            "1a0567ab334f382e9f6883cd49b9412e"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/元数据模型设计.md",
+          "memoryId": "6b1f7054085f3f0d0b8581f51700474c"
+        },
+        {
+          "id": "rel_084",
+          "text": "结果表模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "97e5079e484505de343847a2f6731995",
+            "4462670ab21ccd469a546240bd5368dc",
+            "80ebadb834e053bf1a665249a98d0f86",
+            "4150b90d7def54771ea77ecbd5b801d7",
+            "bbfff41806d99f2f38a62ffb127bc4b4"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/结果表模型.md",
+          "memoryId": "97e5079e484505de343847a2f6731995"
+        },
+        {
+          "id": "rel_085",
+          "text": "记录规则模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d5c30c004ab4728435903ad19fa85451",
+            "48c6d5c353dba1382c3e3916c138478d",
+            "636914694392692da16ca27253749a99",
+            "3f014608857d967c7bec68c003ac7815",
+            "c6b7086ec73b16c0026d8e6f2a735661",
+            "3d0fc93a394487e244830253ebc39dca"
+          ],
+          "sourcePath": "核心模块架构/元数据管理模块/元数据模型设计/记录规则模型.md",
+          "memoryId": "d5c30c004ab4728435903ad19fa85451"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/告警后端模块": {
+      "hot_relations": [
+        {
+          "id": "rel_089",
+          "text": "告警后端模块",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8358faeda913cb2bf09d48c1b67a1318",
+            "342a29ab3aaaea822be36d3d0dff38f7",
+            "a01b6839e3ba6237802e69b6862110e4",
+            "9a574f31775a767a157fb57d0ec3a5ce"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警后端模块.md",
+          "memoryId": "8358faeda913cb2bf09d48c1b67a1318"
+        },
+        {
+          "id": "rel_090",
+          "text": "告警存储系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "59b83f54852f6bb7b64f3dd8a0728d1c",
+            "524b6cd5b47bfdcc67a9add11d867235",
+            "7c3e571a2c733b1bff5c9290e7d107c7",
+            "7eb7c4bb6a1ecfb90c9a07f8899896d3"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警存储系统.md",
+          "memoryId": "59b83f54852f6bb7b64f3dd8a0728d1c"
+        },
+        {
+          "id": "rel_107",
+          "text": "告警管理命令",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "910affb715446d49a8ef8933777e523e",
+            "a5136c9e2173570a3f9a2541fb878268",
+            "d13850b1aec4a61e428553730003e160",
+            "f9d37cb38559108647629b40ed84f358",
+            "80d4f7497002dff503e50538d68e58b7",
+            "956ae3487704ae0f3798e89c7c14acea",
+            "886699ca384fc55790791eddfbc37604",
+            "a36dd9427f0a50f1a1eda0b1f8817a19",
+            "4f53a177e1292e322efc0dd9aaf32a3f"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警管理命令.md",
+          "memoryId": "910affb715446d49a8ef8933777e523e"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/告警后端模块/告警服务层": {
+      "hot_relations": [
+        {
+          "id": "rel_091",
+          "text": "告警处理服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "fefee956fe8ea5018bda385b47a40a27",
+            "84f05e640cf25da81d88eef251badfee",
+            "8b7774c4a8efcbba960beacf0fa74c07",
+            "f0b32320e51806a8a6c644d12eb778c4"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警处理服务.md",
+          "memoryId": "fefee956fe8ea5018bda385b47a40a27"
+        },
+        {
+          "id": "rel_092",
+          "text": "告警接入服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c67f9d677cee8ea429ac97733cb7da7f",
+            "c3bd9de6fa7ee3506fd002fdca475924",
+            "1df62dd1fecbd2a58a1afdccd89baa7a",
+            "9df84a0d0dfd31cdd57eedf87040a536",
+            "0bf387e812d917e6c24ba9c9a1f9d7ba",
+            "f2aafe4de16d3b768e960492613c88ad"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警接入服务.md",
+          "memoryId": "c67f9d677cee8ea429ac97733cb7da7f"
+        },
+        {
+          "id": "rel_093",
+          "text": "告警收敛服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e6feeb54524c62458fcea82b67cd7fa9",
+            "5482bfa490dbf8c7400aabae12d2729b",
+            "e3b7481435310a1076262e9b478b7906",
+            "ca05dc28637e060181051adce7426773",
+            "527c74788335d829349e140bc89f2782",
+            "2fabffcfccfff149b6c5f8bbd6dc6296",
+            "3b5c79c161d8bf28411c97f979645a59"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警收敛服务.md",
+          "memoryId": "e6feeb54524c62458fcea82b67cd7fa9"
+        },
+        {
+          "id": "rel_094",
+          "text": "告警服务层",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e90c5fc80444ab456d1241ed9bc77491",
+            "db74ddc75378f7ae48c9175885c67f99",
+            "bf8461f45b7d8f061187cd01c0f9b8f4",
+            "bbc75a0c4d7932ba2863657fac8d962c",
+            "88c3d3ab1125d623bd6358d08734a4db"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/告警服务层.md",
+          "memoryId": "e90c5fc80444ab456d1241ed9bc77491"
+        },
+        {
+          "id": "rel_095",
+          "text": "复合告警服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7abcb78139e30fc6cf0ca8be63fd2fe0",
+            "8cbf45866c9729afc785c791bcf56595",
+            "2d0c656130eb52f2780d16417a1a8c23",
+            "312a73a8d308d56dab2a11d83a89b6e4",
+            "a9ad4b80b349e7d2aee2edbb03e75dd4",
+            "f92aa40ae7a532f91897ae80491c54a3",
+            "6cf9da8c4f4b9224fe0b0147a4134d40"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/复合告警服务.md",
+          "memoryId": "7abcb78139e30fc6cf0ca8be63fd2fe0"
+        },
+        {
+          "id": "rel_096",
+          "text": "无数据处理服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "548b7ec4c037dad44422b1d6e0fa6eb3",
+            "1f5d494ada3e12bb5f936b02fe0b1436",
+            "f40ae4a197f574a38d2b040f1c84265c",
+            "7050a9840775e510ac8739ac24b43709",
+            "52d356b1c1b97c0d984658e735bd3556"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/无数据处理服务.md",
+          "memoryId": "548b7ec4c037dad44422b1d6e0fa6eb3"
+        },
+        {
+          "id": "rel_097",
+          "text": "检测策略服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "10f39d42b689a93dbc9c158733d64e98",
+            "f79ffd754235a8257970b06eed355169",
+            "9d4c349ba0468653d3026c47d7a9620c",
+            "ed420faf1a0ad76f8e3f2d734c2557d6",
+            "d92045f1c65a139a95573fbe09554454"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/检测策略服务.md",
+          "memoryId": "10f39d42b689a93dbc9c158733d64e98"
+        },
+        {
+          "id": "rel_098",
+          "text": "触发器服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f7ea944bd7f64b34708ce3dd4d15ee30",
+            "6bfa95b1f1d048a9ee49a65a6a7591ed",
+            "41ed4dc5bca35a895f1c31eed42baa7d",
+            "1d0a9b4d489ae33225777d6d672d6578",
+            "9d449a2bf5eac3c7f9ce3f50b45aad2d",
+            "13e157702c3cd5e939065c022a4dd780"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/触发器服务.md",
+          "memoryId": "f7ea944bd7f64b34708ce3dd4d15ee30"
+        },
+        {
+          "id": "rel_099",
+          "text": "调度器服务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7d84798fa9f85c747ba35f64adac3055",
+            "f89daa454be4b851ab2a8ab8c6d2809b",
+            "217e32ab1525683914d61e082129d787",
+            "beea107049bea59de367da3f7e4a301d",
+            "08533c1547924986849bda519f9451e1",
+            "94fcaa4a07217aad3da97449e7f3bff1",
+            "ee162bf5c819f5f0222e2bfea36bca98"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警服务层/调度器服务.md",
+          "memoryId": "7d84798fa9f85c747ba35f64adac3055"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/核心模块架构/告警后端模块/告警核心引擎": {
+      "hot_relations": [
+        {
+          "id": "rel_100",
+          "text": "上下文管理系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f919bb5724fcf72dd078c00aad4286ff",
+            "d9b3da349e3a4cdd653a65fad7cd5f3e",
+            "e3453a1473c4e50bbb715fde3cde57ac",
+            "d00fff9b541c30a5bb4a5dfa6fda2ff8",
+            "37e1ff14b2876bf95a798cf879a652ce",
+            "b7cd705bb6ea0486d39002ff6b55c384",
+            "07b62dfa7240fa9ee9fc8c80c996c8ac",
+            "cb4f0cbbf623240c19235524bbfc8f6c"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/上下文管理系统.md",
+          "memoryId": "f919bb5724fcf72dd078c00aad4286ff"
+        },
+        {
+          "id": "rel_101",
+          "text": "告警处理引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a7c3ef8b95dc04b12225185694ab3ad0",
+            "cdb83073b100214f43fbdacc646df6a5",
+            "d92a3d9e7d5307d1bc4f436eea1fcddd",
+            "e391b323427fff1b993054fa82e330f0",
+            "81cfb31a197eb894fe578ef8a67bdea5",
+            "93b425dd1163dc0d12667c157f83b9ce",
+            "d3ae6f6dc3bcd9a009f33cfc08f87727",
+            "2fd7efc0ad8d35a3fa5c7cf3d082ccdc",
+            "6d4cbf9ea12ba81014fc6d12b3662b68",
+            "a8eb3059cca3bc077ee361d6d518a36b",
+            "9bbfd0aaf8e3a2da2485fc6882ce8f48"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/告警处理引擎.md",
+          "memoryId": "a7c3ef8b95dc04b12225185694ab3ad0"
+        },
+        {
+          "id": "rel_102",
+          "text": "告警核心引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c40aec2a4fa2c0f02a68bb62694199a7",
+            "2d14974992c6e1948b07a3c63192cefe",
+            "1c13e84c4885d7dda09a951b72c6080e",
+            "3ae977adfd2291f326370fc3e4c93fe6",
+            "ade672a70a4970235ada19fbd5df421b",
+            "c7b2abe3e29d37acab72ab1ff9d47e97"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/告警核心引擎.md",
+          "memoryId": "c40aec2a4fa2c0f02a68bb62694199a7"
+        },
+        {
+          "id": "rel_103",
+          "text": "存储层抽象",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "534e7d313fe3ebe7f699ff88e218929e",
+            "d2626040e6dd867d4e00f7f8d3085c15",
+            "965678560d4b03750b21d550cb086e55",
+            "c1b95acf7cda1be1a46770b83fbc23fb",
+            "955656b5edd04b911f7b66521169956c",
+            "b423c19158919905256b1d262df8df5f"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/存储层抽象.md",
+          "memoryId": "534e7d313fe3ebe7f699ff88e218929e"
+        },
+        {
+          "id": "rel_104",
+          "text": "控制流管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bd3d0814d2afe751d20095fdede280f4",
+            "62578c1c3687c5f5fe7e7044db97cfd8",
+            "b9a87197353430ec0daa13ad44103968",
+            "171ad801f90d69f5a4de8ef59b3fe16c",
+            "9d13d06c613998871d765186e1327d6b"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/控制流管理.md",
+          "memoryId": "bd3d0814d2afe751d20095fdede280f4"
+        },
+        {
+          "id": "rel_105",
+          "text": "熔断机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "fd564c3b890a1b344ff896405f6b4d72",
+            "14906b3314ada08b0a649505e8ebdfb0",
+            "245456b58cd99a24d22873efde1240bc",
+            "1aff75001c88eba4740248a7ccb4ad58",
+            "b44c958ef10842da9694585f2c9ec5c2",
+            "c6c842b88fec32a9fabe880a043aa089"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/熔断机制.md",
+          "memoryId": "fd564c3b890a1b344ff896405f6b4d72"
+        },
+        {
+          "id": "rel_106",
+          "text": "缓存管理系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6aa6a8601151e6e347c5017a3ba36b58",
+            "f626aa8d5988599c3ea13b1a37f742e1",
+            "5189513441d11ab3f3095a0369f71cdf",
+            "6da53f1bfecd80df13f5a9cba31d264e",
+            "dd1c1f99ef56a96fce88ba223d1175e7"
+          ],
+          "sourcePath": "核心模块架构/告警后端模块/告警核心引擎/缓存管理系统.md",
+          "memoryId": "6aa6a8601151e6e347c5017a3ba36b58"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/测试策略": {
+      "hot_relations": [
+        {
+          "id": "rel_110",
+          "text": "单元测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d1c8e391a5a82ef20aabde205bc50eb1",
+            "224cf6c08ca7a3482206d51fc43d9016",
+            "5bd3f89b7e21fe4c826e02720c859d17",
+            "9999c00f9b6d4732254754d6931195f8"
+          ],
+          "sourcePath": "测试策略/单元测试.md",
+          "memoryId": "d1c8e391a5a82ef20aabde205bc50eb1"
+        },
+        {
+          "id": "rel_111",
+          "text": "性能测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "91ec61b1f338b339073579a6c1671cfa",
+            "37c16f4cb43198858f1acde2ef7a6f61",
+            "ead73f36ecb785412e95e4892da64c95",
+            "d700d9522aef4bf6f6a8b372fc733e6b",
+            "989cdbbd34fc703db2f2ce5a06e145d9"
+          ],
+          "sourcePath": "测试策略/性能测试.md",
+          "memoryId": "91ec61b1f338b339073579a6c1671cfa"
+        },
+        {
+          "id": "rel_112",
+          "text": "测试数据管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2934b162581168a8f009399ea8f92926",
+            "92f2cf54d9036d89c2c32538da76139a",
+            "acccd06733c7bf0c4689689f4208f092",
+            "fa4ab86a2f6972f0ed4c81fd2171f502",
+            "dd62175dab7a5a7a2733d60be08349c9",
+            "2a355e6815418cb9c2acbae38c9d5a06",
+            "369c38c2b67b0356858ccb869c26c311",
+            "832e011bc9b88fffe695e8d766c51071"
+          ],
+          "sourcePath": "测试策略/测试数据管理.md",
+          "memoryId": "2934b162581168a8f009399ea8f92926"
+        },
+        {
+          "id": "rel_113",
+          "text": "测试策略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "363937c85d65c977c9db3d7f361aba3f",
+            "5dac935fba0174dda3c5a722553dcab9",
+            "c39af337a47716e321ac7f8a8be9325f",
+            "bcde955d598bdda6555257afd147b3c7",
+            "6ce9b48827b6cf47430467423eae8961",
+            "be266103c1a36b4b2b4001cee95a185a"
+          ],
+          "sourcePath": "测试策略/测试策略.md",
+          "memoryId": "363937c85d65c977c9db3d7f361aba3f"
+        },
+        {
+          "id": "rel_114",
+          "text": "集成测试",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2bb79bacc80ace9f9c756c69cb7adcb1",
+            "025bdd00a6be5be075ab7ca10e90cb6a",
+            "91693ddbc01b59f84ff74d58a4cbfa67",
+            "bf3e6f3733c0003b77bbc258af1f4313"
+          ],
+          "sourcePath": "测试策略/集成测试.md",
+          "memoryId": "2bb79bacc80ace9f9c756c69cb7adcb1"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/用户界面设计": {
+      "hot_relations": [
+        {
+          "id": "rel_115",
+          "text": "仪表板架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6b13398d44d13899e4332a5cf2921de9",
+            "d46e077343b4b3ac8a4fbad6a4f31b1d",
+            "49b6e98a598cff6bc3c60d5d4723d2f3",
+            "2f3440604b4b67130d73e49ea1ad899b",
+            "569e749d35b831c7b3b871bc39fe5a03",
+            "a110ad866b3c3a2f13f8e79cd7b7fe45"
+          ],
+          "sourcePath": "用户界面设计/仪表板架构.md",
+          "memoryId": "6b13398d44d13899e4332a5cf2921de9"
+        },
+        {
+          "id": "rel_116",
+          "text": "图表组件设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c00c4e06a2feca012efcc69cfb187cd2",
+            "dd8ac77b7ff1141a9a39f0af9350757d",
+            "bbf78149bc4a36c4fa6ed060aa0bcd90",
+            "ea2c92cfb8db72e0a62e5405e4cb82bd"
+          ],
+          "sourcePath": "用户界面设计/图表组件设计.md",
+          "memoryId": "c00c4e06a2feca012efcc69cfb187cd2"
+        },
+        {
+          "id": "rel_117",
+          "text": "多租户管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1cdd6273578195e968d4276d440c6f7b",
+            "323333ff31ed994473404bb7bea8eac7",
+            "bdfc3bd9197d2a46d0c1f219f1b4892f",
+            "271d263125ca5b2da3a4cd0e67e241c7",
+            "a0cdfc70d98db8fb49ef411f302caa1d"
+          ],
+          "sourcePath": "用户界面设计/多租户管理.md",
+          "memoryId": "1cdd6273578195e968d4276d440c6f7b"
+        },
+        {
+          "id": "rel_118",
+          "text": "权限控制系统",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9a8d4582018e9c65cdbf9a58b515c1c7",
+            "9fcb7b1810a6f5fc9e40132f0fc610f8",
+            "2d3da4aaa016c55197ca08e4058d3049",
+            "74181873a93b08414deb0c1ab4a26b00",
+            "dcd51f1cb257c605b4b5707ca326f2f0",
+            "50c3f47912280352f603d5a016157357",
+            "496b3df29973cfa4edec15bac5fa13cc",
+            "4844892bbff6c160dce5af02239c8f27",
+            "ff53fe45101df7febafa829648ea03d7",
+            "e6065b38492fddeec84eb05c0331bab2"
+          ],
+          "sourcePath": "用户界面设计/权限控制系统.md",
+          "memoryId": "9a8d4582018e9c65cdbf9a58b515c1c7"
+        },
+        {
+          "id": "rel_119",
+          "text": "用户界面设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "446944309544e427a14c7a464f3bf072",
+            "0cd5ada0e44583a65d6900eaa0f71f30",
+            "0c1bead24b22cb8002b222ab12d61770",
+            "23bdcf9e8057ff05afbdef795346f95b",
+            "e6889ac9461c5867a34cff57cebd8564"
+          ],
+          "sourcePath": "用户界面设计/用户界面设计.md",
+          "memoryId": "446944309544e427a14c7a464f3bf072"
+        },
+        {
+          "id": "rel_120",
+          "text": "界面定制与主题",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8d2de3487b68b15416c90bf468ca5c89",
+            "464ace83ac5fed7deaece5e6ddf463ee",
+            "3c4e9f0c9d964d560a395a0946f84319",
+            "4186d73efeac1d5b3b6ab416a8521b1a"
+          ],
+          "sourcePath": "用户界面设计/界面定制与主题.md",
+          "memoryId": "8d2de3487b68b15416c90bf468ca5c89"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/监控数据管理": {
+      "hot_relations": [
+        {
+          "id": "rel_121",
+          "text": "数据处理管道",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "666ff014261a1dbd9600c7ad1524c1a7",
+            "480158b88a5f14f273ea997710a5e3a2",
+            "5a1c1b898e23a6dfce19347f53f5415c",
+            "d5086222d65a0ba7f4918bce9517929b",
+            "c0a10a63f843a1657a838b16b322133a",
+            "0b9e1561e9e6d6b0ef909a20655cdf49"
+          ],
+          "sourcePath": "监控数据管理/数据处理管道.md",
+          "memoryId": "666ff014261a1dbd9600c7ad1524c1a7"
+        },
+        {
+          "id": "rel_122",
+          "text": "数据存储设计",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "998a89a957bc4a3efd2bb4f49bee94a7",
+            "a05c3b2ed5283962dadd67ddf7627769",
+            "efddc0565aca67ce757f57cbd6240726",
+            "61fbe73408470a9e1abe3dd274c74232"
+          ],
+          "sourcePath": "监控数据管理/数据存储设计.md",
+          "memoryId": "998a89a957bc4a3efd2bb4f49bee94a7"
+        },
+        {
+          "id": "rel_123",
+          "text": "数据查询优化",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8e418428599e285719c609292ab45b2b",
+            "c3b75014f08e9f3b428e27d74ad7b5e0",
+            "13ea07cf4b37d0a3f60e5ea0864a0aef",
+            "3645c60027beb0eb62d53e60a89f92a0"
+          ],
+          "sourcePath": "监控数据管理/数据查询优化.md",
+          "memoryId": "8e418428599e285719c609292ab45b2b"
+        },
+        {
+          "id": "rel_124",
+          "text": "数据源集成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2dd890bc876b7609996c7fb8918f27f4",
+            "74f7f06e652b243d59c95d03d252f24c",
+            "6b9dbac8264a2d98415dd5246c4454ce",
+            "b805bea20af85a035cdac6913dadad95"
+          ],
+          "sourcePath": "监控数据管理/数据源集成.md",
+          "memoryId": "2dd890bc876b7609996c7fb8918f27f4"
+        },
+        {
+          "id": "rel_125",
+          "text": "监控数据管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e86891c6f55936d353559c2cb39f265c",
+            "d22ed664313005316838abc3e33c3415",
+            "a46b3ef0b5291f46dd1b98b30a052a27",
+            "98a10621926cb47771a6a82f69ca2e49",
+            "218f17dee7c4cdfcfdc399c6956e7dfe",
+            "31e5e92adfc94ff8a7eebcd65b233839",
+            "a457d1806adc3be2ef5274e09ed55626"
+          ],
+          "sourcePath": "监控数据管理/监控数据管理.md",
+          "memoryId": "e86891c6f55936d353559c2cb39f265c"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/真实用户监控(RUM)": {
+      "hot_relations": [
+        {
+          "id": "rel_126",
+          "text": "RUM全栈监控",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f5f14f321daf2e499aadff29be2db88f",
+            "bf4df6183b55d7b370f66166e7195b30",
+            "995bb68eba53668cf847e1aeab9b3436",
+            "10a884f9d0680ce49d1116e374f18306",
+            "aa37a335b456c7ad944d16cdd699e1b1"
+          ],
+          "sourcePath": "真实用户监控(RUM)/RUM全栈监控.md",
+          "memoryId": "f5f14f321daf2e499aadff29be2db88f"
+        },
+        {
+          "id": "rel_127",
+          "text": "Span数据协议",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ed6056cb5fe2026d407eb87a4cf15cab",
+            "7cbf1cd75217dbb1bfebb959b73cc30b",
+            "d268202ca0587b2293f385fd3d0df991",
+            "8c17dd17b3843452fb3fe2900253c155"
+          ],
+          "sourcePath": "真实用户监控(RUM)/Span数据协议.md",
+          "memoryId": "ed6056cb5fe2026d407eb87a4cf15cab"
+        },
+        {
+          "id": "rel_128",
+          "text": "应用管理与配置",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "708120b3458ec8ad2ec9cdee7b98e6ab",
+            "d161689553518b278a8a38612f34d0ad",
+            "b7f24b03aa3515e78cb0e930825f5075",
+            "acf4ef9f3fc1c535370d759daa610e95",
+            "9789434ff8fcb423027c7ef4b2627bc7"
+          ],
+          "sourcePath": "真实用户监控(RUM)/应用管理与配置.md",
+          "memoryId": "708120b3458ec8ad2ec9cdee7b98e6ab"
+        },
+        {
+          "id": "rel_129",
+          "text": "指标查询与可视化",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7b3b0580121faf50ae7954bf0b8ed5a8",
+            "7cad8a8796ff8bc1394af1f005c0b815",
+            "6204c4a842829884d7be9a6b7c9d2fc0",
+            "06d2d775763af6c8f55cbf6f81f222c3"
+          ],
+          "sourcePath": "真实用户监控(RUM)/指标查询与可视化.md",
+          "memoryId": "7b3b0580121faf50ae7954bf0b8ed5a8"
+        },
+        {
+          "id": "rel_130",
+          "text": "数据模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7f73650731fff29ca24230917ffb047f",
+            "521fdfb5cbb8e3a12383c60a143a1469",
+            "14789631bd81125535073c112823d2e9",
+            "99c36c47b2a6335780dbb2b587f042aa",
+            "95af1ce06f4b431f1ff59260d74fbef0"
+          ],
+          "sourcePath": "真实用户监控(RUM)/数据模型.md",
+          "memoryId": "7f73650731fff29ca24230917ffb047f"
+        },
+        {
+          "id": "rel_131",
+          "text": "数据采集与上报",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "fb31cedce9071d34584994ceb564fcbf",
+            "78c208b9b2ed5a95b3b14d9afb55021b",
+            "9724075acb798605ffe278bf3f6997e1",
+            "94f4ea300b462a2f0089cc88cf67ce8e"
+          ],
+          "sourcePath": "真实用户监控(RUM)/数据采集与上报.md",
+          "memoryId": "fb31cedce9071d34584994ceb564fcbf"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/部署与运维": {
+      "hot_relations": [
+        {
+          "id": "rel_132",
+          "text": "Kubernetes集群管理",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f133f850fcac27bd23a217a6c3778c42",
+            "c0ccfe63b78fd33d9d754066488caebd",
+            "4c06d876962be61b2e9181737f88d40c",
+            "594b18e90f6630896eb05007011dc0c5",
+            "ec17818cec6945015bd34afeb5181e69",
+            "667c6ba0ea1ea825eb43ba6759d15817",
+            "3d0efa2d111949859c6b168448f960f0",
+            "7d8db45d1972163c1e1d616ec0704832",
+            "4f769ff6c34ed9d7c215725500e35eba"
+          ],
+          "sourcePath": "部署与运维/Kubernetes集群管理.md",
+          "memoryId": "f133f850fcac27bd23a217a6c3778c42"
+        },
+        {
+          "id": "rel_133",
+          "text": "容器化部署",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c55d0c4b60d5081477d43cb0f3eaa9ce",
+            "a9e7c77c9cc7ec40c388f4f5d7e730eb",
+            "57ce8d64889388f2bccc0d87d134c847",
+            "6c70e40ba4779d1221822e0f407595b7",
+            "b280a6d4ac34c26e36f03ec2fc68baed",
+            "78d042f7fba842f520f4b269c3961f64",
+            "5259c462d58dc04ce0d6c72bfd114e0a"
+          ],
+          "sourcePath": "部署与运维/容器化部署.md",
+          "memoryId": "c55d0c4b60d5081477d43cb0f3eaa9ce"
+        },
+        {
+          "id": "rel_134",
+          "text": "系统性能监控",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "cb425c9098a4b06b72a6947000b6e88b",
+            "4722e754d21af3db041cd58bc7a7e5f0",
+            "7a175e7ba8b42322570b848fb6bfc6b7",
+            "58e1af4cfccbed53ecd4cfbb1d974816",
+            "a326b91d48e92d4cdd69afd7bbc11b68"
+          ],
+          "sourcePath": "部署与运维/系统性能监控.md",
+          "memoryId": "cb425c9098a4b06b72a6947000b6e88b"
+        },
+        {
+          "id": "rel_135",
+          "text": "自动化运维工具",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8fcf106730303f5e195de965d39db976",
+            "322e6a8a9c58f0915b218bf95b856300",
+            "1e883d6601a1c6479648106383036957",
+            "c4620162a78e7e78e94ab32ab35228b9",
+            "0ab8d5fe1e70bdc24dbe686f09d6f544",
+            "5bcae26317a2cf484d094193d4e69aec"
+          ],
+          "sourcePath": "部署与运维/自动化运维工具.md",
+          "memoryId": "8fcf106730303f5e195de965d39db976"
+        },
+        {
+          "id": "rel_136",
+          "text": "部署与运维",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9ea5d7d28ebd4ccea57bce04d99a9372",
+            "c549f907656188794d39451e24b9d7db",
+            "39348cfc731484c9c129c6398c86b016",
+            "52db90da9b7b303760031b8ecc705e72",
+            "04318541d4672f27f24319760acbf0c8",
+            "25822237e6f2d0610add2699acb1592b"
+          ],
+          "sourcePath": "部署与运维/部署与运维.md",
+          "memoryId": "9ea5d7d28ebd4ccea57bce04d99a9372"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "wiki/项目概述": {
+      "hot_relations": [
+        {
+          "id": "rel_137",
+          "text": "快速开始",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "72dfe38aea5a9b15b5dce264a93e2a0e",
+            "3cdf958b7fab8b25816d8d2a0e535064",
+            "6950d675ceda0907c8f562a7a98e170c",
+            "ac14475acca1f6816c73955956391603",
+            "70712944ede695ea99fa24af7a35648e"
+          ],
+          "sourcePath": "项目概述/快速开始.md",
+          "memoryId": "72dfe38aea5a9b15b5dce264a93e2a0e"
+        },
+        {
+          "id": "rel_138",
+          "text": "技术栈",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "26dc44686efe5eece891fa5bb59bb1bf",
+            "c6f53e1213fcd807dc0aa0f634af4bb4",
+            "7dda1cb5c180d7da618d13d9675fe2ed",
+            "f2189aeb842c86a97c8f905be1461187",
+            "fbabda33258ec5fd02e40f9a0613e12a",
+            "c4bcff2331d1207e532a4a3fadf8a950"
+          ],
+          "sourcePath": "项目概述/技术栈.md",
+          "memoryId": "26dc44686efe5eece891fa5bb59bb1bf"
+        },
+        {
+          "id": "rel_139",
+          "text": "架构概览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5e177f6a2293d8c58e2e00d102889bfb",
+            "d5bacfa7a469ffa665898bd0e3c8223c",
+            "f6a56cee4a3ad657a4e1dc658ce1f0ad",
+            "3090f8e61c37229021f97a2591652996",
+            "845c946a8d7be0f88d08ccae00351327",
+            "9c9083cf9396f8366ff6aec58228525d",
+            "510c29d13cabc03fd663b7abb6a676a5",
+            "b4eb1b425df88afec0d75807d5d0fef0"
+          ],
+          "sourcePath": "项目概述/架构概览.md",
+          "memoryId": "5e177f6a2293d8c58e2e00d102889bfb"
+        },
+        {
+          "id": "rel_140",
+          "text": "核心特性",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ee28c5dea6b592fa5d30c0998a5aff81",
+            "db8b21194e5c02f7d9bc39e255d4a956",
+            "955acbe2dffa59bdb384a17f06e74960",
+            "f71f0c61bc7dbd416c956cd7ab30c02c",
+            "32a952a95fd3547154ddbd05ba1df19a"
+          ],
+          "sourcePath": "项目概述/核心特性.md",
+          "memoryId": "ee28c5dea6b592fa5d30c0998a5aff81"
+        },
+        {
+          "id": "rel_141",
+          "text": "设计理念",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "01589aa711771cc2b0d5f25e34d74a74",
+            "68fa3d1ea677ac9a3869d784844637b0",
+            "c5a6eec48d2528d8b499f8b516fe3968",
+            "c79fbf905c0cc8c7c76f59382ffe2f11"
+          ],
+          "sourcePath": "项目概述/设计理念.md",
+          "memoryId": "01589aa711771cc2b0d5f25e34d74a74"
+        },
+        {
+          "id": "rel_142",
+          "text": "项目介绍",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ad206f632a1ad695a1e51e3b613a98c9",
+            "5eef54e6c8508b371e768c5bfa0e5c39",
+            "299d7b58e36c0d08440e2131648043eb",
+            "cc8b577b61d6b73ee4319685bdc7ff0b",
+            "a0d9327c014e681d086d64aff8e3d965"
+          ],
+          "sourcePath": "项目概述/项目介绍.md",
+          "memoryId": "ad206f632a1ad695a1e51e3b613a98c9"
+        },
+        {
+          "id": "rel_143",
+          "text": "项目概述",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "461da474376bd502275bd229dc0f1d31",
+            "ab4982afca3c225cc3bb254561b15213",
+            "87720f40aa3047652939e0ffc11afc85",
+            "c8f2264f192910a2d56b86f278efd8f4",
+            "0dccc050c90049420d9b0fb649dfce5a"
+          ],
+          "sourcePath": "项目概述/项目概述.md",
+          "memoryId": "461da474376bd502275bd229dc0f1d31"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    }
+  },
+  "updatedAt": "2026-08-11T10:26:50.769Z"
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "scope": "monitor-memory",
+  "groups": {
+    "monitor-memory": {
+      "API 集成模式": {},
+      "Resource 框架": {},
+      "专题记忆": {
+        "Issue": {},
+        "TAPD功能模块": {},
+        "元数据初始化数据": {},
+        "场景视图模型": {},
+        "数据源查询机制": {}
+      },
+      "工具库": {},
+      "技术栈选型": {},
+      "最近需求": {},
+      "系统配置与异常": {},
+      "背景与目标": {
+        "项目架构": {}
+      },
+      "进度": {},
+      "通用记忆片段": {
+        "关键逻辑": {}
+      },
+      "项目踩坑点": {}
+    },
+    "测试目录": {}
+  },
+  "updatedAt": "2026-08-11T12:25:19.163Z",
+  "source": {
+    "dir": "/root/bk-monitor/bk-monitor-wiki/monitor-memory",
+    "rootName": "monitor-memory",
+    "commit": "89e0187667ef47af85dde0755a4a699107177914",
+    "chunkSize": 1000,
+    "chunkOverlap": 150
+  }
+}

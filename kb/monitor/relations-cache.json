@@ -1765,7 +1765,26 @@
         "自动化运维工具"
       ],
       "max_hot_count": 10
+    },
+    "核心模块架构": {
+      "hot_relations": [
+        {
+          "id": "rel_138",
+          "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        }
+      ],
+      "keywords": [
+        "异常处理",
+        "BKAPIError",
+        "错误码",
+        "kernel_api"
+      ],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-06-23T07:42:05.566Z"
+  "updatedAt": "2026-08-04T07:53:34.130Z"
 }

@@ -72,5 +72,10 @@
 ## 结论
 
 - **✅ 全绿（当前环境可跑）**：`test_issue_fingerprint.py`（64）、`test_issue_llm_title.py` + `test_regenerate_issue_llm_title_command.py`（93）、`test_issue_resources.py`（21）、`test_issue_merge_expand.py`（10）、`test_issue_activities_contract.py`（7，AST 免依赖）、`test_issue_v4.py`、`test_issue_merge.py`（72，**需 api 角色**）。
+- **✅ 全绿（本次新增）**：`test_issue_rename_conflict.py`（REQ-20260803-001 专有状态码）——**自包含环境**（顶部 `import hello` 加载 Django 环境，无需手动配置），两种角色：
+  - web 角色（默认）→ 7 passed, 2 skipped（仅 kernel_api `RenameResource` 用例因角色环境自动 skip；`api_exception_handler` 渲染用例依赖轻量，web 角色下同样可执行）
+  - api 角色（`BK_ISSUE_TEST_ROLE=api`）→ 9 passed 全绿
+  - 已覆盖：错误类常量 / kernel_api 抛专有错误 / web 端转码（mock 对齐真实 `api_exception_handler` data 白名单）/**渲染契约锁定**（HTTP 200 + body code=3327001 + data 白名单拦截 name）
+  - 运行：`bkmonitor/.venv/bin/python -m pytest -p no:django .module-experts/issue专家/test/test_issue_rename_conflict.py -q`
 - **⚠️ 环境受限**：`test_bkm_cli_inspect_issue.py`（需 api 角色/完整环境）、`test_issue_trend_contract.py` 1 条（需前端完整检出）。
 - **全局前置**：`--override-ini "filterwarnings="` + 显式环境变量 + `.venv` + **按切面选择角色**（worker/web/api），角色选错会出现"假失败"。

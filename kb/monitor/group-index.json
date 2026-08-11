@@ -33,9 +33,10 @@
       "监控数据管理": {},
       "测试策略": {},
       "部署与运维": {}
-    }
+    },
+    "核心模块架构": {}
   },
-  "updatedAt": "2026-06-18T02:16:14.846Z",
+  "updatedAt": "2026-08-04T07:53:34.128Z",
   "source": {
     "dir": "/root/bk-monitor/bk-monitor-wiki",
     "rootName": "BKMonitorWiki",

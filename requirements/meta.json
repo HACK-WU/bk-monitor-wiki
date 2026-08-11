@@ -170,6 +170,54 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-08-03-Issue 重命名异常返回专有状态码": {
+      "id": "REQ-20260803-001",
+      "feature": "Issue 重命名异常返回专有状态码",
+      "created": "2026-08-03 16:22:31",
+      "updated": "2026-08-04 17:33:43",
+      "status": "已完成",
+      "tags": [
+        "integration",
+        "issue",
+        "rename",
+        "错误码"
+      ],
+      "version": 5,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-08-03 16:23:39 v2: 完成需求落盘",
+        "2026-08-03 17:14:41 v3: 记录单元测试位置（专家团 test 目录）",
+        "2026-08-04 17:33:43 v4: 完成代码审查",
+        "2026-08-04 17:33:43 v5: 完成自动质疑审查"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": ".module-experts/issue专家/test/test_issue_rename_conflict.py",
+          "type": "test"
+        },
+        {
+          "path": "review/code-review.md",
+          "type": "review"
+        },
+        {
+          "path": "review/challenge-report.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
+  },
+  "id_counters": {
+    "REQ-20260803": 1
   }
 }

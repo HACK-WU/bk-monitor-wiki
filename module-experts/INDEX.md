@@ -23,6 +23,7 @@
 ## 场景视图专家（职责摘要见 agent.md）
 - 模块根：bkmonitor/packages/monitor_web/scene_view/
 - 重建日期：2026-07-27  git commit：ca831622
+- 匹配关键词：场景视图, 视图配置, 内置视图, 主机进程列表, GetHostProcessListResource, memRss, memUsage, 进程指标, mem_usage_pct, PageListResource, 主机拓扑详情, 分屏
 - 契约层：C0-使用总览, C1-能力契约, C2-使用流程
 - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型
 - 子专家：无
@@ -31,6 +32,7 @@
 ## 性能场景专家（职责摘要见 agent.md）
 - 模块根：bkmonitor/packages/monitor_web/performance/
 - 重建日期：2026-07-27  git commit：916585db
+- 匹配关键词：主机性能, 主机列表, 主机详情, 拓扑节点, 进程状态, 主机指标, HostPerformanceResource, memUsage, mem_usage, psc_mem_usage, cpu_usage, disk_in_use, 内存使用率
 - 契约层：C0-使用总览, C1-能力契约, C2-使用流程
 - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型
 - 子专家：无
@@ -64,3 +66,43 @@
 - 测试：test/known-failures.md
 - 匹配关键词：告警屏蔽, 屏蔽, scope, strategy, alert, dimension, ShieldObj, AddShieldResource, ShieldCacheManager, 快捷屏蔽, QuickShield, dimension_conditions, 屏蔽通知, HostShielder, ShieldDetectManager
 - 子专家：无
+
+## kernel_api 网关专家（职责摘要见 agent.md）
+- 模块根：bkmonitor/kernel_api/
+- 生成日期：2026-08-06  git commit：未提交（工作区）
+- 匹配关键词：kernel_api, API网关, ResourceViewSet, ResourceRouter, JWT鉴权, API Token, MCP认证, apigw, KernelRPCRegistry, RPC函数, ApiRenderer, 字段映射, 内部Resource复用, 批发场景, v2/v3/v4 API
+- 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C4-数据流向与消费
+- 实现层：implementation/01-架构, 02-实现, 05-接口, 06-测试, 07-运维
+- 测试状态：⚠️ 依赖外部环境（kernel_api/tests/ 7 文件 + rpc/tests/ 22 文件）；test/known-failures.md（暂无实测已知失败）
+- 子专家：
+  - **认证与安全子专家**（sub-experts/认证与安全子专家/）：JWT/API Token/MCP 认证、用户自动创建，匹配关键词：认证, JWT, Token, MCP, 中间件, apigw, 授权, 用户
+  - **RPC 函数注册子专家**（sub-experts/rpc函数注册子专家/）：KernelRPCRegistry 函数注册、bkm-cli op 白名单、租户推断，匹配关键词：RPC, KernelRPCRegistry, bkm-cli, op, 租户推断, admin巡检, 只读命令
+  - **内部 Resource 复用子专家**（sub-experts/内部resource复用子专家/）：批发场景内部 Resource、operation 运营指标，匹配关键词：Resource复用, 批发场景, MCP告警, 日志检索, 日志提取, 运营指标, OperationMetric
+  - **v4 API 视图子专家**（sub-experts/v4视图子专家/）：对外 v4 API 视图集与独立 Resource，匹配关键词：v4视图, ViewSet, endpoint, 告警事件中心, Issue, 策略, 屏蔽
+
+## 外部 API 集成专题（专题）
+- 模块根：bkmonitor/api/
+- 生成日期：2026-08-07  git commit：未提交（工作区）
+- 匹配关键词：外部API, APIResource, 第三方系统, ESB, cmdb, bkdata, kubernetes, tapd, node_man, gse, metadata, unify_query, base_url, get_headers, render_response_data, Basic Auth, Bearer Token, 蓝鲸网关
+- 专题层：T0-专题总览（T1 暂无）
+- 专家清单：
+  - **基础平台与网关专家**（蓝鲸 PaaS 基础：用户/租户/插件/权限/网关公钥/文档）
+    - 匹配关键词：bk_login, bk_paas, bk_plugin, iam, bk_apigateway, CommonBaseResource, 租户, 用户, apigw公钥, 插件凭证
+    - 契约层：C0-使用总览, C1-能力契约
+    - 实现层：implementation/01-架构, 02-实现, 06-测试
+  - **CMDB 与容器资源专家**（CMDB/kubernetes/bcs 系列/node_man 资源与容器数据源）
+    - 匹配关键词：cmdb, kubernetes, bcs, bcs_cluster_manager, bcs_storage, node_man, 主机, 拓扑, K8s, 容器, batch_request, CacheResource
+    - 契约层：C0-使用总览, C1-能力契约
+    - 实现层：implementation/01-架构, 02-实现, 06-测试
+  - **数据平台专家**（bkdata/metadata/unify_query/log_search/aiops_sdk 数据链路）
+    - 匹配关键词：bkdata, metadata, unify_query, log_search, aiops_sdk, 结果表, 数据源, 统一查询, 日志检索, AIOps, token鉴权
+    - 契约层：C0-使用总览, C1-能力契约
+    - 实现层：implementation/01-架构, 02-实现, 06-测试
+  - **协作与流程专家**（tapd/issue/itsm/cmsi/sops/job/devops/bkchat/bk_incident）
+    - 匹配关键词：tapd, issue, itsm, cmsi, sops, job, devops, bkchat, bk_incident, 通知, 审批, 流水线, 缺陷
+    - 契约层：C0-使用总览, C1-能力契约
+    - 实现层：implementation/01-架构, 02-实现, 06-测试
+  - **监控生态专家**（monitor/grafana/apm_api/rum_api/aidev/bmw）
+    - 匹配关键词：monitor, grafana, apm_api, rum_api, aidev, bmw, 仪表盘, APM, RUM, LLM, 常驻任务
+    - 契约层：C0-使用总览, C1-能力契约
+    - 实现层：implementation/01-架构, 02-实现, 06-测试

@@ -211,14 +211,6 @@
           "memoryId": "53878a68-3ffa-4674-b5ae-52b815df7b88"
         },
         {
-          "id": "rel_035",
-          "text": "内核API内部Resource复用模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false
-        },
-        {
           "id": "rel_036",
           "text": "内部API暴露模式",
           "score": 1,
@@ -240,6 +232,30 @@
           "score": 1,
           "useCount": 1,
           "lastUsedTime": 1783563285508,
+          "isImported": false
+        },
+        {
+          "id": "rel_035",
+          "text": "内核API内部Resource复用模式",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_096",
+          "text": "三层错误传播链路与专有错误码",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
+        },
+        {
+          "id": "rel_100",
+          "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": false
         }
       ],
@@ -265,7 +281,12 @@
         "网关接口",
         "路由",
         "加密",
-        "测试"
+        "测试",
+        "错误码",
+        "错误传播",
+        "BKAPIError",
+        "custom_exception_handler",
+        "异常处理"
       ],
       "max_hot_count": 10
     },
@@ -355,6 +376,14 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "2f9577a3-c323-4139-93cc-f82ed5d3044b"
+        },
+        {
+          "id": "rel_098",
+          "text": "[2026-08-03] Issue rename 重命名异常返回专有状态码（REQ-20260803-001）",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
         }
       ],
       "keywords": [
@@ -373,7 +402,11 @@
         "连接数",
         "文件句柄",
         "fd_num",
-        "thread_connected"
+        "thread_connected",
+        "rename",
+        "3327001",
+        "重命名异常",
+        "专有状态码"
       ],
       "max_hot_count": 10
     },
@@ -621,6 +654,14 @@
           "lastUsedTime": null,
           "isImported": false,
           "memoryId": "711e8792-d126-45ce-82e9-4e11d963e2ad"
+        },
+        {
+          "id": "rel_097",
+          "text": "错误码段冲突与 HTTP 状态码网关透传丢失",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false
         }
       ],
       "keywords": [
@@ -652,7 +693,11 @@
         "instanceCount",
         "GetHostProcessListResource",
         "UnifyQuery",
-        "get_process_instance_count"
+        "get_process_instance_count",
+        "3318001",
+        "3327",
+        "data_link",
+        "BKAPIError.data"
       ],
       "max_hot_count": 10
     },
@@ -690,6 +735,14 @@
           "useCount": 0,
           "lastUsedTime": null,
           "isImported": false
+        },
+        {
+          "id": "rel_099",
+          "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获（Issue rename 重名冲突为例）",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1785830359966,
+          "isImported": false
         }
       ],
       "keywords": [
@@ -707,7 +760,10 @@
         "模板",
         "IssueDocument",
         "关键字段",
-        "merge_status"
+        "merge_status",
+        "异常处理",
+        "BKAPIError",
+        "错误码"
       ],
       "max_hot_count": 10
     },
@@ -995,5 +1051,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-03T06:16:53.365Z"
+  "updatedAt": "2026-08-04T07:59:19.966Z"
 }

@@ -1,9 +1,0 @@
-{
-  "Issue API 接口": "Issue 功能对外提供三层接口访问： 1. Web RESTful API（ftaweb/issue/）— 前端直接调用的完整 CRUD 接口",
-  "version": 1,
-  "updatedAt": "2026-06-18T02:16:14.772Z",
-  "Issue 周期任务": "Issue 周期任务（celery periodic tasks）负责定期维护 Issue 的统计信息与数据一致性。核心任务 syncissuealertstats 通过 celery beat 调度，对全量活跃 Issue 执行以下 5 项操作： 1. 告警统计同步：更新 alertcount 和 lastalerttime",
-  "Issue 状态管理": "Issue 状态管理由 IssueDocument 类中的状态机方法实现，覆盖 Issue 从创建到归档的完整生命周期。所有状态变更操作均通过 IssueActivityDocument 记录活动日志，形成完整审计链。 核心设计原则：",
-  "Issue 系统设计总览": "Issue 是 BK-Monitor 告警处理链路中的问题聚合与跟踪域。其核心目标是：将海量告警按\"同一具体问题\"聚合为 Issue，帮助运维人员聚焦问题根因而非逐条处理告警事件。 Issue 功能完整覆盖以下能力：",
-  "Issue 聚合引擎": "Issue 聚合引擎（IssueAggregationProcessor）是 ftaaction 阶段的核心组件，负责将每条告警事件聚合到对应的 Issue。其核心逻辑是： 1. 从策略配置中提取 issueconfig（是否启用、聚合维度、告警级别、过滤条件）"
-}

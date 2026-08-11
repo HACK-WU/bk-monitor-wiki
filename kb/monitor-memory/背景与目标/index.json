@@ -1,6 +1,0 @@
-{
-  "项目简介": "## BK-Monitor 项目简介\n\nBlueKing Monitor（BK-MONITOR）是蓝鲸 PaaS 官方集成的监控平台，提供可扩展的数据采集、大规模处理、简洁的 UI 和可扩展性。面向多样化的监控场景，旨在提升在线服务的及时性、准确性和智能化水平。\n\n- master 分支不稳定，稳定版本通过 GitHub Releases 发布\n- 项目采用模块化 AI 增强架构，在传统 Django 单体中集成 AI Agent 能力",
-  "version": 1,
-  "updatedAt": "2026-06-18T06:48:30.268Z",
-  "仓库结构": "## 仓库结构\n\n- `bk-monitor-wiki` 是**独立仓库**，不与主工程 `bkmonitor` 共用同一个 Git 仓库\n- 两个仓库各自维护独立的版本历史和提交记录"
-}

@@ -1,12 +1,4 @@
----
-groupPath: API 集成模式
-relation: web 与 kernel_api 异常链路差异与 BKAPIError 捕获
-keywords: [异常处理, BKAPIError, 错误码]
-exportedAt: "2026-08-04T07:59:13.011Z"
----
-# web 与 kernel_api 异常链路差异与 BKAPIError 捕获
-
-> 从 REQ-20260803-001（Issue 重命名异常返回专有状态码）沉淀，同步自 monitor 知识库「核心模块架构」。
+web 与 kernel_api 两套异常处理器的差异，以及 web 网关 APIResource 捕获 BKAPIError 的方式和 Issue rename 重名冲突的实际链路。从 REQ-20260803-001（Issue 重命名异常返回专有状态码）沉淀，同步自 monitor 知识库「核心模块架构」。
 
 ## 两套异常处理器差异
 
@@ -19,7 +11,8 @@ exportedAt: "2026-08-04T07:59:13.011Z"
 
 ## BKAPIError 捕获方式（web 网关 APIResource）
 
-文件：`bkmonitor/core/drf_resource/contrib/api.py`，定义 `bkmonitor/core/errors/api.py`（code 3301001，`data=上游响应体`）。
+- 位置: `bkmonitor/core/drf_resource/contrib/api.py`
+- 位置: `bkmonitor/core/errors/api.py`（code 3301001，`data=上游响应体`）
 
 1. **HTTPError 分支**（上游 4xx/5xx）：`raise BKAPIError(result=str(err.response.content))`，data 是字符串。REQ-03 曾改 `err.response.json()` 透传 dict，经评估无效（kernel_api 返回 200 不走此分支）且影响 metadata `_is_remote_component_not_found`（消费 data.code/message）→ **已回退**。
 2. **body 检查分支**（HTTP 200 但业务失败）：`if not result_json.get("result", True) and ret_code != 0: raise BKAPIError(result=result_json)`，data 是完整 dict。

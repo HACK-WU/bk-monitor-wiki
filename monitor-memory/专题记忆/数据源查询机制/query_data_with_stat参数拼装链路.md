@@ -1,13 +1,4 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: query_data_with_stat参数拼装链路
-keywords: [query_data_with_stat, process_unify_query_series_stat]
-exportedAt: "2026-07-14T03:31:22.838Z"
----
-# UnifyQuery.query_data_with_stat 参数拼装链路
-
-> 调研目标：追踪 `query_data_with_stat` 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 `query_data` 的差异。
-> 定位：本文是「UnifyQuery 全查询链路调研」之一。前置见 `unify_query_query_data.md`（共享的 `to_unify_query_config` / `get_unify_query_params` 不再复述）。
+UnifyQuery.query_data_with_stat 参数拼装链路，追踪 query_data_with_stat 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 query_data 的差异。query_data_with_stat 与 query_data 走完全相同的参数拼装链路，唯一区别是 with_series_stat=True 开关，使内部在拿到 unify-query 返回后额外聚合 series_stat 并以 dict 形式返回。
 
 ## 一、链路总览
 
@@ -35,7 +26,10 @@ api.unify_query.query_data(**params)      ← POST /query/ts（同一接口）
 
 **结论**：`query_data_with_stat` 与 `query_data` 走**完全相同的参数拼装链路**，唯一区别是 `with_series_stat=True` 开关，使内部在拿到 unify-query 返回后额外聚合 `series_stat` 并以 `dict` 形式返回。其 `params` 全貌与 `query_data`（见基线篇第三节）一字不差。
 
-## 三、series_stat 的拼装（query.py:277 / 534）
+## 三、series_stat 的拼装
+
+- 符号: `UnifyQuery.process_unify_query_series_stat`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 - unify-query 返回的每个 `series` 自带 `stat`（如 `{"avg":12.8,"max":13.1,"min":12.5,"count":2}`），无 stat 时为空 dict。
 - `process_unify_query_series_stat` 遍历 `data["series"]`，以 **`(dimensions, metric_field)` 二元组** 为 key 归并：

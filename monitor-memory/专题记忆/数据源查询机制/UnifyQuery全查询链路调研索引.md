@@ -1,14 +1,6 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: UnifyQuery全查询链路调研索引
-keywords: [统一查询参数拼接, query_data, 数据源查询机制, with_series_stat]
-exportedAt: "2026-07-14T03:30:55.129Z"
----
-# UnifyQuery 全查询链路调研 · 索引
+UnifyQuery 全查询链路调研索引，补齐 UnifyQuery 全部公开查询入口的参数拼装链路，每链路独立成文。数据源聚焦 BK_MONITOR_COLLECTOR / TIME_SERIES，LOG 类差异在 query_log 中另作说明。
 
-> 背景：原 wiki「统一查询参数拼接链路」只覆盖 `query_data` 单链路 + `BK_MONITOR_COLLECTOR/TIME_SERIES` 单数据源。
-> 本目录补齐 `UnifyQuery` 全部公开查询入口的参数拼装链路，每链路独立成文，供审核。
-> 数据源聚焦：`BK_MONITOR_COLLECTOR / TIME_SERIES`（LOG 类差异在 `query_log.md` 中另作说明）。
+背景：原 wiki「统一查询参数拼接链路」只覆盖 query_data 单链路 + BK_MONITOR_COLLECTOR/TIME_SERIES 单数据源。本目录补齐 UnifyQuery 全部公开查询入口的参数拼装链路，每链路独立成文，供审核。
 
 ## 文档清单
 

@@ -1,13 +1,4 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: query_reference参数拼装链路
-keywords: [QueryReferenceResource]
-exportedAt: "2026-07-14T03:31:34.712Z"
----
-# UnifyQuery.query_reference 参数拼装链路
-
-> 调研目标：追踪 `query_reference` 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 `query_data` 的差异。
-> 定位：本文是「UnifyQuery 全查询链路调研」之一。共享的 `to_unify_query_config` / `get_unify_query_params` 见 `unify_query_query_data.md`，不再复述。
+UnifyQuery.query_reference 参数拼装链路，追踪 query_reference 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 query_data 的差异。query_reference 逐条注入 limit/from 分页，透传 order_by，走 POST /query/ts/reference 端点，不计算 series_stat。
 
 ## 一、链路总览
 
@@ -41,7 +32,10 @@ api.unify_query.query_reference(**params)   ← POST /query/ts/reference
 
 ## 三、各步详解
 
-### 1. _query_reference_using_unify_query（query.py:539）
+### 1. _query_reference_using_unify_query
+
+- 符号: `UnifyQuery._query_reference_using_unify_query`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 - `params = self.get_unify_query_params(start_time, end_time, time_alignment, order_by)`：`order_by` 由调用方传入（可为 `["-_time"]` 或带维度的排序）。
 - **逐条 query 注入分页**：
@@ -54,7 +48,10 @@ api.unify_query.query_reference(**params)   ← POST /query/ts/reference
 - `params["timezone"] = timezone.get_current_timezone_name()`。
 - 调用 `api.unify_query.query_reference(**params)` → `QueryReferenceResource`。
 
-### 2. API：QueryReferenceResource（api/unify_query/default.py:217）
+### 2. API：QueryReferenceResource
+
+- 符号: `QueryReferenceResource`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/api/default.py`
 
 - `method = "POST"`，`path = "/query/ts/reference"`。
 - `RequestSerializer` 字段：`query_list`、`metric_merge`、`start_time`、`end_time`、`step`、`space_uid`、`timezone`、`instant`、`order_by`、`look_back_delta`（**默认 `"1m"`**）。

@@ -1,14 +1,4 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: query_log参数拼装链路
-keywords: [query_log, QueryRawResource, process_unify_query_log, 原始日志查询]
-exportedAt: "2026-07-14T03:32:14.214Z"
----
-# UnifyQuery.query_log 参数拼装链路
-
-> 调研目标：追踪 `query_log` 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 `query_data` 的差异。
-> 定位：本文是「UnifyQuery 全查询链路调研」之一。共享的 `get_unify_query_params` 见 `unify_query_query_data.md`，不再复述。
-> 注意：`query_log` 主要服务于 **LOG 类数据源**（`BK_MONITOR_COLLECTOR/LOG`、`BK_LOG_SEARCH/LOG`、`BK_APM/LOG`、`CUSTOM/EVENT`）。本文在「差异」中说明 TIME_SERIES 与 LOG 数据源在 `to_unify_query_config` 形态上的不同。
+UnifyQuery.query_log 参数拼装链路，追踪 query_log 的入参如何拼成 HTTP 请求参数，并重点标注它与基线 query_data 的差异。query_log 主要服务于 LOG 类数据源，逐条剥离聚合（function/field_name/time_aggregation 清空），走 POST /query/ts/raw 端点。
 
 ## 一、链路总览
 
@@ -40,7 +30,10 @@ api.unify_query.query_raw(**params)      ← POST /query/ts/raw（_from→from �
 
 ## 三、各步详解
 
-### 1. _query_log_using_unify_query（query.py:577）
+### 1. _query_log_using_unify_query
+
+- 符号: `UnifyQuery._query_log_using_unify_query`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 - `params = self.get_unify_query_params(start_time, end_time, time_alignment, order_by)`。
 - **逐条剥离聚合**（原始日志查询语义）：
@@ -53,23 +46,29 @@ api.unify_query.query_raw(**params)      ← POST /query/ts/raw（_from→from �
 - **不处理 `instant`**，故 step 保持 `get_unify_query_params` 原值（不会被强制 "1m"）。
 - 调用 `api.unify_query.query_raw(**params)` → `QueryRawResource`。
 
-### 2. API：QueryRawResource（api/unify_query/default.py:190）
+### 2. API：QueryRawResource
+
+- 符号: `QueryRawResource`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/api/default.py`
 
 - `method = "POST"`，`path = "/query/ts/raw"`。
 - `RequestSerializer` 字段：`query_list`、`metric_merge`、`start_time`、`end_time`、`step`、`limit`、`_from`、`space_uid`、`timezone`、`instant`、`order_by`。
 - `perform_request` 中 `params["from"] = params.pop("_from", 0)`：因 `from` 是 Python 关键字，内部用 `_from` 承载，真正请求时转回 `from`。
 - 与 `QueryDataResource` 相比：**无 `down_sample_range` / `not_time_align`**，多 `limit` / `_from` / `order_by`。
 
-### 3. 后处理（query.py:315 / 327）
+### 3. 后处理
+
+- 符号: `UnifyQuery.process_unify_query_log` / `UnifyQuery.process_log_by_datasource`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 - `process_unify_query_log`：将日志记录的元数据（`__data_label/__doc_id/__index/__result_table/__parse_failure`）移入 `_meta`，原 `_time` 移入 `_meta["_time_"]`。
 - `process_log_by_datasource`：当 `(data_source_label, data_type_label)` ∈ `{BK_APM/LOG, CUSTOM/EVENT, BK_MONITOR_COLLECTOR/LOG, BK_LOG_SEARCH/LOG}` 时，调用 `ds.process_unify_query_log` 做数据源级后处理（如 LOG 数据源的 `_source` 展平）。
-- 返回 `(records, total)`：**注意**——在 unify-query 路径下（`use_unify_query()=True`），`query_log` 将 `total` 硬编码为 `0`（query.py:905）并忽略 raw 响应中的总数；只有在走数据源原生路径（`_query_log_using_datasource`）时，`total` 才是真实的日志总数。因此聚焦的 unify-query 路径下 `total` 恒为 `0`。
+- 返回 `(records, total)`：**注意**——在 unify-query 路径下（`use_unify_query()=True`），`query_log` 将 `total` 硬编码为 `0` 并忽略 raw 响应中的总数；只有在走数据源原生路径（`_query_log_using_datasource`）时，`total` 才是真实的日志总数。因此聚焦的 unify-query 路径下 `total` 恒为 `0`。
 
 ### 4. 数据源差异：to_unify_query_config（LOG 类 vs TIME_SERIES）
 
-- **TIME_SERIES**（`TimeSeriesDataSource`，data_source/__init__.py:1034）：`table_id/field_name/reference_name/dimensions/function/time_aggregation/keep_columns` 完整——但经 `query_log` 后 `function/field_name/time_aggregation` 被清空。
-- **LOG 类**（`BaseBkMonitorLogDataSource`，data_source/__init__.py:1663）：`to_unify_query_config` 形态本就不同——`field_name=""`、`reference_name=""`、`function=[]`、`time_aggregation={}`、`keep_columns=[]`、`order_by=[]`，且带 `data_source`（bklog/bkapm）、`query_string`、`conditions`（日志操作符映射）。即 LOG 数据源天生就是"无聚合原始查询"形态，与 `query_log` 的剥离逻辑天然契合。
+- **TIME_SERIES**（`TimeSeriesDataSource`）：`table_id/field_name/reference_name/dimensions/function/time_aggregation/keep_columns` 完整——但经 `query_log` 后 `function/field_name/time_aggregation` 被清空。
+- **LOG 类**（`BaseBkMonitorLogDataSource`）：`to_unify_query_config` 形态本就不同——`field_name=""`、`reference_name=""`、`function=[]`、`time_aggregation={}`、`keep_columns=[]`、`order_by=[]`，且带 `data_source`（bklog/bkapm）、`query_string`、`conditions`（日志操作符映射）。即 LOG 数据源天生就是"无聚合原始查询"形态，与 `query_log` 的剥离逻辑天然契合。
 
 ## 四、最终 params 全貌（LOG 数据源，原始查询）
 

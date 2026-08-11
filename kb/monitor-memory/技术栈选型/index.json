@@ -1,5 +1,0 @@
-{
-  "技术栈清单": "## BK-Monitor 技术栈\n\n| 类别 | 技术 |\n|------|------|\n| 主语言 | Python |\n| Web 框架 | Django（单体架构） |\n| 数据分析 | duckdb（嵌入式 SQL 查询分析） |\n| Embedding 模型 | SiliconFlow Qwen/Qwen3-Embedding-8B（4096维） |\n| Reranker 模型 | SiliconFlow Qwen/Qwen3-Reranker-8B |\n| Python 环境 | `/root/bk-monitor/bkmonitor/.venv/bin/python` |",
-  "version": 1,
-  "updatedAt": "2026-06-18T06:48:34.296Z"
-}

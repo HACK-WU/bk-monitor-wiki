@@ -1,13 +1,4 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: 统一查询参数拼接链路(data_source_class→query_list→params)
-keywords: [统一查询参数拼接, 指标聚合映射, 瞬时查询, 平铺, 时间对齐]
-exportedAt: "2026-07-14T02:12:54.223Z"
----
-# 统一查询参数拼接链路：data_source_class → query_list → params
-
-> 调研目标：追踪 `data_source_class(bk_biz_id, interval, metrics, table, group_by)` 的入参如何最终拼成统一查询的 HTTP 请求参数。
-> 关联知识：本 Group 下「数据源查询三层架构与表名字段来源」讲三层架构与表名/字段来源，本文聚焦**参数拼装细节**。
+统一查询参数拼接链路：data_source_class → query_list → params，追踪 data_source_class(bk_biz_id, interval, metrics, table, group_by) 的入参如何最终拼成统一查询的 HTTP 请求参数。metrics 列表被平铺成 query_list 数组里的多条独立条目，每条携带相同的 table/group_by/time_aggregation，但各自有独立的 field_name/reference_name/keep_columns。
 
 ## 一、拼接链路总览
 
@@ -34,7 +25,10 @@ api.unify_query.query_data(**params)      ← 最终 HTTP 调用
 
 ## 二、各步详解
 
-### 1. DataSource.to_unify_query_config（bkmonitor/bkmonitor/data_source/data_source/__init__.py:1034）
+### 1. DataSource.to_unify_query_config
+
+- 符号: `DataSource.to_unify_query_config`
+- 位置: `bkmonitor/bkmonitor/data_source/data_source/__init__.py`
 
 入参（以 cc/resources/cmdb.py 进程查询为例）：
 ```python
@@ -75,7 +69,10 @@ group_by = ["bk_host_id", "bk_target_ip", "bk_target_cloud_id", "display_name", 
 ```
 mem_res/a1、mem_usage_pct/a2、uptime/a3 同理，仅 field_name/reference_name/keep_columns 第二项不同。
 
-### 2. UnifyQuery.get_unify_query_params（bkmonitor/bkmonitor/data_source/unify_query/query.py:355）
+### 2. UnifyQuery.get_unify_query_params
+
+- 符号: `UnifyQuery.get_unify_query_params`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 - `step`：interval=180 → `"180s"`
 - `expression`：self.expression="a" 非空 → 直接用 "a"
@@ -84,7 +81,10 @@ mem_res/a1、mem_usage_pct/a2、uptime/a3 同理，仅 field_name/reference_name
 - `space_uid = bk_biz_id_to_space_uid(bk_biz_id)`、`bk_tenant_id = bk_biz_id_to_bk_tenant_id(bk_biz_id)`
 - `start_time/end_time`：time_alignment=True 且 not_time_align=False → 经 `time_interval_align(sec, 180)` **时间对齐**到 180s 边界
 
-### 3. UnifyQuery._query_unify_query（bkmonitor/bkmonitor/data_source/unify_query/query.py:455）
+### 3. UnifyQuery._query_unify_query
+
+- 符号: `UnifyQuery._query_unify_query`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 **瞬时查询**（instant=True）触发：`params["instant"]=True`，且 **step 被覆盖为 `"1m"`**；再补 `down_sample_range=""`、`timezone=<当前时区>`。
 

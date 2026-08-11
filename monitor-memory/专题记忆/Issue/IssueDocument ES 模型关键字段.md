@@ -1,15 +1,10 @@
----
-groupPath: 专题记忆/Issue
-relation: IssueDocument ES 模型关键字段
-keywords: [IssueDocument, 关键字段, merge_status]
-exportedAt: "2026-07-06T04:01:34.256Z"
----
-# IssueDocument ES 模型关键字段
+IssueDocument ES 模型关键字段说明，包含 IssueDocument 与 IssueActivityDocument 的字段定义、合并/拆分方法以及 merge_status 状态机。
 
-## 入口
-- `bkmonitor/documents/issue.py` → `IssueDocument`、`IssueActivityDocument`
+- 符号: `IssueDocument`、`IssueActivityDocument`
+- 位置: `bkmonitor/documents/issue.py`
 
 ## IssueDocument 关键字段
+
 ```python
 class IssueDocument(Document):
     id = field.Keyword()           # Issue 唯一标识
@@ -28,6 +23,7 @@ class IssueDocument(Document):
 ```
 
 ## IssueActivityDocument 设计
+
 ```python
 class IssueActivityDocument(Document):
     id = field.Keyword()
@@ -39,11 +35,13 @@ class IssueActivityDocument(Document):
 ```
 
 ## 特殊方法
+
 - `issue_merge(parent, issue_ids)`：类方法，批量合并 Issue，修改 `merge_status` 和关联关系
 - `issue_split()`：实例方法，拆分已合并的 Issue
 - `save()`：继承自 ES Document，自动索引
 
 ## merge_status 状态机
+
 | 状态 | 含义 |
 |------|------|
 | `active` | 正常 Issue，未被合并也未合并其他 |
@@ -51,10 +49,12 @@ class IssueActivityDocument(Document):
 | `split` | 从合并状态拆分出来 |
 
 ## 依赖
+
 - Elasticsearch Document（django-elasticsearch-dsl 或类似库）
 - `ImpactDimensionsTranslator`（dimensions 字段翻译）
 
 ## 使用场景
+
 - 新增 Issue 字段时，需同步更新 Document 定义、Serializer、QueryFieldMap
 - 合并/拆分操作需理解 `merge_status` 状态流转
 - 全文搜索（title/description）依赖 `Text` 类型字段

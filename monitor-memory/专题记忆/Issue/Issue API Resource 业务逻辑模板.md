@@ -1,15 +1,9 @@
----
-groupPath: 专题记忆/Issue
-relation: Issue API Resource 业务逻辑模板
-keywords: [Issue API, Resource, 业务逻辑, 模板]
-exportedAt: "2026-07-06T04:01:25.695Z"
----
-# Issue API Resource 业务逻辑模板
+Issue API Resource 业务逻辑模板，覆盖搜索、详情、增删改、合并、拆分等所有端点的 Resource 类结构与通用模式。
 
-## 入口
-- `packages/fta_web/issue/resources.py` → 各 Resource 类
+- 位置: `packages/fta_web/issue/resources.py`
 
 ## Resource 结构
+
 | Resource | 端点 | 核心逻辑 |
 |-----------|------|---------|
 | `IssueSearchResource` | `POST issue/search/` | 调用 `IssueQueryHandler`，从 serializer 提取 `limit`/`page`/`sort`/`conditions` |
@@ -28,12 +22,14 @@ exportedAt: "2026-07-06T04:01:25.695Z"
 | `IssueServiceResource` | `POST issue/service` | 服务信息 |
 
 ## 通用模式
+
 1. 所有 Resource 继承 `Resource`，接受 `request` + `form_data`
 2. 序列化器统一使用 `IssueSearchSerializer` 或对应的特定 Serializer
 3. ES 操作走 `IssueDocument`（`bkmonitor/documents` 下的 Document 类）
 4. 返回直接是 document dict 或构造后的响应 dict
 
 ## 关键代码模板（Create）
+
 ```python
 class IssueCreateResource(Resource):
     """创建 Issue"""
@@ -47,6 +43,7 @@ class IssueCreateResource(Resource):
 ```
 
 ## 关键代码模板（Merge）
+
 ```python
 class IssueMergeResource(Resource):
     """合并 Issue"""
@@ -60,10 +57,12 @@ class IssueMergeResource(Resource):
 ```
 
 ## 依赖
+
 - `IssueDocument`（ES 文档模型）
 - `IssueQueryHandler`（搜索查询构建）
 - 各 Serializer（序列化/反序列化）
 
 ## 使用场景
+
 - 新增 Issue 端点时，复制对应 Resource 模板
 - 修改搜索逻辑时，检查 `IssueSearchResource` 和 `IssueQueryHandler`

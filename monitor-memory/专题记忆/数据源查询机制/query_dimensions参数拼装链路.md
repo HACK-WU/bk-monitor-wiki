@@ -1,14 +1,4 @@
----
-groupPath: 专题记忆/数据源查询机制
-relation: query_dimensions参数拼装链路
-keywords: [query_dimensions, get_dimension_data, InfluxdbDimensionFetcher, to_unify_query_config]
-exportedAt: "2026-07-14T03:32:38.835Z"
----
-# UnifyQuery.query_dimensions 参数拼装链路
-
-> 调研目标：追踪 `query_dimensions` 的入参如何解析为查询，并重点标注它与基线 `query_data` 的**本质分叉**。
-> 定位：本文是「UnifyQuery 全查询链路调研」之一。共享的 `to_unify_query_config` 见 `unify_query_query_data.md`。
-> 数据源聚焦：`BK_MONITOR_COLLECTOR / TIME_SERIES`（其 `query_dimensions` 绑定 `InfluxdbDimensionFetcher.query_dimensions`）。
+UnifyQuery.query_dimensions 参数拼装链路，追踪 query_dimensions 的入参如何解析为查询，并重点标注它与基线 query_data 的本质分叉。单数据源时 query_dimensions 不拼时序 params，改走 unify-query 的维度值接口；多数据源兜底复用 query_data。数据源聚焦 BK_MONITOR_COLLECTOR / TIME_SERIES。
 
 ## 一、链路总览
 
@@ -45,7 +35,10 @@ UnifyQuery.query_dimensions(dimension_field, limit, start_time, end_time, ...)
 
 ## 三、各步详解
 
-### 1. UnifyQuery.query_dimensions（query.py:934）
+### 1. UnifyQuery.query_dimensions
+
+- 符号: `UnifyQuery.query_dimensions`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/query.py`
 
 ```python
 def query_dimensions(self, dimension_field, limit, start_time, end_time, *args, **kwargs):
@@ -66,9 +59,12 @@ def query_dimensions(self, dimension_field, limit, start_time, end_time, *args, 
         return list(dimensions)
 ```
 
-### 2. 单数据源分支：InfluxdbDimensionFetcher.query_dimensions（data_source/__init__.py:762）
+### 2. 单数据源分支：InfluxdbDimensionFetcher.query_dimensions
 
-聚焦数据源 `BkMonitorTimeSeriesDataSource` 通过 `query_dimensions = InfluxdbDimensionFetcher.query_dimensions`（data_source/__init__.py:1273）绑定此方法：
+- 符号: `InfluxdbDimensionFetcher.query_dimensions`
+- 位置: `bkmonitor/bkmonitor/data_source/data_source/__init__.py`
+
+聚焦数据源 `BkMonitorTimeSeriesDataSource` 通过 `query_dimensions = InfluxdbDimensionFetcher.query_dimensions` 绑定此方法：
 
 - `conditions_param = self.to_unify_query_config()[0]`：取首条 query 配置，提取 `table_id` / `field_name` / `conditions`。
 - 组装 `query_data`：
@@ -80,12 +76,12 @@ def query_dimensions(self, dimension_field, limit, start_time, end_time, *args, 
   - 若 `conditions_param` 含 `conditions` → 透传 `conditions`
   - `keys = [dimension_field]`（维度字段列表，str 会被包成 list）
   - 若 `kwargs` 含 `space_uid` → 透传 `space_uid`
-- 调用 `api.unify_query.get_dimension_data(**query_data)` → `GetDimensionDataResource`（`POST /query/ts/info/tag_values`，见 api/unify_query/default.py:387）。
+- 调用 `api.unify_query.get_dimension_data(**query_data)` → `GetDimensionDataResource`（`POST /query/ts/info/tag_values`）。
 - 返回维度值列表（由该 Resource 直接返回，无需 Python 侧去重）。
 
 > 即：单数据源的 `query_dimensions` 仍然**触碰 unify-query**（走维度端点），并复用 `to_unify_query_config` 的产物。这与"完全不经过 unify-query"的表述不同，需注意。
 
-> 补充（非聚焦数据源）：`BkDataTimeSeriesDataSource`（data_source/__init__.py:1475）的 `query_dimensions` 给 `dimension_field` 包反引号后调用 `super().query_dimensions` → `TimeSeriesDataSource.query_dimensions`（data_source/__init__.py:1223），后者才走 `_get_queryset` 原生查询（`metrics[:1]`、`group_by=[dimension_field]`）。该路径适用于计算平台类数据源，不在本文聚焦范围内。
+> 补充（非聚焦数据源）：`BkDataTimeSeriesDataSource` 的 `query_dimensions` 给 `dimension_field` 包反引号后调用 `super().query_dimensions` → `TimeSeriesDataSource.query_dimensions`，后者才走 `_get_queryset` 原生查询（`metrics[:1]`、`group_by=[dimension_field]`）。该路径适用于计算平台类数据源，不在本文聚焦范围内。
 
 ### 3. 多数据源分支
 

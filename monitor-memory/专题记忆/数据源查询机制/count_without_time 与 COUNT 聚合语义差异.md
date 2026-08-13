@@ -1,0 +1,13 @@
+---
+groupPath: 专题记忆/数据源查询机制
+relation: count_without_time 与 COUNT 聚合语义差异
+exportedAt: "2026-08-12T09:11:05.052Z"
+---
+count_without_time 与 COUNT 聚合方式的语义差异：前者是 PromQL 风格只做跨 series 计数，后者是 InfluxDB 风格先做时间窗口 count_over_time 再 sum，两者在"统计 series 条数"场景下结果完全不同。查询进程实例数必须用 count_without_time。
+- 符号: `AggMethods`、`DataSource.to_unify_query_config`、`get_process_instance_count`
+- 位置: `bkmonitor/bkmonitor/data_source/unify_query/functions.py`、`bkmonitor/bkmonitor/data_source/data_source/__init__.py`、`bkmonitor/packages/monitor_web/cc/resources/cmdb.py`
+- 两层聚合模型: UnifyQuery 时序查询分两层——第一层时间维度(time_aggregation.function + window，对单条 series 在窗口内 xxx_over_time 聚合)，第二层 series 维度(function[0].method，按 group_by 分组跨 series 聚合)
+- count_without_time(走 if 分支，method in AggMethods): 第一层不做(不写 time_aggregation.function/window)，第二层 method="count"(AggMethods 映射后原样透传，method_mapping 只有 {"avg":"mean"} 不含 count)。语义=直接统计分组内 series 条数
+- COUNT(走 else 分支): 第一层 count_over_time 窗口 180s(对每条 series 数窗口内采集点个数)，第二层 count→sum 映射(method_mapping={"avg":"mean","count":"sum"})。语义=先数窗口内采集点再求和
+- 进程实例数场景: system.proc 表每个 pid 是一条 series，get_process_instance_count 的 group_by 不含 pid(仅 bk_host_id/bk_target_ip/bk_target_cloud_id/display_name)。count_without_time 统计分组下 pid series 条数=运行实例数(正确)；COUNT 会先对每条 pid series 数 180s 内采集点个数(如 60s 上报一次→3 个点)再 sum，得到采集点总数(如 3pid×3点=9，语义错误)。故从 COUNT 改为 count_without_time
+- 判断口诀: 要"数有几条 series"用 _without_time 系列；要"窗口内采集点统计/累加"用普通 COUNT/SUM

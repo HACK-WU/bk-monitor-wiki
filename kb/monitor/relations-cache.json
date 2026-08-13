@@ -115,9 +115,9 @@
         {
           "id": "rel_004",
           "text": "RESTful API接口",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786432508077,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786499130808,
           "isImported": true,
           "memoryIds": [
             "beac0903b9c937e87b59a48889f83f37",
@@ -2709,5 +2709,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-11T10:26:50.769Z"
+  "updatedAt": "2026-08-12T01:45:30.808Z"
 }

@@ -33,9 +33,9 @@
         {
           "id": "rel_002",
           "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786451397399,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786710978775,
           "isImported": true,
           "memoryIds": [
             "8cf837e369edd14a90f1adaff6b775f0",
@@ -73,9 +73,9 @@
         {
           "id": "rel_005",
           "text": "内部API暴露模式",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786499136839,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786695456859,
           "isImported": true,
           "memoryIds": [
             "21e28b01f753fedc8e0500397106134e",
@@ -1509,9 +1509,9 @@
         {
           "id": "rel_103",
           "text": "resource-views_v4复用",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786614942831,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1786709588675,
           "isImported": false,
           "tags": [
             "relation"
@@ -2975,5 +2975,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-14T07:54:15.383Z"
+  "updatedAt": "2026-08-14T12:36:18.775Z"
 }

@@ -15,14 +15,14 @@
     "maxKeywordCount": 50
   },
   "groups": {
-    "monitor-memory/API 集成模式": {
+    "API 集成模式": {
       "hot_relations": [
         {
           "id": "rel_001",
           "text": "APIResource 扩展模式",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786451392941,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "9e50cfff285bdd0051d189ad6cd15944"
@@ -33,9 +33,9 @@
         {
           "id": "rel_002",
           "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786710978775,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "8cf837e369edd14a90f1adaff6b775f0",
@@ -47,9 +47,9 @@
         {
           "id": "rel_003",
           "text": "三层错误传播链路与专有错误码",
-          "score": 3,
-          "useCount": 3,
-          "lastUsedTime": 1786622371169,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "945cb9aa1df21194e66bd7a2b15de424"
@@ -60,9 +60,9 @@
         {
           "id": "rel_004",
           "text": "内核API内部Resource复用模式",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786451396134,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "46327552ecfc4fc29ec6cefe4d5690a9"
@@ -73,9 +73,9 @@
         {
           "id": "rel_005",
           "text": "内部API暴露模式",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786695456859,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "21e28b01f753fedc8e0500397106134e",
@@ -114,14 +114,14 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/Resource 框架": {
+    "Resource 框架": {
       "hot_relations": [
         {
           "id": "rel_008",
           "text": "Monitor API资源自动暴露到OpenAI",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622364151,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "0da2289c0041e4b55f1f688a09fd6455"
@@ -132,9 +132,9 @@
         {
           "id": "rel_009",
           "text": "Resource 框架使用小技巧",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622361739,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "590a1e24870ff3e10ec6244450479710",
@@ -164,7 +164,7 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/专题记忆/Issue": {
+    "专题记忆/Issue": {
       "hot_relations": [
         {
           "id": "rel_011",
@@ -183,6 +183,48 @@
         },
         {
           "id": "rel_012",
+          "text": "Issue 权限体系",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2d0443860728fc4a41d6c73e5d6d9e45",
+            "26c49280f513d97b709b716b94897519"
+          ],
+          "sourcePath": "专题记忆/Issue/Issue 权限体系.md",
+          "memoryId": "2d0443860728fc4a41d6c73e5d6d9e45"
+        },
+        {
+          "id": "rel_013",
+          "text": "Issue 模块架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c88b2cce9c8340a608db96c89464cf0f",
+            "0d94630ce81680ac477334f42db7852a"
+          ],
+          "sourcePath": "专题记忆/Issue/Issue 模块架构总览.md",
+          "memoryId": "c88b2cce9c8340a608db96c89464cf0f"
+        },
+        {
+          "id": "rel_014",
+          "text": "IssueAggregationProcessor 聚合引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "0ae49a9ba703f6a2e62fdff25cc0b9e6",
+            "5d5a697ae8252a879bd1598784c81e06"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueAggregationProcessor 聚合引擎.md",
+          "memoryId": "0ae49a9ba703f6a2e62fdff25cc0b9e6"
+        },
+        {
+          "id": "rel_015",
           "text": "IssueDocument ES 模型关键字段",
           "score": 0,
           "useCount": 0,
@@ -196,7 +238,35 @@
           "memoryId": "2c25962b6721e4241735e13bca409f4e"
         },
         {
-          "id": "rel_013",
+          "id": "rel_016",
+          "text": "IssueDocument 数据模型与状态机",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "636a05165854098dff3294fc5f95411d",
+            "e544c2b8829208c36dc53a8da8a3dbf1"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueDocument 数据模型与状态机.md",
+          "memoryId": "636a05165854098dff3294fc5f95411d"
+        },
+        {
+          "id": "rel_017",
+          "text": "IssueMergeResolver 合并拆分",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "398a276bba2cf62502ed1ddf5b10996c",
+            "f5fd0849c918c5201ca53660de7404ab"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueMergeResolver 合并拆分.md",
+          "memoryId": "398a276bba2cf62502ed1ddf5b10996c"
+        },
+        {
+          "id": "rel_018",
           "text": "IssueQueryHandler ES 查询构建",
           "score": 0,
           "useCount": 0,
@@ -210,7 +280,21 @@
           "memoryId": "b09ea4cea8eca343ca0d8d46909c6c89"
         },
         {
-          "id": "rel_014",
+          "id": "rel_019",
+          "text": "IssueQueryHandler 查询处理器",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f0ae7a6ed3359a6a3723cd9d9c55d453",
+            "95d7dd3240b42aaf1e08c72e6d110932"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueQueryHandler 查询处理器.md",
+          "memoryId": "f0ae7a6ed3359a6a3723cd9d9c55d453"
+        },
+        {
+          "id": "rel_020",
           "text": "IssueViewSet 权限控制模式",
           "score": 0,
           "useCount": 0,
@@ -224,7 +308,50 @@
           "memoryId": "4d6ea422ad526929558c61977648a7e2"
         },
         {
-          "id": "rel_015",
+          "id": "rel_021",
+          "text": "LLM 标题生成",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bf2658198647409531b36486aa41a711",
+            "843223fba3f698c58ecd39c4a99c8de2"
+          ],
+          "sourcePath": "专题记忆/Issue/LLM 标题生成.md",
+          "memoryId": "bf2658198647409531b36486aa41a711"
+        },
+        {
+          "id": "rel_022",
+          "text": "TAPD 集成核心",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1f3eec4ebbc6c92093dfb193be02d000",
+            "6f9e6225b7d0bf0222562bd441df3322",
+            "d03639bd544b33b7a9d76c185f433436"
+          ],
+          "sourcePath": "专题记忆/Issue/TAPD 集成核心.md",
+          "memoryId": "1f3eec4ebbc6c92093dfb193be02d000"
+        },
+        {
+          "id": "rel_023",
+          "text": "sync_issue_alert_stats 周期任务",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2f574f0b6f75adee8b240a7af330ea21",
+            "eca2a92c8a3c005c58325feeb2d1f681"
+          ],
+          "sourcePath": "专题记忆/Issue/sync_issue_alert_stats 周期任务.md",
+          "memoryId": "2f574f0b6f75adee8b240a7af330ea21"
+        },
+        {
+          "id": "rel_024",
           "text": "web 与 kernel_api 异常链路差异与 BKAPIError 捕获（Issue rename 重名冲突为例）",
           "score": 0,
           "useCount": 0,
@@ -241,10 +368,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/专题记忆/TAPD功能模块": {
+    "专题记忆/TAPD功能模块": {
       "hot_relations": [
         {
-          "id": "rel_016",
+          "id": "rel_025",
           "text": "TAPD相关功能概览",
           "score": 0,
           "useCount": 0,
@@ -261,10 +388,245 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/专题记忆/元数据初始化数据": {
+    "专题记忆/UnifyQuery查询": {
       "hot_relations": [
         {
-          "id": "rel_017",
+          "id": "rel_026",
+          "text": "UnifyQuery专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a74de5d754623267900a68d5c8a12f02"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/UnifyQuery专家路标.md",
+          "memoryId": "a74de5d754623267900a68d5c8a12f02"
+        },
+        {
+          "id": "rel_027",
+          "text": "UnifyQuery架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "60ac6edd114857784aea1f1183e76b53",
+            "4c46b140490962fd6aa8d6a9f4d9883d"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/UnifyQuery架构总览.md",
+          "memoryId": "60ac6edd114857784aea1f1183e76b53"
+        },
+        {
+          "id": "rel_028",
+          "text": "instant参数行为详解",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ddc260fbd1dd67be6e7e450aa1a5dafd",
+            "3f929a57bb9c30e883fd80cb7c134f2f"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/instant参数行为详解.md",
+          "memoryId": "ddc260fbd1dd67be6e7e450aa1a5dafd"
+        },
+        {
+          "id": "rel_029",
+          "text": "两层聚合机制与函数映射",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2b804df9bc1942a40a6eb60cf66173d1",
+            "ab1dfe76fd75e99b5613e9332596ac94"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/两层聚合机制与函数映射.md",
+          "memoryId": "2b804df9bc1942a40a6eb60cf66173d1"
+        },
+        {
+          "id": "rel_030",
+          "text": "六入口数据流转",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1d58650eb53e5e172d64fa1f542d06ab",
+            "9e91d057ad60e07b89d02ba3681e8b19"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/六入口数据流转.md",
+          "memoryId": "1d58650eb53e5e172d64fa1f542d06ab"
+        },
+        {
+          "id": "rel_031",
+          "text": "参数拼接链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "32a3d58bb1f38c9a2ca8cc2047a2a408",
+            "67134d7d20c91b1563794980bab20fce"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/参数拼接链路.md",
+          "memoryId": "32a3d58bb1f38c9a2ca8cc2047a2a408"
+        },
+        {
+          "id": "rel_032",
+          "text": "统一查询后端接口契约",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1ccdc09c4b1e103cb475275a4435c0ba",
+            "65be94abd7d22abec4b5c82c9678bd3b"
+          ],
+          "sourcePath": "专题记忆/UnifyQuery查询/统一查询后端接口契约.md",
+          "memoryId": "1ccdc09c4b1e103cb475275a4435c0ba"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/kernel_api网关": {
+      "hot_relations": [
+        {
+          "id": "rel_033",
+          "text": "RPC函数注册",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "86c6c9571996152fb24792a40ad60053",
+            "de8efd3043ae2bca84deafba418a998b"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/RPC函数注册.md",
+          "memoryId": "86c6c9571996152fb24792a40ad60053"
+        },
+        {
+          "id": "rel_034",
+          "text": "v4视图装配",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "717b2712a5489bbcbc3b2678f8fffead",
+            "b837bcd5649d7500cdd808ad57ca11f5"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/v4视图装配.md",
+          "memoryId": "717b2712a5489bbcbc3b2678f8fffead"
+        },
+        {
+          "id": "rel_035",
+          "text": "内部Resource复用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c43865848f9d57c21e01e1d812bba32f",
+            "572514e8d3a022a48d7970c76ff3ad7e"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/内部Resource复用.md",
+          "memoryId": "c43865848f9d57c21e01e1d812bba32f"
+        },
+        {
+          "id": "rel_036",
+          "text": "字段适配",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5bf61889ffbfe120b2ba6e1e0d0bbe57"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/字段适配.md",
+          "memoryId": "5bf61889ffbfe120b2ba6e1e0d0bbe57"
+        },
+        {
+          "id": "rel_037",
+          "text": "异常处理与错误码",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f889890f68c160189190beb546ef020c",
+            "afd1ae70e788fa943026d09f26b052d2"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/异常处理与错误码.md",
+          "memoryId": "f889890f68c160189190beb546ef020c"
+        },
+        {
+          "id": "rel_038",
+          "text": "架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c0c8511644e5a43da78957757ad9e178",
+            "de4e86c809f844390de9bb3ad8f0cd38"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/架构总览.md",
+          "memoryId": "c0c8511644e5a43da78957757ad9e178"
+        },
+        {
+          "id": "rel_039",
+          "text": "认证与安全",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "706ffe938b18a2a3228c84caaa56cbf1",
+            "6df5f8f9ef86eb7ebff2a5cafee0bc81"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/认证与安全.md",
+          "memoryId": "706ffe938b18a2a3228c84caaa56cbf1"
+        },
+        {
+          "id": "rel_040",
+          "text": "路由注册机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1ade7aaa2713713c47e6096063ef2284",
+            "fd45aa294944eeb9ff49743fe2cf1a19"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/路由注册机制.md",
+          "memoryId": "1ade7aaa2713713c47e6096063ef2284"
+        },
+        {
+          "id": "rel_041",
+          "text": "运维配置与DB路由",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d06ee33c66ba31e857332e2b77a617be",
+            "09c279f9424a4dfc1dde7a6b12879b9b",
+            "0f5776898c6d8756920b965baf2b95b0"
+          ],
+          "sourcePath": "专题记忆/kernel_api网关/运维配置与DB路由.md",
+          "memoryId": "d06ee33c66ba31e857332e2b77a617be"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/元数据初始化数据": {
+      "hot_relations": [
+        {
+          "id": "rel_042",
           "text": "监控系统元数据初始化文件全览",
           "score": 0,
           "useCount": 0,
@@ -281,14 +643,337 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/专题记忆/场景视图模型": {
+    "专题记忆/元数据管理": {
       "hot_relations": [
         {
-          "id": "rel_018",
+          "id": "rel_043",
+          "text": "API与工具库专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3a4880c8e74cf3f15628b425a6dc1649",
+            "d440569092bbb32109de0f1c74ed2ae9"
+          ],
+          "sourcePath": "专题记忆/元数据管理/API与工具库专家.md",
+          "memoryId": "3a4880c8e74cf3f15628b425a6dc1649"
+        },
+        {
+          "id": "rel_044",
+          "text": "任务调度与运维专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8379ee07949a033e6dd32832c326e22d",
+            "be6a25bf195560a27b49edc34f0804c9"
+          ],
+          "sourcePath": "专题记忆/元数据管理/任务调度与运维专家.md",
+          "memoryId": "8379ee07949a033e6dd32832c326e22d"
+        },
+        {
+          "id": "rel_045",
+          "text": "元数据核心模型专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3103aae4f64f80a6cd463d56c0f12c34",
+            "60aa65baaa232021c714b32305927d5f"
+          ],
+          "sourcePath": "专题记忆/元数据管理/元数据核心模型专家.md",
+          "memoryId": "3103aae4f64f80a6cd463d56c0f12c34"
+        },
+        {
+          "id": "rel_046",
+          "text": "元数据种子数据与数据字典专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "081b49fd4fa7f144b6f280ce01881253",
+            "6bd41bd4c72fa637cc68101219718420"
+          ],
+          "sourcePath": "专题记忆/元数据管理/元数据种子数据与数据字典专家.md",
+          "memoryId": "081b49fd4fa7f144b6f280ce01881253"
+        },
+        {
+          "id": "rel_047",
+          "text": "元数据管理专题架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b6f85d1842445fcdf8643efe95214612",
+            "f93cf5bea664b264f47c4826445f55d5"
+          ],
+          "sourcePath": "专题记忆/元数据管理/元数据管理专题架构总览.md",
+          "memoryId": "b6f85d1842445fcdf8643efe95214612"
+        },
+        {
+          "id": "rel_048",
+          "text": "元数据管理专题路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b4adf9f91f39dd5acffbe445eba2feed",
+            "73dc92de0c55c64521909e7b3f6f7132"
+          ],
+          "sourcePath": "专题记忆/元数据管理/元数据管理专题路标.md",
+          "memoryId": "b4adf9f91f39dd5acffbe445eba2feed"
+        },
+        {
+          "id": "rel_049",
+          "text": "存储与数据链路专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "aff673b58d4ed51e1fa7c26228cde87f",
+            "0d3194e0d3e9cd74fed5e32f0bf7ceb1"
+          ],
+          "sourcePath": "专题记忆/元数据管理/存储与数据链路专家.md",
+          "memoryId": "aff673b58d4ed51e1fa7c26228cde87f"
+        },
+        {
+          "id": "rel_050",
+          "text": "空间与自定义上报专家",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f912e04a98485eb286ef1c78c039671c",
+            "8f230dc4ae62cd8c1760e068e715d80f"
+          ],
+          "sourcePath": "专题记忆/元数据管理/空间与自定义上报专家.md",
+          "memoryId": "f912e04a98485eb286ef1c78c039671c"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/告警屏蔽": {
+      "hot_relations": [
+        {
+          "id": "rel_051",
+          "text": "五种屏蔽类型对比与选择",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "59baa57666f7928c9c62b1dcd98e6849",
+            "145c157b74c6fda6e3805125a6b3ca26"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/五种屏蔽类型对比与选择.md",
+          "memoryId": "59baa57666f7928c9c62b1dcd98e6849"
+        },
+        {
+          "id": "rel_052",
+          "text": "告警屏蔽专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "aa0fc9d462aa8361e4603f63e04287a8"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/告警屏蔽专家路标.md",
+          "memoryId": "aa0fc9d462aa8361e4603f63e04287a8"
+        },
+        {
+          "id": "rel_053",
+          "text": "告警屏蔽架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9839c8b855a7e948226230bf0cec77df",
+            "8bfa7de2825c1ea5d7c78d4892914b45"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/告警屏蔽架构总览.md",
+          "memoryId": "9839c8b855a7e948226230bf0cec77df"
+        },
+        {
+          "id": "rel_054",
+          "text": "屏蔽匹配引擎双维度校验",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6eb33cb061d6abd368f366f21d63be4b",
+            "6c800f1b71adc4816c8839e3a64ac24f"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/屏蔽匹配引擎双维度校验.md",
+          "memoryId": "6eb33cb061d6abd368f366f21d63be4b"
+        },
+        {
+          "id": "rel_055",
+          "text": "屏蔽缓存同步机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8ee6bec00e53fc53f9e84ca2df6cfc27"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/屏蔽缓存同步机制.md",
+          "memoryId": "8ee6bec00e53fc53f9e84ca2df6cfc27"
+        },
+        {
+          "id": "rel_056",
+          "text": "屏蔽通知幂等机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "54aafaeb60205767ba3e352f3f9f20a8",
+            "f2333d8b090e2a097db90dc2f987fd16"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/屏蔽通知幂等机制.md",
+          "memoryId": "54aafaeb60205767ba3e352f3f9f20a8"
+        },
+        {
+          "id": "rel_057",
+          "text": "快捷屏蔽接口体系",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a1512c0dfa032bccaf7c49b599d162b7",
+            "1192a202f0c5eab9df2c9939800294cd"
+          ],
+          "sourcePath": "专题记忆/告警屏蔽/快捷屏蔽接口体系.md",
+          "memoryId": "a1512c0dfa032bccaf7c49b599d162b7"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/场景视图": {
+      "hot_relations": [
+        {
+          "id": "rel_058",
+          "text": "BuiltinProcessor处理器与分发机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6e7b8434fa80a98c3c42d6b9c33348c6",
+            "20f2f0a8172f44cb5f4a0324da3da239"
+          ],
+          "sourcePath": "专题记忆/场景视图/BuiltinProcessor处理器与分发机制.md",
+          "memoryId": "6e7b8434fa80a98c3c42d6b9c33348c6"
+        },
+        {
+          "id": "rel_059",
+          "text": "PageListResource表格框架与TableFormat",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "675bfbb5c346bec1834df4880570e658",
+            "70a0a875a09f32a65bb2017be0a37a59"
+          ],
+          "sourcePath": "专题记忆/场景视图/PageListResource表格框架与TableFormat.md",
+          "memoryId": "675bfbb5c346bec1834df4880570e658"
+        },
+        {
+          "id": "rel_060",
+          "text": "主机进程列表4路并发聚合",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "da1b7df4b9cdb86f161285a9a4370459",
+            "ade8c1bfc6938e77da1889084a602ecc"
+          ],
+          "sourcePath": "专题记忆/场景视图/主机进程列表4路并发聚合.md",
+          "memoryId": "da1b7df4b9cdb86f161285a9a4370459"
+        },
+        {
+          "id": "rel_061",
+          "text": "场景视图专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "031341faaef3a3ce55d978544ccb798c"
+          ],
+          "sourcePath": "专题记忆/场景视图/场景视图专家路标.md",
+          "memoryId": "031341faaef3a3ce55d978544ccb798c"
+        },
+        {
+          "id": "rel_062",
+          "text": "场景视图数据模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6f2d8c6e99755380f5f3451f6351a701",
+            "ae21e36729af0d70ecbda8e0f819dd67"
+          ],
+          "sourcePath": "专题记忆/场景视图/场景视图数据模型.md",
+          "memoryId": "6f2d8c6e99755380f5f3451f6351a701"
+        },
+        {
+          "id": "rel_063",
+          "text": "场景视图架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c2182bbdb541dbc485fcf29dc9684ecc",
+            "2383b946c25ac1b8112cf9c97c6b1e58"
+          ],
+          "sourcePath": "专题记忆/场景视图/场景视图架构总览.md",
+          "memoryId": "c2182bbdb541dbc485fcf29dc9684ecc"
+        },
+        {
+          "id": "rel_064",
+          "text": "视图配置读写与内置视图同步",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "af65fb0ee56cce3601828f5e7540952c",
+            "53fbef70bf3e4940fa148bcc0fdab51b"
+          ],
+          "sourcePath": "专题记忆/场景视图/视图配置读写与内置视图同步.md",
+          "memoryId": "af65fb0ee56cce3601828f5e7540952c"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/场景视图模型": {
+      "hot_relations": [
+        {
+          "id": "rel_065",
           "text": "场景视图(SceneViewModel)模型作用与调用关系",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622387335,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "968b318908cef0b7321e991e62b90dd4",
@@ -307,10 +992,195 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/专题记忆/数据源查询机制": {
+    "专题记忆/外部API集成专题": {
       "hot_relations": [
         {
-          "id": "rel_019",
+          "id": "rel_066",
+          "text": "CMDB与容器资源专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c4f00e9302bb53810ddb26aa1aca9b89"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/CMDB与容器资源专家路标.md",
+          "memoryId": "c4f00e9302bb53810ddb26aa1aca9b89"
+        },
+        {
+          "id": "rel_067",
+          "text": "专题路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3bc3cb32c7d11bfa2e66c3be1110ff75"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/专题路标.md",
+          "memoryId": "3bc3cb32c7d11bfa2e66c3be1110ff75"
+        },
+        {
+          "id": "rel_068",
+          "text": "协作与流程专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "ef99880bd8b47ba097b5ae936d4d9158"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/协作与流程专家路标.md",
+          "memoryId": "ef99880bd8b47ba097b5ae936d4d9158"
+        },
+        {
+          "id": "rel_069",
+          "text": "基础平台与网关专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1630c908ff2d3f285f395d6d6c4ed921"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/基础平台与网关专家路标.md",
+          "memoryId": "1630c908ff2d3f285f395d6d6c4ed921"
+        },
+        {
+          "id": "rel_070",
+          "text": "数据平台专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9476071118739a76be22d00acb152710"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/数据平台专家路标.md",
+          "memoryId": "9476071118739a76be22d00acb152710"
+        },
+        {
+          "id": "rel_071",
+          "text": "架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bcaa01f08e1fa8ce0b31391ee26066e2"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/架构总览.md",
+          "memoryId": "bcaa01f08e1fa8ce0b31391ee26066e2"
+        },
+        {
+          "id": "rel_072",
+          "text": "监控生态专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c53908fb2ad357d8599196562d07b22e"
+          ],
+          "sourcePath": "专题记忆/外部API集成专题/监控生态专家路标.md",
+          "memoryId": "c53908fb2ad357d8599196562d07b22e"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/性能场景": {
+      "hot_relations": [
+        {
+          "id": "rel_073",
+          "text": "HOST缓存与实时查询机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "88f72780a6bfa37d6a49aafe505ab8a2"
+          ],
+          "sourcePath": "专题记忆/性能场景/HOST缓存与实时查询机制.md",
+          "memoryId": "88f72780a6bfa37d6a49aafe505ab8a2"
+        },
+        {
+          "id": "rel_074",
+          "text": "ThreadPool 4路并行聚合模式",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "af96bb984dc792161cf3f79f02c8fd2c",
+            "2de22b04c3f0a8c6e57d76073c3bf521"
+          ],
+          "sourcePath": "专题记忆/性能场景/ThreadPool 4路并行聚合模式.md",
+          "memoryId": "af96bb984dc792161cf3f79f02c8fd2c"
+        },
+        {
+          "id": "rel_075",
+          "text": "host_dict运行时内存结构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8c3295b6b207c2b612920efcf7558465",
+            "fbf657763c510c9209b9e69c4dd37e0a"
+          ],
+          "sourcePath": "专题记忆/性能场景/host_dict运行时内存结构.md",
+          "memoryId": "8c3295b6b207c2b612920efcf7558465"
+        },
+        {
+          "id": "rel_076",
+          "text": "性能场景专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "23a4129ec701e07e937882e3302a1396"
+          ],
+          "sourcePath": "专题记忆/性能场景/性能场景专家路标.md",
+          "memoryId": "23a4129ec701e07e937882e3302a1396"
+        },
+        {
+          "id": "rel_077",
+          "text": "性能场景架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e4e7dc266596e28922af3cf461522c01",
+            "e844ff8a9832542c0457cfed192d3214"
+          ],
+          "sourcePath": "专题记忆/性能场景/性能场景架构总览.md",
+          "memoryId": "e4e7dc266596e28922af3cf461522c01"
+        },
+        {
+          "id": "rel_078",
+          "text": "拓扑节点与主机基础信息接口",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "11f4840c8e4a26c21ea8b8ed879e4f0f",
+            "171b32b63f67b756001a7ec32928f770"
+          ],
+          "sourcePath": "专题记忆/性能场景/拓扑节点与主机基础信息接口.md",
+          "memoryId": "11f4840c8e4a26c21ea8b8ed879e4f0f"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "专题记忆/数据源查询机制": {
+      "hot_relations": [
+        {
+          "id": "rel_079",
           "text": "UnifyQuery全查询链路调研索引",
           "score": 0,
           "useCount": 0,
@@ -325,11 +1195,25 @@
           "memoryId": "f724aca5f964deeaf84f9e416b76bd07"
         },
         {
-          "id": "rel_020",
+          "id": "rel_080",
+          "text": "count_without_time 与 COUNT 聚合语义差异",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "20e42dc61a56f937d936885296b2cb84",
+            "b674fda62fcd2b0152b2c46398b7cc76"
+          ],
+          "sourcePath": "专题记忆/数据源查询机制/count_without_time 与 COUNT 聚合语义差异.md",
+          "memoryId": "20e42dc61a56f937d936885296b2cb84"
+        },
+        {
+          "id": "rel_081",
           "text": "instant 参数与两层聚合语义（avg_over_time vs mean）",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786525830064,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "f69065eccf65f85d41cf070c2268db38",
@@ -339,7 +1223,7 @@
           "memoryId": "f69065eccf65f85d41cf070c2268db38"
         },
         {
-          "id": "rel_021",
+          "id": "rel_082",
           "text": "query_data_using_datasource分支链路",
           "score": 0,
           "useCount": 0,
@@ -370,7 +1254,7 @@
           "memoryId": "d8f617a9bad690521e5f207fac448c01"
         },
         {
-          "id": "rel_022",
+          "id": "rel_083",
           "text": "query_data_with_stat参数拼装链路",
           "score": 0,
           "useCount": 0,
@@ -385,11 +1269,11 @@
           "memoryId": "0c51732b99d981860298b01f475f59ff"
         },
         {
-          "id": "rel_023",
+          "id": "rel_084",
           "text": "query_data参数拼装链路（基线篇）",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786525830411,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "f6fa4093293aa5042dd080cb5a2de529",
@@ -403,7 +1287,7 @@
           "memoryId": "f6fa4093293aa5042dd080cb5a2de529"
         },
         {
-          "id": "rel_024",
+          "id": "rel_085",
           "text": "query_dimensions参数拼装链路",
           "score": 0,
           "useCount": 0,
@@ -420,7 +1304,7 @@
           "memoryId": "ea97fc009526a42c5f79bd721cfefdc2"
         },
         {
-          "id": "rel_025",
+          "id": "rel_086",
           "text": "query_list 多条目语义与查询效率",
           "score": 0,
           "useCount": 0,
@@ -434,7 +1318,7 @@
           "memoryId": "4672d2435682bbfc70b0fcd5f4a249ab"
         },
         {
-          "id": "rel_026",
+          "id": "rel_087",
           "text": "query_log参数拼装链路",
           "score": 0,
           "useCount": 0,
@@ -451,7 +1335,7 @@
           "memoryId": "73f47f30770083e8f65389b82c4a4e93"
         },
         {
-          "id": "rel_027",
+          "id": "rel_088",
           "text": "query_reference参数拼装链路",
           "score": 0,
           "useCount": 0,
@@ -467,7 +1351,7 @@
           "memoryId": "8f47395fd336ce30a10701b70aec9b6e"
         },
         {
-          "id": "rel_028",
+          "id": "rel_089",
           "text": "system.proc display_name 维度真实格式(=进程名或bk_process_name)",
           "score": 0,
           "useCount": 0,
@@ -481,7 +1365,7 @@
           "memoryId": "a798f9c41e860c26ac1971ed4085d4f2"
         },
         {
-          "id": "rel_029",
+          "id": "rel_090",
           "text": "数据源查询三层架构与表名字段来源",
           "score": 0,
           "useCount": 0,
@@ -496,7 +1380,7 @@
           "memoryId": "0ff048e9f0aa9272ef64802092029abe"
         },
         {
-          "id": "rel_030",
+          "id": "rel_091",
           "text": "统一查询参数拼接链路(data_source_class→query_list→params)",
           "score": 0,
           "useCount": 0,
@@ -516,14 +1400,1005 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/工具库": {
+    "专题记忆/数据源查询构造": {
       "hot_relations": [
         {
-          "id": "rel_031",
-          "text": "APP_CODE与SECRET_KEY配置获取",
+          "id": "rel_092",
+          "text": "load_data_source 14组合映射表",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c41fc560d3747f84b488d250a4791485",
+            "197dc8c3bb1cb4ad4de70b1eb2aec496"
+          ],
+          "sourcePath": "专题记忆/数据源查询构造/load_data_source 14组合映射表.md",
+          "memoryId": "c41fc560d3747f84b488d250a4791485"
+        },
+        {
+          "id": "rel_093",
+          "text": "数据源查询构造专家路标",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "9606ee70e659f6628c94c0113c7482e7"
+          ],
+          "sourcePath": "专题记忆/数据源查询构造/数据源查询构造专家路标.md",
+          "memoryId": "9606ee70e659f6628c94c0113c7482e7"
+        },
+        {
+          "id": "rel_094",
+          "text": "查询描述对象构造规范",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "5140fc7dae6b076d2fae1cf93fc95309",
+            "0470448f30f9f229f6b73afa58533ca6"
+          ],
+          "sourcePath": "专题记忆/数据源查询构造/查询描述对象构造规范.md",
+          "memoryId": "5140fc7dae6b076d2fae1cf93fc95309"
+        },
+        {
+          "id": "rel_095",
+          "text": "表名字段来源与元数据模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2b7d7356031322cf33fc24365ee1d66d",
+            "5cc7d760f37545b9c807ed6e024a0616"
+          ],
+          "sourcePath": "专题记忆/数据源查询构造/表名字段来源与元数据模型.md",
+          "memoryId": "2b7d7356031322cf33fc24365ee1d66d"
+        },
+        {
+          "id": "rel_096",
+          "text": "路径决策机制 use_unify_query",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8e1fb861b6e725ee40f96ae8dc12d86f",
+            "b86a7b2d49fa72db5f656a6d5a6f27fe"
+          ],
+          "sourcePath": "专题记忆/数据源查询构造/路径决策机制 use_unify_query.md",
+          "memoryId": "8e1fb861b6e725ee40f96ae8dc12d86f"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/Issue": {
+      "hot_relations": [
+        {
+          "id": "rel_097",
+          "text": "IssueAggregationProcessor-AlertDocument-IssueDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e412cecc5e5249035a8a71a7c01f1a95"
+          ],
+          "sourcePath": "关联关系/Issue/IssueAggregationProcessor-AlertDocument-IssueDocument.md",
+          "memoryId": "e412cecc5e5249035a8a71a7c01f1a95"
+        },
+        {
+          "id": "rel_098",
+          "text": "IssueDocument-IssueActivityDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e9cc4f77fe240622b598c3f443b36f1f"
+          ],
+          "sourcePath": "关联关系/Issue/IssueDocument-IssueActivityDocument.md",
+          "memoryId": "e9cc4f77fe240622b598c3f443b36f1f"
+        },
+        {
+          "id": "rel_099",
+          "text": "IssueDocument-WebAPI",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4f3e30da57755db4262d931b0f397aaf"
+          ],
+          "sourcePath": "关联关系/Issue/IssueDocument-WebAPI.md",
+          "memoryId": "4f3e30da57755db4262d931b0f397aaf"
+        },
+        {
+          "id": "rel_100",
+          "text": "IssueMergeResolver-IssueDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "f54472625fd453c9ad23890cb89d1695"
+          ],
+          "sourcePath": "关联关系/Issue/IssueMergeResolver-IssueDocument.md",
+          "memoryId": "f54472625fd453c9ad23890cb89d1695"
+        },
+        {
+          "id": "rel_101",
+          "text": "IssueQueryHandler-IssueDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "675d192875776e4e6e267ea7fc54a0ab"
+          ],
+          "sourcePath": "关联关系/Issue/IssueQueryHandler-IssueDocument.md",
+          "memoryId": "675d192875776e4e6e267ea7fc54a0ab"
+        },
+        {
+          "id": "rel_102",
+          "text": "LLM标题-IssueDocument-rename",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d0735b299b176075814ab5fb8242d61e"
+          ],
+          "sourcePath": "关联关系/Issue/LLM标题-IssueDocument-rename.md",
+          "memoryId": "d0735b299b176075814ab5fb8242d61e"
+        },
+        {
+          "id": "rel_103",
+          "text": "TAPD-MySQLModels",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c440f6dedbe8256c3cf14fcf1d8002ee"
+          ],
+          "sourcePath": "关联关系/Issue/TAPD-MySQLModels.md",
+          "memoryId": "c440f6dedbe8256c3cf14fcf1d8002ee"
+        },
+        {
+          "id": "rel_104",
+          "text": "TAPDToken-TAPDAuthPermission",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "7126b26e06a516e8e49458757dbaf942"
+          ],
+          "sourcePath": "关联关系/Issue/TAPDToken-TAPDAuthPermission.md",
+          "memoryId": "7126b26e06a516e8e49458757dbaf942"
+        },
+        {
+          "id": "rel_105",
+          "text": "WebMergeSplit-APIRoleMergeSplit",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "b463288137e894426d2ce457cb9be822"
+          ],
+          "sourcePath": "关联关系/Issue/WebMergeSplit-APIRoleMergeSplit.md",
+          "memoryId": "b463288137e894426d2ce457cb9be822"
+        },
+        {
+          "id": "rel_106",
+          "text": "constants-issue-IssueDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "66bbadad29e837202ffdf88b96e1cf6e"
+          ],
+          "sourcePath": "关联关系/Issue/constants-issue-IssueDocument.md",
+          "memoryId": "66bbadad29e837202ffdf88b96e1cf6e"
+        },
+        {
+          "id": "rel_107",
+          "text": "sync_issue_alert_stats-IssueDocument-AlertDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a9c57acda90169240b0ce1c2813d023f"
+          ],
+          "sourcePath": "关联关系/Issue/sync_issue_alert_stats-IssueDocument-AlertDocument.md",
+          "memoryId": "a9c57acda90169240b0ce1c2813d023f"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/UnifyQuery查询": {
+      "hot_relations": [
+        {
+          "id": "rel_108",
+          "text": "DataSource-DataQueryHandler",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "da4b6bbc636c67635e14df558f3578df"
+          ],
+          "sourcePath": "关联关系/UnifyQuery查询/DataSource-DataQueryHandler.md",
+          "memoryId": "da4b6bbc636c67635e14df558f3578df"
+        },
+        {
+          "id": "rel_109",
+          "text": "UnifyQuery-UnifyQuerySet-builder",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "cfb6fe40fc0bcbb25deea0ea01225a8d"
+          ],
+          "sourcePath": "关联关系/UnifyQuery查询/UnifyQuery-UnifyQuerySet-builder.md",
+          "memoryId": "cfb6fe40fc0bcbb25deea0ea01225a8d"
+        },
+        {
+          "id": "rel_110",
+          "text": "UnifyQuery-api.unify_query-resources",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2759cba7a8b482a109652f2392fd696d"
+          ],
+          "sourcePath": "关联关系/UnifyQuery查询/UnifyQuery-api.unify_query-resources.md",
+          "memoryId": "2759cba7a8b482a109652f2392fd696d"
+        },
+        {
+          "id": "rel_111",
+          "text": "UnifyQuery-load_data_source-TimeSeriesDataSource",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "916ea248e063fa1eb4747ecda5ce74b1"
+          ],
+          "sourcePath": "关联关系/UnifyQuery查询/UnifyQuery-load_data_source-TimeSeriesDataSource.md",
+          "memoryId": "916ea248e063fa1eb4747ecda5ce74b1"
+        },
+        {
+          "id": "rel_112",
+          "text": "to_unify_query_config-ResultTable-ResultTableField",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "62babcb9c6a3ab4643fe99b5613d7ab4"
+          ],
+          "sourcePath": "关联关系/UnifyQuery查询/to_unify_query_config-ResultTable-ResultTableField.md",
+          "memoryId": "62babcb9c6a3ab4643fe99b5613d7ab4"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/kernel_api网关": {
+      "hot_relations": [
+        {
+          "id": "rel_113",
+          "text": "ApiRenderer-字段映射表",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "e6a1dc8a2e56d4d20e240c63a0b81c3e"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/ApiRenderer-字段映射表.md",
+          "memoryId": "e6a1dc8a2e56d4d20e240c63a0b81c3e"
+        },
+        {
+          "id": "rel_114",
+          "text": "KernelRPCRegistry-rpc_functions注册",
           "score": 1,
           "useCount": 1,
-          "lastUsedTime": 1786622934243,
+          "lastUsedTime": 1787814744057,
+          "isImported": true,
+          "memoryIds": [
+            "3985251110476b637c0e8afdb1ed63a8",
+            "f51a0d7735562be5bb223c1d641a56c0"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/KernelRPCRegistry-rpc_functions注册.md",
+          "memoryId": "3985251110476b637c0e8afdb1ed63a8"
+        },
+        {
+          "id": "rel_115",
+          "text": "api_exception_handler-web错误码透传",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "37658b17c48303cc847236b7087502c2"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/api_exception_handler-web错误码透传.md",
+          "memoryId": "37658b17c48303cc847236b7087502c2"
+        },
+        {
+          "id": "rel_116",
+          "text": "apigw-resources-yaml-docs-api文档",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3176495253570511f893fb7983bb2924"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/apigw-resources-yaml-docs-api文档.md",
+          "memoryId": "3176495253570511f893fb7983bb2924"
+        },
+        {
+          "id": "rel_117",
+          "text": "authentication-ApiAuthToken",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2f19d5435d811a1cad7a4ef646ef898e"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/authentication-ApiAuthToken.md",
+          "memoryId": "2f19d5435d811a1cad7a4ef646ef898e"
+        },
+        {
+          "id": "rel_118",
+          "text": "authentication-bk_apigateway公钥",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "41046df4096d328cb71d0d9e073916a5"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/authentication-bk_apigateway公钥.md",
+          "memoryId": "41046df4096d328cb71d0d9e073916a5"
+        },
+        {
+          "id": "rel_119",
+          "text": "config-role-api-kernel_api装配",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "441a97a6c40bf1be3a80fa45367ebb5e"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/config-role-api-kernel_api装配.md",
+          "memoryId": "441a97a6c40bf1be3a80fa45367ebb5e"
+        },
+        {
+          "id": "rel_120",
+          "text": "resource-views_v4复用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "77f52867b9fbf6bfd9c54edb77c77a0b"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/resource-views_v4复用.md",
+          "memoryId": "77f52867b9fbf6bfd9c54edb77c77a0b"
+        },
+        {
+          "id": "rel_121",
+          "text": "urls-views装配契约",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "d0fec662208973efcda147e927dfa6cc"
+          ],
+          "sourcePath": "关联关系/kernel_api网关/urls-views装配契约.md",
+          "memoryId": "d0fec662208973efcda147e927dfa6cc"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/元数据管理": {
+      "hot_relations": [
+        {
+          "id": "rel_122",
+          "text": "API资源层-service层-模型层",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "0cbbb591ff4a3298b029767fddd77732"
+          ],
+          "sourcePath": "关联关系/元数据管理/API资源层-service层-模型层.md",
+          "memoryId": "0cbbb591ff4a3298b029767fddd77732"
+        },
+        {
+          "id": "rel_123",
+          "text": "entity_relation-APM-bkm_ipchooser",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "02996ed021dd250b3765eb8df6f85d49"
+          ],
+          "sourcePath": "关联关系/元数据管理/entity_relation-APM-bkm_ipchooser.md",
+          "memoryId": "02996ed021dd250b3765eb8df6f85d49"
+        },
+        {
+          "id": "rel_124",
+          "text": "任务调度-模型层-Consul存储后端",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a2d4cb1f7218f8b6ff8372c677bf8ed6"
+          ],
+          "sourcePath": "关联关系/元数据管理/任务调度-模型层-Consul存储后端.md",
+          "memoryId": "a2d4cb1f7218f8b6ff8372c677bf8ed6"
+        },
+        {
+          "id": "rel_125",
+          "text": "核心模型-外部消费者",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "dda17df8258ba18b30be4f10e671d7a0"
+          ],
+          "sourcePath": "关联关系/元数据管理/核心模型-外部消费者.md",
+          "memoryId": "dda17df8258ba18b30be4f10e671d7a0"
+        },
+        {
+          "id": "rel_126",
+          "text": "核心模型-存储引擎-数据链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "8fc243c7df82029937120157b7771760"
+          ],
+          "sourcePath": "关联关系/元数据管理/核心模型-存储引擎-数据链路.md",
+          "memoryId": "8fc243c7df82029937120157b7771760"
+        },
+        {
+          "id": "rel_127",
+          "text": "种子数据加载-核心模型-存储模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "a11d522c750506f8fce0e83b8304625e"
+          ],
+          "sourcePath": "关联关系/元数据管理/种子数据加载-核心模型-存储模型.md",
+          "memoryId": "a11d522c750506f8fce0e83b8304625e"
+        },
+        {
+          "id": "rel_128",
+          "text": "空间隔离-SpaceTableIDRedis-隔离对象",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "dbdf54044d8eafb4385d755cc9cff717"
+          ],
+          "sourcePath": "关联关系/元数据管理/空间隔离-SpaceTableIDRedis-隔离对象.md",
+          "memoryId": "dbdf54044d8eafb4385d755cc9cff717"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/告警屏蔽": {
+      "hot_relations": [
+        {
+          "id": "rel_129",
+          "text": "AddShieldResource-AlertDocument-is_shielded",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "0c67e6dc02f7f98d4834c539548dfc50"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/AddShieldResource-AlertDocument-is_shielded.md",
+          "memoryId": "0c67e6dc02f7f98d4834c539548dfc50"
+        },
+        {
+          "id": "rel_130",
+          "text": "AddShieldResource-serializers-Shield模型",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "61faf326d5ff649666064643be7d54c7"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/AddShieldResource-serializers-Shield模型.md",
+          "memoryId": "61faf326d5ff649666064643be7d54c7"
+        },
+        {
+          "id": "rel_131",
+          "text": "QuickShield-AddShieldResource-EventViewSet",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "fee29a8e4de6c1332b8f1e961ac79507"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/QuickShield-AddShieldResource-EventViewSet.md",
+          "memoryId": "fee29a8e4de6c1332b8f1e961ac79507"
+        },
+        {
+          "id": "rel_132",
+          "text": "ShieldManager-Shielder-ShieldObj",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "de12cee97f54147cda48ff285b54d0fb"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/ShieldManager-Shielder-ShieldObj.md",
+          "memoryId": "de12cee97f54147cda48ff285b54d0fb"
+        },
+        {
+          "id": "rel_133",
+          "text": "ShieldObj-ShieldCacheManager-AlertDocument",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "039e948c7fa73c40cf6a7e12bc9aa655"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/ShieldObj-ShieldCacheManager-AlertDocument.md",
+          "memoryId": "039e948c7fa73c40cf6a7e12bc9aa655"
+        },
+        {
+          "id": "rel_134",
+          "text": "ShieldStatusChecker-AlertShieldConfigShielder-ShieldObj",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "2902843ac391d573a326c67d2087b6de"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/ShieldStatusChecker-AlertShieldConfigShielder-ShieldObj.md",
+          "memoryId": "2902843ac391d573a326c67d2087b6de"
+        },
+        {
+          "id": "rel_135",
+          "text": "Shield模型-dimension_config-AlertDocument-StrategyModel",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "bc96e73f6bba78fb634062db5f363e51"
+          ],
+          "sourcePath": "关联关系/告警屏蔽/Shield模型-dimension_config-AlertDocument-StrategyModel.md",
+          "memoryId": "bc96e73f6bba78fb634062db5f363e51"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/场景视图": {
+      "hot_relations": [
+        {
+          "id": "rel_136",
+          "text": "BuiltinProcessor-view_configs-SceneViewModel",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "0f25d40dd825facfdf5dfc06b1b6f33b"
+          ],
+          "sourcePath": "关联关系/场景视图/BuiltinProcessor-view_configs-SceneViewModel.md",
+          "memoryId": "0f25d40dd825facfdf5dfc06b1b6f33b"
+        },
+        {
+          "id": "rel_137",
+          "text": "GetHostProcessListResource-UnifyQuery-CMDB",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "df731611022d67aa2386153173421565"
+          ],
+          "sourcePath": "关联关系/场景视图/GetHostProcessListResource-UnifyQuery-CMDB.md",
+          "memoryId": "df731611022d67aa2386153173421565"
+        },
+        {
+          "id": "rel_138",
+          "text": "GetSceneViewResource-create_default_views-SceneViewModel",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "65a08f320ebfff29ee1a653a063a81e5"
+          ],
+          "sourcePath": "关联关系/场景视图/GetSceneViewResource-create_default_views-SceneViewModel.md",
+          "memoryId": "65a08f320ebfff29ee1a653a063a81e5"
+        },
+        {
+          "id": "rel_139",
+          "text": "PageListResource-TableFormat-子类",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "67959088804612a88f687be225b641c2"
+          ],
+          "sourcePath": "关联关系/场景视图/PageListResource-TableFormat-子类.md",
+          "memoryId": "67959088804612a88f687be225b641c2"
+        },
+        {
+          "id": "rel_140",
+          "text": "SceneViewModel-SceneViewOrderModel-update_order",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3eb3ecb1919d1c8b352170ee5dbb9bdc"
+          ],
+          "sourcePath": "关联关系/场景视图/SceneViewModel-SceneViewOrderModel-update_order.md",
+          "memoryId": "3eb3ecb1919d1c8b352170ee5dbb9bdc"
+        },
+        {
+          "id": "rel_141",
+          "text": "SceneViewViewSet-Resource-BuiltinProcessor",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "59882e777630c7a8cce3b2a9063c0fd5"
+          ],
+          "sourcePath": "关联关系/场景视图/SceneViewViewSet-Resource-BuiltinProcessor.md",
+          "memoryId": "59882e777630c7a8cce3b2a9063c0fd5"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/外部API集成专题": {
+      "hot_relations": [
+        {
+          "id": "rel_142",
+          "text": "CommonBaseResource-各系统基类-APIResource",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "0f4f2ba4905d5d36454dc7aed2ef064a"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/CommonBaseResource-各系统基类-APIResource.md",
+          "memoryId": "0f4f2ba4905d5d36454dc7aed2ef064a"
+        },
+        {
+          "id": "rel_143",
+          "text": "api.issue-IssueAPIResource-kernel_api桥接",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "272fff5223cc54edd3c814fed8be1bd4"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/api.issue-IssueAPIResource-kernel_api桥接.md",
+          "memoryId": "272fff5223cc54edd3c814fed8be1bd4"
+        },
+        {
+          "id": "rel_144",
+          "text": "bk_apigateway-GetPublicKeyResource-kernel_api认证",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1cbe6a78ee622ae51605f5a0290d0fa9"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/bk_apigateway-GetPublicKeyResource-kernel_api认证.md",
+          "memoryId": "1cbe6a78ee622ae51605f5a0290d0fa9"
+        },
+        {
+          "id": "rel_145",
+          "text": "bk_login_cmdb-use_apigw-ENABLE_MULTI_TENANT_MODE",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4839ca3cab09d21a7837cc1ea6847370"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/bk_login_cmdb-use_apigw-ENABLE_MULTI_TENANT_MODE.md",
+          "memoryId": "4839ca3cab09d21a7837cc1ea6847370"
+        },
+        {
+          "id": "rel_146",
+          "text": "bkdata-UseSaaSAuthInfoMixin-SAAS认证注入",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6e62d608e3b4052fc8010300fa4d93a1"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/bkdata-UseSaaSAuthInfoMixin-SAAS认证注入.md",
+          "memoryId": "6e62d608e3b4052fc8010300fa4d93a1"
+        },
+        {
+          "id": "rel_147",
+          "text": "cmsi-8通道-apigw_esb动态切换",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "79fa3d0eb0e08b50f7dec2bf1b82931a"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/cmsi-8通道-apigw_esb动态切换.md",
+          "memoryId": "79fa3d0eb0e08b50f7dec2bf1b82931a"
+        },
+        {
+          "id": "rel_148",
+          "text": "grafana-GrafanaApiResource-直连非APIResource",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "659f2ae5ad88e67e9c7f0de503d4ad29"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/grafana-GrafanaApiResource-直连非APIResource.md",
+          "memoryId": "659f2ae5ad88e67e9c7f0de503d4ad29"
+        },
+        {
+          "id": "rel_149",
+          "text": "kubernetes-数据四路-非APIResource聚合",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3e7fe1c7a78a87f7e94dc4766f84d8ae"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/kubernetes-数据四路-非APIResource聚合.md",
+          "memoryId": "3e7fe1c7a78a87f7e94dc4766f84d8ae"
+        },
+        {
+          "id": "rel_150",
+          "text": "metadata-MetaDataAPIGWResource-KernelAPIResource",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "194691eec0bf647d80fab2132f424b17"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/metadata-MetaDataAPIGWResource-KernelAPIResource.md",
+          "memoryId": "194691eec0bf647d80fab2132f424b17"
+        },
+        {
+          "id": "rel_151",
+          "text": "monitor-module_name-mointor_v3拼写",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "3e1c40c3a099f2d2f551b5422976d691"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/monitor-module_name-mointor_v3拼写.md",
+          "memoryId": "3e1c40c3a099f2d2f551b5422976d691"
+        },
+        {
+          "id": "rel_152",
+          "text": "tapd-TapdAPIResource-contextvar-access_token",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "6ed889717b0e4f3302813bd0af42132f"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/tapd-TapdAPIResource-contextvar-access_token.md",
+          "memoryId": "6ed889717b0e4f3302813bd0af42132f"
+        },
+        {
+          "id": "rel_153",
+          "text": "unify_query-UnifyQueryAPIResource-非APIResource直连",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "062b53ca0192340dc47ee48ef5732a6e"
+          ],
+          "sourcePath": "关联关系/外部API集成专题/unify_query-UnifyQueryAPIResource-非APIResource直连.md",
+          "memoryId": "062b53ca0192340dc47ee48ef5732a6e"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/性能场景": {
+      "hot_relations": [
+        {
+          "id": "rel_154",
+          "text": "HostPerformanceResource-CacheResource-CacheType.HOST",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1dbbabb689b2893c1c4041ffef8d2c28"
+          ],
+          "sourcePath": "关联关系/性能场景/HostPerformanceResource-CacheResource-CacheType.HOST.md",
+          "memoryId": "1dbbabb689b2893c1c4041ffef8d2c28"
+        },
+        {
+          "id": "rel_155",
+          "text": "Resource-resource.cc-多源拉取",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "52f5b4e197b67e120a2f7ff19c0c1b17",
+            "19e325815b7fc19d33aa07b4af1cf502"
+          ],
+          "sourcePath": "关联关系/性能场景/Resource-resource.cc-多源拉取.md",
+          "memoryId": "52f5b4e197b67e120a2f7ff19c0c1b17"
+        },
+        {
+          "id": "rel_156",
+          "text": "ViewSet-PermissionMixin-Resource绑定",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "433b981df5683847187dbfae9e0406a5"
+          ],
+          "sourcePath": "关联关系/性能场景/ViewSet-PermissionMixin-Resource绑定.md",
+          "memoryId": "433b981df5683847187dbfae9e0406a5"
+        },
+        {
+          "id": "rel_157",
+          "text": "性能模块-api.cmdb-拓扑主机查询",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "4f6d2697982fe39b6bc9ce74f65e239d",
+            "c92b8361913adf043b89c7bedeb8dbfd"
+          ],
+          "sourcePath": "关联关系/性能场景/性能模块-api.cmdb-拓扑主机查询.md",
+          "memoryId": "4f6d2697982fe39b6bc9ce74f65e239d"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "关联关系/数据源查询构造": {
+      "hot_relations": [
+        {
+          "id": "rel_158",
+          "text": "DataSource-DataQueryHandler-原生路径",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1a895201482af42c51817e6d5668fa03"
+          ],
+          "sourcePath": "关联关系/数据源查询构造/DataSource-DataQueryHandler-原生路径.md",
+          "memoryId": "1a895201482af42c51817e6d5668fa03"
+        },
+        {
+          "id": "rel_159",
+          "text": "DataSource-to_unify_query_config-UnifyQuery",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1cab985989eea806219b281a5db935b7"
+          ],
+          "sourcePath": "关联关系/数据源查询构造/DataSource-to_unify_query_config-UnifyQuery.md",
+          "memoryId": "1cab985989eea806219b281a5db935b7"
+        },
+        {
+          "id": "rel_160",
+          "text": "load_data_source-DataSourceLabel-DataTypeLabel-constants",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "c895b09942740fdcd7ad750881ed352e"
+          ],
+          "sourcePath": "关联关系/数据源查询构造/load_data_source-DataSourceLabel-DataTypeLabel-constants.md",
+          "memoryId": "c895b09942740fdcd7ad750881ed352e"
+        },
+        {
+          "id": "rel_161",
+          "text": "load_data_source-DataSource子类-use_unify_query",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "1b3450e7d7b2fa084dcc651fdd22f405"
+          ],
+          "sourcePath": "关联关系/数据源查询构造/load_data_source-DataSource子类-use_unify_query.md",
+          "memoryId": "1b3450e7d7b2fa084dcc651fdd22f405"
+        },
+        {
+          "id": "rel_162",
+          "text": "查询参数-ResultTable-ResultTableField",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": true,
+          "memoryIds": [
+            "974d6c10513d59c3a938aa9999d5a537",
+            "35e64f6b1be0ac6ff597f476bbb827ff"
+          ],
+          "sourcePath": "关联关系/数据源查询构造/查询参数-ResultTable-ResultTableField.md",
+          "memoryId": "974d6c10513d59c3a938aa9999d5a537"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "工具库": {
+      "hot_relations": [
+        {
+          "id": "rel_163",
+          "text": "APP_CODE与SECRET_KEY配置获取",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "8a181461157de587a500515153948416",
@@ -533,7 +2408,7 @@
           "memoryId": "8a181461157de587a500515153948416"
         },
         {
-          "id": "rel_032",
+          "id": "rel_164",
           "text": "K8S与元数据同步工具",
           "score": 0,
           "useCount": 0,
@@ -546,7 +2421,7 @@
           "memoryId": "7cc93c1bfc775bc1f7ef956da392230c"
         },
         {
-          "id": "rel_033",
+          "id": "rel_165",
           "text": "MonitorJSONRenderer 响应渲染器",
           "score": 0,
           "useCount": 0,
@@ -560,7 +2435,7 @@
           "memoryId": "8d681ab5bcae71d4764ca3784dbb2250"
         },
         {
-          "id": "rel_034",
+          "id": "rel_166",
           "text": "Redis 缓存与分布式锁",
           "score": 0,
           "useCount": 0,
@@ -574,7 +2449,7 @@
           "memoryId": "f2e6d537428d5f85569a8362457bb6a0"
         },
         {
-          "id": "rel_035",
+          "id": "rel_167",
           "text": "业务空间与租户",
           "score": 0,
           "useCount": 0,
@@ -588,7 +2463,7 @@
           "memoryId": "855202b216ccb9ec9614c32114454e48"
         },
         {
-          "id": "rel_036",
+          "id": "rel_168",
           "text": "加密与Token生成",
           "score": 0,
           "useCount": 0,
@@ -601,7 +2476,7 @@
           "memoryId": "66a8271e2c93a21f810446036687f728"
         },
         {
-          "id": "rel_037",
+          "id": "rel_169",
           "text": "哈希与一致性哈希",
           "score": 0,
           "useCount": 0,
@@ -614,7 +2489,7 @@
           "memoryId": "0490fab8ca3da4dbb1302892f750e059"
         },
         {
-          "id": "rel_038",
+          "id": "rel_170",
           "text": "并发批量与分页",
           "score": 0,
           "useCount": 0,
@@ -627,7 +2502,7 @@
           "memoryId": "eaa477b986fbe6cf469e51d7d624b952"
         },
         {
-          "id": "rel_039",
+          "id": "rel_171",
           "text": "时间日期处理工具",
           "score": 0,
           "useCount": 0,
@@ -640,7 +2515,7 @@
           "memoryId": "7501c6661f2b9ce00b700e5656c993df"
         },
         {
-          "id": "rel_040",
+          "id": "rel_172",
           "text": "组件连接工具",
           "score": 0,
           "useCount": 0,
@@ -653,7 +2528,7 @@
           "memoryId": "fd55f18a05a7853f569ef3d9cb7d128e"
         },
         {
-          "id": "rel_041",
+          "id": "rel_173",
           "text": "请求上下文与环境变量",
           "score": 0,
           "useCount": 0,
@@ -670,14 +2545,14 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/技术栈选型": {
+    "技术栈选型": {
       "hot_relations": [
         {
-          "id": "rel_042",
+          "id": "rel_174",
           "text": "技术栈清单",
-          "score": 4,
-          "useCount": 4,
-          "lastUsedTime": 1786623575837,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "726bfc7a63b9adecb1241e6ca881df92"
@@ -689,10 +2564,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/最近需求": {
+    "最近需求": {
       "hot_relations": [
         {
-          "id": "rel_043",
+          "id": "rel_175",
           "text": "[2026-06-24] 补全 monitor-memory 和 user-profile 缺失的 Group 索引",
           "score": 0,
           "useCount": 0,
@@ -705,11 +2580,11 @@
           "memoryId": "21ed57fb0a833f1ca555d7e0500a6efc"
         },
         {
-          "id": "rel_044",
+          "id": "rel_176",
           "text": "[2026-06-25] B-01 POST改造与signed_state自包含机制重构",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786451524141,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "9deeb215dfbdec71407eb4d7358187e8"
@@ -718,11 +2593,11 @@
           "memoryId": "9deeb215dfbdec71407eb4d7358187e8"
         },
         {
-          "id": "rel_045",
+          "id": "rel_177",
           "text": "[2026-06-30] TAPD手动解绑持久化与重新关联：新增 TapdWorkspaceManualUnbind tombstone 表+显式重新关联接口+撤销用户授权接口（REQ-20260630-001）",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786451525439,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "f396b8b1c0961b117b8f5a44141b6ee9",
@@ -732,11 +2607,11 @@
           "memoryId": "f396b8b1c0961b117b8f5a44141b6ee9"
         },
         {
-          "id": "rel_046",
+          "id": "rel_178",
           "text": "[2026-08-03] Issue rename 重命名异常返回专有状态码（REQ-20260803-001）",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786451526263,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "4c904b68a1d159577986dc9c5403ffbd"
@@ -748,14 +2623,14 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/系统配置与异常": {
+    "系统配置与异常": {
       "hot_relations": [
         {
-          "id": "rel_047",
+          "id": "rel_179",
           "text": "Django配置加载体系",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786623478830,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "cebc15d180dad204c422af5e99c94dae",
@@ -766,11 +2641,11 @@
           "memoryId": "cebc15d180dad204c422af5e99c94dae"
         },
         {
-          "id": "rel_048",
+          "id": "rel_180",
           "text": "三种运行环境角色隔离与调用边界",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786614955145,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "1b391d7e66d7fb8388b0e85a538eebac",
@@ -780,7 +2655,7 @@
           "memoryId": "1b391d7e66d7fb8388b0e85a538eebac"
         },
         {
-          "id": "rel_049",
+          "id": "rel_181",
           "text": "异常处理流程",
           "score": 0,
           "useCount": 0,
@@ -796,10 +2671,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/背景与目标": {
+    "背景与目标": {
       "hot_relations": [
         {
-          "id": "rel_050",
+          "id": "rel_182",
           "text": "仓库结构",
           "score": 0,
           "useCount": 0,
@@ -812,7 +2687,7 @@
           "memoryId": "7f98764255eed7453004edbcb0ec1289"
         },
         {
-          "id": "rel_052",
+          "id": "rel_184",
           "text": "项目简介",
           "score": 0,
           "useCount": 0,
@@ -828,14 +2703,14 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/背景与目标/项目架构": {
+    "背景与目标/项目架构": {
       "hot_relations": [
         {
-          "id": "rel_051",
+          "id": "rel_183",
           "text": "目录结构",
-          "score": 3,
-          "useCount": 3,
-          "lastUsedTime": 1786522026798,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "789de37cfba37bd8106ea336d9b65ce5"
@@ -847,10 +2722,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/进度": {
+    "进度": {
       "hot_relations": [
         {
-          "id": "rel_053",
+          "id": "rel_185",
           "text": "[2026-07-01] TAPD 接口强制用户态授权校验",
           "score": 0,
           "useCount": 0,
@@ -864,11 +2739,11 @@
           "memoryId": "0d1e3981bee70264e6f08e194e85c719"
         },
         {
-          "id": "rel_054",
+          "id": "rel_186",
           "text": "[2026-07-07] Host 页面接口拆分重构",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786526187358,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "87eb497c3b82ee1504db341895b8085c"
@@ -877,11 +2752,11 @@
           "memoryId": "87eb497c3b82ee1504db341895b8085c"
         },
         {
-          "id": "rel_055",
+          "id": "rel_187",
           "text": "已完成: [2026-06-24] ✅ 补全 monitor-memory 和 user-profile 缺失的 Group 索引（monitor-memory +11, user-profile +2）",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786526186228,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "78ca0240a9c9735879cc2def3bd31309"
@@ -890,7 +2765,7 @@
           "memoryId": "78ca0240a9c9735879cc2def3bd31309"
         },
         {
-          "id": "rel_056",
+          "id": "rel_188",
           "text": "已完成: [2026-06-25] ✅ B-01 POST改造CodeReview完成",
           "score": 0,
           "useCount": 0,
@@ -903,7 +2778,7 @@
           "memoryId": "a6cba2a7c12cd66a56887bd6b468092b"
         },
         {
-          "id": "rel_057",
+          "id": "rel_189",
           "text": "进行中: [2026-06-25] 🔄 B-01 POST改造与signed_state自包含机制编码完成，待修复Review问题",
           "score": 0,
           "useCount": 0,
@@ -919,10 +2794,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/通用记忆片段/关键逻辑": {
+    "通用记忆片段/关键逻辑": {
       "hot_relations": [
         {
-          "id": "rel_058",
+          "id": "rel_190",
           "text": "Host场景视图生成与拆分链路",
           "score": 0,
           "useCount": 0,
@@ -935,11 +2810,11 @@
           "memoryId": "5d83a926b32c79cd5978db00b23a6a9c"
         },
         {
-          "id": "rel_059",
+          "id": "rel_191",
           "text": "进程列表字段补全可行性",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622939479,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "cfa5b6801c97ab1bd7ab4cbb03604933"
@@ -951,10 +2826,10 @@
       "keywords": [],
       "max_hot_count": 10
     },
-    "monitor-memory/项目踩坑点": {
+    "项目踩坑点": {
       "hot_relations": [
         {
-          "id": "rel_060",
+          "id": "rel_192",
           "text": "CMDB Process类字段丢失",
           "score": 0,
           "useCount": 0,
@@ -967,25 +2842,25 @@
           "memoryId": "23a71fb73d82283ed86c7dc9d6368dc6"
         },
         {
-          "id": "rel_061",
+          "id": "rel_193",
           "text": "GetHostProcessListResource 三字段扩展数据来源",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786525830912,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
-            "0c5eaa383a274dd7b8bc19bebc59fefb",
-            "f9becefa1f946c9204745309aae8014e"
+            "5e652d7cb592f01799dadbe3e9beb040",
+            "872550a4a6a1a71bda04cd5a0f3bb092"
           ],
           "sourcePath": "项目踩坑点/GetHostProcessListResource 三字段扩展数据来源.md",
-          "memoryId": "0c5eaa383a274dd7b8bc19bebc59fefb"
+          "memoryId": "5e652d7cb592f01799dadbe3e9beb040"
         },
         {
-          "id": "rel_062",
+          "id": "rel_194",
           "text": "bk_monitor_base 工具库禁用",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786623582633,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "0f36eb4fd6dd83a14194df26fdf6015c",
@@ -995,7 +2870,7 @@
           "memoryId": "0f36eb4fd6dd83a14194df26fdf6015c"
         },
         {
-          "id": "rel_063",
+          "id": "rel_195",
           "text": "get_request_tenant_id 在标准请求中不安全",
           "score": 0,
           "useCount": 0,
@@ -1008,11 +2883,11 @@
           "memoryId": "183efc94fd07481a8eaf8999fbb07875"
         },
         {
-          "id": "rel_064",
+          "id": "rel_196",
           "text": "signed_state签名密钥依赖SECRET_KEY",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623583578,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "1af102d4d50a24d0b7cb17a9cc6e16b9"
@@ -1021,11 +2896,11 @@
           "memoryId": "1af102d4d50a24d0b7cb17a9cc6e16b9"
         },
         {
-          "id": "rel_065",
+          "id": "rel_197",
           "text": "错误码段冲突与 HTTP 状态码网关透传丢失",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623584999,
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": true,
           "memoryIds": [
             "297bfaecb77992dfbced88456e8521db"
@@ -1036,1944 +2911,7 @@
       ],
       "keywords": [],
       "max_hot_count": 10
-    },
-    "测试目录": {
-      "hot_relations": [],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/数据源查询机制": {
-      "hot_relations": [
-        {
-          "id": "rel_066",
-          "text": "count_without_time 与 COUNT 聚合语义差异",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786622942446,
-          "isImported": false,
-          "memoryIds": [
-            "61661ed1ac4869601aac20cb810374e1"
-          ],
-          "memoryId": "61661ed1ac4869601aac20cb810374e1"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "项目踩坑点": {
-      "hot_relations": [
-        {
-          "id": "rel_067",
-          "text": "GetHostProcessListResource 三字段扩展数据来源",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786616034943,
-          "isImported": false,
-          "memoryIds": [
-            "488dc7cf4b8d820c5a8d3fe74eb6f0fe"
-          ],
-          "memoryId": "488dc7cf4b8d820c5a8d3fe74eb6f0fe"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/Issue": {
-      "hot_relations": [
-        {
-          "id": "rel_068",
-          "text": "Issue 模块架构总览",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786612118810,
-          "isImported": false,
-          "memoryIds": [
-            "c8ec7a203784f7f72b5bbc1538c6927f"
-          ],
-          "memoryId": "c8ec7a203784f7f72b5bbc1538c6927f"
-        },
-        {
-          "id": "rel_069",
-          "text": "IssueDocument 数据模型与状态机",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "bd2b62e0875377a8bbb87db6ff90747c"
-          ],
-          "memoryId": "bd2b62e0875377a8bbb87db6ff90747c"
-        },
-        {
-          "id": "rel_070",
-          "text": "IssueAggregationProcessor 聚合引擎",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "9bffbadfe8f368fa6e8b8b524e2784ff"
-          ],
-          "memoryId": "9bffbadfe8f368fa6e8b8b524e2784ff"
-        },
-        {
-          "id": "rel_071",
-          "text": "IssueQueryHandler 查询处理器",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "51317762defab394d8f6309df17deae4"
-          ],
-          "memoryId": "51317762defab394d8f6309df17deae4"
-        },
-        {
-          "id": "rel_072",
-          "text": "IssueMergeResolver 合并拆分",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "0b469f456cc2891d5c89a7a057768423"
-          ],
-          "memoryId": "0b469f456cc2891d5c89a7a057768423"
-        },
-        {
-          "id": "rel_073",
-          "text": "sync_issue_alert_stats 周期任务",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "166615651142b9424cc3d1cf505c90e6"
-          ],
-          "memoryId": "166615651142b9424cc3d1cf505c90e6"
-        },
-        {
-          "id": "rel_074",
-          "text": "LLM 标题生成",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "d68258faee2db20d593d8fb312320ba3"
-          ],
-          "memoryId": "d68258faee2db20d593d8fb312320ba3"
-        },
-        {
-          "id": "rel_075",
-          "text": "TAPD 集成核心",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "388f80e9540c5440c5bc710f804606e0"
-          ],
-          "memoryId": "388f80e9540c5440c5bc710f804606e0"
-        },
-        {
-          "id": "rel_076",
-          "text": "Issue 权限体系",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "1027626b49887f449988b713febacca1"
-          ],
-          "memoryId": "1027626b49887f449988b713febacca1"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/Issue": {
-      "hot_relations": [
-        {
-          "id": "rel_078",
-          "text": "IssueAggregationProcessor-AlertDocument-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "89cf62ff7e9c2be818a915e3a01fde2e",
-            "fcb1f34f0bb3786970848560edd1bfeb"
-          ],
-          "memoryId": "89cf62ff7e9c2be818a915e3a01fde2e"
-        },
-        {
-          "id": "rel_079",
-          "text": "IssueMergeResolver-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "14e3b2860588b7f59221e6f9aa43d6a8",
-            "1c5a9cc12ccdff1a5c8552473b9e3c8a"
-          ],
-          "memoryId": "14e3b2860588b7f59221e6f9aa43d6a8"
-        },
-        {
-          "id": "rel_080",
-          "text": "IssueQueryHandler-IssueDocument",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786614948006,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "691a68b4f832c5dc5f5d4629ff296efe",
-            "047c0ba87b474166639a43ae856ec688"
-          ],
-          "memoryId": "691a68b4f832c5dc5f5d4629ff296efe"
-        },
-        {
-          "id": "rel_081",
-          "text": "constants-issue-IssueDocument",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786614946943,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "2d6c05be2a48f75af0739e9a490131fb",
-            "63c70fa9733c1ec172b5f253609d337d"
-          ],
-          "memoryId": "2d6c05be2a48f75af0739e9a490131fb"
-        },
-        {
-          "id": "rel_082",
-          "text": "TAPD-MySQLModels",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786621594747,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "1e66c1f778615e4db79eee6975ad8203",
-            "77c7990512cb490f87ed863ef655f7d8"
-          ],
-          "memoryId": "1e66c1f778615e4db79eee6975ad8203"
-        },
-        {
-          "id": "rel_083",
-          "text": "sync_issue_alert_stats-IssueDocument-AlertDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "1d09535b0ff32c50f3592dd15bd405ad",
-            "a9f254d15bb171b950b17dc294a581f9"
-          ],
-          "memoryId": "1d09535b0ff32c50f3592dd15bd405ad"
-        },
-        {
-          "id": "rel_084",
-          "text": "LLM标题-IssueDocument-rename",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "272f64326a6d09c0ac55cf0403813913",
-            "cff2a696ff8d8948e1ae92071d3c6f12"
-          ],
-          "memoryId": "272f64326a6d09c0ac55cf0403813913"
-        },
-        {
-          "id": "rel_085",
-          "text": "WebMergeSplit-APIRoleMergeSplit",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "e541d2abf65a32fe6f6669506334a697",
-            "3ff059fb2bb8c724c323344f9c75130d"
-          ],
-          "memoryId": "e541d2abf65a32fe6f6669506334a697"
-        },
-        {
-          "id": "rel_086",
-          "text": "TAPDToken-TAPDAuthPermission",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "55f9a7b267c05c4b24d1a808ba2d5432",
-            "839822708e1a3b9da7f86f9948cb9bfe"
-          ],
-          "memoryId": "55f9a7b267c05c4b24d1a808ba2d5432"
-        },
-        {
-          "id": "rel_087",
-          "text": "IssueDocument-IssueActivityDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "e228d27e23284a753d1619862d2e863b",
-            "a47567801d8f445c1e87a3de520204fb"
-          ],
-          "memoryId": "e228d27e23284a753d1619862d2e863b"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/kernel_api网关": {
-      "hot_relations": [
-        {
-          "id": "rel_088",
-          "text": "架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a4e2b88ae12fc99406779dd58afb18a2"
-          ],
-          "memoryId": "a4e2b88ae12fc99406779dd58afb18a2"
-        },
-        {
-          "id": "rel_089",
-          "text": "路由注册机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "da479b4823c0142d373ab9c98593715f"
-          ],
-          "memoryId": "da479b4823c0142d373ab9c98593715f"
-        },
-        {
-          "id": "rel_090",
-          "text": "认证与安全",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "31a8f0804c1be85b154a357f5ec042e9"
-          ],
-          "memoryId": "31a8f0804c1be85b154a357f5ec042e9"
-        },
-        {
-          "id": "rel_091",
-          "text": "异常处理与错误码",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "015fe55462920935bff0e92029c7b40d"
-          ],
-          "memoryId": "015fe55462920935bff0e92029c7b40d"
-        },
-        {
-          "id": "rel_092",
-          "text": "字段适配",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a0a47c42cd8481775c88e035fad5f067"
-          ],
-          "memoryId": "a0a47c42cd8481775c88e035fad5f067"
-        },
-        {
-          "id": "rel_093",
-          "text": "RPC函数注册",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "b3560a8491d65c58f2e7f3d5aabc3c0d"
-          ],
-          "memoryId": "b3560a8491d65c58f2e7f3d5aabc3c0d"
-        },
-        {
-          "id": "rel_094",
-          "text": "内部Resource复用",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "99ae59b36ae4bce2f065c8bf069b06bd"
-          ],
-          "memoryId": "99ae59b36ae4bce2f065c8bf069b06bd"
-        },
-        {
-          "id": "rel_095",
-          "text": "v4视图装配",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a08158621d44f9c06730e1b96dbfa281"
-          ],
-          "memoryId": "a08158621d44f9c06730e1b96dbfa281"
-        },
-        {
-          "id": "rel_096",
-          "text": "运维配置与DB路由",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a992f1cb1bae81444c8e9228bf898ea5"
-          ],
-          "memoryId": "a992f1cb1bae81444c8e9228bf898ea5"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/kernel_api网关": {
-      "hot_relations": [
-        {
-          "id": "rel_099",
-          "text": "authentication-ApiAuthToken",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786614940197,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "fc76d3d7833ae8a55d95170d1d9a2d81",
-            "bd2ac5f2b25956dcc1a564f4dffa8ba9"
-          ],
-          "memoryId": "fc76d3d7833ae8a55d95170d1d9a2d81"
-        },
-        {
-          "id": "rel_101",
-          "text": "ApiRenderer-字段映射表",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786614942203,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "804b20b7dc32099cba76f96c726f58f2",
-            "c488a201decfc8d3660eb4b89ee5331d"
-          ],
-          "memoryId": "804b20b7dc32099cba76f96c726f58f2"
-        },
-        {
-          "id": "rel_103",
-          "text": "resource-views_v4复用",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786709588675,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "e421cca9d5a08c0646b497119437f426",
-            "ce52490a5b33647688318e220d4415fa"
-          ],
-          "memoryId": "e421cca9d5a08c0646b497119437f426"
-        },
-        {
-          "id": "rel_097",
-          "text": "config-role-api-kernel_api装配",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "f712776048730c666fbe26073582f481",
-            "847dc3b5a2d89fb29ddb54d71f84d24d"
-          ],
-          "memoryId": "f712776048730c666fbe26073582f481"
-        },
-        {
-          "id": "rel_098",
-          "text": "urls-views装配契约",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "155d388361d1936fc3b0db79f1503d41",
-            "f14734620510937384035c7b70178173"
-          ],
-          "memoryId": "155d388361d1936fc3b0db79f1503d41"
-        },
-        {
-          "id": "rel_100",
-          "text": "api_exception_handler-web错误码透传",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "11499296cefc3b17190991981024e8cf",
-            "2c3f0393071fe4b77f59b80428f9260c"
-          ],
-          "memoryId": "11499296cefc3b17190991981024e8cf"
-        },
-        {
-          "id": "rel_102",
-          "text": "KernelRPCRegistry-rpc_functions注册",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "337ccadbd7e6f300c19dd270345744fb",
-            "e0cb7ade8d864757e692581a50d92219"
-          ],
-          "memoryId": "337ccadbd7e6f300c19dd270345744fb"
-        },
-        {
-          "id": "rel_104",
-          "text": "authentication-bk_apigateway公钥",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "cbb2889d10cdd404ca6e07656fe71102",
-            "9f5674dccbaf9c7fb4cba55f46a26377"
-          ],
-          "memoryId": "cbb2889d10cdd404ca6e07656fe71102"
-        },
-        {
-          "id": "rel_117",
-          "text": "apigw-resources-yaml-docs-api文档",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "128a16ebeaf13c25498db77f9b1f1b00",
-            "5c9c4f1a2a973d578d584549579d5bcd"
-          ],
-          "memoryId": "128a16ebeaf13c25498db77f9b1f1b00"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/UnifyQuery查询": {
-      "hot_relations": [
-        {
-          "id": "rel_105",
-          "text": "UnifyQuery专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "f08a08e177bb8df21d1c4e5f1f389d85"
-          ],
-          "memoryId": "f08a08e177bb8df21d1c4e5f1f389d85"
-        },
-        {
-          "id": "rel_106",
-          "text": "UnifyQuery架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "5531c9c5c289dae04e8efb1426d01270"
-          ],
-          "memoryId": "5531c9c5c289dae04e8efb1426d01270"
-        },
-        {
-          "id": "rel_107",
-          "text": "参数拼接链路",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "d5b88ef60e8246e276faf77d0ecbcee3"
-          ],
-          "memoryId": "d5b88ef60e8246e276faf77d0ecbcee3"
-        },
-        {
-          "id": "rel_108",
-          "text": "两层聚合机制与函数映射",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "cf418c3b68a8e890c798be4e0e7dabf3"
-          ],
-          "memoryId": "cf418c3b68a8e890c798be4e0e7dabf3"
-        },
-        {
-          "id": "rel_109",
-          "text": "instant参数行为详解",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "67e760168ea76327abde3764e3e28c01"
-          ],
-          "memoryId": "67e760168ea76327abde3764e3e28c01"
-        },
-        {
-          "id": "rel_110",
-          "text": "六入口数据流转",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "f8f258fc19cce956ea6301b9421ab6f1"
-          ],
-          "memoryId": "f8f258fc19cce956ea6301b9421ab6f1"
-        },
-        {
-          "id": "rel_111",
-          "text": "统一查询后端接口契约",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "5de81986dd9d5f29a25374d741faa1cf"
-          ],
-          "memoryId": "5de81986dd9d5f29a25374d741faa1cf"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/UnifyQuery查询": {
-      "hot_relations": [
-        {
-          "id": "rel_112",
-          "text": "UnifyQuery-load_data_source-TimeSeriesDataSource",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786616057447,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "d8e2dedb03c69cab4274f9f3b8270af6",
-            "5b3b3bb81109f481a77990ccc1a2c18b"
-          ],
-          "memoryId": "d8e2dedb03c69cab4274f9f3b8270af6"
-        },
-        {
-          "id": "rel_113",
-          "text": "UnifyQuery-api.unify_query-resources",
-          "score": 0.9998499877848187,
-          "useCount": 1,
-          "lastUsedTime": 1786616037333,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "805243a48c50095a39e64159db8070f6",
-            "a1488f83fd23b934778d69a1e5877804"
-          ],
-          "memoryId": "805243a48c50095a39e64159db8070f6"
-        },
-        {
-          "id": "rel_114",
-          "text": "UnifyQuery-UnifyQuerySet-builder",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786616049469,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "597c6eb21c00fda86062d71d0a648688",
-            "afa8ab297eeb65fec932892d1a46efb5"
-          ],
-          "memoryId": "597c6eb21c00fda86062d71d0a648688"
-        },
-        {
-          "id": "rel_115",
-          "text": "DataSource-DataQueryHandler",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786616048578,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "637f7eb971772fc0536b6b8d9c6f0cbe",
-            "66c1416912910e2403ffb8c04433545f"
-          ],
-          "memoryId": "637f7eb971772fc0536b6b8d9c6f0cbe"
-        },
-        {
-          "id": "rel_116",
-          "text": "to_unify_query_config-ResultTable-ResultTableField",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786616045354,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "2ac0b80684184492a8ff9546a87315b4",
-            "8046ebc6c767fc9a000140b97f22a983"
-          ],
-          "memoryId": "2ac0b80684184492a8ff9546a87315b4"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/告警屏蔽": {
-      "hot_relations": [
-        {
-          "id": "rel_118",
-          "text": "告警屏蔽专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c8720279ac550ba8afd513ce19b90efa"
-          ],
-          "memoryId": "c8720279ac550ba8afd513ce19b90efa"
-        },
-        {
-          "id": "rel_119",
-          "text": "告警屏蔽架构总览",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623592013,
-          "isImported": false,
-          "memoryIds": [
-            "31a04ade21abad59b9791fe530fee8e5"
-          ],
-          "memoryId": "31a04ade21abad59b9791fe530fee8e5"
-        },
-        {
-          "id": "rel_120",
-          "text": "五种屏蔽类型对比与选择",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "31cfab47678311813a8692064d71438e"
-          ],
-          "memoryId": "31cfab47678311813a8692064d71438e"
-        },
-        {
-          "id": "rel_121",
-          "text": "屏蔽匹配引擎双维度校验",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623592849,
-          "isImported": false,
-          "memoryIds": [
-            "c4220687bc677feffe97c1210e8ef10b"
-          ],
-          "memoryId": "c4220687bc677feffe97c1210e8ef10b"
-        },
-        {
-          "id": "rel_122",
-          "text": "屏蔽缓存同步机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c2cf514cb8d73549ba268d4199dde20c"
-          ],
-          "memoryId": "c2cf514cb8d73549ba268d4199dde20c"
-        },
-        {
-          "id": "rel_123",
-          "text": "屏蔽通知幂等机制",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623593548,
-          "isImported": false,
-          "memoryIds": [
-            "b970a9ff9e2f42bb5c6e02d02169ba5f"
-          ],
-          "memoryId": "b970a9ff9e2f42bb5c6e02d02169ba5f"
-        },
-        {
-          "id": "rel_124",
-          "text": "快捷屏蔽接口体系",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "99b27f90ab31922aac31e71c658918fe"
-          ],
-          "memoryId": "99b27f90ab31922aac31e71c658918fe"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/告警屏蔽": {
-      "hot_relations": [
-        {
-          "id": "rel_125",
-          "text": "AddShieldResource-serializers-Shield模型",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622401419,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "077c7980d73c1d18173e6debcdff0290",
-            "7f21c63d25e4c765977161a67aba078b"
-          ],
-          "memoryId": "077c7980d73c1d18173e6debcdff0290"
-        },
-        {
-          "id": "rel_126",
-          "text": "ShieldObj-ShieldCacheManager-AlertDocument",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622399958,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "239d68e8e64124759dca176b545b9852",
-            "cecc8b9a53fbfefdc861a6f4fe030099"
-          ],
-          "memoryId": "239d68e8e64124759dca176b545b9852"
-        },
-        {
-          "id": "rel_127",
-          "text": "AddShieldResource-AlertDocument-is_shielded",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "abb1be70b95c56cb1c770e14267eb5f3",
-            "6d30272bc965a694bf0e7a10452d4929"
-          ],
-          "memoryId": "abb1be70b95c56cb1c770e14267eb5f3"
-        },
-        {
-          "id": "rel_128",
-          "text": "ShieldManager-Shielder-ShieldObj",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622396726,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "c7a23a39fe79db48462d05dddd60b08f",
-            "67fa83fbb4eecd0546efe187d8cd5224"
-          ],
-          "memoryId": "c7a23a39fe79db48462d05dddd60b08f"
-        },
-        {
-          "id": "rel_129",
-          "text": "QuickShield-AddShieldResource-EventViewSet",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "6360910824abd08ae3bb10c50f72d531",
-            "0e3a638963c944a01514e5fdb0720eec"
-          ],
-          "memoryId": "6360910824abd08ae3bb10c50f72d531"
-        },
-        {
-          "id": "rel_130",
-          "text": "Shield模型-dimension_config-AlertDocument-StrategyModel",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622398254,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "ff15bfab760e92686e1a3c5c06a225fd",
-            "72901b5f036e22ac2acbf9cc40af213b"
-          ],
-          "memoryId": "ff15bfab760e92686e1a3c5c06a225fd"
-        },
-        {
-          "id": "rel_131",
-          "text": "ShieldStatusChecker-AlertShieldConfigShielder-ShieldObj",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "753708e967d90da69730bc5d0b0896a4",
-            "99842ab1da19ebd75133ee47c067e99b"
-          ],
-          "memoryId": "753708e967d90da69730bc5d0b0896a4"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/场景视图": {
-      "hot_relations": [
-        {
-          "id": "rel_132",
-          "text": "场景视图专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "b39d98d6c698cee72421a23e748dfff3"
-          ],
-          "memoryId": "b39d98d6c698cee72421a23e748dfff3"
-        },
-        {
-          "id": "rel_133",
-          "text": "场景视图架构总览",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622944365,
-          "isImported": false,
-          "memoryIds": [
-            "3f01d027083204c67fd5e0644f108af3"
-          ],
-          "memoryId": "3f01d027083204c67fd5e0644f108af3"
-        },
-        {
-          "id": "rel_134",
-          "text": "BuiltinProcessor处理器与分发机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "e44882175956565233a2a5afd152b679"
-          ],
-          "memoryId": "e44882175956565233a2a5afd152b679"
-        },
-        {
-          "id": "rel_135",
-          "text": "视图配置读写与内置视图同步",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "d1411533cf1bb95ec3bb63cc77acaffb"
-          ],
-          "memoryId": "d1411533cf1bb95ec3bb63cc77acaffb"
-        },
-        {
-          "id": "rel_136",
-          "text": "PageListResource表格框架与TableFormat",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a7db71d4d897001cf98e869539ed9483"
-          ],
-          "memoryId": "a7db71d4d897001cf98e869539ed9483"
-        },
-        {
-          "id": "rel_137",
-          "text": "主机进程列表4路并发聚合",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a00d2bd6c407124888eeb02e7a1b84a2"
-          ],
-          "memoryId": "a00d2bd6c407124888eeb02e7a1b84a2"
-        },
-        {
-          "id": "rel_138",
-          "text": "场景视图数据模型",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "6df10fa93ebf953eed91b2728f46be4f"
-          ],
-          "memoryId": "6df10fa93ebf953eed91b2728f46be4f"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/场景视图": {
-      "hot_relations": [
-        {
-          "id": "rel_139",
-          "text": "SceneViewViewSet-Resource-BuiltinProcessor",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "5ef2e01f099af45d12fae80906d231c8",
-            "f8438a42e8db30f11dbc75ea38b3067f"
-          ],
-          "memoryId": "5ef2e01f099af45d12fae80906d231c8"
-        },
-        {
-          "id": "rel_140",
-          "text": "BuiltinProcessor-view_configs-SceneViewModel",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623472888,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "742c87fa4c6a39b59bf1ac364e0f278b",
-            "94cfde5c86159917df98a57fc8aac5bf"
-          ],
-          "memoryId": "742c87fa4c6a39b59bf1ac364e0f278b"
-        },
-        {
-          "id": "rel_141",
-          "text": "GetSceneViewResource-create_default_views-SceneViewModel",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623469183,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "ea32252c255b7f554d9ef34cabca6489",
-            "c029c0336e16b6caeecbd00f859a8275"
-          ],
-          "memoryId": "ea32252c255b7f554d9ef34cabca6489"
-        },
-        {
-          "id": "rel_142",
-          "text": "PageListResource-TableFormat-子类",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623470002,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "8071724cf8ef28a92fe99f165c98cbd7",
-            "6715e2234caac83c70b936664103b29a"
-          ],
-          "memoryId": "8071724cf8ef28a92fe99f165c98cbd7"
-        },
-        {
-          "id": "rel_143",
-          "text": "GetHostProcessListResource-UnifyQuery-CMDB",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623470714,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "a723c9a5e39c29b20dbc290d6ccc4831",
-            "a956c0a0657e216bda18572018553f86"
-          ],
-          "memoryId": "a723c9a5e39c29b20dbc290d6ccc4831"
-        },
-        {
-          "id": "rel_144",
-          "text": "SceneViewModel-SceneViewOrderModel-update_order",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786623471677,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "71e4ba4d72121d23dbc703da1d1556e9",
-            "e5b549dd026d072dbb1086c11e1002cb"
-          ],
-          "memoryId": "71e4ba4d72121d23dbc703da1d1556e9"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/数据源查询构造": {
-      "hot_relations": [
-        {
-          "id": "rel_145",
-          "text": "数据源查询构造专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "74cec5fed3dab9c8a6898cc35001c654"
-          ],
-          "memoryId": "74cec5fed3dab9c8a6898cc35001c654"
-        },
-        {
-          "id": "rel_146",
-          "text": "load_data_source 14组合映射表",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "b4fcdecf0aefbeacd8174fb0c384953f"
-          ],
-          "memoryId": "b4fcdecf0aefbeacd8174fb0c384953f"
-        },
-        {
-          "id": "rel_147",
-          "text": "路径决策机制 use_unify_query",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c4daa70976f057a98cba6fd22fac9d31"
-          ],
-          "memoryId": "c4daa70976f057a98cba6fd22fac9d31"
-        },
-        {
-          "id": "rel_148",
-          "text": "查询描述对象构造规范",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "91d4b62a422309b5c9d801ced5b08c55"
-          ],
-          "memoryId": "91d4b62a422309b5c9d801ced5b08c55"
-        },
-        {
-          "id": "rel_149",
-          "text": "表名字段来源与元数据模型",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "24468d257aa1b0e21960e3c89c1c1fe0"
-          ],
-          "memoryId": "24468d257aa1b0e21960e3c89c1c1fe0"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/数据源查询构造": {
-      "hot_relations": [
-        {
-          "id": "rel_150",
-          "text": "load_data_source-DataSource子类-use_unify_query",
-          "score": 0.9998600774514299,
-          "useCount": 1,
-          "lastUsedTime": 1786622751378,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "e9dabab437e06e4d8d70f7c6c8e0e150",
-            "a7c1acbc92dfba806bef874f6efdcc7f"
-          ],
-          "memoryId": "e9dabab437e06e4d8d70f7c6c8e0e150"
-        },
-        {
-          "id": "rel_151",
-          "text": "DataSource-to_unify_query_config-UnifyQuery",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622758253,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "c7649eba68aefa980ce67a79b05bbac8",
-            "64a3dd5ddc8e4105fb9955dc935bda7a"
-          ],
-          "memoryId": "c7649eba68aefa980ce67a79b05bbac8"
-        },
-        {
-          "id": "rel_152",
-          "text": "DataSource-DataQueryHandler-原生路径",
-          "score": 0.9998352933364577,
-          "useCount": 1,
-          "lastUsedTime": 1786622745612,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "015384913643fcef42d6311267130493",
-            "40e80daac728231bbe2809454c59af68"
-          ],
-          "memoryId": "015384913643fcef42d6311267130493"
-        },
-        {
-          "id": "rel_153",
-          "text": "load_data_source-DataSourceLabel-DataTypeLabel-constants",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622761500,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "a941a58a178bb1f647e7e27018f22501",
-            "74b41c312c04ef36f3587d3028ee1a4b"
-          ],
-          "memoryId": "a941a58a178bb1f647e7e27018f22501"
-        },
-        {
-          "id": "rel_154",
-          "text": "查询参数-ResultTable-ResultTableField",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622750320,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "36cb255e62ba9631f24542cd291c3b7d",
-            "a6078ce06f21490d1eab9378e2ec3895"
-          ],
-          "memoryId": "36cb255e62ba9631f24542cd291c3b7d"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/性能场景": {
-      "hot_relations": [
-        {
-          "id": "rel_155",
-          "text": "性能场景专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "161ac01d744d756d9768a1ca86e435af"
-          ],
-          "memoryId": "161ac01d744d756d9768a1ca86e435af"
-        },
-        {
-          "id": "rel_156",
-          "text": "性能场景架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "767ae59ab8cb9c867833ed2d2a06312c"
-          ],
-          "memoryId": "767ae59ab8cb9c867833ed2d2a06312c"
-        },
-        {
-          "id": "rel_157",
-          "text": "ThreadPool 4路并行聚合模式",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "2a2723b4a2885bb547b49f4f8d2e9645"
-          ],
-          "memoryId": "2a2723b4a2885bb547b49f4f8d2e9645"
-        },
-        {
-          "id": "rel_158",
-          "text": "HOST缓存与实时查询机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "e259fa22e929010ef4f787de47fc1338"
-          ],
-          "memoryId": "e259fa22e929010ef4f787de47fc1338"
-        },
-        {
-          "id": "rel_159",
-          "text": "拓扑节点与主机基础信息接口",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "0ac6cfe4119d71be3be7a7e0815f9016"
-          ],
-          "memoryId": "0ac6cfe4119d71be3be7a7e0815f9016"
-        },
-        {
-          "id": "rel_160",
-          "text": "host_dict运行时内存结构",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "9cab39efb7c11f07761a6daaf2ee71b1"
-          ],
-          "memoryId": "9cab39efb7c11f07761a6daaf2ee71b1"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/性能场景": {
-      "hot_relations": [
-        {
-          "id": "rel_161",
-          "text": "ViewSet-PermissionMixin-Resource绑定",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786622948930,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "c12500063fc78888b5c70f9416643f65",
-            "70899bee2812a730fab52a1ce8c266be"
-          ],
-          "memoryId": "c12500063fc78888b5c70f9416643f65"
-        },
-        {
-          "id": "rel_162",
-          "text": "Resource-resource.cc-多源拉取",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786623599248,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "027a95dc185433764198e62827f3e111",
-            "8f4e988fd60b862917cfa590cc16015a"
-          ],
-          "memoryId": "027a95dc185433764198e62827f3e111"
-        },
-        {
-          "id": "rel_163",
-          "text": "HostPerformanceResource-CacheResource-CacheType.HOST",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786623598549,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "0568687ee3d2021ccb2b579c09a07d2a",
-            "e3e868539e1b0d48609ed1c5bafd56b0"
-          ],
-          "memoryId": "0568687ee3d2021ccb2b579c09a07d2a"
-        },
-        {
-          "id": "rel_164",
-          "text": "性能模块-api.cmdb-拓扑主机查询",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786623597787,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "70d9b20bc3907ec9b818bb34d8da3946",
-            "eda1ecf13d9b10051bd50659e21be3ad"
-          ],
-          "memoryId": "70d9b20bc3907ec9b818bb34d8da3946"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/元数据管理": {
-      "hot_relations": [
-        {
-          "id": "rel_165",
-          "text": "元数据管理专题路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a07a9bc25813a85b2efbee135b7d5225"
-          ],
-          "memoryId": "a07a9bc25813a85b2efbee135b7d5225"
-        },
-        {
-          "id": "rel_166",
-          "text": "元数据管理专题架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c69beee86e4bac0eebb77a294f50e074"
-          ],
-          "memoryId": "c69beee86e4bac0eebb77a294f50e074"
-        },
-        {
-          "id": "rel_167",
-          "text": "元数据核心模型专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "f9137b05275ac59cacb37bf29f6c89ee"
-          ],
-          "memoryId": "f9137b05275ac59cacb37bf29f6c89ee"
-        },
-        {
-          "id": "rel_168",
-          "text": "存储与数据链路专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "fa279e43cad9909d4bf028f312478f97"
-          ],
-          "memoryId": "fa279e43cad9909d4bf028f312478f97"
-        },
-        {
-          "id": "rel_169",
-          "text": "空间与自定义上报专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "a0a1f8fde645a59bea052616b88ffd94"
-          ],
-          "memoryId": "a0a1f8fde645a59bea052616b88ffd94"
-        },
-        {
-          "id": "rel_170",
-          "text": "任务调度与运维专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "ba95ec84b73063c84a025bc9384e7791"
-          ],
-          "memoryId": "ba95ec84b73063c84a025bc9384e7791"
-        },
-        {
-          "id": "rel_171",
-          "text": "API与工具库专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "494c0c8c647f682af909a581e5fe1060"
-          ],
-          "memoryId": "494c0c8c647f682af909a581e5fe1060"
-        },
-        {
-          "id": "rel_172",
-          "text": "元数据种子数据与数据字典专家",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "e12ccf227ecbd21bb341b8b3ab23d1c4"
-          ],
-          "memoryId": "e12ccf227ecbd21bb341b8b3ab23d1c4"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/元数据管理": {
-      "hot_relations": [
-        {
-          "id": "rel_173",
-          "text": "核心模型-存储引擎-数据链路",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "8fb5553599244bb5c9740dd4bfcf906f",
-            "11d35637d2a7905d8f45ffb11ea176df"
-          ],
-          "memoryId": "8fb5553599244bb5c9740dd4bfcf906f"
-        },
-        {
-          "id": "rel_174",
-          "text": "核心模型-外部消费者",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "3206dcfddeefe35d1de2beb874de818c",
-            "40e0485a3e66b45889d2a88fbda1300f"
-          ],
-          "memoryId": "3206dcfddeefe35d1de2beb874de818c"
-        },
-        {
-          "id": "rel_175",
-          "text": "API资源层-service层-模型层",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "957b2aa43cd7cc37c30c327e617bd1f7",
-            "1ba47919dba0ef364f67ebbfa1973cd4"
-          ],
-          "memoryId": "957b2aa43cd7cc37c30c327e617bd1f7"
-        },
-        {
-          "id": "rel_176",
-          "text": "空间隔离-SpaceTableIDRedis-隔离对象",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "c51d6b25bb1d72bed245938cd04e4126",
-            "3cdf67052d64dc9c77d25f9e027565fd"
-          ],
-          "memoryId": "c51d6b25bb1d72bed245938cd04e4126"
-        },
-        {
-          "id": "rel_177",
-          "text": "entity_relation-APM-bkm_ipchooser",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "a05ae5eb92c813176e480b5fe721c28b",
-            "2cc76602923aecf0425e60ab4be2e0d4"
-          ],
-          "memoryId": "a05ae5eb92c813176e480b5fe721c28b"
-        },
-        {
-          "id": "rel_178",
-          "text": "种子数据加载-核心模型-存储模型",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "77561dce59948ddac777363907166617",
-            "1a3fdd3dda3c86c210c962fb1351bae5"
-          ],
-          "memoryId": "77561dce59948ddac777363907166617"
-        },
-        {
-          "id": "rel_179",
-          "text": "任务调度-模型层-Consul存储后端",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "da94b1c974f1b7e8033b2d5ac574edcd",
-            "eb5b438dfec95c3b9aee60b0b7e0d81f"
-          ],
-          "memoryId": "da94b1c974f1b7e8033b2d5ac574edcd"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "专题记忆/外部API集成专题": {
-      "hot_relations": [
-        {
-          "id": "rel_180",
-          "text": "专题路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "3bc3cb32c7d11bfa2e66c3be1110ff75"
-          ],
-          "memoryId": "3bc3cb32c7d11bfa2e66c3be1110ff75"
-        },
-        {
-          "id": "rel_181",
-          "text": "架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "07b25de0c5c160beb1c26fc1494da2b9"
-          ],
-          "memoryId": "07b25de0c5c160beb1c26fc1494da2b9"
-        },
-        {
-          "id": "rel_182",
-          "text": "基础平台与网关专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "1630c908ff2d3f285f395d6d6c4ed921"
-          ],
-          "memoryId": "1630c908ff2d3f285f395d6d6c4ed921"
-        },
-        {
-          "id": "rel_183",
-          "text": "CMDB与容器资源专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c4f00e9302bb53810ddb26aa1aca9b89"
-          ],
-          "memoryId": "c4f00e9302bb53810ddb26aa1aca9b89"
-        },
-        {
-          "id": "rel_184",
-          "text": "数据平台专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "9476071118739a76be22d00acb152710"
-          ],
-          "memoryId": "9476071118739a76be22d00acb152710"
-        },
-        {
-          "id": "rel_185",
-          "text": "协作与流程专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "ef99880bd8b47ba097b5ae936d4d9158"
-          ],
-          "memoryId": "ef99880bd8b47ba097b5ae936d4d9158"
-        },
-        {
-          "id": "rel_186",
-          "text": "监控生态专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "memoryIds": [
-            "c53908fb2ad357d8599196562d07b22e"
-          ],
-          "memoryId": "c53908fb2ad357d8599196562d07b22e"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
-    },
-    "关联关系/外部API集成专题": {
-      "hot_relations": [
-        {
-          "id": "rel_191",
-          "text": "bkdata-UseSaaSAuthInfoMixin-SAAS认证注入",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "1307f22c473f85d7127ba1f6620e35e9",
-            "d02f2417e23c46a217cfac97d26368a5"
-          ],
-          "memoryId": "1307f22c473f85d7127ba1f6620e35e9"
-        },
-        {
-          "id": "rel_192",
-          "text": "metadata-MetaDataAPIGWResource-KernelAPIResource",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "79043f4595ba17cc16b0c0aba0ff71a9",
-            "455e8955d3d91834dd70262e8a2ab760"
-          ],
-          "memoryId": "79043f4595ba17cc16b0c0aba0ff71a9"
-        },
-        {
-          "id": "rel_193",
-          "text": "unify_query-UnifyQueryAPIResource-非APIResource直连",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "99905b44aec96fdcf7834e5bc9df0d0b",
-            "3e4fec9625f47c6ec731f02ebd0140ad"
-          ],
-          "memoryId": "99905b44aec96fdcf7834e5bc9df0d0b"
-        },
-        {
-          "id": "rel_194",
-          "text": "grafana-GrafanaApiResource-直连非APIResource",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "bf5ffa12d1a8ebb33565ba0bbf681da6",
-            "c8c677f25fee420c9726ee2b84932676"
-          ],
-          "memoryId": "bf5ffa12d1a8ebb33565ba0bbf681da6"
-        },
-        {
-          "id": "rel_195",
-          "text": "monitor-module_name-mointor_v3拼写",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "4eff0d8a56ce7efc3a0b4855a6313ef4",
-            "d2bd32e69c955963552262ded2a3cb4f"
-          ],
-          "memoryId": "4eff0d8a56ce7efc3a0b4855a6313ef4"
-        },
-        {
-          "id": "rel_196",
-          "text": "api.issue-IssueAPIResource-kernel_api桥接",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "7a5b9c76cd794a4db9ff808e73b8d6b4",
-            "08f2cbc7ceb94b7c76cb8d878f5c4f34"
-          ],
-          "memoryId": "7a5b9c76cd794a4db9ff808e73b8d6b4"
-        },
-        {
-          "id": "rel_197",
-          "text": "kubernetes-数据四路-非APIResource聚合",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "f98976b6b3ac3c0ec73585c05aee4be2",
-            "5d9d472414eba907a378ff3cc502ebf5"
-          ],
-          "memoryId": "f98976b6b3ac3c0ec73585c05aee4be2"
-        },
-        {
-          "id": "rel_198",
-          "text": "cmsi-8通道-apigw_esb动态切换",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "ffbf928e8a6399c9179f5245329c6251",
-            "4702096aa9b9a4da95c627ea9b5a1866"
-          ],
-          "memoryId": "ffbf928e8a6399c9179f5245329c6251"
-        },
-        {
-          "id": "rel_199",
-          "text": "CommonBaseResource-各系统基类-APIResource",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "8c3e1f4b2802c5eaa433cd528cb90c71",
-            "f90efd994a16e50e5cd98f0f133bfc44"
-          ],
-          "memoryId": "8c3e1f4b2802c5eaa433cd528cb90c71"
-        },
-        {
-          "id": "rel_200",
-          "text": "bk_apigateway-GetPublicKeyResource-kernel_api认证",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "relation"
-          ],
-          "memoryIds": [
-            "6f3a74526ef8440efc987f36762efae4",
-            "fbfe13b5323919c7e8750013de45d908"
-          ],
-          "memoryId": "6f3a74526ef8440efc987f36762efae4"
-        }
-      ],
-      "keywords": [],
-      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-14T12:36:18.775Z"
+  "updatedAt": "2026-08-27T07:12:24.057Z"
 }

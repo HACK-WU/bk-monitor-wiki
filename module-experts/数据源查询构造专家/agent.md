@@ -4,7 +4,7 @@
 负责 BK-Monitor **数据源系统的查询构造层**——`load_data_source` 工厂注册的所有 `(DataSourceLabel, DataTypeLabel)` 组合、每个组合对应的数据源类及其路径决策（统一查询后端 vs 原生查询）、查询描述对象的构造规范（`data_source_class(bk_biz_id, interval, metrics, table, group_by)`）、以及表名/字段的真实来源。
 
 ## 负责的功能域
-- 数据源工厂：`load_data_source` 的 14 个注册组合、`DataSourceLabel` / `DataTypeLabel` 取值
+- 数据源工厂：`load_data_source` 的注册组合（2026-08-31 核对为 **16 个**，原记 14 已含新增的 RUM 两项）、`DataSourceLabel` / `DataTypeLabel` 取值
 - 路径决策：`UnifyQueryDataSources`（硬编码走 unify-query）vs `GrayUnifyQueryDataSources`（灰度）vs 原生路径
 - 查询描述对象：`data_source_class(...)` 的参数规范、metrics 结构、方法映射
 - 表名/字段来源：`ResultTable` / `ResultTableField` 模型、`init_resulttable.json` 初始化数据
@@ -17,12 +17,13 @@
 - 排查表名或字段名找不到对应的数据源
 
 ## 契约层就绪
-`C0 + C1` 就绪
+`C0 + C1 + C5` 就绪（C5 于 2026-08-31 补建，含 9 条有证据决策 + 1 条 `[推测]`）
 
 ## 包含的资产
 ### 契约层（使用文档）
-- `C0-使用总览.md` — 能力清单、边界、已知问题
-- `C1-能力契约.md` — `load_data_source` 完整映射表、构造规范、路径决策矩阵
+- `C0-使用总览.md` — 能力清单、边界、速查矩阵、已知问题（含 14→16 组合过期提示）
+- `C1-能力契约.md` — `load_data_source` 映射表、构造规范、路径决策矩阵
+- `C5-关键决策.md` — 10 条关键决策（注册表实现方式 / 白名单→黑名单三阶段演进 / 对账命令 / 聚类强制 UQ / 日志结构一致 / cmdb 层级表 bk_sql 临时方案 / RUM 组合新增 / query_string 复刻 / `-time` 降序 / 6 组合恒走原生）
 
 ### 实现层（代码导航）
 - `implementation/01-架构.md` — 数据源系统架构、14 个注册类、表名字段来源

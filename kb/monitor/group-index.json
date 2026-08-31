@@ -34,9 +34,12 @@
       "真实用户监控(RUM)": {},
       "部署与运维": {},
       "项目概述": {}
+    },
+    "测试": {
+      "连通性测试": {}
     }
   },
-  "updatedAt": "2026-08-11T05:21:31.789Z",
+  "updatedAt": "2026-08-27T07:47:19.431Z",
   "source": {
     "dir": "/root/bk-monitor/bk-monitor-wiki/wiki",
     "rootName": "wiki",

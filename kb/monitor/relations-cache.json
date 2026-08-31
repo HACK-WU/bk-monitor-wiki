@@ -680,9 +680,9 @@
         {
           "id": "rel_033",
           "text": "告警引擎核心",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146152497,
           "isImported": true,
           "memoryIds": [
             "62020bf9cf69e5f8df714094625623c6",
@@ -731,9 +731,9 @@
         {
           "id": "rel_036",
           "text": "检测结果管理",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146202165,
           "isImported": true,
           "memoryIds": [
             "7bbea741ba4c66a6fa067be98569d526",
@@ -785,9 +785,9 @@
         {
           "id": "rel_042",
           "text": "通知投递追踪",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788143368351,
           "isImported": true,
           "memoryIds": [
             "01a885ef35db18bbc48f30f1e08c7a35",
@@ -803,9 +803,9 @@
         {
           "id": "rel_043",
           "text": "通知模板管理",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1786426477595,
+          "score": 3,
+          "useCount": 3,
+          "lastUsedTime": 1788143490612,
           "isImported": true,
           "memoryIds": [
             "0c4ff3d5c548d09d8604c6f47634f086",
@@ -818,9 +818,9 @@
         {
           "id": "rel_044",
           "text": "通知渠道管理",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 0.9990350639453552,
+          "useCount": 1,
+          "lastUsedTime": 1788143400450,
           "isImported": true,
           "memoryIds": [
             "e27c6af51ba08ebf2ee44d6a69586f8d",
@@ -837,9 +837,9 @@
         {
           "id": "rel_045",
           "text": "通知队列管理",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 0.9996780088043169,
+          "useCount": 1,
+          "lastUsedTime": 1788143373591,
           "isImported": true,
           "memoryIds": [
             "51ddcc22a42765e0138e4bfee28be920",
@@ -875,9 +875,9 @@
         {
           "id": "rel_047",
           "text": "钉钉集成",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788143495517,
           "isImported": true,
           "memoryIds": [
             "dc1c3dce03b34327b8fda861b3625d03",
@@ -1185,9 +1185,9 @@
         {
           "id": "rel_063",
           "text": "故障排查",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146070467,
           "isImported": true,
           "memoryIds": [
             "8e9fd89e6ae869bbecfd1b8932785832",
@@ -1627,9 +1627,9 @@
         {
           "id": "rel_081",
           "text": "数据链路操作服务",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1786436693765,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1787815024930,
           "isImported": true,
           "memoryIds": [
             "9c4d7917233afdfc0b6d778617cbabda",
@@ -2707,7 +2707,12 @@
       ],
       "keywords": [],
       "max_hot_count": 10
+    },
+    "测试/连通性测试": {
+      "hot_relations": [],
+      "keywords": [],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-12T01:45:30.808Z"
+  "updatedAt": "2026-08-31T03:16:42.165Z"
 }

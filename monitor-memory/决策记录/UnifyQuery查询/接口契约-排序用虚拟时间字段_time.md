@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/UnifyQuery查询
 relation: 接口契约-排序用虚拟时间字段_time
-exportedAt: "2026-08-31T02:05:27.218Z"
+exportedAt: "2026-09-01T08:42:46.387Z"
 ---
 【决策记录｜UnifyQuery 排序统一用虚拟时间字段 _time，由统一查询后端按 time_field 替换】
 - 分类：接口契约

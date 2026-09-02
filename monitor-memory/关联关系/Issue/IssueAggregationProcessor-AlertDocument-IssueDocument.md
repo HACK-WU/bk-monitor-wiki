@@ -1,7 +1,7 @@
 ---
 groupPath: 关联关系/Issue
 relation: IssueAggregationProcessor-AlertDocument-IssueDocument
-exportedAt: "2026-08-13T08:55:36.151Z"
+exportedAt: "2026-09-01T08:35:17.234Z"
 ---
 [强关联] IssueAggregationProcessor 与 AlertDocument / IssueDocument
 强度：必改——改 AlertDocument.issue_id 字段定义或 IssueDocument 索引结构/缓存 key 时，聚合引擎必须跟着改；改聚合引擎的查找/创建逻辑，两个 Document 不用管

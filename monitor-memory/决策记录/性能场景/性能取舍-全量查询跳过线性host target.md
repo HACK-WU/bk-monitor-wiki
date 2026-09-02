@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/性能场景
 relation: 性能取舍-全量查询跳过线性host target
-exportedAt: "2026-08-31T02:23:39.117Z"
+exportedAt: "2026-09-01T08:42:46.387Z"
 ---
 【决策记录｜性能场景 全量主机指标查询跳过线性 host target，并明确否决五种替代方案】
 - 分类：性能取舍

@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/Issue
 relation: 架构设计-活跃Issue三级查找与Legacy迁移哨兵
-exportedAt: "2026-08-31T03:09:42.907Z"
+exportedAt: "2026-09-01T08:35:17.232Z"
 ---
 【决策记录｜Issue 活跃 Issue 三级查找加 Legacy 迁移哨兵，保证模型切换窗口期可用】
 - 分类：架构设计

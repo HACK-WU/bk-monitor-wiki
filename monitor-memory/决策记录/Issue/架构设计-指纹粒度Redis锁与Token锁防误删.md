@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/Issue
 relation: 架构设计-指纹粒度Redis锁与Token锁防误删
-exportedAt: "2026-08-31T03:10:17.255Z"
+exportedAt: "2026-09-01T08:35:17.232Z"
 ---
 【决策记录｜Issue 并发控制用 fingerprint 粒度 Redis 锁加 Token 锁 Lua 脚本防误删】
 - 分类：架构设计

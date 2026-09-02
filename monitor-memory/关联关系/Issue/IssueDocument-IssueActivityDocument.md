@@ -1,7 +1,7 @@
 ---
 groupPath: 关联关系/Issue
 relation: IssueDocument-IssueActivityDocument
-exportedAt: "2026-08-13T08:56:08.636Z"
+exportedAt: "2026-09-01T08:35:17.234Z"
 ---
 [强关联] IssueDocument 状态机方法 与 IssueActivityDocument 活动日志
 强度：必改——改 IssueActivityDocument 的字段定义/索引结构时，IssueDocument 状态机方法必须跟着改；改状态机方法的活动日志写入格式，ActivityDocument 不用管

@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/UnifyQuery查询
 relation: 接口契约-时间对齐默认开启not_time_align关闭
-exportedAt: "2026-08-31T02:05:27.218Z"
+exportedAt: "2026-09-01T08:42:46.387Z"
 ---
 【决策记录｜UnifyQuery 时间对齐默认开启，通过 not_time_align 显式关闭】
 - 分类：接口契约

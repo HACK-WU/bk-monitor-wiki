@@ -60,7 +60,7 @@
 - 匹配关键词：Issue, 告警聚合, 状态机, TAPD, LLM标题, IssueAggregationProcessor, IssueDocument, sync_issue_alert_stats, 合并, 拆分, fingerprint, 指纹, 高基数, 业务可见性, resolved_time, 关键决策, 为什么这么定
 - 证据特色：有配套设计文档（bk-monitor-wiki/wiki/告警系统设计/Issue功能/），含「关键设计决策」表
 - 子专家：
-  - **Issue API 子专家**（sub-experts/issue-api/）：RESTful接口/权限/序列化/批量操作
+  - **Issue API 子专家**（sub-experts/issue-api/）：RESTful接口/权限/序列化/批量操作（2026-08-31 merge_sources 契约补记：PR12234 新增返回字段 via_issue_id 上一跳主溯源）
   - **Issue 查询子专家**（sub-experts/issue-query/）：ES查询构建/时间分片/排序
   - **Issue 状态聚合子专家**（sub-experts/issue-state-aggregation/）：状态机/聚合引擎/周期任务/LLM标题
   - **TAPD 集成子专家**（sub-experts/tapd-integration/）：关联管理/OAuth授权/解绑重绑

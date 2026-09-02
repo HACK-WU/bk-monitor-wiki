@@ -215,9 +215,34 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-09-01-Issue拆分支持批量操作": {
+      "id": "REQ-20260901-001",
+      "feature": "Issue拆分支持批量操作",
+      "created": "2026-09-01 15:04:32",
+      "updated": "2026-09-01 15:04:32",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "feat",
+        "issue",
+        "批量操作"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
   },
   "id_counters": {
-    "REQ-20260803": 1
+    "REQ-20260803": 1,
+    "REQ-20260901": 1
   }
 }

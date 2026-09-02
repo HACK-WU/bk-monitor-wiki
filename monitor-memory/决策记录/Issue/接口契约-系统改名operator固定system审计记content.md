@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/Issue
 relation: 接口契约-系统改名operator固定system审计记content
-exportedAt: "2026-08-31T03:10:17.255Z"
+exportedAt: "2026-09-01T08:35:17.233Z"
 ---
 【决策记录｜Issue 系统自动改名的 operator 固定为 system，审计人另记 content】
 - 分类：接口契约

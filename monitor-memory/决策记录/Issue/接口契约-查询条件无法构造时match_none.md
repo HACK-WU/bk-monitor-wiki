@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/Issue
 relation: 接口契约-查询条件无法构造时match_none
-exportedAt: "2026-08-31T03:10:49.492Z"
+exportedAt: "2026-09-01T08:35:17.233Z"
 ---
 【决策记录｜Issue 与告警链路 查询条件无法构造时显式 match_none，不静默丢弃条件】
 - 分类：接口契约

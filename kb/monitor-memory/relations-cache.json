@@ -210,20 +210,6 @@
           "memoryId": "c88b2cce9c8340a608db96c89464cf0f"
         },
         {
-          "id": "rel_014",
-          "text": "IssueAggregationProcessor 聚合引擎",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "0ae49a9ba703f6a2e62fdff25cc0b9e6",
-            "5d5a697ae8252a879bd1598784c81e06"
-          ],
-          "sourcePath": "专题记忆/Issue/IssueAggregationProcessor 聚合引擎.md",
-          "memoryId": "0ae49a9ba703f6a2e62fdff25cc0b9e6"
-        },
-        {
           "id": "rel_015",
           "text": "IssueDocument ES 模型关键字段",
           "score": 0,
@@ -363,6 +349,42 @@
           ],
           "sourcePath": "专题记忆/Issue/web 与 kernel_api 异常链路差异与 BKAPIError 捕获（Issue rename 重名冲突为例）.md",
           "memoryId": "fc94e2e1ee37b6a0737b8ecfcb19a640"
+        },
+        {
+          "id": "rel_287",
+          "text": "ListMergeSourcesResource 合并来源接口契约",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "api",
+            "issue",
+            "merge_sources",
+            "via_issue_id",
+            "contract"
+          ],
+          "memoryIds": [
+            "2d61bfc4fbb65440f1853a437ebb22b5",
+            "81fa0fedb15f7d3416a8b440b5b871e9",
+            "a26710c581bed4969ccc50fe59347c5d",
+            "86a6ae0293050d44f40f93fb5e2ff1ba",
+            "32b4d3e7c5ebf2b861f9b4c14ad70360",
+            "3b0ec35eda92dc2cc5a784c5205e85a2"
+          ],
+          "memoryId": "2d61bfc4fbb65440f1853a437ebb22b5"
+        },
+        {
+          "id": "rel_315",
+          "text": "IssueAggregationProcessor 聚合引擎",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "memoryIds": [
+            "9bffbadfe8f368fa6e8b8b524e2784ff"
+          ],
+          "memoryId": "9bffbadfe8f368fa6e8b8b524e2784ff"
         }
       ],
       "keywords": [],
@@ -909,9 +931,9 @@
         {
           "id": "rel_061",
           "text": "场景视图专家路标",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788252583568,
           "isImported": true,
           "memoryIds": [
             "031341faaef3a3ce55d978544ccb798c"
@@ -1477,62 +1499,11 @@
     "关联关系/Issue": {
       "hot_relations": [
         {
-          "id": "rel_097",
-          "text": "IssueAggregationProcessor-AlertDocument-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "7a6c130c2d31f2549f9620a4c2b9bba0",
-            "46f2af6e562a8c857461b14357435807"
-          ],
-          "sourcePath": "关联关系/Issue/IssueAggregationProcessor-AlertDocument-IssueDocument.md",
-          "memoryId": "7a6c130c2d31f2549f9620a4c2b9bba0",
-          "tags": [
-            "relation"
-          ]
-        },
-        {
-          "id": "rel_098",
-          "text": "IssueDocument-IssueActivityDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "f183277292bb1120b9f22b2f838a205b",
-            "d503640eafd60e63db338e5b27b5c5fb"
-          ],
-          "sourcePath": "关联关系/Issue/IssueDocument-IssueActivityDocument.md",
-          "memoryId": "f183277292bb1120b9f22b2f838a205b",
-          "tags": [
-            "relation"
-          ]
-        },
-        {
-          "id": "rel_099",
-          "text": "IssueDocument-WebAPI",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "4e66d1405a6609006fbe71e113d94b57",
-            "4e29bb24c2ebe101e5a9ff815e627d1b"
-          ],
-          "sourcePath": "关联关系/Issue/IssueDocument-WebAPI.md",
-          "memoryId": "4e66d1405a6609006fbe71e113d94b57",
-          "tags": [
-            "relation"
-          ]
-        },
-        {
           "id": "rel_100",
           "text": "IssueMergeResolver-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1788331354024,
           "isImported": true,
           "memoryIds": [
             "955e884fc4dbf9c6769204239273e222",
@@ -1545,11 +1516,28 @@
           ]
         },
         {
+          "id": "rel_099",
+          "text": "IssueDocument-WebAPI",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331352009,
+          "isImported": true,
+          "memoryIds": [
+            "4e66d1405a6609006fbe71e113d94b57",
+            "4e29bb24c2ebe101e5a9ff815e627d1b"
+          ],
+          "sourcePath": "关联关系/Issue/IssueDocument-WebAPI.md",
+          "memoryId": "4e66d1405a6609006fbe71e113d94b57",
+          "tags": [
+            "relation"
+          ]
+        },
+        {
           "id": "rel_101",
           "text": "IssueQueryHandler-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331355036,
           "isImported": true,
           "memoryIds": [
             "fab4b4a712f0929bdda01aea193d7716",
@@ -1564,9 +1552,9 @@
         {
           "id": "rel_102",
           "text": "LLM标题-IssueDocument-rename",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1788331360056,
           "isImported": true,
           "memoryIds": [
             "a903dafe725538cac37ca107a4552d1a",
@@ -1581,9 +1569,9 @@
         {
           "id": "rel_103",
           "text": "TAPD-MySQLModels",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331360944,
           "isImported": true,
           "memoryIds": [
             "b4913087921d509b3cf33c5750b177ab",
@@ -1598,9 +1586,9 @@
         {
           "id": "rel_104",
           "text": "TAPDToken-TAPDAuthPermission",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331361890,
           "isImported": true,
           "memoryIds": [
             "11eb60e366059f6854410c86cfe7d64c",
@@ -1615,9 +1603,9 @@
         {
           "id": "rel_105",
           "text": "WebMergeSplit-APIRoleMergeSplit",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331353070,
           "isImported": true,
           "memoryIds": [
             "eeb8cddb841872f882551fcadfd395ab",
@@ -1632,9 +1620,9 @@
         {
           "id": "rel_106",
           "text": "constants-issue-IssueDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331355986,
           "isImported": true,
           "memoryIds": [
             "d27ebef8259bc429fb7a69dcdaf89076",
@@ -1649,9 +1637,9 @@
         {
           "id": "rel_107",
           "text": "sync_issue_alert_stats-IssueDocument-AlertDocument",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331359133,
           "isImported": true,
           "memoryIds": [
             "11bf4227c937ed5343bce9a10e66251c",
@@ -1662,6 +1650,70 @@
           "tags": [
             "relation"
           ]
+        },
+        {
+          "id": "rel_288",
+          "text": "worker配置常量-MergeResource组规模门禁",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331363337,
+          "isImported": false,
+          "tags": [
+            "relation"
+          ],
+          "memoryIds": [
+            "477abf13ce55a7ab11166e7e201615a3",
+            "85c3d58b9e1ae95ccacbdca430473e51"
+          ],
+          "memoryId": "477abf13ce55a7ab11166e7e201615a3"
+        },
+        {
+          "id": "rel_289",
+          "text": "MergeResource合并校验-bkm_cli合并对账",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331364324,
+          "isImported": false,
+          "tags": [
+            "relation"
+          ],
+          "memoryIds": [
+            "cd16fb048193d8132c38ea328e51539c",
+            "3dd3ac0e31dce10c1b4c5cfb82338b83"
+          ],
+          "memoryId": "cd16fb048193d8132c38ea328e51539c"
+        },
+        {
+          "id": "rel_305",
+          "text": "IssueAggregationProcessor-AlertDocument-IssueDocument",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331358092,
+          "isImported": false,
+          "tags": [
+            "relation"
+          ],
+          "memoryIds": [
+            "89cf62ff7e9c2be818a915e3a01fde2e",
+            "fcb1f34f0bb3786970848560edd1bfeb"
+          ],
+          "memoryId": "89cf62ff7e9c2be818a915e3a01fde2e"
+        },
+        {
+          "id": "rel_306",
+          "text": "IssueDocument-IssueActivityDocument",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331357071,
+          "isImported": false,
+          "tags": [
+            "relation"
+          ],
+          "memoryIds": [
+            "e228d27e23284a753d1619862d2e863b",
+            "a47567801d8f445c1e87a3de520204fb"
+          ],
+          "memoryId": "e228d27e23284a753d1619862d2e863b"
         }
       ],
       "keywords": [],
@@ -1763,9 +1815,9 @@
         {
           "id": "rel_113",
           "text": "ApiRenderer-字段映射表",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331403334,
           "isImported": true,
           "memoryIds": [
             "2e1e62ce6c54c53d09c4b09b7e6b25b9",
@@ -1780,9 +1832,9 @@
         {
           "id": "rel_114",
           "text": "KernelRPCRegistry-rpc_functions注册",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1787814744057,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1788331407648,
           "isImported": true,
           "memoryIds": [
             "e2063b3b1ab0835260cad0b715231982",
@@ -1797,9 +1849,9 @@
         {
           "id": "rel_115",
           "text": "api_exception_handler-web错误码透传",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331402295,
           "isImported": true,
           "memoryIds": [
             "efad65cf9c71381595dc64257770ab1d",
@@ -1814,9 +1866,9 @@
         {
           "id": "rel_116",
           "text": "apigw-resources-yaml-docs-api文档",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331399065,
           "isImported": true,
           "memoryIds": [
             "0c892a626f60bb95a78afb103bc3b4a3",
@@ -1831,9 +1883,9 @@
         {
           "id": "rel_117",
           "text": "authentication-ApiAuthToken",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331405584,
           "isImported": true,
           "memoryIds": [
             "d72cbd7f8503ba1f228f12f793d12b17",
@@ -1848,9 +1900,9 @@
         {
           "id": "rel_118",
           "text": "authentication-bk_apigateway公钥",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331406385,
           "isImported": true,
           "memoryIds": [
             "71fb7477466d2d39cd392968a9d0c0ca",
@@ -1865,9 +1917,9 @@
         {
           "id": "rel_119",
           "text": "config-role-api-kernel_api装配",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331404454,
           "isImported": true,
           "memoryIds": [
             "397402c7434200419f93bb66022f66ab",
@@ -1882,9 +1934,9 @@
         {
           "id": "rel_120",
           "text": "resource-views_v4复用",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331400089,
           "isImported": true,
           "memoryIds": [
             "264505f73a12c4fbc9cf5bfd6bb738b9",
@@ -1899,9 +1951,9 @@
         {
           "id": "rel_121",
           "text": "urls-views装配契约",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331401302,
           "isImported": true,
           "memoryIds": [
             "191b291733e0b61280a2865d7cdf86ba",
@@ -3174,38 +3226,6 @@
     "决策记录/场景视图": {
       "hot_relations": [
         {
-          "id": "rel_200",
-          "text": "性能取舍-内置视图JSON进程内缓存与双重检查锁",
-          "score": 0.9966783157290028,
-          "useCount": 1,
-          "lastUsedTime": 1788141093775,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "e0dbe7f9523f7d39287a3610d0ccdcbc",
-            "0dbe7969633b42ef03833e3a158c77f7"
-          ],
-          "memoryId": "e0dbe7f9523f7d39287a3610d0ccdcbc"
-        },
-        {
-          "id": "rel_201",
-          "text": "接口契约-进程按display_name分组而非进程ID",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "a8632cc03235f27df3dd82e020bcdf82",
-            "546f4f7340482c20b6bff13507c6d1f8"
-          ],
-          "memoryId": "a8632cc03235f27df3dd82e020bcdf82"
-        },
-        {
           "id": "rel_202",
           "text": "接口契约-端口状态统一取port_health数据源",
           "score": 3,
@@ -3220,54 +3240,6 @@
             "104cc9a74e2607734f3ec4bc6f425993"
           ],
           "memoryId": "ca0f8190d91eba0a422b98e8f94a5f65"
-        },
-        {
-          "id": "rel_203",
-          "text": "接口契约-进程指标单位与精度约定",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788141415679,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "cb9366fbfa7202e847791d847d086608",
-            "7a778ae895989f21a7a769691b31d5de"
-          ],
-          "memoryId": "cb9366fbfa7202e847791d847d086608"
-        },
-        {
-          "id": "rel_204",
-          "text": "性能取舍-进程指标时点快照与4路并发查询",
-          "score": 0.9996284829835986,
-          "useCount": 1,
-          "lastUsedTime": 1788141382716,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "e31bf51550d76b060708e1feeaecd698",
-            "5820818df8119cffd1354817733d0831"
-          ],
-          "memoryId": "e31bf51550d76b060708e1feeaecd698"
-        },
-        {
-          "id": "rel_205",
-          "text": "性能取舍-视图列表panel_count分级计算",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "8c4c0c918c9abd814b410cb16f808c74",
-            "eddc88b6de461c77beb2bd9a79a0bbb8"
-          ],
-          "memoryId": "8c4c0c918c9abd814b410cb16f808c74"
         },
         {
           "id": "rel_206",
@@ -3286,20 +3258,20 @@
           "memoryId": "055029d538877b26022d53fa1913d844"
         },
         {
-          "id": "rel_207",
-          "text": "技术选型-内置视图国际化运行时递归翻译",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "id": "rel_203",
+          "text": "接口契约-进程指标单位与精度约定",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788141415679,
           "isImported": false,
           "tags": [
             "decision"
           ],
           "memoryIds": [
-            "f66bbe5fd381ed164ce3b84ba65870e9",
-            "db043004361e48407229cf148c4638cf"
+            "cb9366fbfa7202e847791d847d086608",
+            "7a778ae895989f21a7a769691b31d5de"
           ],
-          "memoryId": "f66bbe5fd381ed164ce3b84ba65870e9"
+          "memoryId": "cb9366fbfa7202e847791d847d086608"
         },
         {
           "id": "rel_208",
@@ -3332,6 +3304,102 @@
             "9361ce36076f9f0e9b9199555e2b96fc"
           ],
           "memoryId": "24671addc109acb66d301c7288bbe359"
+        },
+        {
+          "id": "rel_204",
+          "text": "性能取舍-进程指标时点快照与4路并发查询",
+          "score": 0.9996284829835986,
+          "useCount": 1,
+          "lastUsedTime": 1788141382716,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "e31bf51550d76b060708e1feeaecd698",
+            "5820818df8119cffd1354817733d0831"
+          ],
+          "memoryId": "e31bf51550d76b060708e1feeaecd698"
+        },
+        {
+          "id": "rel_200",
+          "text": "性能取舍-内置视图JSON进程内缓存与双重检查锁",
+          "score": 0.9966783157290028,
+          "useCount": 1,
+          "lastUsedTime": 1788141093775,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "e0dbe7f9523f7d39287a3610d0ccdcbc",
+            "0dbe7969633b42ef03833e3a158c77f7"
+          ],
+          "memoryId": "e0dbe7f9523f7d39287a3610d0ccdcbc"
+        },
+        {
+          "id": "rel_201",
+          "text": "接口契约-进程按display_name分组而非进程ID",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "a8632cc03235f27df3dd82e020bcdf82",
+            "546f4f7340482c20b6bff13507c6d1f8"
+          ],
+          "memoryId": "a8632cc03235f27df3dd82e020bcdf82"
+        },
+        {
+          "id": "rel_205",
+          "text": "性能取舍-视图列表panel_count分级计算",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "8c4c0c918c9abd814b410cb16f808c74",
+            "eddc88b6de461c77beb2bd9a79a0bbb8"
+          ],
+          "memoryId": "8c4c0c918c9abd814b410cb16f808c74"
+        },
+        {
+          "id": "rel_207",
+          "text": "技术选型-内置视图国际化运行时递归翻译",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "f66bbe5fd381ed164ce3b84ba65870e9",
+            "db043004361e48407229cf148c4638cf"
+          ],
+          "memoryId": "f66bbe5fd381ed164ce3b84ba65870e9"
+        },
+        {
+          "id": "rel_313",
+          "text": "架构设计-默认视图配置深拷贝防跨业务污染",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "ad4a3e323b554d3ef486ba67ba123609",
+            "98bb892399c05436bdbea3e25685a17b"
+          ],
+          "memoryId": "ad4a3e323b554d3ef486ba67ba123609"
         }
       ],
       "keywords": [],
@@ -3339,38 +3407,6 @@
     },
     "决策记录/UnifyQuery查询": {
       "hot_relations": [
-        {
-          "id": "rel_215",
-          "text": "接口契约-两层聚合与without_time变体",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "36202d59f8fde81984a144541b4031b9",
-            "d0069053119aedaa0d0afa4d5992ffd3"
-          ],
-          "memoryId": "36202d59f8fde81984a144541b4031b9"
-        },
-        {
-          "id": "rel_216",
-          "text": "架构设计-UQ分支失败不回退原生查询",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "78b7c3bfd2769061d6adadea032a3bd9",
-            "45caa9a2c077b668bfd619ba6e345134"
-          ],
-          "memoryId": "78b7c3bfd2769061d6adadea032a3bd9"
-        },
         {
           "id": "rel_217",
           "text": "接口契约-query_log剥离聚合与函数",
@@ -3386,38 +3422,6 @@
             "48bffdf2d170af27fac5cac4fe1cf32c"
           ],
           "memoryId": "08b7e1b890a5c74f86eed269163ed7bf"
-        },
-        {
-          "id": "rel_218",
-          "text": "兼容处理-多数据源维度查询退化为全量去重",
-          "score": 0.9998788804124722,
-          "useCount": 1,
-          "lastUsedTime": 1788142153912,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "78e6317b6c30ffcf865af61d28d68daa",
-            "e507dba861d786fa58133ecf73a08411"
-          ],
-          "memoryId": "78e6317b6c30ffcf865af61d28d68daa"
-        },
-        {
-          "id": "rel_219",
-          "text": "兼容处理-返回结构三重兜底",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "3cf44c8a0d16dfa8371b98e0602ab4b9",
-            "43652ce089d5fa79e4f0a2f1dd7dba78"
-          ],
-          "memoryId": "3cf44c8a0d16dfa8371b98e0602ab4b9"
         },
         {
           "id": "rel_220",
@@ -3452,22 +3456,6 @@
           "memoryId": "1c32860843977c2c9eb9eaa4d9ceba6d"
         },
         {
-          "id": "rel_222",
-          "text": "性能取舍-is_es_batch默认关闭按需开启",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "f2547a23ac719c4067000028f2d2e359",
-            "a7094e2c8c7f21bc7676ed1cf130de63"
-          ],
-          "memoryId": "f2547a23ac719c4067000028f2d2e359"
-        },
-        {
           "id": "rel_223",
           "text": "接口契约-灰度切换能力强制加黑名单豁免",
           "score": 1,
@@ -3498,6 +3486,134 @@
             "6a1f8de19e321f9ead2b6cbb369e8f38"
           ],
           "memoryId": "d0343d794ec72105675a2cd3e891263e"
+        },
+        {
+          "id": "rel_218",
+          "text": "兼容处理-多数据源维度查询退化为全量去重",
+          "score": 0.9998788804124722,
+          "useCount": 1,
+          "lastUsedTime": 1788142153912,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "78e6317b6c30ffcf865af61d28d68daa",
+            "e507dba861d786fa58133ecf73a08411"
+          ],
+          "memoryId": "78e6317b6c30ffcf865af61d28d68daa"
+        },
+        {
+          "id": "rel_215",
+          "text": "接口契约-两层聚合与without_time变体",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "36202d59f8fde81984a144541b4031b9",
+            "d0069053119aedaa0d0afa4d5992ffd3"
+          ],
+          "memoryId": "36202d59f8fde81984a144541b4031b9"
+        },
+        {
+          "id": "rel_216",
+          "text": "架构设计-UQ分支失败不回退原生查询",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "78b7c3bfd2769061d6adadea032a3bd9",
+            "45caa9a2c077b668bfd619ba6e345134"
+          ],
+          "memoryId": "78b7c3bfd2769061d6adadea032a3bd9"
+        },
+        {
+          "id": "rel_219",
+          "text": "兼容处理-返回结构三重兜底",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "3cf44c8a0d16dfa8371b98e0602ab4b9",
+            "43652ce089d5fa79e4f0a2f1dd7dba78"
+          ],
+          "memoryId": "3cf44c8a0d16dfa8371b98e0602ab4b9"
+        },
+        {
+          "id": "rel_222",
+          "text": "性能取舍-is_es_batch默认关闭按需开启",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "f2547a23ac719c4067000028f2d2e359",
+            "a7094e2c8c7f21bc7676ed1cf130de63"
+          ],
+          "memoryId": "f2547a23ac719c4067000028f2d2e359"
+        },
+        {
+          "id": "rel_307",
+          "text": "架构设计-数据源三级接入统一查询",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "16634bddea76e6f2039dc833c3931489",
+            "3315a4231912174bdea65b265ee55a4b"
+          ],
+          "memoryId": "16634bddea76e6f2039dc833c3931489"
+        },
+        {
+          "id": "rel_308",
+          "text": "接口契约-排序用虚拟时间字段_time",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "824cfc57e5c8f907d9eed2ea83339668",
+            "80b5b9b3fd7d5f0c6fb057afcc326952"
+          ],
+          "memoryId": "824cfc57e5c8f907d9eed2ea83339668"
+        },
+        {
+          "id": "rel_309",
+          "text": "接口契约-时间对齐默认开启not_time_align关闭",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "761ce1d2e61babfe9cf753a8004fe323",
+            "97d733fbda35c4e91ea333aa4b26bd03"
+          ],
+          "memoryId": "761ce1d2e61babfe9cf753a8004fe323"
         }
       ],
       "keywords": [],
@@ -3672,6 +3788,22 @@
     "决策记录/性能场景": {
       "hot_relations": [
         {
+          "id": "rel_243",
+          "text": "接口契约-拓扑进程状态硬编码置灰",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146126656,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "271b9b1cd58f5a0dc4b2ca05147f31e6",
+            "b8328fe0b77c33f55299a4b952b32d2e"
+          ],
+          "memoryId": "271b9b1cd58f5a0dc4b2ca05147f31e6"
+        },
+        {
           "id": "rel_236",
           "text": "接口契约-缺失值三分语义None与空列表",
           "score": 0,
@@ -3784,22 +3916,6 @@
           "memoryId": "a6b71e18a0f30b14fbdedac99cd53e74"
         },
         {
-          "id": "rel_243",
-          "text": "接口契约-拓扑进程状态硬编码置灰",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788146126656,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "271b9b1cd58f5a0dc4b2ca05147f31e6",
-            "b8328fe0b77c33f55299a4b952b32d2e"
-          ],
-          "memoryId": "271b9b1cd58f5a0dc4b2ca05147f31e6"
-        },
-        {
           "id": "rel_244",
           "text": "安全合规-VIEW_HOST权限与越权校验",
           "score": 0,
@@ -3830,6 +3946,22 @@
             "643a2b2d9afe8a448e4b3e95de7639d3"
           ],
           "memoryId": "806ff27bc10d78e05f074710b53c0079"
+        },
+        {
+          "id": "rel_312",
+          "text": "性能取舍-全量查询跳过线性host target",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "aa9865eb0a7f16a6ba02eb5a396dc481",
+            "874ba7d52f7fb55a2e9502fc5507e75b"
+          ],
+          "memoryId": "aa9865eb0a7f16a6ba02eb5a396dc481"
         }
       ],
       "keywords": [],
@@ -3837,6 +3969,54 @@
     },
     "决策记录/告警屏蔽": {
       "hot_relations": [
+        {
+          "id": "rel_249",
+          "text": "架构设计-PromQL屏蔽条件模块独立出包",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146033518,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "c833b8f9215056e0fb4d7b0c82e49a7d",
+            "8dd33f1ed0e61da85cd988d221c8430a"
+          ],
+          "memoryId": "c833b8f9215056e0fb4d7b0c82e49a7d"
+        },
+        {
+          "id": "rel_251",
+          "text": "架构设计-Web与引擎两套匹配逻辑并存",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146114660,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "5b2340a81b45629a51de56317a604e8d",
+            "5a6d103a0bf66ac9732fb07d402c5486"
+          ],
+          "memoryId": "5b2340a81b45629a51de56317a604e8d"
+        },
+        {
+          "id": "rel_252",
+          "text": "接口契约-通知幂等Redis锁与调度层遗留TODO",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146110998,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "1006c0d04bb5b6417f2c59ff952db4a6",
+            "541c252de058d245e1124ea8ee8059f5"
+          ],
+          "memoryId": "1006c0d04bb5b6417f2c59ff952db4a6"
+        },
         {
           "id": "rel_247",
           "text": "接口契约-条件解析失败用永不命中占位条件",
@@ -3870,22 +4050,6 @@
           "memoryId": "0581d7fc0bf27a03f096beed09b0a4f6"
         },
         {
-          "id": "rel_249",
-          "text": "架构设计-PromQL屏蔽条件模块独立出包",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788146033518,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "c833b8f9215056e0fb4d7b0c82e49a7d",
-            "8dd33f1ed0e61da85cd988d221c8430a"
-          ],
-          "memoryId": "c833b8f9215056e0fb4d7b0c82e49a7d"
-        },
-        {
           "id": "rel_250",
           "text": "性能取舍-屏蔽缓存预取未来10分钟",
           "score": 0,
@@ -3900,38 +4064,6 @@
             "06e0b8cbfcd32e822e98b3c0ccd43e1e"
           ],
           "memoryId": "64fb3fa117d80067d8a15d236fecf811"
-        },
-        {
-          "id": "rel_251",
-          "text": "架构设计-Web与引擎两套匹配逻辑并存",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788146114660,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "5b2340a81b45629a51de56317a604e8d",
-            "5a6d103a0bf66ac9732fb07d402c5486"
-          ],
-          "memoryId": "5b2340a81b45629a51de56317a604e8d"
-        },
-        {
-          "id": "rel_252",
-          "text": "接口契约-通知幂等Redis锁与调度层遗留TODO",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788146110998,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "1006c0d04bb5b6417f2c59ff952db4a6",
-            "541c252de058d245e1124ea8ee8059f5"
-          ],
-          "memoryId": "1006c0d04bb5b6417f2c59ff952db4a6"
         },
         {
           "id": "rel_253",
@@ -3996,6 +4128,22 @@
             "8e6659d098c60b7305834ca441d04958"
           ],
           "memoryId": "96872298d78a98f32d0714f75150af9a"
+        },
+        {
+          "id": "rel_314",
+          "text": "接口契约-屏蔽判定fail-safe不屏蔽总则",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "189d46937a17bf18c68c3abd69322e15",
+            "051326174219a33a4b6dc813fa7b04dc"
+          ],
+          "memoryId": "189d46937a17bf18c68c3abd69322e15"
         }
       ],
       "keywords": [],
@@ -4004,20 +4152,20 @@
     "决策记录/Issue": {
       "hot_relations": [
         {
-          "id": "rel_263",
-          "text": "接口契约-LLM标题两级闸门仅新建静默失败",
-          "score": 0.9997233635859187,
-          "useCount": 1,
-          "lastUsedTime": 1788145867267,
+          "id": "rel_269",
+          "text": "架构设计-合并放开member状态门槛终态不保真",
+          "score": 3,
+          "useCount": 3,
+          "lastUsedTime": 1788331453916,
           "isImported": false,
           "tags": [
             "decision"
           ],
           "memoryIds": [
-            "c798d56559ddfc04e955638d6fb2e71f",
-            "67edbd69021ac4b1442e52b83d0c5c3e"
+            "07ca8e814b1c4b6aed0970e69a001323",
+            "4a8ae5c67ed83fedb9c84c26e967930e"
           ],
-          "memoryId": "c798d56559ddfc04e955638d6fb2e71f"
+          "memoryId": "07ca8e814b1c4b6aed0970e69a001323"
         },
         {
           "id": "rel_266",
@@ -4036,22 +4184,6 @@
           "memoryId": "0549efce5e2eb3661c728443c1ef20ed"
         },
         {
-          "id": "rel_269",
-          "text": "架构设计-合并放开member状态门槛终态不保真",
-          "score": 0.9997169782721234,
-          "useCount": 1,
-          "lastUsedTime": 1788145874840,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "b84cd5932f7c0771bab279843f0def89",
-            "b79d2bcf2e1b1bfc9200d68d438009cc"
-          ],
-          "memoryId": "b84cd5932f7c0771bab279843f0def89"
-        },
-        {
           "id": "rel_270",
           "text": "安全合规-TAPD OAuth区分用户取消与CRLF防御",
           "score": 0.9998361842474051,
@@ -4068,7 +4200,119 @@
           "memoryId": "b077123f6ea450a7a7ac776cabb15e1e"
         },
         {
-          "id": "rel_261",
+          "id": "rel_263",
+          "text": "接口契约-LLM标题两级闸门仅新建静默失败",
+          "score": 0.9997233635859187,
+          "useCount": 1,
+          "lastUsedTime": 1788145867267,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "c798d56559ddfc04e955638d6fb2e71f",
+            "67edbd69021ac4b1442e52b83d0c5c3e"
+          ],
+          "memoryId": "c798d56559ddfc04e955638d6fb2e71f"
+        },
+        {
+          "id": "rel_291",
+          "text": "接口契约-via_issue_id仅溯源不加索引",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788252532592,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "755c658fd5edc8a49dac34625e3094a3",
+            "e13d2080978239ed85a09befd83166ec"
+          ],
+          "memoryId": "755c658fd5edc8a49dac34625e3094a3"
+        },
+        {
+          "id": "rel_292",
+          "text": "性能取舍-via_issue_id不由Resolver加载仅在运维入口补",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "a17c43f3689379be17bb5cabdae6ffb7",
+            "647b504f72735943466db6c1b210aa16"
+          ],
+          "memoryId": "a17c43f3689379be17bb5cabdae6ffb7"
+        },
+        {
+          "id": "rel_293",
+          "text": "接口契约-指纹每个元素带prefix防维度错位",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "59e9155c74d6d06f88a2ac9ff4520578",
+            "a8f992b175069e24aa7b46367f533a91"
+          ],
+          "memoryId": "59e9155c74d6d06f88a2ac9ff4520578"
+        },
+        {
+          "id": "rel_294",
+          "text": "接口契约-指纹取值源必须origin_alarm的dimensions",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "76b9883388704fc44bec184f73fb09a8",
+            "127d92ed8585599dc22ed832f6f7d421"
+          ],
+          "memoryId": "76b9883388704fc44bec184f73fb09a8"
+        },
+        {
+          "id": "rel_295",
+          "text": "接口契约-聚合维度缺失时指纹返回None跳过告警",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "558ccbea2ee789a93689c4e3f6a7faca",
+            "3935962d77f7d3f2c3a86c88dc8fd912"
+          ],
+          "memoryId": "558ccbea2ee789a93689c4e3f6a7faca"
+        },
+        {
+          "id": "rel_296",
+          "text": "接口契约-高基数防护改warn-only不阻塞新建",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "1115d8412c6cc44b28892c28e44aadff",
+            "35a0c2871c1b5913e15ab1d0d9f06062"
+          ],
+          "memoryId": "1115d8412c6cc44b28892c28e44aadff"
+        },
+        {
+          "id": "rel_298",
           "text": "架构设计-活跃Issue三级查找与Legacy迁移哨兵",
           "score": 0,
           "useCount": 0,
@@ -4084,11 +4328,11 @@
           "memoryId": "54af4bd8ba74031157ee5683da5fa6d0"
         },
         {
-          "id": "rel_262",
+          "id": "rel_299",
           "text": "架构设计-指纹粒度Redis锁与Token锁防误删",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788251776078,
           "isImported": false,
           "tags": [
             "decision"
@@ -4100,7 +4344,7 @@
           "memoryId": "37f18e1505773c1b5d1de5bf0c951b88"
         },
         {
-          "id": "rel_264",
+          "id": "rel_300",
           "text": "接口契约-名称唯一性分场景系统标题允许重名",
           "score": 0,
           "useCount": 0,
@@ -4116,7 +4360,7 @@
           "memoryId": "e76c026fe3742e5bcfa6c9290f57a59c"
         },
         {
-          "id": "rel_265",
+          "id": "rel_301",
           "text": "接口契约-系统改名operator固定system审计记content",
           "score": 0,
           "useCount": 0,
@@ -4132,11 +4376,11 @@
           "memoryId": "51931e03ce91a753ec3301a1a11c2f8c"
         },
         {
-          "id": "rel_267",
+          "id": "rel_302",
           "text": "接口契约-查询条件无法构造时match_none",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1788252542772,
           "isImported": false,
           "tags": [
             "decision"
@@ -4148,7 +4392,7 @@
           "memoryId": "d3b2e2ebcfc7a6df02d3fd6e6e077ed2"
         },
         {
-          "id": "rel_268",
+          "id": "rel_303",
           "text": "接口契约-resolved_time为可靠解决时间按状态分流",
           "score": 0,
           "useCount": 0,
@@ -4162,6 +4406,22 @@
             "f3bfc039856ab3c48ab974ad2ac2ba54"
           ],
           "memoryId": "7b2917ec70e30de9a7eeca136caa913d"
+        },
+        {
+          "id": "rel_304",
+          "text": "性能取舍-合并组规模上限超限拒绝与活跃数warn-only相反取向",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331455404,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "9ee011ccaf2c938d4f84f55bf35f583d",
+            "85388491f7a51e05e949af624f8682fb"
+          ],
+          "memoryId": "9ee011ccaf2c938d4f84f55bf35f583d"
         }
       ],
       "keywords": [],
@@ -4169,6 +4429,22 @@
     },
     "决策记录/告警查询": {
       "hot_relations": [
+        {
+          "id": "rel_279",
+          "text": "兼容处理-assign_tags回退OR展开防重入",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788146337884,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "c3b3f8201d0898ff6bd3522f4a4ac1a8",
+            "1d9a7454817257685dcc176cf2fd26ac"
+          ],
+          "memoryId": "c3b3f8201d0898ff6bd3522f4a4ac1a8"
+        },
         {
           "id": "rel_274",
           "text": "接口契约-查询异常fail-open空响应后重抛",
@@ -4250,22 +4526,6 @@
           "memoryId": "2c1f7277543426bc1ebe455805cbbc5d"
         },
         {
-          "id": "rel_279",
-          "text": "兼容处理-assign_tags回退OR展开防重入",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788146337884,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "c3b3f8201d0898ff6bd3522f4a4ac1a8",
-            "1d9a7454817257685dcc176cf2fd26ac"
-          ],
-          "memoryId": "c3b3f8201d0898ff6bd3522f4a4ac1a8"
-        },
-        {
           "id": "rel_280",
           "text": "兼容处理-展示值与原始值双向翻译",
           "score": 0,
@@ -4328,11 +4588,134 @@
             "3e111e3156ab379dbd23642358c13882"
           ],
           "memoryId": "098df059fe1210d5ad9105421a0a8fa8"
+        },
+        {
+          "id": "rel_310",
+          "text": "安全合规-业务可见性fail-close与terms省略",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "1e6fcc92963fb6d2a919eb416f4fda19",
+            "8deb71207fa51b98cf9eacf3d1c32f94"
+          ],
+          "memoryId": "1e6fcc92963fb6d2a919eb416f4fda19"
+        },
+        {
+          "id": "rel_311",
+          "text": "接口契约-负一哨兵必须展开为授权业务集",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "3300865feaa8782998d9a2d255cecc64",
+            "42bf78e8ec20be875010a086c54c5552"
+          ],
+          "memoryId": "3300865feaa8782998d9a2d255cecc64"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "待生效变更/Issue": {
+      "hot_relations": [
+        {
+          "id": "rel_317",
+          "text": "拆分接口批量契约变更-专家资产更新",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788332994148,
+          "isImported": false,
+          "tags": [
+            "pending"
+          ]
+        },
+        {
+          "id": "rel_318",
+          "text": "拆分接口批量契约变更-ki专题记忆更新",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "pending"
+          ]
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "决策记录/容量探针": {
+      "hot_relations": [],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "决策记录/容量探针/子组A": {
+      "hot_relations": [],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "决策记录/容量探针/子组B": {
+      "hot_relations": [],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "常用命令": {
+      "hot_relations": [
+        {
+          "id": "rel_316",
+          "text": "fta_web 单元测试运行",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788333436850,
+          "isImported": false,
+          "tags": [
+            "测试",
+            "pytest",
+            "fta_web",
+            "常用命令",
+            "踩坑"
+          ],
+          "memoryIds": [
+            "d1f2211f520c7e3ee6f2efdbfc6dcc4f",
+            "d5054509a78ed13a1c426c47be69ea6e",
+            "30930b49f9a0cea5351786f92c931c11",
+            "c238cf3993a37a0ad37846fe903011ec",
+            "06ba86111156f4937c9924c68be60ab7",
+            "c97d8b9e5af258c23d251f96056d7855"
+          ],
+          "memoryId": "d1f2211f520c7e3ee6f2efdbfc6dcc4f"
+        },
+        {
+          "id": "rel_319",
+          "text": "Issue 合并拆分单元测试运行",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "command",
+            "test"
+          ],
+          "memoryIds": [
+            "0c0952736a8e0e5f7b9bcb150dbfae6b",
+            "e56e4bfb54368dfe8fdc485662c244bb",
+            "8a46690e0550d012b952a5e2ef687060"
+          ],
+          "memoryId": "0c0952736a8e0e5f7b9bcb150dbfae6b"
         }
       ],
       "keywords": [],
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-08-31T03:18:57.884Z"
+  "updatedAt": "2026-09-02T07:18:26.299Z"
 }

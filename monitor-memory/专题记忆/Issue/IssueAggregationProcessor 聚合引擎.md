@@ -1,7 +1,7 @@
 ---
 groupPath: 专题记忆/Issue
 relation: IssueAggregationProcessor 聚合引擎
-exportedAt: "2026-08-13T08:53:17.557Z"
+exportedAt: "2026-09-01T08:43:03.576Z"
 ---
 IssueAggregationProcessor 是告警→Issue 的聚合入口，在 fta_action 告警处理链路中执行。每条告警触发一次 process()，根据策略配置的聚合维度计算指纹，三级查找活跃 Issue，不存在则加锁创建。新建后异步派发 LLM 标题任务。
 

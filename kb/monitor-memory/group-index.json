@@ -49,10 +49,18 @@
       "性能场景": {},
       "告警屏蔽": {},
       "Issue": {},
-      "告警查询": {}
-    }
+      "告警查询": {},
+      "容量探针": {
+        "子组A": {},
+        "子组B": {}
+      }
+    },
+    "待生效变更": {
+      "Issue": {}
+    },
+    "常用命令": {}
   },
-  "updatedAt": "2026-08-31T03:17:21.646Z",
+  "updatedAt": "2026-09-02T03:57:18.652Z",
   "source": {
     "dir": "/root/bk-monitor/bk-monitor-wiki/monitor-memory",
     "chunkSize": 1000,

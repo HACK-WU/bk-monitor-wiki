@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/告警查询
 relation: 安全合规-业务可见性fail-close与terms省略
-exportedAt: "2026-08-31T03:17:23.270Z"
+exportedAt: "2026-09-01T08:42:46.387Z"
 ---
 【决策记录｜告警查询 业务可见性过滤改 fail-close，全部业务查询在全量授权时可省略业务 terms（告警查询侧视角）】
 - 分类：安全合规

@@ -34,7 +34,7 @@
 | GET | `/issue/history` | `ListIssueHistoryResource` | 同策略历史 Issue |
 | POST | `/issue/alert_enrich` | `AlertIssueEnrichResource` | 告警 enrich |
 | POST | `/issue/log_content` | `IssueLogContentResource` | 日志内容批量查询 |
-| GET | `/issue/merge_sources` | `ListMergeSourcesResource` | 可合并 Issue 源列表 |
+| GET | `/issue/merge_sources` | `ListMergeSourcesResource` | 合并来源列表（2026-08-31 起 active_members/split_history 条目新增 `via_issue_id` 上一跳主溯源字段） |
 | POST | `/issue/export` | `ExportIssueResource` | 导出 Issue 列表 |
 | POST | `/issue/recent_assignees` | `ListRecentAssigneesResource` | 最近使用负责人 |
 | POST | `/issue/trend` | `IssueTrendResource` | Issue 趋势统计 |

@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/Issue
 relation: 接口契约-resolved_time为可靠解决时间按状态分流
-exportedAt: "2026-08-31T03:10:49.492Z"
+exportedAt: "2026-09-01T08:35:17.233Z"
 ---
 【决策记录｜Issue 以 resolved_time 为可靠解决时间，并按状态分流时间过滤】
 - 分类：接口契约

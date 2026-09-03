@@ -210,6 +210,29 @@
           "memoryId": "c88b2cce9c8340a608db96c89464cf0f"
         },
         {
+          "id": "rel_017",
+          "text": "IssueMergeResolver 合并拆分",
+          "score": 0.9972642985740978,
+          "useCount": 1,
+          "lastUsedTime": 1788344484259,
+          "isImported": true,
+          "memoryIds": [
+            "dd428d0c57a78d7611ac6e44bec69e99",
+            "e0dceee50e75c72af66209ca2f965525",
+            "b51cd271c7ba07a71e65483a8cf44407",
+            "ada3f5cd4225053eb05b18ba4de2fe0e",
+            "6864588e0852c0e504302267097b9429"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueMergeResolver 合并拆分.md",
+          "memoryId": "dd428d0c57a78d7611ac6e44bec69e99",
+          "tags": [
+            "issue",
+            "split",
+            "batch",
+            "批量拆分"
+          ]
+        },
+        {
           "id": "rel_015",
           "text": "IssueDocument ES 模型关键字段",
           "score": 0,
@@ -236,20 +259,6 @@
           ],
           "sourcePath": "专题记忆/Issue/IssueDocument 数据模型与状态机.md",
           "memoryId": "636a05165854098dff3294fc5f95411d"
-        },
-        {
-          "id": "rel_017",
-          "text": "IssueMergeResolver 合并拆分",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "398a276bba2cf62502ed1ddf5b10996c",
-            "f5fd0849c918c5201ca53660de7404ab"
-          ],
-          "sourcePath": "专题记忆/Issue/IssueMergeResolver 合并拆分.md",
-          "memoryId": "398a276bba2cf62502ed1ddf5b10996c"
         },
         {
           "id": "rel_018",
@@ -3140,6 +3149,34 @@
     "项目踩坑点": {
       "hot_relations": [
         {
+          "id": "rel_321",
+          "text": "进程详情视图工具栏汇聚方法不生效",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788423392599,
+          "isImported": false,
+          "tags": [
+            "踩坑",
+            "scene_view",
+            "host",
+            "进程",
+            "汇聚方法",
+            "unify_query",
+            "panel_tool"
+          ],
+          "memoryIds": [
+            "dd1b37efaab59f72e2b631edf0e2ec1d",
+            "f86b1a26eba19399cebd7f59cc0ff05e",
+            "914cc835a094fbb128d20f02042563e7",
+            "11f06ad3592a23890066bf5512e86ade",
+            "eda43a3a34ca37719e7de3e65ac0420c",
+            "48c8f3cb3aac4ee1ce0e8cc0b9a5d089",
+            "d1b31cc24ac842da51926c4bc2384127",
+            "2da04a950427fd830e2b7cbb8223e1df"
+          ],
+          "memoryId": "dd1b37efaab59f72e2b631edf0e2ec1d"
+        },
+        {
           "id": "rel_192",
           "text": "CMDB Process类字段丢失",
           "score": 0,
@@ -4168,6 +4205,22 @@
           "memoryId": "07ca8e814b1c4b6aed0970e69a001323"
         },
         {
+          "id": "rel_302",
+          "text": "接口契约-查询条件无法构造时match_none",
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1788252542772,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "d3b2e2ebcfc7a6df02d3fd6e6e077ed2",
+            "e8c6d4ffdf931029e3db5b94a8146256"
+          ],
+          "memoryId": "d3b2e2ebcfc7a6df02d3fd6e6e077ed2"
+        },
+        {
           "id": "rel_266",
           "text": "安全合规-业务可见性过滤改fail-close与terms省略",
           "score": 1,
@@ -4182,6 +4235,54 @@
             "d32ff0290bc8b2d8eac1cf84f8368c7c"
           ],
           "memoryId": "0549efce5e2eb3661c728443c1ef20ed"
+        },
+        {
+          "id": "rel_291",
+          "text": "接口契约-via_issue_id仅溯源不加索引",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788252532592,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "755c658fd5edc8a49dac34625e3094a3",
+            "e13d2080978239ed85a09befd83166ec"
+          ],
+          "memoryId": "755c658fd5edc8a49dac34625e3094a3"
+        },
+        {
+          "id": "rel_299",
+          "text": "架构设计-指纹粒度Redis锁与Token锁防误删",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788251776078,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "37f18e1505773c1b5d1de5bf0c951b88",
+            "a83432fd698653c1f03cf5f386dfa41a"
+          ],
+          "memoryId": "37f18e1505773c1b5d1de5bf0c951b88"
+        },
+        {
+          "id": "rel_304",
+          "text": "性能取舍-合并组规模上限超限拒绝与活跃数warn-only相反取向",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788331455404,
+          "isImported": false,
+          "tags": [
+            "decision"
+          ],
+          "memoryIds": [
+            "9ee011ccaf2c938d4f84f55bf35f583d",
+            "85388491f7a51e05e949af624f8682fb"
+          ],
+          "memoryId": "9ee011ccaf2c938d4f84f55bf35f583d"
         },
         {
           "id": "rel_270",
@@ -4214,22 +4315,6 @@
             "67edbd69021ac4b1442e52b83d0c5c3e"
           ],
           "memoryId": "c798d56559ddfc04e955638d6fb2e71f"
-        },
-        {
-          "id": "rel_291",
-          "text": "接口契约-via_issue_id仅溯源不加索引",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788252532592,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "755c658fd5edc8a49dac34625e3094a3",
-            "e13d2080978239ed85a09befd83166ec"
-          ],
-          "memoryId": "755c658fd5edc8a49dac34625e3094a3"
         },
         {
           "id": "rel_292",
@@ -4328,22 +4413,6 @@
           "memoryId": "54af4bd8ba74031157ee5683da5fa6d0"
         },
         {
-          "id": "rel_299",
-          "text": "架构设计-指纹粒度Redis锁与Token锁防误删",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788251776078,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "37f18e1505773c1b5d1de5bf0c951b88",
-            "a83432fd698653c1f03cf5f386dfa41a"
-          ],
-          "memoryId": "37f18e1505773c1b5d1de5bf0c951b88"
-        },
-        {
           "id": "rel_300",
           "text": "接口契约-名称唯一性分场景系统标题允许重名",
           "score": 0,
@@ -4376,22 +4445,6 @@
           "memoryId": "51931e03ce91a753ec3301a1a11c2f8c"
         },
         {
-          "id": "rel_302",
-          "text": "接口契约-查询条件无法构造时match_none",
-          "score": 2,
-          "useCount": 2,
-          "lastUsedTime": 1788252542772,
-          "isImported": false,
-          "tags": [
-            "decision"
-          ],
-          "memoryIds": [
-            "d3b2e2ebcfc7a6df02d3fd6e6e077ed2",
-            "e8c6d4ffdf931029e3db5b94a8146256"
-          ],
-          "memoryId": "d3b2e2ebcfc7a6df02d3fd6e6e077ed2"
-        },
-        {
           "id": "rel_303",
           "text": "接口契约-resolved_time为可靠解决时间按状态分流",
           "score": 0,
@@ -4408,20 +4461,28 @@
           "memoryId": "7b2917ec70e30de9a7eeca136caa913d"
         },
         {
-          "id": "rel_304",
-          "text": "性能取舍-合并组规模上限超限拒绝与活跃数warn-only相反取向",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788331455404,
+          "id": "rel_320",
+          "text": "架构设计-拆分批量逐条独立无跨条目事务部分失败不阻塞",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
           "isImported": false,
           "tags": [
-            "decision"
+            "decision",
+            "issue",
+            "split",
+            "batch",
+            "批量拆分"
           ],
           "memoryIds": [
-            "9ee011ccaf2c938d4f84f55bf35f583d",
-            "85388491f7a51e05e949af624f8682fb"
+            "8edbe2e794d48adae94d9fea60c44447",
+            "af0d3b965f247399d64eed9a0844f856",
+            "1a1ebfe7d08aeab27b05b0d51d3f0c13",
+            "4c688fc198ce2ec46dc62700a117aee4",
+            "423e28c5508b1519fad37726652927c2",
+            "e3999b39b69d2743f2e65a40e8443e84"
           ],
-          "memoryId": "9ee011ccaf2c938d4f84f55bf35f583d"
+          "memoryId": "8edbe2e794d48adae94d9fea60c44447"
         }
       ],
       "keywords": [],
@@ -4626,30 +4687,7 @@
       "max_hot_count": 10
     },
     "待生效变更/Issue": {
-      "hot_relations": [
-        {
-          "id": "rel_317",
-          "text": "拆分接口批量契约变更-专家资产更新",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788332994148,
-          "isImported": false,
-          "tags": [
-            "pending"
-          ]
-        },
-        {
-          "id": "rel_318",
-          "text": "拆分接口批量契约变更-ki专题记忆更新",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "pending"
-          ]
-        }
-      ],
+      "hot_relations": [],
       "keywords": [],
       "max_hot_count": 10
     },
@@ -4717,5 +4755,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-09-02T07:18:26.299Z"
+  "updatedAt": "2026-09-03T08:16:35.927Z"
 }

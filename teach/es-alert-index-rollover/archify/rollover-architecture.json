@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ES 告警索引轮转（ILM）组件结构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/HACK-WU/bk-monitor",
+      "revision": "53b34ed31fb63ad291bb52d2f946e445d46c02ef"
+    },
+    "viewBox": [1280, 700],
+    "views": [
+      { "id": "rollover-path", "label": "轮转主链路", "focus": ["beat", "task", "rollover", "ilm", "template"], "note": "从定时调度到 ILM 编排，看一次轮转是怎么被驱动起来的。" },
+      { "id": "alias-routing", "label": "别名与存储", "focus": ["ilm", "write_alias", "phys", "read_alias"], "note": "写别名唯一指向最新，读别名多份并存、永不迁移。" },
+      { "id": "read-write-path", "label": "读写两侧", "focus": ["writer", "write_alias", "phys", "read_alias", "reader"], "note": "写入按 begin_time 路由，查询按时间窗推导，两者天然错位。" }
+    ]
+  },
+  "components": [
+    {
+      "id": "beat",
+      "type": "external",
+      "label": "Celery beat",
+      "sublabel": "*/24 * * * *",
+      "pos": [40, 70],
+      "size": [150, 64],
+      "sources": [{ "path": "bkmonitor/config/role/worker.py", "line": 239, "label": "crontab 注册" }]
+    },
+    {
+      "id": "task",
+      "type": "backend",
+      "label": "rollover_indices",
+      "sublabel": "documents/tasks.py:18",
+      "pos": [230, 70],
+      "size": [190, 64],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/tasks.py", "line": 18, "end_line": 37, "label": "遍历 ALL_DOCUMENTS" }]
+    },
+    {
+      "id": "rollover",
+      "type": "backend",
+      "label": "BaseDocument.rollover",
+      "sublabel": "documents/base.py:221",
+      "pos": [460, 70],
+      "size": [200, 64],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 221, "end_line": 232, "label": "rollover 入口" }]
+    },
+    {
+      "id": "ilm",
+      "type": "backend",
+      "label": "ILM 生命周期管理",
+      "sublabel": "utils/elasticsearch/ilm.py:29",
+      "pos": [700, 70],
+      "size": [200, 64],
+      "sources": [{ "path": "bkmonitor/bkmonitor/utils/elasticsearch/ilm.py", "line": 29, "end_line": 62, "label": "ILM 构造参数" }]
+    },
+    {
+      "id": "template",
+      "type": "database",
+      "label": "索引模板",
+      "sublabel": "pattern {index}_*",
+      "pos": [950, 70],
+      "size": [180, 64],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 213, "end_line": 219, "label": "upsert_template" }]
+    },
+    {
+      "id": "write_alias",
+      "type": "messagebus",
+      "label": "写别名",
+      "sublabel": "write_{date}_{index}",
+      "pos": [160, 290],
+      "size": [220, 78],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 60, "end_line": 61, "label": "命名规则" }]
+    },
+    {
+      "id": "phys",
+      "type": "database",
+      "label": "物理索引",
+      "sublabel": "{index}_{YYYYMMDD}_{seq}",
+      "pos": [520, 290],
+      "size": [240, 78],
+      "sources": [{ "path": "bkmonitor/bkmonitor/utils/elasticsearch/ilm.py", "line": 145, "end_line": 147, "label": "make_index_name" }]
+    },
+    {
+      "id": "read_alias",
+      "type": "messagebus",
+      "label": "读别名",
+      "sublabel": "{index}_{date}_read",
+      "pos": [900, 290],
+      "size": [220, 78],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 64, "end_line": 65, "label": "命名规则" }]
+    },
+    {
+      "id": "writer",
+      "type": "backend",
+      "label": "写入侧",
+      "sublabel": "alarm_backends 告警接入",
+      "pos": [90, 530],
+      "size": [240, 70],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 67, "end_line": 89, "label": "_get_index 路由" }]
+    },
+    {
+      "id": "cleaner",
+      "type": "backend",
+      "label": "过期清理",
+      "sublabel": "clear_expired_indices（未启用）",
+      "pos": [495, 530],
+      "size": [270, 70],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/tasks.py", "line": 38, "end_line": 47, "label": "无 crontab 注册" }]
+    },
+    {
+      "id": "reader",
+      "type": "frontend",
+      "label": "查询侧",
+      "sublabel": "fta_web 告警列表 / 详情",
+      "pos": [940, 530],
+      "size": [240, 70],
+      "sources": [{ "path": "bkmonitor/bkmonitor/documents/base.py", "line": 107, "end_line": 143, "label": "按时间窗推导" }]
+    }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "告警域 Document 编排层", "wraps": ["beat", "task", "rollover", "ilm", "template"] },
+    { "kind": "region", "label": "Elasticsearch 存储层", "wraps": ["write_alias", "phys", "read_alias"] }
+  ],
+  "connections": [
+    { "id": "beat-to-task", "from": "beat", "to": "task", "label": "每 24 分钟", "variant": "emphasis", "labelDy": 56 },
+    { "id": "task-to-rollover", "from": "task", "to": "rollover", "label": "遍历 10 个 Document", "labelDy": 56 },
+    { "id": "rollover-to-ilm", "from": "rollover", "to": "ilm", "label": "装配 ILM 参数", "labelDy": 56 },
+    { "id": "ilm-to-template", "from": "ilm", "to": "template", "label": "upsert_template()", "labelDy": 56 },
+    { "id": "ilm-to-write-alias", "from": "ilm", "to": "write_alias", "label": "别名创建与预留", "fromSide": "bottom", "toSide": "top", "via": [[800, 215], [270, 215]], "labelAt": [420, 198] },
+    { "id": "ilm-to-phys", "from": "ilm", "to": "phys", "label": "建索引 / reindex 搬运", "fromSide": "bottom", "toSide": "top", "labelAt": [700, 232] },
+    { "id": "write-alias-to-phys", "from": "write_alias", "to": "phys", "label": "唯一指向最新" },
+    { "id": "phys-to-read-alias", "from": "phys", "to": "read_alias", "label": "永久驻留不迁移" },
+    { "id": "writer-to-write-alias", "from": "writer", "to": "write_alias", "label": "按 begin_time 路由", "fromSide": "top", "toSide": "bottom", "labelAt": [270, 452] },
+    { "id": "read-alias-to-reader", "from": "read_alias", "to": "reader", "label": "按时间窗推导索引", "fromSide": "bottom", "toSide": "top", "labelAt": [1030, 452] },
+    { "id": "phys-to-cleaner", "from": "phys", "to": "cleaner", "label": "clean_index() 删除过期索引", "fromSide": "bottom", "toSide": "top", "variant": "dashed", "labelAt": [630, 448] }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "调度与编排", "items": ["Celery beat 每 24 分钟驱动一次全量轮转", "10 个 Document 逐个执行，单个异常互不影响", "索引模板每次轮转前刷新，模型字段变更自动生效"] },
+    { "dot": "emerald", "title": "别名路由", "items": ["写别名唯一且永远指向最新索引", "读别名多份并存、按日期驻留、永不迁移", "写入按文档自身 begin_time 路由，与当前时间无关"] },
+    { "dot": "amber", "title": "搬运与查询", "items": ["reindex 仅在真正创建新索引时触发", "搬运条件为 status=ABNORMAL 且 create_time 不早于新索引日期", "精确查询的索引窗口上界必须恒为 now"] },
+    { "dot": "rose", "title": "已知缺口", "items": ["clear_expired_indices 未注册 crontab，retention 当前不生效", "冷热分层在告警域未启用，reallocate_index 为 no-op", "AlertDocument.get 缺少 mget 那样的双副本去重"] }
+  ]
+}

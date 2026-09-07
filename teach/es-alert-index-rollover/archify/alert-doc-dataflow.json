@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "告警文档在索引间的流转",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [930, 700],
+    "views": [
+      { "id": "write-path", "label": "写入路由", "focus": ["event", "alert", "route", "phys_new"], "note": "告警接入后，文档落点由 begin_time 决定，与当前时间无关。" },
+      { "id": "reindex-path", "label": "搬运与停留", "focus": ["phys_new", "phys_recover", "reindex"], "note": "满足条件才搬运；不满足则原地停留，两种落点都由查询侧统一覆盖。" },
+      { "id": "query-path", "label": "查询收敛", "focus": ["phys_recover", "reindex", "window", "result"], "note": "索引窗口下界 begin_time、上界恒 now，才能覆盖全部落点。" }
+    ]
+  },
+  "stages": [
+    { "label": "告警接入" },
+    { "label": "写入路由" },
+    { "label": "物理落点" },
+    { "label": "搬运与出口" }
+  ],
+  "nodes": [
+    {
+      "id": "event",
+      "type": "external",
+      "label": "Event 接入",
+      "sublabel": "event.time 即 begin_time",
+      "stage": 0,
+      "row": 0,
+      "tag": "alarm_backends"
+    },
+    {
+      "id": "alert",
+      "type": "backend",
+      "label": "Alert 文档构建",
+      "sublabel": "三个时间字段就位",
+      "stage": 0,
+      "row": 2,
+      "tag": "init_uid"
+    },
+    {
+      "id": "route",
+      "type": "backend",
+      "label": "_get_index 路由",
+      "sublabel": "按 begin_time 取写别名",
+      "stage": 1,
+      "row": 1,
+      "tag": "base.py:67"
+    },
+    {
+      "id": "phys_new",
+      "type": "database",
+      "label": "begin_time 当天索引",
+      "sublabel": "文档初始落点",
+      "stage": 2,
+      "row": 0,
+      "tag": "写入锚点"
+    },
+    {
+      "id": "phys_recover",
+      "type": "database",
+      "label": "恢复当天索引",
+      "sublabel": "终态停留处",
+      "stage": 2,
+      "row": 2,
+      "tag": "跨天恢复"
+    },
+    {
+      "id": "reindex",
+      "type": "backend",
+      "label": "reindex 搬运",
+      "sublabel": "ABNORMAL 且 create_time 够新",
+      "stage": 3,
+      "row": 0,
+      "tag": "op_type=create"
+    },
+    {
+      "id": "window",
+      "type": "backend",
+      "label": "时间窗推导",
+      "sublabel": "下界 begin_time 上界 now",
+      "stage": 3,
+      "row": 2,
+      "tag": "index_name_by_time"
+    },
+    {
+      "id": "result",
+      "type": "frontend",
+      "label": "查询结果",
+      "sublabel": "列表 / 详情 / 计数",
+      "stage": 3,
+      "row": 3,
+      "yOffset": 30,
+      "tag": "fta_web"
+    }
+  ],
+  "flows": [
+    { "from": "event", "to": "alert", "label": "生成 alert_id", "classification": "前 10 位 = begin_time", "variant": "emphasis", "labelDy": 28 },
+    { "from": "alert", "to": "route", "label": "prepare_action", "classification": "bulk 写入", "variant": "emphasis", "labelDy": 28 },
+    { "from": "route", "to": "phys_new", "label": "按 begin_time 落盘", "classification": "write_{date}_{index}", "variant": "emphasis", "labelAt": [352, 316] },
+    { "from": "route", "to": "phys_recover", "label": "状态更新回写", "classification": "终态停留", "variant": "default", "labelDy": 28 },
+    { "from": "phys_new", "to": "reindex", "label": "命中搬运条件", "classification": "status=ABNORMAL", "variant": "emphasis", "labelDy": -24 },
+    { "from": "phys_new", "to": "phys_recover", "label": "不满足则停留", "classification": "create_time 过早", "variant": "default", "labelDy": 28 },
+    { "from": "reindex", "to": "window", "label": "新写入落点", "classification": "参与查询", "variant": "default", "labelDy": 28 },
+    { "from": "phys_recover", "to": "window", "label": "历史落点", "classification": "参与查询", "variant": "default", "labelDy": -24 },
+    { "from": "window", "to": "result", "label": "ES 查询返回", "classification": "索引列表命中", "variant": "emphasis", "labelDy": 28 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "三个时间字段", "items": ["begin_time 决定文档写入哪个索引，也决定查询窗口下界", "create_time 只在初始化赋值，决定 reindex 搬运资格", "update_time 每次变更刷新，是双副本去重的排序依据"] },
+    { "dot": "emerald", "title": "搬运的真实条件", "items": ["必须是 status=ABNORMAL，已恢复告警不再搬运", "create_time 不能早于新索引日期，长期存活的旧告警不搬运", "reindex 只在真正创建新索引时触发，日常约 59/60 次不执行"] },
+    { "dot": "amber", "title": "查询收敛铁律", "items": ["精确 ID 查询的索引窗口上界必须恒为 now", "各种落点都落在 [begin_time, now] 区间内，这是唯一安全窗口", "无法推断时间锚点的查询走 all_indices=True"] },
+    { "dot": "rose", "title": "一致性缺口", "items": ["reindex 与 delete_by_query 之间存在双副本过渡期", "mget 按 -update_time 排序去重，get 未做同样防护", "delete_by_query 失败会长期留下双副本，无自动补偿"] }
+  ]
+}

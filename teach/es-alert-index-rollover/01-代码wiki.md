@@ -4,6 +4,8 @@
 > **对象**：`ILM` 类 + `BaseDocument` 索引抽象层 + `AlertDocument` 存储语义
 > 每个讲解点标注 `[通用]` / `[专用]`
 
+📊 配套交互图：[ILM 组件结构图](./archify/rollover-architecture.html)（archify 交付，可缩放与按关系追踪）
+
 ---
 
 ## 一、模块结构（目录与文件职责）

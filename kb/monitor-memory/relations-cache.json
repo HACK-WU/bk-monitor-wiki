@@ -210,6 +210,32 @@
           "memoryId": "c88b2cce9c8340a608db96c89464cf0f"
         },
         {
+          "id": "rel_287",
+          "text": "ListMergeSourcesResource 合并来源接口契约",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788752096882,
+          "isImported": false,
+          "tags": [
+            "api",
+            "issue",
+            "merge_sources",
+            "via_issue_id",
+            "contract",
+            "alert_time"
+          ],
+          "memoryIds": [
+            "1e8ac8f89cda83e19c64a4d6e8d0c909",
+            "2c277772441fb0c2cc0f3c84ce70cc2f",
+            "56c85ef27fe78514a5910e216a672d0c",
+            "6a3a5aed2f83821956eb0ff995911790",
+            "9f3f944470eddda0f9e644b6966e043b",
+            "af119c49c3c6478ef7623b3101088450",
+            "da5c29268822d86c35f8b6cdfc919f6b"
+          ],
+          "memoryId": "1e8ac8f89cda83e19c64a4d6e8d0c909"
+        },
+        {
           "id": "rel_017",
           "text": "IssueMergeResolver 合并拆分",
           "score": 0.9972642985740978,
@@ -360,30 +386,6 @@
           "memoryId": "fc94e2e1ee37b6a0737b8ecfcb19a640"
         },
         {
-          "id": "rel_287",
-          "text": "ListMergeSourcesResource 合并来源接口契约",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": false,
-          "tags": [
-            "api",
-            "issue",
-            "merge_sources",
-            "via_issue_id",
-            "contract"
-          ],
-          "memoryIds": [
-            "2d61bfc4fbb65440f1853a437ebb22b5",
-            "81fa0fedb15f7d3416a8b440b5b871e9",
-            "a26710c581bed4969ccc50fe59347c5d",
-            "86a6ae0293050d44f40f93fb5e2ff1ba",
-            "32b4d3e7c5ebf2b861f9b4c14ad70360",
-            "3b0ec35eda92dc2cc5a784c5205e85a2"
-          ],
-          "memoryId": "2d61bfc4fbb65440f1853a437ebb22b5"
-        },
-        {
           "id": "rel_315",
           "text": "IssueAggregationProcessor 聚合引擎",
           "score": 0,
@@ -517,6 +519,34 @@
           ],
           "sourcePath": "专题记忆/UnifyQuery查询/统一查询后端接口契约.md",
           "memoryId": "1ccdc09c4b1e103cb475275a4435c0ba"
+        },
+        {
+          "id": "rel_324",
+          "text": "interval 双身份与 without_time 数值等价性",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "unify_query",
+            "interval",
+            "step",
+            "window",
+            "without_time",
+            "min",
+            "语义"
+          ],
+          "memoryIds": [
+            "a3029df324229215980b771d1de84b19",
+            "eb62b7a27b85fb2455e84afd87d0dde7",
+            "eb5598dbbed7cef148708c5ddb6a1ba1",
+            "612cc66b987936d9a333cdeea148e519",
+            "b4d20401dbfa0a36174db9a8f7b159e5",
+            "8106601697e0be0a6371d7a2a54b0ada",
+            "86faaddfb159e6ba43875013be82d296",
+            "3306256769b51ad7bc41fb2bd819bf46"
+          ],
+          "memoryId": "a3029df324229215980b771d1de84b19"
         }
       ],
       "keywords": [],
@@ -897,6 +927,34 @@
     "专题记忆/场景视图": {
       "hot_relations": [
         {
+          "id": "rel_323",
+          "text": "METRIC_METHOD 占位符拼接契约",
+          "score": 3,
+          "useCount": 3,
+          "lastUsedTime": 1788498257129,
+          "isImported": false,
+          "tags": [
+            "scene_view",
+            "process",
+            "metric_method",
+            "without_time",
+            "method",
+            "占位符",
+            "前端解析"
+          ],
+          "memoryIds": [
+            "407e08ba0ed61194e3fae2fbb103dd81",
+            "223070a4c5e2be717f95721779073f00",
+            "57fa9f5f793cc39eb1ff251de72f78f2",
+            "9a992d49e338edd11756a165c61cfbf7",
+            "9bdd05af38706430a97e9fc5280477ff",
+            "9f191efa2620673454e6d74310466bff",
+            "e162f529489fa4d335f4b68cdb49ed46",
+            "48e0d7fc052b4cc431d58faf4f4a209d"
+          ],
+          "memoryId": "407e08ba0ed61194e3fae2fbb103dd81"
+        },
+        {
           "id": "rel_058",
           "text": "BuiltinProcessor处理器与分发机制",
           "score": 1,
@@ -908,6 +966,19 @@
           ],
           "sourcePath": "专题记忆/场景视图/BuiltinProcessor处理器与分发机制.md",
           "memoryId": "5de2d86fe935f239eac2ab956a3d37c5"
+        },
+        {
+          "id": "rel_061",
+          "text": "场景视图专家路标",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1788252583568,
+          "isImported": true,
+          "memoryIds": [
+            "031341faaef3a3ce55d978544ccb798c"
+          ],
+          "sourcePath": "专题记忆/场景视图/场景视图专家路标.md",
+          "memoryId": "031341faaef3a3ce55d978544ccb798c"
         },
         {
           "id": "rel_059",
@@ -936,19 +1007,6 @@
           ],
           "sourcePath": "专题记忆/场景视图/主机进程列表4路并发聚合.md",
           "memoryId": "da1b7df4b9cdb86f161285a9a4370459"
-        },
-        {
-          "id": "rel_061",
-          "text": "场景视图专家路标",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788252583568,
-          "isImported": true,
-          "memoryIds": [
-            "031341faaef3a3ce55d978544ccb798c"
-          ],
-          "sourcePath": "专题记忆/场景视图/场景视图专家路标.md",
-          "memoryId": "031341faaef3a3ce55d978544ccb798c"
         },
         {
           "id": "rel_062",
@@ -3255,6 +3313,28 @@
           ],
           "sourcePath": "项目踩坑点/错误码段冲突与 HTTP 状态码网关透传丢失.md",
           "memoryId": "297bfaecb77992dfbced88456e8521db"
+        },
+        {
+          "id": "rel_322",
+          "text": "通用",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "踩坑",
+            "es索引",
+            "reindex",
+            "告警查询"
+          ],
+          "memoryIds": [
+            "ef827d6ee9552b688cbf4e0fb9d74f0a",
+            "06e944f2da33bcbed755b31ef6e327e1",
+            "1f6ff2defcf0735ccac4c2deff32343f",
+            "aba4880a7cb5c8d5b3f3387b73a38552",
+            "23bc2e32431e2feb7860fc2a5289773d"
+          ],
+          "memoryId": "ef827d6ee9552b688cbf4e0fb9d74f0a"
         }
       ],
       "keywords": [],
@@ -4755,5 +4835,5 @@
       "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-09-03T08:16:35.927Z"
+  "updatedAt": "2026-09-07T03:35:01.052Z"
 }

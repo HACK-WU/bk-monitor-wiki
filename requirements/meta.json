@@ -239,10 +239,51 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-09-07-Issue合并来源时间展示优化": {
+      "id": "REQ-20260907-001",
+      "feature": "Issue合并来源时间展示优化",
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "status": "进行中",
+      "tags": [
+        "integration",
+        "feat",
+        "issue",
+        "merge_sources",
+        "时间展示"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建（TAPD 1010158081137884900，用户确认仅后端 REQ-01）",
+        "2026-09-07: 后端实施完成 + code review（A/✅）+ challenger 质疑（无阻塞），未提交待确认",
+        "2026-09-07: auto-review 复审修复行数声明（净增 13→111 行，numstat 实测：生产 5 + 测试 106）"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "review/code-review.md",
+          "type": "review"
+        },
+        {
+          "path": "review/challenge-report.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
   },
   "id_counters": {
     "REQ-20260803": 1,
-    "REQ-20260901": 1
+    "REQ-20260901": 1,
+    "REQ-20260907": 1
   }
 }

@@ -1,4 +1,5 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T10:25:57.598Z"
+  "updatedAt": "2026-09-08T06:10:34.794Z",
+  "ListMergeSourcesResource补alert_count字段": "# 待生效变更：ListMergeSourcesResource 补 alert_count 字段\n\n**变更来源**：TAPD 1010158081137941990「【issue】被聚合issue列表展示优化」后端实施（2026-09-08，工作区未提交/未合入）\n\n**变更内容**：`fta_web/issue/resources.py` `ListMergeSourcesResource.perform_request` 成员条目新增 `alert_count` 字段（ES source 补 `alert_count`，`alert_count_map` 构造 + 条目输出，getattr 0 兜底；active/split 双分区透出）。\n\n**合并后应为**：① ki 契约「ListMergeSourcesResource 合并来源接口契约」返回字段表补一行：`alert_count`（int，成员告警数；active 成员=合并时冻结值，split 条目=文档当前值可能随拆分后新告警推进，ES 缺失兜底 0）；② `.module-experts/issue专家/sub-experts/issue-api/C1-能力契约.md` 同步字段表；③ 测试计数更新：test_issue_resources.py 新增 TestListMergeSourcesAlertCount 3 用例（33 passed 1 skipped）。\n\n**结账触发条件**：alert_count 后端改动合入 master 后，以上 3 处资产按「合并后应为」更新并删除本台账条目。"
 }

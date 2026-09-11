@@ -236,6 +236,20 @@
           "memoryId": "1e8ac8f89cda83e19c64a4d6e8d0c909"
         },
         {
+          "id": "rel_019",
+          "text": "IssueQueryHandler 查询处理器",
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789091998919,
+          "isImported": true,
+          "memoryIds": [
+            "f0ae7a6ed3359a6a3723cd9d9c55d453",
+            "95d7dd3240b42aaf1e08c72e6d110932"
+          ],
+          "sourcePath": "专题记忆/Issue/IssueQueryHandler 查询处理器.md",
+          "memoryId": "f0ae7a6ed3359a6a3723cd9d9c55d453"
+        },
+        {
           "id": "rel_017",
           "text": "IssueMergeResolver 合并拆分",
           "score": 0.9972642985740978,
@@ -299,20 +313,6 @@
           ],
           "sourcePath": "专题记忆/Issue/IssueQueryHandler ES 查询构建.md",
           "memoryId": "b09ea4cea8eca343ca0d8d46909c6c89"
-        },
-        {
-          "id": "rel_019",
-          "text": "IssueQueryHandler 查询处理器",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
-          "isImported": true,
-          "memoryIds": [
-            "f0ae7a6ed3359a6a3723cd9d9c55d453",
-            "95d7dd3240b42aaf1e08c72e6d110932"
-          ],
-          "sourcePath": "专题记忆/Issue/IssueQueryHandler 查询处理器.md",
-          "memoryId": "f0ae7a6ed3359a6a3723cd9d9c55d453"
         },
         {
           "id": "rel_020",
@@ -396,6 +396,32 @@
             "9bffbadfe8f368fa6e8b8b524e2784ff"
           ],
           "memoryId": "9bffbadfe8f368fa6e8b8b524e2784ff"
+        },
+        {
+          "id": "rel_332",
+          "text": "Issue 异常信息展示链路与 log_content 调用时机",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "issue",
+            "anomaly_message",
+            "log_content",
+            "日志聚类",
+            "前端展示",
+            "调用时机"
+          ],
+          "memoryIds": [
+            "21b161da731b2da7a77ffcfe3c47306f",
+            "308189efe80391dfb8f221c19da5d8f0",
+            "254fc91f04ced9f34977996a0284f3bf",
+            "c695a1a36dd78ea15c3a9cb21dd8bd2c",
+            "93279aa95913e5a386d0155e4cd8be4b",
+            "55bd377a28398f4d09541c7a90185448",
+            "5ca5b3513e4194b8e491aadc5330696b"
+          ],
+          "memoryId": "21b161da731b2da7a77ffcfe3c47306f"
         }
       ],
       "keywords": [],
@@ -827,9 +853,9 @@
         {
           "id": "rel_051",
           "text": "五种屏蔽类型对比与选择",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789007491016,
           "isImported": true,
           "memoryIds": [
             "59baa57666f7928c9c62b1dcd98e6849",
@@ -854,9 +880,9 @@
         {
           "id": "rel_053",
           "text": "告警屏蔽架构总览",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789007491016,
           "isImported": true,
           "memoryIds": [
             "9839c8b855a7e948226230bf0cec77df",
@@ -868,9 +894,9 @@
         {
           "id": "rel_054",
           "text": "屏蔽匹配引擎双维度校验",
-          "score": 1,
-          "useCount": 1,
-          "lastUsedTime": 1788140597761,
+          "score": 2,
+          "useCount": 2,
+          "lastUsedTime": 1789007485826,
           "isImported": true,
           "memoryIds": [
             "6eb33cb061d6abd368f366f21d63be4b",
@@ -882,9 +908,9 @@
         {
           "id": "rel_055",
           "text": "屏蔽缓存同步机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789007485826,
           "isImported": true,
           "memoryIds": [
             "8ee6bec00e53fc53f9e84ca2df6cfc27"
@@ -895,9 +921,9 @@
         {
           "id": "rel_056",
           "text": "屏蔽通知幂等机制",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789007485826,
           "isImported": true,
           "memoryIds": [
             "54aafaeb60205767ba3e352f3f9f20a8",
@@ -909,9 +935,9 @@
         {
           "id": "rel_057",
           "text": "快捷屏蔽接口体系",
-          "score": 0,
-          "useCount": 0,
-          "lastUsedTime": null,
+          "score": 1,
+          "useCount": 1,
+          "lastUsedTime": 1789007485826,
           "isImported": true,
           "memoryIds": [
             "a1512c0dfa032bccaf7c49b599d162b7",
@@ -4767,7 +4793,32 @@
       "max_hot_count": 10
     },
     "待生效变更/Issue": {
-      "hot_relations": [],
+      "hot_relations": [
+        {
+          "id": "rel_329",
+          "text": "ListMergeSourcesResource补alert_count字段",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "pending-change",
+            "issue",
+            "merge_sources",
+            "alert_count",
+            "contract"
+          ],
+          "memoryIds": [
+            "4d1c59cd21dcb00f1331cf86caffbb89",
+            "4ab5c385842394ca932c73a083e4c09b",
+            "243a1e234624efe2878d3e2119ec011c",
+            "14b06a12739a6a5c656b4abc16d86db1",
+            "b54e9c651310787ad66dbc75c74b14fc",
+            "8f98e3775b173af563381c805a4b36c5"
+          ],
+          "memoryId": "4d1c59cd21dcb00f1331cf86caffbb89"
+        }
+      ],
       "keywords": [],
       "max_hot_count": 10
     },
@@ -4833,7 +4884,125 @@
       ],
       "keywords": [],
       "max_hot_count": 10
+    },
+    "专题记忆/APM": {
+      "hot_relations": [
+        {
+          "id": "rel_325",
+          "text": "Profiling技术架构总览",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "profiling",
+            "apm",
+            "架构总览"
+          ],
+          "memoryIds": [
+            "050425070af9e626bd4d5d35294da6cd",
+            "abdeb1eb2b38e491dafc4a04d25eb9a3",
+            "6b107244707b38be689f63d5c44057cd",
+            "14e31c53f043d4fa3149033191541224"
+          ],
+          "memoryId": "050425070af9e626bd4d5d35294da6cd"
+        },
+        {
+          "id": "rel_326",
+          "text": "Profile采集与上报链路",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "profiling",
+            "采集",
+            "上报"
+          ],
+          "memoryIds": [
+            "cf47eadb893f4b01b7d821a92e807974",
+            "b82bad81207bd908bbd76af39d59ef6f",
+            "8ccba0c57790d5074dbc7736b97f3d58",
+            "d16463fde1facbd3b47bd2b87750ccad"
+          ],
+          "memoryId": "cf47eadb893f4b01b7d821a92e807974"
+        },
+        {
+          "id": "rel_327",
+          "text": "Profile解析与可视化模块结构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "profiling",
+            "apm",
+            "模块结构",
+            "可视化"
+          ],
+          "memoryIds": [
+            "1c8bb2421857931629da2dc106dff30c",
+            "e159b61c97bdb1d2f2ab592039625f3b",
+            "e1484ae28d2efb3c921feac57505d571",
+            "ab436f7e7d17ca0dc2445f3a1629258b",
+            "f56d05676f2096893fd668139d7e9462"
+          ],
+          "memoryId": "1c8bb2421857931629da2dc106dff30c"
+        },
+        {
+          "id": "rel_328",
+          "text": "Profiling实现易错点",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "profiling",
+            "apm",
+            "踩坑",
+            "易错点"
+          ],
+          "memoryIds": [
+            "34fd13a8fe3cbbb182e66e56edc5823a",
+            "bcaa1c5df44ea64d52e46a8a2eb6aaeb",
+            "aa8dcb8d86c91c03af70d54f9ab33ee9",
+            "3908f27e22b417f3f8443a67b1618576",
+            "759ee7d0b1f93ec501e615b62587ec2e"
+          ],
+          "memoryId": "34fd13a8fe3cbbb182e66e56edc5823a"
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
+    },
+    "待生效变更/告警屏蔽": {
+      "hot_relations": [
+        {
+          "id": "rel_330",
+          "text": "告警屏蔽专题记忆补end_policy与静默关闭机制",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "pending"
+          ]
+        },
+        {
+          "id": "rel_331",
+          "text": "告警屏蔽专家资产补静默关闭契约与架构",
+          "score": 0,
+          "useCount": 0,
+          "lastUsedTime": null,
+          "isImported": false,
+          "tags": [
+            "pending"
+          ]
+        }
+      ],
+      "keywords": [],
+      "max_hot_count": 10
     }
   },
-  "updatedAt": "2026-09-07T03:35:01.052Z"
+  "updatedAt": "2026-09-11T03:05:22.750Z"
 }

@@ -1,6 +1,22 @@
 # issue 后台周期任务 · 代码 wiki
 
+**本文引用的文件**
+- [周期任务主文件 issue_tasks.py](file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py)
+- [cron 与模式注册 worker.py](file://bkmonitor/config/role/worker.py)
+- [调度分发语义 cron.py](file://bkmonitor/alarm_backends/service/scheduler/tasks/cron.py)
+
 > 本文为完整讲解（Phase 0→7）的 Phase 2 产物。前序：`00-能力大纲.md`。
+
+## 目录
+1. [一、整体结构与文件位置](#一整体结构与文件位置)
+2. [二、术语表（首次出现先给"人话"）](#二术语表首次出现先给人话)
+3. [三、任务一：`sync_issue_alert_stats` 逐层拆解](#三任务一sync_issue_alert_stats-逐层拆解)
+4. [四、任务二：`refresh_issue_llm_title_examples`](#四任务二refresh_issue_llm_title_examples)
+5. [五、异步任务：`generate_issue_llm_title`](#五异步任务generate_issue_llm_title)
+6. [六、设计模式与不变量汇总](#六设计模式与不变量汇总)
+7. [七、依赖关系](#七依赖关系)
+8. [八、解读评审记录](#八解读评审记录)
+9. [章节来源](#章节来源)
 
 ## 一、整体结构与文件位置
 
@@ -298,17 +314,17 @@ docstring 解释了为什么必须有硬超时：取关联日志的下游实现�
 
 ## 章节来源
 
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L39-L44`（常量定义）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L47-L111`（主任务与循环）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L114-L155`（哨兵续命）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L157-L229`（单 Issue 处理与 orphan 检测）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L231-L384`（backfill 与其 docstring）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L387-L455`（维度提取与收窄规则）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L456-L767`（impact_scope 构造）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L818-L864`（两个 scan 工具）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L899-L1082`（_apply_llm_title）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1084-L1150`（generate_issue_llm_title 与重试）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1322-L1393`（regenerate 补偿路径）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1438-L1531`（refresh 周期任务）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/core/cache/key.py#L1248-L1260`（哨兵 TTL 30 天）
-- `file:///root/bk-monitor/bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L164-L185`（LLM 任务派发入口）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L39-L44`（常量定义）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L47-L111`（主任务与循环）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L114-L155`（哨兵续命）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L157-L229`（单 Issue 处理与 orphan 检测）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L231-L384`（backfill 与其 docstring）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L387-L455`（维度提取与收窄规则）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L456-L767`（impact_scope 构造）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L818-L864`（两个 scan 工具）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L899-L1082`（_apply_llm_title）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1084-L1150`（generate_issue_llm_title 与重试）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1322-L1393`（regenerate 补偿路径）
+- `file://bkmonitor/alarm_backends/service/fta_action/tasks/issue_tasks.py#L1438-L1531`（refresh 周期任务）
+- `file://bkmonitor/alarm_backends/core/cache/key.py#L1248-L1260`（哨兵 TTL 30 天）
+- `file://bkmonitor/alarm_backends/service/fta_action/issue_processor.py#L164-L185`（LLM 任务派发入口）

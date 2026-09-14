@@ -1,5 +1,11 @@
 # 01 · 代码 wiki：ES 告警索引轮转
 
+**本文引用的文件**
+- [ILM 主实现 ilm.py](file://bkmonitor/bkmonitor/utils/elasticsearch/ilm.py)
+- [文档基类 documents/base.py](file://bkmonitor/bkmonitor/documents/base.py)
+- [轮转任务 documents/tasks.py](file://bkmonitor/bkmonitor/documents/tasks.py)
+- [cron 注册 worker.py](file://bkmonitor/config/role/worker.py)
+
 > **讲解模式**：完整讲解（Phase 2）
 > **对象**：`ILM` 类 + `BaseDocument` 索引抽象层 + `AlertDocument` 存储语义
 > 每个讲解点标注 `[通用]` / `[专用]`
@@ -7,6 +13,20 @@
 📊 配套示意图：[ILM 组件结构图](./assets/rollover-architecture.svg)
 
 ---
+
+## 目录
+1. [一、模块结构（目录与文件职责）](#一模块结构目录与文件职责)
+2. [二、ILM 类：构造参数与含义](#二ilm-类构造参数与含义)
+3. [三、命名规则：物理索引与别名](#三命名规则物理索引与别名)
+4. [四、核心流程一：轮转判定（update_index）](#四核心流程一轮转判定update_index)
+5. [五、核心流程二：别名管理（create_or_update_aliases）](#五核心流程二别名管理create_or_update_aliases)
+6. [六、核心流程三：reindex 搬运](#六核心流程三reindex-搬运)
+7. [七、核心流程四：过期清理（clean_index）](#七核心流程四过期清理clean_index)
+8. [八、查询侧：时间窗如何翻译成索引列表](#八查询侧时间窗如何翻译成索引列表)
+9. [九、AlertDocument 对轮转的适配](#九alertdocument-对轮转的适配)
+10. [十、设计模式与不变量](#十设计模式与不变量)
+11. [十一、依赖关系](#十一依赖关系)
+12. [十二、易混淆点提示](#十二易混淆点提示)
 
 ## 一、模块结构（目录与文件职责）
 
@@ -28,6 +48,8 @@ graph TD
     C1 -->|返回新索引名| C3
 ```
 
+
+**看图**：从顶上定时触发开始，一层层往下调到具体的实现类。上面是「谁在什么时候发起」，下面是「最终由谁执行」——真正的逻辑在最底下那个 ILM 类里。
 **图表来源**
 - `bkmonitor/bkmonitor/config/role/worker.py:239`
 - `bkmonitor/bkmonitor/documents/tasks.py:18-37`
@@ -145,6 +167,8 @@ flowchart TD
     G --> H["返回 new_index_name, last_index_name"]
 ```
 
+
+**看图**：从起点往下，第一个分叉是取不到索引时的退化路径。中间那个菱形是核心判断：最新索引的日期是不是超前了。注意删除超前索引之后又回到起点，这是一个循环，不是单程。
 **图表来源**
 - `bkmonitor/bkmonitor/utils/elasticsearch/ilm.py:276-370`
 - `bkmonitor/bkmonitor/utils/elasticsearch/ilm.py:89-143`（`current_index_info`）
@@ -191,6 +215,8 @@ graph LR
     G2 --> IDX
 ```
 
+
+**看图**：左边是同一个「现在」时刻，右边算出三个不同日期的写别名。中间隔着的 gap 就是天数差——这张图说明写别名是按当前时间往后推算出来的，不是固定一个。
 **图表来源**
 - `bkmonitor/bkmonitor/utils/elasticsearch/ilm.py:149-237`
 
@@ -241,6 +267,8 @@ sequenceDiagram
     ES_OLD-->>ILM: 删除结果
 ```
 
+
+**看图**：从上到下是搬运的四个参与者，注意这是有先后顺序的：必须先建好新索引，才能开始搬，最后才轮到删除旧的。任何一步失败都不会走到下一步。
 **图表来源**
 - `bkmonitor/bkmonitor/utils/elasticsearch/ilm.py:739-801`
 
@@ -291,6 +319,8 @@ flowchart TD
     C -->|有 且无过期别名| F["跳过"]
 ```
 
+
+**看图**：左边是把所有别名取出来分组，右边是三种处置结果。关键是中间那个菱形——它问的是这个索引还有没有没过期的别名，有就只删过期的、保留索引，没有才整个删掉。
 **图表来源**
 - `bkmonitor/bkmonitor/utils/elasticsearch/ilm.py:533-581`、`:434-531`
 
@@ -334,6 +364,8 @@ flowchart TD
     MM --> O
 ```
 
+
+**看图**：顶部两个菱形分别处理起止时间为空的情况，它们都会先把时间对齐到当天零点。往下的每一步都是在把「时间范围」翻译成「索引列表」。
 **图表来源**
 - `bkmonitor/bkmonitor/documents/base.py:92-143`
 

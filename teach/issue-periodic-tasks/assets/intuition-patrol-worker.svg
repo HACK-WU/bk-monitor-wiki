@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="PingFang SC, Microsoft YaHei, Helvetica, Arial, sans-serif">
+  <rect width="900" height="440" fill="#fbfcfd"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#1f2933">流水线会漏，所以还得有巡场的人</text>
+
+  <!-- 左侧：只靠流水线 -->
+  <rect x="28" y="56" width="406" height="352" rx="10" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="231" y="86" text-anchor="middle" font-size="15" font-weight="700" fill="#33475b">只有流水线 · 来一件处理一件</text>
+
+  <!-- 传送带 -->
+  <rect x="60" y="150" width="340" height="14" rx="7" fill="#dfe4ea"/>
+  <g fill="#8fa0b3">
+    <circle cx="92" cy="167" r="7"/>
+    <circle cx="152" cy="167" r="7"/>
+    <circle cx="212" cy="167" r="7"/>
+    <circle cx="272" cy="167" r="7"/>
+    <circle cx="332" cy="167" r="7"/>
+    <circle cx="392" cy="167" r="7"/>
+  </g>
+
+  <!-- 传送带上的包裹 -->
+  <g>
+    <rect x="76" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="136" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="196" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="256" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+  </g>
+
+  <!-- 漏掉的那一件 -->
+  <rect x="326" y="216" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c0442f" stroke-width="2" stroke-dasharray="4 3"/>
+  <path d="M300 148 L326 210" stroke="#c0442f" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="368" y="236" font-size="14" font-weight="700" fill="#c0442f">漏了这件</text>
+
+  <!-- 计数牌 -->
+  <rect x="60" y="286" width="150" height="66" rx="6" fill="#f4f6f8" stroke="#d7dee7"/>
+  <text x="135" y="312" text-anchor="middle" font-size="13" fill="#52606d">这一堆共几件？</text>
+  <text x="135" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#c0442f">？</text>
+
+  <text x="231" y="386" text-anchor="middle" font-size="14" fill="#52606d">当时只管往前走，没人回头看</text>
+
+  <!-- 箭头 -->
+  <path d="M444 232 L462 232" stroke="#7b8794" stroke-width="2"/>
+  <path d="M456 225 L464 232 L456 239 Z" fill="#7b8794"/>
+
+  <!-- 右侧：加巡场 -->
+  <rect x="466" y="56" width="406" height="352" rx="10" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="669" y="86" text-anchor="middle" font-size="15" font-weight="700" fill="#33475b">加一个巡场的人 · 每隔一阵走一圈</text>
+
+  <rect x="498" y="150" width="340" height="14" rx="7" fill="#dfe4ea"/>
+  <g fill="#8fa0b3">
+    <circle cx="530" cy="167" r="7"/>
+    <circle cx="590" cy="167" r="7"/>
+    <circle cx="650" cy="167" r="7"/>
+    <circle cx="710" cy="167" r="7"/>
+    <circle cx="770" cy="167" r="7"/>
+    <circle cx="830" cy="167" r="7"/>
+  </g>
+
+  <g>
+    <rect x="514" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="574" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="634" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+    <rect x="694" y="118" width="34" height="30" rx="3" fill="#f6bd16" stroke="#c9971f"/>
+  </g>
+
+  <!-- 巡场的人 -->
+  <g>
+    <circle cx="700" cy="268" r="13" fill="#33475b"/>
+    <rect x="686" y="284" width="28" height="44" rx="8" fill="#33475b"/>
+    <rect x="722" y="290" width="34" height="8" rx="4" fill="#33475b"/>
+  </g>
+
+  <!-- 捡回来的包裹 -->
+  <rect x="646" y="216" width="34" height="30" rx="3" fill="#61ddaa" stroke="#1f7a4d" stroke-width="2"/>
+  <path d="M680 232 L700 262" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="596" y="240" font-size="13" font-weight="700" fill="#1f7a4d">捡回来</text>
+
+  <!-- 计数牌已更新 -->
+  <rect x="498" y="286" width="150" height="66" rx="6" fill="#eefaf3" stroke="#61ddaa"/>
+  <text x="573" y="312" text-anchor="middle" font-size="13" fill="#52606d">这一堆共几件？</text>
+  <text x="573" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1f7a4d">5 件</text>
+
+  <text x="742" y="312" font-size="13" fill="#52606d">每隔一阵</text>
+  <text x="742" y="334" font-size="13" fill="#52606d">重复走一遍</text>
+
+  <text x="669" y="386" text-anchor="middle" font-size="14" fill="#52606d">漏的补回去，总数重新数一遍</text>
+</svg>

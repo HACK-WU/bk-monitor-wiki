@@ -279,11 +279,47 @@
       "role": "standalone",
       "parent_id": null,
       "child_ids": []
+    },
+    "integration/2026-09-14-主机监控慢接口优化": {
+      "id": "REQ-20260914-001",
+      "feature": "新版主机监控慢接口优化",
+      "created": "2026-09-14",
+      "updated": "2026-09-14",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "perf",
+        "host",
+        "search_host_metric",
+        "分页查询"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建（2026-09-11 截图+Trace 实证+2026-09-14 代码调研；分页查询已拍板为主方案，REQ-02~09 待确认）",
+        "2026-09-14 v2: 接口表格与需求清单补充后端视图（Resource）名称"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "index.md",
+          "type": "index"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
     }
   },
   "id_counters": {
     "REQ-20260803": 1,
     "REQ-20260901": 1,
-    "REQ-20260907": 1
+    "REQ-20260907": 1,
+    "REQ-20260914": 1
   }
 }

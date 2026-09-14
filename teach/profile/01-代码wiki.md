@@ -77,6 +77,8 @@
 
 ![APM Profiling 端到端数据流](./assets/profile-data-flow.svg)
 
+**看图**：上半条是"看"的链路——从存储取回原始记录，建树，出图，最后到页面；下半条是"传"的链路——你上传的文件，转成标准格式，回灌进存储。两条线共用同一个存储，但互不干扰，页面主链路走上面那条。
+
 图表来源：[views.py](file://bkmonitor/packages/apm_web/profile/views.py#L112-L880)、[file_handler.py](file://bkmonitor/packages/apm_web/profile/file_handler.py#L37-L103)、[collector.py](file://bkmonitor/packages/apm_web/profile/collector.py#L57-L133)、[doris/querier.py](file://bkmonitor/packages/apm_web/profile/doris/querier.py#L122-L140)
 
 三条链路（**看懂这张图就看懂了半个模块**）`[专用]`：
@@ -223,6 +225,8 @@ graph LR
 ```
 
 > `resources --> views` 是**函数内延迟导入**（[resources.py#L342](file://bkmonitor/packages/apm_web/profile/resources.py#L342-L342) 等），用于避开循环依赖。
+
+**看图**：左边 `views` 和 `resources` 是入口，几乎所有箭头都从它们发出；右边是被依赖的零件。唯一反向的那条 `resources --> views` 是刻意为之的延迟导入，用来避开循环依赖。
 
 图表来源：[views.py](file://bkmonitor/packages/apm_web/profile/views.py#L14-L69)、[resources.py](file://bkmonitor/packages/apm_web/profile/resources.py#L23-L27)、[resources.py](file://bkmonitor/packages/apm_web/profile/resources.py#L341-L348)、[file_handler.py](file://bkmonitor/packages/apm_web/profile/file_handler.py#L16-L21)
 

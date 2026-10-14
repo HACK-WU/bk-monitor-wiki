@@ -9,7 +9,8 @@
 | 创建日期 | 2026-07-28 |
 | 源文件数 | ~15 |
 | 屏蔽类型 | scope / strategy / event / alert / dimension |
-| 契约层就绪 | `C0 + C1 + C2 + C5` 就绪（C5 于 2026-08-31 补建，含 10 条有证据决策 + 1 条 `[推测]`） |
+| 结束处理方式 | `end_policy`: notify_once（默认）/ close（屏蔽结束后静默关闭，仅 scope/strategy/dimension 可选且创建后不可修改） |
+| 契约层就绪 | `C0 + C1 + C2 + C5` 就绪（C5 于 2026-08-31 补建、2026-09-15 补 3 条静默关闭决策，现含 13 条有证据决策 + 1 条 `[推测]`） |
 | 贯穿原则 | **屏蔽范围扩大 = 漏告警，比屏蔽不生效更危险**——凡无法判定一律选择「不屏蔽」（见 C5 决策 1） |
 
 ## 三层资产
@@ -21,7 +22,7 @@
 | [C0-使用总览](C0-使用总览.md) | 能力清单、使用边界、已知坑、快速导航 | 第一次使用本专家时 |
 | [C1-能力契约](C1-能力契约.md) | 所有公开类/方法契约，含参数表、返回值、异常、代码示例 | 需要调用具体方法时 |
 | [C2-使用流程](C2-使用流程.md) | 5 个核心业务目标的调用路径和流程图 | 理解端到端流程时 |
-| [C5-关键决策](C5-关键决策.md) | 11 条关键决策：fail-safe 总则 / 条件解析 fail-close 占位 / PromQL 按指标屏蔽（含 4 条被否决方案）/ 条件模块独立出包 / 缓存预取 10 分钟 / 两套匹配引擎 / 通知幂等锁与遗留 TODO / 移动端快捷屏蔽分层 / dimension_conditions 全链路补全 / 周期屏蔽时间语义 / 业务时区 | 需要改匹配逻辑或评估屏蔽范围时 |
+| [C5-关键决策](C5-关键决策.md) | 14 条关键决策：fail-safe 总则 / 条件解析 fail-close 占位 / PromQL 按指标屏蔽（含 4 条被否决方案）/ 条件模块独立出包 / 缓存预取 10 分钟 / 两套匹配引擎 / 通知幂等锁与遗留 TODO / 移动端快捷屏蔽分层 / dimension_conditions 全链路补全 / 周期屏蔽时间语义 / 业务时区 / 关闭判定 fail-safe / 接管首接粘滞 / 窗口快照仅溯源 | 需要改匹配逻辑或评估屏蔽范围时 |
 
 ### 实现层（白盒导航）
 
@@ -44,11 +45,14 @@
 | `monitor_web/shield/serializers.py` | 5 种屏蔽类型序列化器 |
 | `monitor_web/shield/utils.py` | ShieldDetectManager + DisplayManager |
 | `alarm_backends/service/converge/shield/shield_obj.py` | ShieldObj 匹配核心（19KB） |
+| `alarm_backends/service/converge/shield/close.py` | CloseShieldMatcher 接管判定（end_policy=close） |
+| `alarm_backends/service/converge/shield/window.py` | 业务时区日历与屏蔽窗口边界计算 |
 | `alarm_backends/service/converge/shield/shielder/saas_config.py` | 5 种 Shielder 实现（12KB） |
 | `alarm_backends/service/converge/shield/manager.py` | ShieldManager 链式管理 |
 | `alarm_backends/core/cache/shield.py` | Redis 缓存管理 |
 | `alarm_backends/service/converge/shield/tasks.py` | 通知定时任务 |
 | `alarm_backends/service/alert/manager/checker/shield.py` | 告警屏蔽状态检测 |
+| `alarm_backends/service/alert/manager/shield_tasks.py` | 托管告警扫描与静默关闭任务 |
 | `bkmonitor/utils/shield.py` | BaseShieldDisplayManager（14KB） |
 | `bkmonitor/models/base.py` | Shield 模型定义 |
 | `constants/shield.py` | 常量定义 |

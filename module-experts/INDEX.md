@@ -35,12 +35,14 @@
 ## 性能场景专家（职责摘要见 agent.md）
 - 模块根：bkmonitor/packages/monitor_web/performance/
 - 重建日期：2026-07-27  git commit：916585db
-- 匹配关键词：主机性能, 主机列表, 主机详情, 拓扑节点, 进程状态, 主机指标, HostPerformanceResource, SearchHostMetricResource, memUsage, mem_usage, psc_mem_usage, cpu_usage, disk_in_use, 内存使用率, push_host_target, 缺失值, 关键决策, 为什么这么定
-- 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C5-关键决策（2026-08-31 补建，11 条）
+- 增量更新：2026-09-22（PR #12574 主机列表按页加载与全量接替，PR head `33b11cbe9e`）
+- 匹配关键词：主机性能, 主机列表, 主机详情, 拓扑节点, 进程状态, 主机指标, HostPerformanceResource, SearchHostMetricResource, memUsage, mem_usage, psc_mem_usage, cpu_usage, disk_in_use, 内存使用率, push_host_target, 缺失值, 按页加载, 页级加载, 分页, page_size, 全量接替, GetHostPage, GetHostIdentities, SearchHostMetricStatsResource, SearchHostMetricStatsViewSet, host_metric_stats, search_host_metric_stats, 卡片统计, 身份歧义, has_duplicate_ip, 79.995, 原始拓扑, module_links_from_raw, 分享范围校验, HOST_LIST_ACTIONS, 关键决策, 为什么这么定
+- 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C5-关键决策（2026-08-31 补建 11 条 + 2026-09-22 增量 7 条 = 18 条）
 - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型
 - 子专家：无
 - 专用技能：skills/add-host-performance-field/
-- ⚠️ 资产过期：C0 与 02-实现.md 中「SearchHostInfoViewSet 权限缺失」已过期，2026-08-12 commit 24f090ed5e 已补齐，6 个 ViewSet 全部继承 PermissionMixin
+- ✅ 已修正过期条目：「SearchHostInfoViewSet 权限缺失」为 2026-08-12 commit 24f090ed5e 前的状态，C0/C1/01/02 均已更新为「7 个 ViewSet 全部继承 PermissionMixin」
+- ⚠️ 源码可见性：PR #12574 合入 master 的提交为 `fc1695a`（2026-09-21），**本机 checkout 尚未包含**（本地 HEAD `d350091733`）；页级/统计相关行号按 PR head `33b11cbe9e` 标注，使用前需 `git fetch upstream refs/pull/12574/head`
 
 ## 告警查询专家（职责摘要见 agent.md）
 - 模块根：bkmonitor/packages/fta_web/alert/
@@ -71,13 +73,13 @@
 - 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C5-关键决策（2026-08-31 补建，11 条）
 - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型, 05-接口, 06-测试
 - 测试：test/known-failures.md
-- 匹配关键词：告警屏蔽, 屏蔽, scope, strategy, alert, dimension, ShieldObj, AddShieldResource, ShieldCacheManager, 快捷屏蔽, QuickShield, dimension_conditions, 屏蔽通知, HostShielder, ShieldDetectManager, PromQL屏蔽, metric_id, fail-safe, 通知幂等, 关键决策, 为什么这么定
+- 匹配关键词：告警屏蔽, 屏蔽, scope, strategy, alert, dimension, ShieldObj, AddShieldResource, ShieldCacheManager, 快捷屏蔽, QuickShield, dimension_conditions, 屏蔽通知, HostShielder, ShieldDetectManager, PromQL屏蔽, metric_id, fail-safe, 通知幂等, 关键决策, 为什么这么定, app/shield/add, ShieldViewSet, verify_user_permission, notice_config, method枚举
 - 子专家：无
 
 ## kernel_api 网关专家（职责摘要见 agent.md）
 - 模块根：bkmonitor/kernel_api/
 - 生成日期：2026-08-06  git commit：未提交（工作区）
-- 匹配关键词：kernel_api, API网关, ResourceViewSet, ResourceRouter, JWT鉴权, API Token, MCP认证, apigw, KernelRPCRegistry, RPC函数, ApiRenderer, 字段映射, 内部Resource复用, 批发场景, v2/v3/v4 API
+- 匹配关键词：kernel_api, API网关, ResourceViewSet, ResourceRouter, JWT鉴权, API Token, MCP认证, apigw, KernelRPCRegistry, RPC函数, ApiRenderer, 字段映射, 内部Resource复用, 批发场景, v2/v3/v4 API, app/shield/add, ShieldViewSet, compapi, 屏蔽接口
 - 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C4-数据流向与消费
 - 实现层：implementation/01-架构, 02-实现, 05-接口, 06-测试, 07-运维
 - 测试状态：⚠️ 依赖外部环境（kernel_api/tests/ 7 文件 + rpc/tests/ 22 文件）；test/known-failures.md（暂无实测已知失败）
@@ -113,3 +115,28 @@
     - 匹配关键词：monitor, grafana, apm_api, rum_api, aidev, bmw, 仪表盘, APM, RUM, LLM, 常驻任务
     - 契约层：C0-使用总览, C1-能力契约
     - 实现层：implementation/01-架构, 02-实现, 06-测试
+
+## 前端专题（专题）
+- 模块根：bkmonitor/webpack/
+- 生成日期：2026-10-13（告警分派专家 2026-10-14 增补）  git commit：ff89f63ff4（资产基线，创建/全量更新时刷新）
+- 匹配关键词：前端, webpack, monitor-pc, 前端专题, 前端架构, 微前端, bk-weweb, 采集, 采集配置, 数据采集, 采集目标, 采集下发, 跨业务采集, collect-config, collector-config, 四步向导, 采集详情, 插件管理, 告警分派, alarm-dispatch, 组件库, 路由注册, 接口层
+- 专题层：T0-专题总览（T1 暂无）
+- 专家清单：
+  - **采集专家**（数据采集配置全生命周期前端：列表 / 四步新建 / 详情 / 增删目标 / 启停升级 / 可视化 / 执行详情）
+    - 匹配关键词：采集配置, 数据采集, collect-config, collector-config, collecting_config, TableStore, DetailRequest, is_task_ready, 轮询, 跨业务只读, 采集下发, 采集详情, 增删目标, 启停, 可视化, 执行详情, 骨架屏, 权限 v-authority, 关键决策, 为什么这么定
+    - 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C4-数据流向与消费, C5-关键决策（5 条：3 条有证据 + 2 条推测）
+    - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型, 05-接口, 06-测试
+    - 测试状态：⚠️ 部分可跑（tests/ 采集 3 文件 28 用例；collector-cross-business 11 用例受 vue-router 链接漂移影响，见 test/known-failures.md）
+    - 子专家：无
+  - **插件管理专家**（指标插件全生命周期前端：列表 / 三步新建调试发布向导 / 详情 / 指标维度设置 / 导入导出）
+    - 匹配关键词：插件管理, plugin-manager, 指标插件, 插件新建, 插件调试, 插件发布, 插件升级, 指标维度, setmetric, collector_plugin, 插件导入导出, 公共插件, 采集插件, 插件列表, 跨业务, 关联配置, related_conf_count, listCollectorPlugin
+    - 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C4-数据流向与消费, C5-关键决策（4 条：1 条有证据 + 3 条推测）
+    - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型, 05-接口, 06-测试
+    - 测试状态：❌ 该模块无测试（tests/ 无 plugin-manager 专测，已逐一核实；无 known-failures.md）
+    - 子专家：无
+  - **告警分派专家**（告警分派功能域前端：规则组列表 / 分派规则配置 / 条件编辑器 / 效果调试三态 / CSV 导入导出）
+    - 匹配关键词：告警分派, alarm-dispatch, 分派规则, 规则组, 优先级, 匹配规则, 分派动作, 告警组, 通知升级, ITSM流程套餐, 效果调试, match_debug, 条件编辑器, assign, 规则导入导出, manage_rule_v2
+    - 契约层：C0-使用总览, C1-能力契约, C2-使用流程, C4-数据流向与消费, C5-关键决策（10 条：7 条有证据 + 3 条推测）
+    - 实现层：implementation/01-架构, 02-实现, 03-数据流转, 04-模型, 05-接口, 06-测试
+    - 测试状态：❌ 该模块无测试（tests/ 10 组直接关键词全 0 命中，宽口径逐一核验；无 known-failures.md）
+    - 子专家：无

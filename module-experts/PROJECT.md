@@ -1,7 +1,7 @@
 ---
 name: PROJECT
 type: project-overview
-updatedAt: 2026-08-03
+updatedAt: 2026-10-13
 维护者: expert-team / expert-lookup
 ---
 
@@ -28,6 +28,7 @@ updatedAt: 2026-08-03
 ## 3. 架构形态
 
 - **前后端**：Django 单体（后端渲染 + REST API），前端构建产物打包进镜像。
+- **前端形态**：多应用独立构建（`@blueking/bkmonitor-cli`）；monitor-pc 为主壳，trace / apm / fta 经微前端（`@blueking/bk-weweb`）嵌入；本地 dev 主应用 7001 / 子应用 7002（详见 `.module-experts/前端专题/T0-专题总览.md`）。
 - **部署形态**：单进程多角色——同一 Django 工程按 **ROLE**（web / api / worker）加载不同配置，部署为三个独立进程/容器（架构硬隔离）：
   - `web`（monitor_saas）：全模块（monitor_web / fta_web / weixin），**不含 alarm_backends**
   - `api`（kernel_api）：精简 INSTALLED_APPS + Token 认证，**含 alarm_backends**（继承 worker 配置）
@@ -55,6 +56,7 @@ updatedAt: 2026-08-03
 | metadata | 元数据治理：数据源/结果表/字段/ETL | `bkmonitor/metadata/` | ⚠️ 依赖外部环境 |
 | kernel_api | API 网关角色：暴露 v2/v3/v4 内核 API，web→后台中转层 | `bkmonitor/kernel_api/` | ⚠️ 依赖外部环境 |
 | bkmonitor 核心 | 模型/文档/工具/异常/DRF 资源框架 | `bkmonitor/bkmonitor/` + `bkmonitor/core/` | ⚠️ 依赖外部环境 |
+| monitor 前端工程（webpack） | Web 前端：6 个可独立构建的应用（monitor-pc 主应用 / trace / apm / fta / mobile / external）+ 共享包（monitor-api / monitor-common / monitor-ui / monitor-static） | `bkmonitor/webpack/`（`src/` 约 4600 文件） | ⚠️ 依赖环境（node:test 单测本地可跑；e2e 需真实环境） |
 | ai_agent | 平台 AI Agent 逻辑（与监控组件融合） | `ai_agent/` | ⚠️ 依赖外部环境 |
 | bk-monitor-base | 共享基础库（Django 配置合并、基础组件） | `bk-monitor-base/`（独立仓库） | ⚠️ 依赖外部环境 |
 | bk-monitor-wiki | 内部技术文档与知识库（独立仓库） | `bk-monitor-wiki/`（独立仓库） | 无测试 |

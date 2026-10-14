@@ -1,7 +1,7 @@
 ---
 groupPath: 决策记录/告警查询
 relation: 性能取舍-track_total_hits用10000非True
-exportedAt: "2026-08-31T03:18:06.718Z"
+exportedAt: "2026-09-18T01:47:30.842Z"
 ---
 【决策记录｜告警查询 搜索主链路 track_total_hits 用 10000 而非 True】
 - 分类：性能取舍
@@ -11,6 +11,7 @@ exportedAt: "2026-08-31T03:18:06.718Z"
 - 被否决方案：track_total_hits=True（精确计数），否决理由为 commit 明写避免大索引强制全量计数
 - 已知代价：total 超过 1 万时不精确（C0 能力边界已声明）；依赖总数做业务判断的调用方会拿到截断值
 - 重新评估触发条件：出现需要超过 1 万的精确总数的诉求；或 ES 集群规格变化使精确计数不再成为瓶颈
-- 关联代码：AlertQueryHandler.search_raw @ packages/fta_web/alert/handlers/alert.py；page_size 约束 @ serializers.py；get_bucket_count（仍用 True）@ resources.py
-- 证据来源：commit a564b3f73c（perf: track_total_hits=True 改为 10000，避免大索引强制全量计数）；C0 能力边界与已知坑 5
+- 关联代码：AlertQueryHandler.search_raw @ packages/fta_web/alert/handlers/alert.py；page_size 约束 @ serializers.py；get_bucket_count @ resources.py
+- 后续变更（2026-09-16，commit 7b4a8c54）：get_bucket_count 原为 track_total_hits=True（精确全量计数），因该路径只读 aggs（cardinality）而从不读 hits.total，已改为 track_total_hits=False；top_n 主路径仍保留 True（其 doc_count = hits.total.value，关掉会拿不到值），Issue 侧 IssueTopNResource.get_bucket_count 同步改为 False
+- 证据来源：commit a564b3f73c（perf: track_total_hits=True 改为 10000，避免大索引强制全量计数）；commit 7b4a8c54（get_bucket_count 改为 False）；C0 能力边界与已知坑 5
 - 完整上下文：.module-experts/告警查询专家/C5-关键决策.md 决策 6

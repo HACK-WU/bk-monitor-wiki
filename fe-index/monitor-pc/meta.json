@@ -1,0 +1,12 @@
+{
+  "slug": "monitor-pc",
+  "root": "/root/bk-monitor/bkmonitor/webpack",
+  "scope": "src/monitor-pc/** + 共享包 src/monitor-api|monitor-common|monitor-ui|monitor-static|fta-solutions",
+  "commit": "90a2de63814d4c4b430addc737b72c633b127e04",
+  "generated": "2026-10-13",
+  "routes": 172,
+  "pages": 85,
+  "apis": 338,
+  "mappings": 1316,
+  "scanner": "scan_frontend.py (scan_frontend.py v1.0.0)"
+}

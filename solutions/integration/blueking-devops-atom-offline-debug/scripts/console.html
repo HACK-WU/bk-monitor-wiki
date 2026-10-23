@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>蓝盾插件离线联调控制台（本地模拟器）</title>
+<style>
+  :root {
+    --bg: #f4f6f9; --panel: #fff; --line: #dfe4ec; --text: #1f2733; --muted: #6b7787;
+    --brand: #3a84ff; --brand-dark: #2b6ede; --ok: #14a568; --warn: #d98b00; --err: #e04a4a;
+    --code-bg: #10151d; --code-text: #d5e0ee;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.6 -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+  header { background: #fff; border-bottom: 1px solid var(--line); padding: 14px 22px; }
+  header h1 { margin: 0; font-size: 17px; }
+  header .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .banner { margin: 12px 22px 0; padding: 10px 14px; background: #fff8e6; border: 1px solid #f0d8a0;
+            border-radius: 6px; font-size: 12.5px; color: #7a5a10; }
+  .banner b { color: #7a5a10; }
+  .wrap { display: grid; grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr); gap: 14px; padding: 14px 22px 40px; }
+  @media (max-width: 1080px) { .wrap { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  .panel > h2 { margin: 0; padding: 11px 14px; font-size: 14px; border-bottom: 1px solid var(--line);
+                display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .panel > h2 .tag { font-weight: 400; font-size: 11.5px; color: var(--muted); }
+  .panel-body { padding: 14px; }
+  .group { margin: 0 0 6px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .field { padding: 9px 0; border-bottom: 1px dashed #eef1f6; }
+  .field:last-child { border-bottom: 0; }
+  .field.hidden-field { display: none; }
+  .field label { display: block; font-weight: 600; margin-bottom: 5px; }
+  .req { color: var(--err); margin-left: 4px; }
+  .desc { color: var(--muted); font-size: 12px; margin-top: 4px; white-space: pre-wrap; }
+  input[type=text], input[type=password], textarea, select {
+    width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 5px;
+    font: inherit; background: #fff; color: var(--text);
+  }
+  textarea { min-height: 68px; resize: vertical; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
+  .radio-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .radio-row label { font-weight: 400; display: flex; gap: 5px; align-items: center; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .chips label { font-weight: 400; display: flex; gap: 5px; align-items: center; }
+  .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  button { padding: 7px 13px; border: 1px solid var(--line); background: #fff; border-radius: 5px;
+           cursor: pointer; font: inherit; color: var(--text); }
+  button:hover { border-color: #b9c4d4; }
+  button.primary { background: var(--brand); border-color: var(--brand); color: #fff; font-weight: 600; }
+  button.primary:hover { background: var(--brand-dark); }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  pre { margin: 0; padding: 12px; background: var(--code-bg); color: var(--code-text); border-radius: 6px;
+        overflow: auto; max-height: 320px; font-size: 12.5px; line-height: 1.55;
+        font-family: ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+  .kv { font-size: 12px; color: var(--muted); margin: 6px 0 10px; }
+  .kv code { background: #eef1f6; padding: 1px 5px; border-radius: 4px; color: #33404f; }
+  .pill { font-size: 11.5px; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted); }
+  .pill.ok { color: var(--ok); border-color: #b6e2cd; background: #f1fbf6; }
+  .pill.err { color: var(--err); border-color: #f3c6c6; background: #fff5f5; }
+  .pill.warn { color: var(--warn); border-color: #f0d8a0; background: #fffaf0; }
+  .log-item { border-bottom: 1px dashed #eef1f6; padding: 7px 0; font-size: 12px; }
+  .log-item:last-child { border-bottom: 0; }
+  .log-item .meta { color: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .log-item .path { color: #2b6ede; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .muted { color: var(--muted); }
+  .inline { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .inline input[type=text] { width: 260px; }
+  .opt-hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .field.invalid > label { color: var(--err); }
+  .field-error { color: var(--err); font-size: 12px; margin-top: 4px; }
+  .coverage { margin-bottom: 12px; padding: 9px 12px; border-radius: 6px; font-size: 12.5px; }
+  .coverage.warn { background: #fff8e6; border: 1px solid #f0d8a0; color: #7a5a10; }
+  .coverage.ok { background: #f1fbf6; border: 1px solid #b6e2cd; color: #14683f; }
+</style>
+</head>
+<body>
+<header>
+  <h1>蓝盾插件离线联调控制台 <span class="pill warn">本地模拟器</span></h1>
+  <div class="sub">
+    按 <code>task.json</code> 定义动态渲染表单 → 生成 <code>input.json</code> → 真跑插件 → 回显日志；并把 selector 选项接口与监控接口 mock 掉。
+  </div>
+</header>
+
+<div class="banner">
+  <b>这不是蓝盾前端。</b>它按官方文档复刻表单渲染与数据契约，用于在没有插件工作台权限时自证「配置是否合法 / mock 接口是否符合 CORS 规范 / 插件与平台的数据契约是否对齐」。
+  <b>它无法证明</b>蓝盾真实前端的 origin、附加请求头（如 <code>x-devops-project-id</code>）、渲染细节与 URL 白名单校验——这些必须在拿到权限后回平台实测。
+</div>
+
+<div class="wrap">
+  <div class="panel">
+    <h2>① 插件入参（模拟编排页）<span class="tag" id="taskTag">加载中…</span></h2>
+    <div class="panel-body">
+      <div id="coverage"></div>
+      <div id="form"></div>
+
+      <div class="group" style="margin-top:16px">敏感配置 <span class="muted">（对应 SDK <code>get_sensitive_conf</code>，本地从 input.json 注入）</span></div>
+      <div class="field">
+        <label>monitor_url<span class="req">*</span></label>
+        <input type="text" id="conf_monitor_url" />
+        <div class="desc">插件会 urljoin 到 <code>add_shield/</code>、<code>disable_shield/</code>；默认指向本控制台的 mock 路径。</div>
+      </div>
+      <div class="field">
+        <label>app_code / app_secret</label>
+        <div class="inline">
+          <input type="text" id="conf_app_code" value="local-debug-app" />
+          <input type="text" id="conf_app_secret" value="local-debug-secret" />
+        </div>
+        <div class="desc">仅用于构造 <code>X-Bkapi-Authorization</code> 头，mock 不校验。</div>
+      </div>
+
+      <div class="group" style="margin-top:16px">流水线内置变量 <span class="muted">（真实环境由平台注入，本地可伪造）</span></div>
+      <div class="field">
+        <label>操作人（<code>BK_CI_START_USER_NAME</code> / 通知接收人）</label>
+        <input type="text" id="var_start_user" value="local-debug-user" />
+        <div class="desc">插件用 <code>get_pipeline_modifier() or get_pipeline_creator()</code> 作 <code>bk_username</code>，用 <code>get_pipeline_start_user_name()</code> 作通知接收人。</div>
+      </div>
+
+      <div class="row-actions">
+        <button class="primary" id="btnRun">生成并运行插件</button>
+        <button id="btnPreview">仅生成 input.json</button>
+        <button id="btnDownload">下载 input.json</button>
+        <button id="btnReloadOptions">重新拉取下拉选项</button>
+      </div>
+      <div class="desc" style="margin-top:10px">
+        校验模式：
+        <label style="font-weight:400"><input type="radio" name="validatemode" value="loose" checked /> 宽松（不拦，便于调试非法值）</label>
+        &nbsp;<label style="font-weight:400"><input type="radio" name="validatemode" value="strict" /> 严格（模拟平台：required + rule 拦截）</label>
+        <span class="muted">（严格模式只校验 rely <b>可见</b>字段；隐藏字段不参与，与平台文档未明确的差异见 SKILL.md）</span>
+      </div>
+      <div class="desc" style="margin-top:6px">
+        提交策略：<label style="font-weight:400"><input type="radio" name="submitmode" value="visible" checked /> 只提交可见字段</label>
+        &nbsp;<label style="font-weight:400"><input type="radio" name="submitmode" value="all" /> 提交全部字段</label>
+        <span class="muted">（蓝盾对 rely 隐藏字段的处理未在文档中明确，这里两种都能试）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>② 生成的 input.json <span class="tag" id="genTag"></span></h2>
+    <div class="panel-body">
+      <div class="kv" id="runEnv"></div>
+      <pre id="preview">{}</pre>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>③ 插件运行结果 <span class="tag" id="runTag"></span></h2>
+    <div class="panel-body">
+      <div class="kv" id="runMeta"></div>
+      <div class="group">stdout（<code>python_atom_sdk.log</code> 输出流）</div>
+      <pre id="runStdout">（尚未运行）</pre>
+      <div class="group" style="margin-top:12px">stderr</div>
+      <pre id="runStderr">（空）</pre>
+      <div class="group" style="margin-top:12px">output.json（SDK set_output 写入）</div>
+      <pre id="runOutput">（空）</pre>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>
+      ④ 服务端收到的请求 <span class="tag">确认「谁在调、带了什么头」</span>
+      <span><button id="btnRefreshLogs">刷新</button></span>
+    </h2>
+    <div class="panel-body">
+      <div class="desc" style="margin-bottom:8px">
+        预检（OPTIONS）与真实请求都会记录。<b>真实监控网关当前对 OPTIONS 返回 404、且不下发 ACAO</b>，而本模拟器会正确应答预检并回 CORS 头 —— 可用于对比「配好之后」的样子。
+      </div>
+      <div id="logs" class="muted">（暂无请求）</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const state = { taskDef: null, values: {}, options: {}, urlOverrides: {}, fieldOrder: [] };
+
+const $ = (id) => document.getElementById(id);
+const isObject = (v) => v && typeof v === "object" && !Array.isArray(v);
+
+function setByPath(obj, key, val) { obj[key] = val; }
+
+async function init() {
+  const res = await fetch("/api/task-def");
+  const def = await res.json();
+  state.taskDef = def;
+  state.urlOverrides = def.urlOverrides || {};
+  const runner = def.runner || {};
+  $("taskTag").innerHTML = "atomCode=" + def.task.atomCode +
+    " · target=" + ((def.task.execution || {}).target || "-") +
+    (runner.sdkInstalled ? "" : " · <span class='pill err'>SDK/ply 未装</span>");
+  $("runEnv").innerHTML = "解释器 <code>" + (runner.venvPython || "-") + "</code> " +
+    (runner.venvPythonExists ? "<span class='pill ok'>存在</span>" : "<span class='pill err'>不存在</span>") +
+    " &nbsp; SDK/ply " + (runner.sdkInstalled ? "<span class='pill ok'>已安装</span>" : "<span class='pill err'>未安装</span>");
+  $("conf_monitor_url").value = (def.mock && def.mock.monitorUrl) || "";
+  renderCoverage(def.renderer);
+  renderForm();
+}
+
+function renderCoverage(coverage) {
+  const host = $("coverage");
+  if (!coverage) { host.innerHTML = ""; return; }
+  const degraded = coverage.degradedInTask || [];
+  const unknown = coverage.unknown || [];
+  const used = coverage.used || [];
+  if (!degraded.length && !unknown.length) {
+    host.className = "coverage ok";
+    host.textContent = "组件覆盖度 OK：task.json 用到的 " + used.length + " 种组件（" + used.join(", ") +
+      "）页面均有专属渲染。";
+    return;
+  }
+  host.className = "coverage warn";
+  host.innerHTML = "<b>组件覆盖度警告</b>" +
+    (degraded.length ? "：以下类型<b>降级为单行文本框</b>（可用但保真度不足）—— " + degraded.join(", ") : "") +
+    (unknown.length ? "：以下类型<b>未登记</b>（走 fallback，行为未知）—— " + unknown.join(", ") : "") +
+    "。需要完整 UI 请补 console.html::buildControl 的渲染分支。";
+}
+
+function validationMode() {
+  const el = document.querySelector('input[name="validatemode"]:checked');
+  return el ? el.value : "loose";
+}
+
+function clearFieldErrors() {
+  document.querySelectorAll(".field.invalid").forEach((div) => div.classList.remove("invalid"));
+  document.querySelectorAll(".field-error").forEach((el) => el.remove());
+}
+
+function renderFieldErrors(errors) {
+  clearFieldErrors();
+  errors.forEach((err) => {
+    const div = document.querySelector('.field[data-name="' + err.field + '"]');
+    if (!div) return;
+    div.classList.add("invalid");
+    const tip = document.createElement("div");
+    tip.className = "field-error";
+    tip.textContent = err.message;
+    div.appendChild(tip);
+  });
+  if (errors.length) {
+    $("genTag").innerHTML = "<span class='pill err'>严格校验未通过（" + errors.length + " 项）</span>";
+  }
+}
+
+async function ensureValid() {
+  if (validationMode() !== "strict") { clearFieldErrors(); return true; }
+  const res = await fetch("/api/validate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input: collectInput() }),
+  });
+  const data = await res.json();
+  const errors = data.errors || [];
+  renderFieldErrors(errors);
+  if (errors.length) {
+    $("preview").textContent = JSON.stringify(collectInput(), null, 2) + "\n\n// 严格校验未通过：\n" +
+      errors.map((e) => "//   " + e.field + ": " + e.message).join("\n");
+  }
+  return !errors.length;
+}
+
+function fieldWrapper(name, field) {
+  const div = document.createElement("div");
+  div.className = "field";
+  div.dataset.name = name;
+  const label = document.createElement("label");
+  label.innerHTML = (field.label || name) + (field.required ? '<span class="req">*</span>' : "");
+  div.appendChild(label);
+  return div;
+}
+
+function renderForm() {
+  const task = state.taskDef.task;
+  const input = task.input || {};
+  const groups = {};
+  (task.inputGroups || []).forEach((g) => { groups[g.name] = g; });
+
+  const host = $("form");
+  host.innerHTML = "";
+  const rendered = new Set();
+
+  const renderOne = (container, name, field) => {
+    if (rendered.has(name)) return;
+    rendered.add(name);
+    const div = fieldWrapper(name, field);
+    div.appendChild(buildControl(name, field));
+    if (field.desc) {
+      const d = document.createElement("div");
+      d.className = "desc";
+      d.textContent = field.desc;
+      div.appendChild(d);
+    }
+    container.appendChild(div);
+  };
+
+  // 按 groupName 分组渲染
+  const groupNames = [];
+  Object.keys(input).forEach((name) => {
+    const g = input[name].groupName;
+    if (g && groups[g] && !groupNames.includes(g)) groupNames.push(g);
+  });
+  groupNames.forEach((gname) => {
+    const head = document.createElement("div");
+    head.className = "group";
+    head.textContent = groups[gname].label || gname;
+    host.appendChild(head);
+    Object.keys(input).forEach((name) => {
+      if (input[name].groupName === gname) renderOne(host, name, input[name]);
+    });
+  });
+  Object.keys(input).forEach((name) => {
+    const g = input[name].groupName;
+    if (!g || !groups[g]) renderOne(host, name, input[name]);
+  });
+
+  applyRely();
+}
+
+function buildControl(name, field) {
+  const type = field.type;
+  const wrap = document.createElement("div");
+
+  const setVal = (v) => { state.values[name] = v; applyRely(); updatePreview(); };
+
+  if (type === "tips") {
+    const p = document.createElement("div");
+    p.className = "opt-hint";
+    p.textContent = field.tipStr || "";
+    return p;
+  }
+
+  if (type === "enum-input") {
+    wrap.className = "radio-row";
+    (field.list || []).forEach((item, idx) => {
+      const lab = document.createElement("label");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "enum_" + name;
+      radio.value = String(item.value);
+      if (String(item.value) === String(field.default)) radio.checked = true;
+      if (radio.checked) state.values[name] = String(item.value);
+      radio.addEventListener("change", () => setVal(radio.value));
+      lab.appendChild(radio);
+      lab.appendChild(document.createTextNode(item.label || String(item.value)));
+      wrap.appendChild(lab);
+    });
+    if (state.values[name] === undefined && field.default !== undefined) {
+      state.values[name] = String(field.default);
+    }
+    return wrap;
+  }
+
+  if (type === "atom-checkbox") {
+    const lab = document.createElement("label");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode(field.text || field.label || name));
+    cb.addEventListener("change", () => setVal(cb.checked ? "true" : "false"));
+    state.values[name] = "false";
+    wrap.appendChild(lab);
+    return wrap;
+  }
+
+  if (type === "selector" || type === "select-input" || type === "devops-select") {
+    const multiple = !!((field.optionsConf || {}).multiple);
+    const box = document.createElement("div");
+    if (multiple) {
+      const chips = document.createElement("div");
+      chips.className = "chips";
+      chips.dataset.role = "chips";
+      chips.dataset.name = name;
+      box.appendChild(chips);
+    }
+    if (type === "select-input" && !multiple) {
+      const sel = document.createElement("select");
+      sel.dataset.role = "control";
+      sel.dataset.name = name;
+      const blank = document.createElement("option");
+      blank.value = "";
+      blank.textContent = field.placeholder || "请选择/输入";
+      sel.appendChild(blank);
+      (field.options || []).forEach((o) => {
+        const opt = document.createElement("option");
+        opt.value = String(o.id);
+        opt.textContent = o.name || String(o.id);
+        sel.appendChild(opt);
+      });
+      const free = document.createElement("input");
+      free.type = "text";
+      free.placeholder = "或自定义输入（m/h/d 等）";
+      free.style.marginTop = "6px";
+      const sync = () => setVal(free.value || sel.value || "");
+      sel.addEventListener("change", () => { free.value = ""; sync(); });
+      free.addEventListener("input", () => { sel.value = ""; sync(); });
+      box.appendChild(sel);
+      box.appendChild(free);
+      if (field.default !== undefined) { free.value = String(field.default); state.values[name] = String(field.default); }
+      if (field.optionsConf && field.optionsConf.url) loadRemoteOptions(name, field);
+      return box;
+    }
+    if (field.optionsConf && field.optionsConf.url) {
+      loadRemoteOptions(name, field);
+      const hint = document.createElement("div");
+      hint.className = "opt-hint";
+      hint.dataset.role = "optionsHint";
+      hint.dataset.name = name;
+      hint.textContent = "正在按 optionsConf.url 拉取选项…";
+      box.appendChild(hint);
+    } else if (field.options) {
+      const sel = document.createElement("select");
+      sel.dataset.role = "control";
+      sel.dataset.name = name;
+      if (multiple) sel.multiple = true;
+      const blank = document.createElement("option");
+      blank.value = "";
+      blank.textContent = field.placeholder || "请选择";
+      sel.appendChild(blank);
+      field.options.forEach((o) => {
+        const opt = document.createElement("option");
+        opt.value = String(o.id);
+        opt.textContent = o.name || String(o.id);
+        sel.appendChild(opt);
+      });
+      sel.addEventListener("change", () => {
+        const v = multiple ? JSON.stringify(Array.from(sel.selectedOptions).map((o) => o.value)) : sel.value;
+        setVal(v);
+      });
+      box.appendChild(sel);
+    }
+    return box;
+  }
+
+  if (type === "vuex-textarea") {
+    const ta = document.createElement("textarea");
+    if (field.placeholder) ta.placeholder = field.placeholder;
+    ta.value = field.default === undefined ? "" : String(field.default);
+    ta.addEventListener("input", () => setVal(ta.value));
+    state.values[name] = ta.value;
+    return ta;
+  }
+
+  // vuex-input 及其它未知类型都退化为文本框
+  const inp = document.createElement("input");
+  inp.type = field.inputType === "password" ? "password" : "text";
+  if (field.placeholder) inp.placeholder = field.placeholder;
+  inp.value = field.default === undefined ? "" : String(field.default);
+  inp.addEventListener("input", () => setVal(inp.value));
+  state.values[name] = inp.value;
+  return inp;
+}
+
+async function loadRemoteOptions(name, field) {
+  const conf = Object.assign({}, field.optionsConf || {});
+  let url = conf.url;
+  if (state.urlOverrides[url]) url = state.urlOverrides[url];
+  // 复刻平台的 {字段名} 变量替换
+  url = url.replace(/\{([a-zA-Z0-9_]+)\}/g, (m, key) => (state.values[key] === undefined ? "" : state.values[key]));
+
+  const hint = document.querySelector('[data-role="optionsHint"][data-name="' + name + '"]');
+  try {
+    const res = await fetch(url, { headers: { "x-devops-project-id": "local-debug" } });
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch (e) { throw new Error("返回非 JSON: " + text.slice(0, 200)); }
+    if (data.status !== 0) throw new Error("status=" + data.status + " message=" + (data.message || ""));
+    const path = conf.dataPath || "data";
+    const list = path.split(".").reduce((acc, k) => (acc == null ? acc : acc[k]), data) || [];
+    state.options[name] = list;
+    renderOptions(name, field, list);
+    if (hint) hint.textContent = "optionsConf.url 拉取成功：" + list.length + " 项（" + url + "）";
+  } catch (err) {
+    if (hint) hint.innerHTML = "<span class='pill err'>选项拉取失败</span> " + err.message +
+      " &nbsp;<span class='muted'>（真实场景下这类失败通常就是 CORS / 预检 / 认证问题）</span>";
+  }
+}
+
+function renderOptions(name, field, list) {
+  const multiple = !!((field.optionsConf || {}).multiple);
+  const paramId = (field.optionsConf || {}).paramId || "id";
+  const paramName = (field.optionsConf || {}).paramName || "name";
+  const host = document.querySelector('[data-role="chips"][data-name="' + name + '"]');
+  if (!host) return;
+  host.innerHTML = "";
+  list.forEach((item) => {
+    const lab = document.createElement("label");
+    const cb = document.createElement("input");
+    cb.type = multiple ? "checkbox" : "radio";
+    cb.name = "opt_" + name;
+    cb.value = String(item[paramId]);
+    if (!multiple) {
+      cb.addEventListener("change", () => setVal(cb.value));
+    } else {
+      cb.addEventListener("change", () => {
+        const picked = Array.from(host.querySelectorAll("input:checked")).map((x) => x.value);
+        setVal(JSON.stringify(picked)); // 多选：平台传字符串，插件侧 json.loads
+      });
+    }
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode(item[paramName] || String(item[paramId])));
+    host.appendChild(lab);
+  });
+}
+
+function relySatisfied(field) {
+  const rely = field.rely;
+  if (!rely || !rely.expression) return true;
+  const results = rely.expression.map((expr) => {
+    const actual = state.values[expr.key];
+    if (expr.regex !== undefined) {
+      try { return new RegExp(expr.regex).test(String(actual === undefined ? "" : actual)); }
+      catch (e) { return false; }
+    }
+    return String(actual) === String(expr.value);
+  });
+  const op = (rely.operation || "AND").toUpperCase();
+  if (op === "OR") return results.some(Boolean);
+  if (op === "NOT") return !results.some(Boolean);
+  return results.every(Boolean);
+}
+
+function applyRely() {
+  const input = (state.taskDef.task || {}).input || {};
+  document.querySelectorAll(".field[data-name]").forEach((div) => {
+    const field = input[div.dataset.name];
+    if (!field) return;
+    const ok = relySatisfied(field);
+    div.classList.toggle("hidden-field", !ok);
+  });
+}
+
+function collectInput() {
+  const task = state.taskDef.task;
+  const input = task.input || {};
+  const mode = (document.querySelector('input[name="submitmode"]:checked') || {}).value || "visible";
+  const payload = {};
+  Object.keys(input).forEach((name) => {
+    if (mode === "visible" && !relySatisfied(input[name])) return;
+    if (state.values[name] !== undefined) payload[name] = state.values[name];
+  });
+  payload.bkSensitiveConfInfo = {
+    monitor_url: $("conf_monitor_url").value,
+    app_code: $("conf_app_code").value,
+    app_secret: $("conf_app_secret").value,
+  };
+  const user = $("var_start_user").value || "local-debug-user";
+  payload.BK_CI_START_USER_NAME = user;
+  payload.BK_CI_PIPELINE_UPDATE_USER = user;
+  payload.BK_CI_PIPELINE_CREATE_USER = user;
+  payload.BK_CI_PROJECT_NAME = "local-debug-project";
+  payload.BK_CI_PIPELINE_ID = "local-debug-pipeline";
+  payload.BK_CI_BUILD_ID = "local-debug-build";
+  return payload;
+}
+
+function updatePreview() {
+  $("preview").textContent = JSON.stringify(collectInput(), null, 2);
+}
+
+async function runPlugin() {
+  if (!(await ensureValid())) return;
+  const payload = collectInput();
+  updatePreview();
+  $("btnRun").disabled = true;
+  $("runTag").innerHTML = "<span class='pill warn'>运行中…</span>";
+  $("runMeta").textContent = "";
+  try {
+    const res = await fetch("/api/run", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input: payload }),
+    });
+    const data = await res.json();
+    const okPill = data.ok ? "<span class='pill ok'>exit 0 · 成功</span>" : "<span class='pill err'>exit " + data.returncode + " · 失败</span>";
+    $("runTag").innerHTML = okPill + (data.timedOut ? " <span class='pill err'>超时</span>" : "");
+    $("runMeta").innerHTML = "耗时 <code>" + data.duration + "s</code> &nbsp; 解释器 <code>" + data.python +
+      "</code> &nbsp; 数据目录 <code>" + data.dataDir + "</code>";
+    $("runStdout").textContent = data.stdout || "（stdout 为空）";
+    $("runStderr").textContent = data.stderr || "（stderr 为空）";
+    $("runOutput").textContent = data.output ? JSON.stringify(data.output, null, 2) : "（未生成 output.json）";
+    if (data.error) { $("runOutput").textContent = "错误：" + data.error; }
+  } catch (err) {
+    $("runTag").innerHTML = "<span class='pill err'>请求失败</span>";
+    $("runStderr").textContent = String(err);
+  } finally {
+    $("btnRun").disabled = false;
+    refreshLogs();
+  }
+}
+
+async function refreshLogs() {
+  const res = await fetch("/api/requests");
+  const data = await res.json();
+  const host = $("logs");
+  if (!data.items || !data.items.length) { host.className = "muted"; host.textContent = "（暂无请求）"; return; }
+  host.className = "";
+  host.innerHTML = data.items.slice().reverse().map((it) => {
+    const body = it.body ? JSON.stringify(it.body) : "";
+    return "<div class='log-item'>" +
+      "<span class='meta'>" + it.ts + "</span> " +
+      "<span class='path'>" + it.method + " " + it.path + "</span> " +
+      "<span class='pill'>" + it.kind + "</span><br/>" +
+      "<span class='meta'>origin=" + (it.origin || "-") + " · x-devops-project-id=" + (it.project_id || "-") + "</span>" +
+      (body ? "<br/><span class='meta'>" + body.slice(0, 400).replace(/</g, "&lt;") + "</span>" : "") +
+      "</div>";
+  }).join("");
+}
+
+function download() {
+  const blob = new Blob([JSON.stringify(collectInput(), null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "input.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init().then(() => { updatePreview(); refreshLogs(); });
+  ["conf_monitor_url", "conf_app_code", "conf_app_secret", "var_start_user"].forEach((id) => {
+    $(id).addEventListener("input", updatePreview);
+  });
+  document.querySelectorAll('input[name="submitmode"]').forEach((el) => el.addEventListener("change", updatePreview));
+  $("btnRun").addEventListener("click", runPlugin);
+  $("btnPreview").addEventListener("click", async () => {
+    if (await ensureValid()) updatePreview();
+  });
+  document.querySelectorAll('input[name="validatemode"]').forEach((el) =>
+    el.addEventListener("change", () => { clearFieldErrors(); updatePreview(); }));
+  $("btnDownload").addEventListener("click", download);
+  $("btnReloadOptions").addEventListener("click", () => {
+    const input = (state.taskDef.task || {}).input || {};
+    Object.keys(input).forEach((name) => {
+      if ((input[name].optionsConf || {}).url) loadRemoteOptions(name, input[name]);
+    });
+  });
+  $("btnRefreshLogs").addEventListener("click", refreshLogs);
+});
+</script>
+</body>
+</html>

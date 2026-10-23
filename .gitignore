@@ -215,3 +215,6 @@ worktrees/
 .codebuddy
 .claude/
 bkmonitor-files/
+
+# fe-index 前端/后端代码索引（派生产物，快照制，可随时重建；不入库）
+.fe-index/

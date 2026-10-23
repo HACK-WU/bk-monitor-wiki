@@ -1,0 +1,361 @@
+{
+  "requirements": {
+    "integration/2026-06-15-TAPD授权与建单": {
+      "id": "REQ-20260615-001",
+      "feature": "TAPD授权与建单",
+      "created": "2026-06-15",
+      "updated": "2026-06-22",
+      "status": "设计中",
+      "tags": [
+        "feat",
+        "integration"
+      ],
+      "version": 5,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-06-15 v3: 完成数据模型质疑审查",
+        "2026-06-15 v4: 完成技术设计（7 个子需求）"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "review/challenge-report.md",
+          "type": "review"
+        },
+        {
+          "path": "design/DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S01_数据模型设计_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S02_用户态授权_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S03_应用态授权_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S04_查询项目列表_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S05_查询已关联项目_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/S06_查询授权状态_DESIGN.md",
+          "type": "design"
+        },
+        {
+          "path": "design/api-design.md",
+          "type": "design"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-06-30-TAPD手动解绑持久化与重新关联": {
+      "id": "REQ-20260630-001",
+      "feature": "TAPD手动解绑持久化与重新关联",
+      "created": "2026-06-30",
+      "updated": "2026-06-30",
+      "status": "已确认",
+      "tags": [
+        "feat",
+        "integration"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-06-30 v2: 完成需求挖掘报告"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-07-07-Host页面接口拆分重构": {
+      "id": "REQ-20260707-001",
+      "feature": "Host页面接口拆分重构",
+      "created": "2026-07-07",
+      "updated": "2026-07-07",
+      "status": "已确认",
+      "tags": [
+        "feat",
+        "refactor"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建：需求文档与前端Wiki落盘"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "references/frontend-api-wiki.md",
+          "type": "reference"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-07-14-CodeToWiki 工具链抽离": {
+      "id": "REQ-001",
+      "feature": "CodeToWiki 工具链抽离",
+      "created": "2026-07-14",
+      "updated": "2026-07-14",
+      "status": "已确认",
+      "tags": [
+        "integration",
+        "tool"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ]
+    },
+    "integration/2026-07-29-移动端维度屏蔽支持regex规则": {
+      "id": "REQ-20260729-001",
+      "feature": "移动端维度屏蔽支持regex规则",
+      "created": "2026-07-29",
+      "updated": "2026-07-29",
+      "status": "已确认",
+      "tags": [
+        "feat",
+        "integration"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-07-29 v2: 需求已确认并落盘"
+      ],
+      "commits": [],
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-08-03-Issue 重命名异常返回专有状态码": {
+      "id": "REQ-20260803-001",
+      "feature": "Issue 重命名异常返回专有状态码",
+      "created": "2026-08-03 16:22:31",
+      "updated": "2026-08-04 17:33:43",
+      "status": "已完成",
+      "tags": [
+        "integration",
+        "issue",
+        "rename",
+        "错误码"
+      ],
+      "version": 5,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-08-03 16:23:39 v2: 完成需求落盘",
+        "2026-08-03 17:14:41 v3: 记录单元测试位置（专家团 test 目录）",
+        "2026-08-04 17:33:43 v4: 完成代码审查",
+        "2026-08-04 17:33:43 v5: 完成自动质疑审查"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": ".module-experts/issue专家/test/test_issue_rename_conflict.py",
+          "type": "test"
+        },
+        {
+          "path": "review/code-review.md",
+          "type": "review"
+        },
+        {
+          "path": "review/challenge-report.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-09-01-Issue拆分支持批量操作": {
+      "id": "REQ-20260901-001",
+      "feature": "Issue拆分支持批量操作",
+      "created": "2026-09-01 15:04:32",
+      "updated": "2026-09-01 15:04:32",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "feat",
+        "issue",
+        "批量操作"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-09-07-Issue合并来源时间展示优化": {
+      "id": "REQ-20260907-001",
+      "feature": "Issue合并来源时间展示优化",
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "status": "进行中",
+      "tags": [
+        "integration",
+        "feat",
+        "issue",
+        "merge_sources",
+        "时间展示"
+      ],
+      "version": 1,
+      "depends_on": [],
+      "changelog": [
+        "初始创建（TAPD 1010158081137884900，用户确认仅后端 REQ-01）",
+        "2026-09-07: 后端实施完成 + code review（A/✅）+ challenger 质疑（无阻塞），未提交待确认",
+        "2026-09-07: auto-review 复审修复行数声明（净增 13→111 行，numstat 实测：生产 5 + 测试 106）"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "review/code-review.md",
+          "type": "review"
+        },
+        {
+          "path": "review/challenge-report.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-09-14-主机监控慢接口优化": {
+      "id": "REQ-20260914-001",
+      "feature": "新版主机监控慢接口优化",
+      "created": "2026-09-14",
+      "updated": "2026-09-20",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "perf",
+        "host",
+        "search_host_metric",
+        "分页查询"
+      ],
+      "version": 5,
+      "depends_on": [],
+      "changelog": [
+        "初始创建（2026-09-11 截图+Trace 实证+2026-09-14 代码调研；分页查询已拍板为主方案，REQ-02~09 待确认）",
+        "2026-09-14 v2: 接口表格与需求清单补充后端视图（Resource）名称",
+        "2026-09-20 v3: 新增性能分析报告 perf/performance-analysis.md（双样本 Trace 差分，修正收益预估为 26.37s→3.1~5.4s，告警路 ES 在分页后升级为新关键路径）",
+        "2026-09-20 v4: 性能报告 v2 修订——拆 A/B 双路径（A 功能等价上限约 14.2s 不足 / B 分页下推 3.1~5.4s）；分页建议改为产品经理决策申请单（D1 排序语义 / D2 Agent 状态过滤 / D3 刷新语义 / D4 目标值确认），附代码级代价证据与排除项",
+        "2026-09-20 v5: 性能报告 v3 两项硬修正——① 13MB 定性证伪：gzip 后传输约 1MB（占 9.31s 约 1%）且前端在 Worker 内 parse，'挤占带宽/主线程'不成立，get_topo_tree P0→P1、H-6 证伪；② UQ 为上游服务扩容不可获得：REQ-09 关闭，A 路径 14.2s→17.2s（增益 35%），B 路径前置依赖反转为'扩容的唯一替代品'，对外只承诺保守档 5.4s"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "index.md",
+          "type": "index"
+        },
+        {
+          "path": "perf/performance-analysis.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-10-23-3.12.0-beta.2提测缺陷验收": {
+      "id": "REQ-20261023-001",
+      "feature": "3.12.0-beta.2提测缺陷验收",
+      "created": "2026-10-23 11:48:58",
+      "updated": "2026-10-23 11:49:54",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "fix"
+      ],
+      "version": 2,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-10-23 11:49:54 v2: 落盘 8 条提测缺陷验收清单与修复提交跟踪约定"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    }
+  },
+  "id_counters": {
+    "REQ-20260803": 1,
+    "REQ-20260901": 1,
+    "REQ-20260907": 1,
+    "REQ-20260914": 1,
+    "REQ-20261023": 1
+  }
+}

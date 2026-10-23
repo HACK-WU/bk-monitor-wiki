@@ -1,0 +1,33 @@
+{
+  "slug": "bkmonitor",
+  "kind": "backend",
+  "root": "/root/bk-monitor/bkmonitor",
+  "scope": [
+    "**"
+  ],
+  "exclude": [
+    "webpack/**"
+  ],
+  "framework": "django",
+  "commit": "ff89f63ff4036b4ff6dad180ba3455eb34ef62ab",
+  "generated": "2026-10-13",
+  "stats": {
+    "framework": "django",
+    "files": 3474,
+    "global_prefix": "",
+    "src_dirs": [
+      "packages"
+    ],
+    "default_named_tables": 183,
+    "modules": 24,
+    "controllers": 0,
+    "routes": 471,
+    "tables": 286,
+    "deps_edges": 125,
+    "event_edges": 0,
+    "experts": 11,
+    "modules_with_experts": 14
+  },
+  "scanner": "scan_backend.py v2.1.0",
+  "check_cmd": "python3 scan_backend.py --root /root/bk-monitor/bkmonitor --check --index .fe-index/bkmonitor"
+}

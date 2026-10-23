@@ -1,0 +1,55 @@
+{
+  "apps": [
+    {
+      "kind": "backend",
+      "slug": "bkmonitor",
+      "root": "/root/bk-monitor/bkmonitor",
+      "framework": "django",
+      "include": ["**"],
+      "exclude": ["webpack/**"],
+      "expertsDir": ["/root/bk-monitor/.module-experts"]
+    },
+    {
+      "slug": "monitor-pc",
+      "root": "/root/bk-monitor/bkmonitor/webpack",
+      "include": [
+        "src/monitor-pc/**",
+        "src/monitor-api/**",
+        "src/monitor-common/**",
+        "src/monitor-ui/**",
+        "src/monitor-static/**",
+        "src/fta-solutions/**"
+      ],
+      "exclude": [
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/__tests__/**",
+        "**/__mocks__/**",
+        "**/*.mock.*"
+      ],
+      "routes": ["src/monitor-pc/router/**/*.ts"],
+      "pagesDirs": ["src/monitor-pc/pages"],
+      "apiDirs": [
+        "src/monitor-api/modules"
+      ],
+      "aliases": {
+        "monitor-pc": "src/monitor-pc",
+        "monitor-api": "src/monitor-api",
+        "monitor-common": "src/monitor-common",
+        "monitor-ui": "src/monitor-ui",
+        "monitor-static": "src/monitor-static",
+        "fta-solutions": "src/fta-solutions",
+        "@": "src/monitor-pc",
+        "@router": "src/monitor-pc/router",
+        "@store": "src/monitor-pc/store",
+        "@page": "src/monitor-pc/pages",
+        "@api": "src/monitor-api",
+        "@common": "src/monitor-common",
+        "@static": "src/monitor-static"
+      },
+      "maxDepth": 2
+    }
+  ]
+}

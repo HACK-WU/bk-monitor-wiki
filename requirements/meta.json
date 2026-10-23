@@ -284,7 +284,7 @@
       "id": "REQ-20260914-001",
       "feature": "新版主机监控慢接口优化",
       "created": "2026-09-14",
-      "updated": "2026-09-14",
+      "updated": "2026-09-20",
       "status": "草案",
       "tags": [
         "integration",
@@ -293,11 +293,14 @@
         "search_host_metric",
         "分页查询"
       ],
-      "version": 2,
+      "version": 5,
       "depends_on": [],
       "changelog": [
         "初始创建（2026-09-11 截图+Trace 实证+2026-09-14 代码调研；分页查询已拍板为主方案，REQ-02~09 待确认）",
-        "2026-09-14 v2: 接口表格与需求清单补充后端视图（Resource）名称"
+        "2026-09-14 v2: 接口表格与需求清单补充后端视图（Resource）名称",
+        "2026-09-20 v3: 新增性能分析报告 perf/performance-analysis.md（双样本 Trace 差分，修正收益预估为 26.37s→3.1~5.4s，告警路 ES 在分页后升级为新关键路径）",
+        "2026-09-20 v4: 性能报告 v2 修订——拆 A/B 双路径（A 功能等价上限约 14.2s 不足 / B 分页下推 3.1~5.4s）；分页建议改为产品经理决策申请单（D1 排序语义 / D2 Agent 状态过滤 / D3 刷新语义 / D4 目标值确认），附代码级代价证据与排除项",
+        "2026-09-20 v5: 性能报告 v3 两项硬修正——① 13MB 定性证伪：gzip 后传输约 1MB（占 9.31s 约 1%）且前端在 Worker 内 parse，'挤占带宽/主线程'不成立，get_topo_tree P0→P1、H-6 证伪；② UQ 为上游服务扩容不可获得：REQ-09 关闭，A 路径 14.2s→17.2s（增益 35%），B 路径前置依赖反转为'扩容的唯一替代品'，对外只承诺保守档 5.4s"
       ],
       "commits": [],
       "branch": null,
@@ -309,6 +312,42 @@
         {
           "path": "index.md",
           "type": "index"
+        },
+        {
+          "path": "perf/performance-analysis.md",
+          "type": "review"
+        }
+      ],
+      "role": "standalone",
+      "parent_id": null,
+      "child_ids": []
+    },
+    "integration/2026-10-23-3.12.0-beta.2提测缺陷验收": {
+      "id": "REQ-20261023-001",
+      "feature": "3.12.0-beta.2提测缺陷验收",
+      "created": "2026-10-23 11:48:58",
+      "updated": "2026-10-23 11:49:54",
+      "status": "草案",
+      "tags": [
+        "integration",
+        "fix"
+      ],
+      "version": 3,
+      "depends_on": [],
+      "changelog": [
+        "初始创建",
+        "2026-10-23 11:49:54 v2: 落盘 8 条提测缺陷验收清单与修复提交跟踪约定"
+      ],
+      "commits": [],
+      "branch": null,
+      "docs": [
+        {
+          "path": "requirement.md",
+          "type": "requirement"
+        },
+        {
+          "path": "index.md",
+          "type": "requirement"
         }
       ],
       "role": "standalone",
@@ -320,6 +359,7 @@
     "REQ-20260803": 1,
     "REQ-20260901": 1,
     "REQ-20260907": 1,
-    "REQ-20260914": 1
+    "REQ-20260914": 1,
+    "REQ-20261023": 1
   }
 }
